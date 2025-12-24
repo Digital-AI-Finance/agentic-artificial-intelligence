@@ -1,0 +1,38 @@
+name: Compile Slides
+
+on:
+  push:
+    paths:
+      - 'L*/*.tex'
+  pull_request:
+    paths:
+      - 'L*/*.tex'
+
+jobs:
+  compile:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Find and compile LaTeX files
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: "*.tex"
+          working_directory: L*/
+          glob_root_file: true
+
+      - name: Check for overflow warnings
+        run: |
+          if grep -r "Overfull" L*/*.log 2>/dev/null; then
+            echo "ERROR: Overflow detected in slides"
+            exit 1
+          fi
+          echo "No overflow warnings found"
+
+      - name: Upload compiled PDFs
+        uses: actions/upload-artifact@v4
+        with:
+          name: slides-pdf
+          path: L*/*.pdf
+          if-no-files-found: ignore
