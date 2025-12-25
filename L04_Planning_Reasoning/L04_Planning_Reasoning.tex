@@ -1,0 +1,260 @@
+\documentclass[8pt,aspectratio=169]{beamer}
+\usetheme{Madrid}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\definecolor{mlblue}{RGB}{0,102,204}
+\definecolor{mlpurple}{RGB}{51,51,178}
+\definecolor{mllavender}{RGB}{173,173,224}
+\definecolor{mllavender2}{RGB}{193,193,232}
+\definecolor{mllavender3}{RGB}{204,204,235}
+\definecolor{mlorange}{RGB}{255,127,14}
+\definecolor{mlgreen}{RGB}{44,160,44}
+\definecolor{mlgray}{RGB}{127,127,127}
+
+\setbeamercolor{palette primary}{bg=mllavender3,fg=mlpurple}
+\setbeamercolor{palette secondary}{bg=mllavender2,fg=mlpurple}
+\setbeamercolor{palette tertiary}{bg=mllavender,fg=white}
+\setbeamercolor{structure}{fg=mlpurple}
+\setbeamercolor{frametitle}{fg=mlpurple,bg=mllavender3}
+
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{itemize items}[circle]
+\setbeamersize{text margin left=5mm,text margin right=5mm}
+
+\newcommand{\bottomnote}[1]{\vspace{\fill}\vspace{-2mm}\textcolor{mllavender2}{\rule{\textwidth}{0.4pt}}\vspace{1mm}{\footnotesize\textbf{#1}}}
+
+\title{Planning and Reasoning}
+\subtitle{Week 4: Enabling Agents to Think Before Acting}
+\author{Agentic Artificial Intelligence}
+\date{2025}
+
+\begin{document}
+
+\setbeamertemplate{footline}{\hbox{\begin{beamercolorbox}[wd=\paperwidth,ht=2.5ex,dp=1ex,center]{author in head/foot}\tiny (c) Joerg Osterrieder 2025\end{beamercolorbox}}}
+
+\begin{frame}[plain]
+\vspace{1.5cm}
+\begin{center}
+{\Huge\textcolor{mlpurple}{Planning and Reasoning}}\\[0.5cm]
+{\Large Week 4: Enabling Agents to Think Before Acting}\\[1.5cm]
+{\normalsize PhD Course in Agentic Artificial Intelligence}
+\end{center}
+\end{frame}
+
+\begin{frame}[t]{Learning Objectives}
+\textbf{Bloom's Taxonomy Levels}
+\begin{itemize}
+\item \textbf{Remember}: Define planning, reasoning, reflection in agent context
+\item \textbf{Understand}: Explain hierarchical task decomposition
+\item \textbf{Apply}: Implement Reflexion-style self-improvement
+\item \textbf{Analyze}: Compare planning strategies (LATS, Plan-and-Solve)
+\item \textbf{Evaluate}: Assess when planning helps vs. hinders performance
+\item \textbf{Create}: Design planning systems for complex tasks
+\end{itemize}
+\bottomnote{Planning transforms reactive agents into deliberative problem solvers.}
+\end{frame}
+
+\begin{frame}[t]{Why Planning Matters}
+\textbf{Reactive Agent Limitations}
+\begin{itemize}
+\item Single-step responses miss complex dependencies
+\item No lookahead leads to suboptimal paths
+\item Hard to recover from early mistakes
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Planning Enables}
+\begin{itemize}
+\item Multi-step goal decomposition
+\item Anticipation of obstacles
+\item Backtracking and alternative paths
+\item Resource-aware execution
+\end{itemize}
+\bottomnote{Planning = thinking before acting. Essential for complex tasks.}
+\end{frame}
+
+\begin{frame}[t]{Hierarchical Task Decomposition}
+\begin{center}
+\includegraphics[width=0.58\textwidth]{01_hierarchical_planning/chart.pdf}
+\end{center}
+\bottomnote{Break complex goals into manageable sub-tasks and executable actions.}
+\end{frame}
+
+\begin{frame}[t]{Plan-and-Solve Prompting}
+\textbf{Key Idea} (Wang et al., 2023)
+\begin{itemize}
+\item Explicit planning step before execution
+\item ``Devise a plan to solve the problem''
+\item Extract relevant variables first
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Template Structure}
+\begin{enumerate}
+\item Understand the problem
+\item Extract relevant information
+\item Devise step-by-step plan
+\item Execute plan with verification
+\end{enumerate}
+\bottomnote{Plan-and-Solve improves over zero-shot CoT on math and reasoning.}
+\end{frame}
+
+\begin{frame}[t]{LATS: Language Agent Tree Search}
+\textbf{Key Idea} (Zhou et al., 2024)
+\begin{itemize}
+\item Combines LLM reasoning with Monte Carlo Tree Search
+\item Explores multiple reasoning paths in parallel
+\item Uses value function to guide search
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Components}
+\begin{itemize}
+\item \textbf{Selection}: Choose promising nodes
+\item \textbf{Expansion}: Generate child actions
+\item \textbf{Simulation}: Evaluate outcomes
+\item \textbf{Backpropagation}: Update value estimates
+\end{itemize}
+\bottomnote{LATS achieves SOTA on HotpotQA and WebShop benchmarks.}
+\end{frame}
+
+\begin{frame}[t]{Agent Memory Types}
+\begin{center}
+\includegraphics[width=0.60\textwidth]{02_memory_types/chart.pdf}
+\end{center}
+\bottomnote{Memory enables learning from past experiences and maintaining context.}
+\end{frame}
+
+\begin{frame}[t]{Reflexion: Learning from Mistakes}
+\textbf{Key Idea} (Shinn et al., 2023)
+\begin{itemize}
+\item Verbal reinforcement learning
+\item Agent reflects on failures and generates insights
+\item Insights stored in memory for future attempts
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Reflexion Loop}
+\begin{enumerate}
+\item Attempt task
+\item Evaluate outcome
+\item Generate verbal reflection
+\item Store in episodic memory
+\item Retry with reflection context
+\end{enumerate}
+\bottomnote{Reflexion improves pass@1 on HumanEval from 80\% to 91\%.}
+\end{frame}
+
+\begin{frame}[t]{Self-Refine Framework}
+\textbf{Key Idea} (Madaan et al., 2023)
+\begin{itemize}
+\item Iterative self-improvement without external feedback
+\item Generate, critique, refine cycle
+\item Single LLM plays multiple roles
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Process}
+\begin{enumerate}
+\item \textbf{Generate}: Initial output
+\item \textbf{Feedback}: Self-critique the output
+\item \textbf{Refine}: Improve based on critique
+\item Repeat until satisfactory
+\end{enumerate}
+\bottomnote{Self-Refine works for code, math, summarization, and more.}
+\end{frame}
+
+\begin{frame}[t]{Reasoning with World Models}
+\textbf{RAP: Reasoning via Planning} (Hao et al., 2023)
+\begin{itemize}
+\item LLM as both world model and reasoning agent
+\item Simulates future states before acting
+\item Uses MCTS for strategic exploration
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Key Components}
+\begin{itemize}
+\item \textbf{World Model}: Predicts next state given action
+\item \textbf{Reward Model}: Evaluates state quality
+\item \textbf{Search Algorithm}: Explores action space
+\end{itemize}
+\bottomnote{World models enable lookahead reasoning and counterfactual analysis.}
+\end{frame}
+
+\begin{frame}[t]{When Planning Helps (and Hurts)}
+\textbf{Planning Beneficial}
+\begin{itemize}
+\item Multi-step reasoning tasks
+\item Tasks with irreversible actions
+\item Resource-constrained execution
+\item Novel problem domains
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Planning Overhead}
+\begin{itemize}
+\item Simple, well-defined tasks
+\item Time-critical responses
+\item Highly dynamic environments
+\item When exploration cost exceeds benefit
+\end{itemize}
+\bottomnote{Match planning depth to task complexity and time constraints.}
+\end{frame}
+
+\begin{frame}[t]{Implementation Patterns}
+\textbf{Plan-First Architecture}
+\begin{itemize}
+\item Generate complete plan before execution
+\item Good for stable, predictable tasks
+\item Risk: Plan may be invalid by execution time
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Interleaved Planning}
+\begin{itemize}
+\item Plan a few steps, execute, replan
+\item Adapts to changing conditions
+\item Higher overhead but more robust
+\end{itemize}
+\vspace{0.2cm}
+\textbf{Hierarchical Execution}
+\begin{itemize}
+\item High-level planner + low-level executor
+\item Separates strategic and tactical decisions
+\end{itemize}
+\bottomnote{Choose architecture based on task dynamics and failure costs.}
+\end{frame}
+
+\begin{frame}[t]{Required Readings}
+\textbf{This Week}
+\begin{itemize}
+\item Shinn et al. (2023). ``Reflexion.'' arXiv:2303.11366
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Supplementary}
+\begin{itemize}
+\item Wang et al. (2023). ``Plan-and-Solve.'' arXiv:2305.04091
+\item Zhou et al. (2024). ``LATS.'' arXiv:2310.04406
+\item Hao et al. (2023). ``RAP.'' arXiv:2305.14992
+\item Madaan et al. (2023). ``Self-Refine.'' arXiv:2303.17651
+\end{itemize}
+\bottomnote{Reflexion is required; others provide alternative planning approaches.}
+\end{frame}
+
+\begin{frame}[t]{Summary and Key Takeaways}
+\textbf{Key Concepts}
+\begin{itemize}
+\item \textbf{Hierarchical Planning}: Decompose goals into sub-tasks
+\item \textbf{Reflexion}: Learn from verbal self-reflection
+\item \textbf{Tree Search}: Explore multiple reasoning paths (LATS)
+\item \textbf{Memory}: Working, episodic, semantic for context
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Design Decisions}
+\begin{itemize}
+\item Plan-first vs. interleaved planning
+\item Depth of planning vs. execution speed
+\item When to reflect and when to retry
+\end{itemize}
+\vspace{0.2cm}
+\textbf{Next Week}: Multi-Agent Architectures
+\bottomnote{Planning transforms reactive LLMs into deliberative agents.}
+\end{frame}
+
+\end{document}
