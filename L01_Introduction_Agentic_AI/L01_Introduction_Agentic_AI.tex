@@ -1,0 +1,364 @@
+\documentclass[8pt,aspectratio=169]{beamer}
+\usetheme{Madrid}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{adjustbox}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{hyperref}
+
+% Color definitions
+\definecolor{mlblue}{RGB}{0,102,204}
+\definecolor{mlpurple}{RGB}{51,51,178}
+\definecolor{mllavender}{RGB}{173,173,224}
+\definecolor{mllavender2}{RGB}{193,193,232}
+\definecolor{mllavender3}{RGB}{204,204,235}
+\definecolor{mllavender4}{RGB}{214,214,239}
+\definecolor{mlorange}{RGB}{255,127,14}
+\definecolor{mlgreen}{RGB}{44,160,44}
+\definecolor{mlred}{RGB}{214,39,40}
+\definecolor{mlgray}{RGB}{127,127,127}
+
+% Apply custom colors to Madrid theme
+\setbeamercolor{palette primary}{bg=mllavender3,fg=mlpurple}
+\setbeamercolor{palette secondary}{bg=mllavender2,fg=mlpurple}
+\setbeamercolor{palette tertiary}{bg=mllavender,fg=white}
+\setbeamercolor{palette quaternary}{bg=mlpurple,fg=white}
+\setbeamercolor{structure}{fg=mlpurple}
+\setbeamercolor{frametitle}{fg=mlpurple,bg=mllavender3}
+\setbeamercolor{block title}{bg=mllavender2,fg=mlpurple}
+\setbeamercolor{block body}{bg=mllavender4,fg=black}
+
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{itemize items}[circle]
+\setbeamersize{text margin left=5mm,text margin right=5mm}
+
+% Bottom note command
+\newcommand{\bottomnote}[1]{%
+\vfill
+\vspace{-2mm}
+\textcolor{mllavender2}{\rule{\textwidth}{0.4pt}}
+\vspace{1mm}
+\footnotesize\textbf{#1}
+}
+
+\title{Introduction to Agentic AI}
+\subtitle{Week 1: From LLMs to Autonomous Agents}
+\author{Agentic Artificial Intelligence}
+\institute{PhD Course}
+\date{2025}
+
+\begin{document}
+
+% Copyright footer
+\setbeamertemplate{footline}{
+    \hbox{\begin{beamercolorbox}[wd=\paperwidth,ht=2.5ex,dp=1ex,center]{author in head/foot}
+    \tiny (c) Joerg Osterrieder 2025
+    \end{beamercolorbox}}
+}
+
+% ==================== SLIDE 1: Title ====================
+\begin{frame}[plain]
+\vspace{1.5cm}
+\begin{center}
+{\Huge\textcolor{mlpurple}{Introduction to Agentic AI}}\\[0.5cm]
+{\Large Week 1: From LLMs to Autonomous Agents}\\[1.5cm]
+{\normalsize PhD Course in Agentic Artificial Intelligence}\\[0.5cm]
+{\small 12-Week Research-Level Course}
+\end{center}
+\end{frame}
+
+% ==================== SLIDE 2: Learning Objectives ====================
+\begin{frame}[t]{Learning Objectives}
+\textbf{Bloom's Taxonomy Levels Covered}
+\begin{itemize}
+\item \textbf{Remember}: Define agent, tool use, ReAct paradigm, orchestration
+\item \textbf{Understand}: Explain difference between LLM inference and agentic behavior
+\item \textbf{Apply}: Implement a basic ReAct agent using LangChain
+\item \textbf{Analyze}: Compare reactive vs. deliberative architectures
+\item \textbf{Evaluate}: Assess capabilities and limitations of current LLM agents
+\item \textbf{Create}: Design an agent architecture for a novel problem
+\end{itemize}
+\bottomnote{By end of this lecture, you will understand what makes an ``agent'' different from an LLM.}
+\end{frame}
+
+% ==================== SLIDE 3: What is an Agent? ====================
+\begin{frame}[t]{What is an Agent?}
+\textbf{Classical Definition (Russell \& Norvig, 2021)}
+\begin{itemize}
+\item An \textbf{agent} is anything that perceives its environment through \textbf{sensors} and acts upon it through \textbf{actuators}
+\item Agents operate in an \textbf{environment} with \textbf{goals} to achieve
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Formal Definition}
+\begin{itemize}
+\item Agent function: $f: P^* \rightarrow A$ (percept history to action)
+\item Agent program implements the agent function
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Key Properties}
+\begin{itemize}
+\item \textbf{Autonomy}: Operates without direct human intervention
+\item \textbf{Reactivity}: Responds to environment changes
+\item \textbf{Pro-activeness}: Takes initiative toward goals
+\end{itemize}
+\bottomnote{Wooldridge \& Jennings (1995): ``Intelligent Agents: Theory and Practice''}
+\end{frame}
+
+% ==================== SLIDE 4: LLM vs Agent ====================
+\begin{frame}[t]{From LLMs to Agents}
+\begin{center}
+\includegraphics[width=0.65\textwidth]{01_agent_definition/chart.pdf}
+\end{center}
+\bottomnote{Agents extend LLMs with perception, memory, tools, and action capabilities.}
+\end{frame}
+
+% ==================== SLIDE 5: Why Agents Now? ====================
+\begin{frame}[t]{Why Agents Now?}
+\textbf{The Capability Gap}
+\begin{itemize}
+\item LLMs excel at single-turn generation but struggle with multi-step tasks
+\item Real-world problems require: planning, tool use, memory, iteration
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Enabling Factors (2023-2024)}
+\begin{itemize}
+\item \textbf{Reasoning}: Chain-of-Thought, Tree-of-Thoughts prompting
+\item \textbf{Tool Use}: Function calling APIs (OpenAI, Anthropic, Google)
+\item \textbf{Frameworks}: LangChain, LangGraph, AutoGen, CrewAI
+\item \textbf{Context}: 100K+ token windows enable complex interactions
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Current State}
+\begin{itemize}
+\item Production agents: GitHub Copilot, Cursor, Claude Computer Use
+\item Research frontier: Multi-agent systems, embodied agents
+\end{itemize}
+\bottomnote{2024 marked ``Year of Agents'' -- from research prototypes to production systems.}
+\end{frame}
+
+% ==================== SLIDE 6: ReAct Paradigm ====================
+\begin{frame}[t]{The ReAct Paradigm}
+\textbf{ReAct: Reasoning + Acting (Yao et al., ICLR 2023)}
+\begin{itemize}
+\item Interleave \textbf{reasoning traces} with \textbf{action execution}
+\item Thought: Internal reasoning about current state
+\item Action: External operation (search, calculate, API call)
+\item Observation: Feedback from environment
+\end{itemize}
+\vspace{0.1cm}
+\begin{center}
+\includegraphics[width=0.50\textwidth]{02_react_paradigm/chart.pdf}
+\end{center}
+\bottomnote{ReAct significantly outperforms action-only or reasoning-only baselines.}
+\end{frame}
+
+% ==================== SLIDE 7: ReAct Formalization ====================
+\begin{frame}[t]{ReAct: Formal Definition}
+\textbf{Mathematical Formulation}
+\begin{itemize}
+\item State space $\mathcal{S}$, action space $\mathcal{A}$, observation space $\mathcal{O}$
+\item Policy: $\pi(a_t | s_t, h_{<t})$ where $h$ is interaction history
+\end{itemize}
+\vspace{0.3cm}
+\textbf{ReAct Trajectory}
+$$\tau = (s_0, t_1, a_1, o_1, t_2, a_2, o_2, \ldots, t_n, a_n, o_n)$$
+where $t_i$ = thought, $a_i$ = action, $o_i$ = observation
+\vspace{0.3cm}
+
+\textbf{Key Insight}
+\begin{itemize}
+\item Thoughts provide interpretable reasoning traces
+\item Actions ground the agent in external world
+\item Observations close the loop for iterative refinement
+\end{itemize}
+\bottomnote{The trajectory $\tau$ provides a complete audit trail of agent reasoning.}
+\end{frame}
+
+% ==================== SLIDE 8: Agent Architectures ====================
+\begin{frame}[t]{Agent Architecture Taxonomy}
+\textbf{By Reasoning Strategy}
+\begin{itemize}
+\item \textbf{Reactive}: Direct stimulus-response (simple reflex)
+\item \textbf{Deliberative}: Plan then execute (model-based)
+\item \textbf{Hybrid}: Combine reactive and deliberative layers
+\end{itemize}
+\vspace{0.3cm}
+\textbf{By Organization}
+\begin{itemize}
+\item \textbf{Single-agent}: One LLM handles all tasks
+\item \textbf{Multi-agent}: Specialized agents collaborate
+\item \textbf{Hierarchical}: Manager agents delegate to workers
+\end{itemize}
+\vspace{0.3cm}
+\textbf{By Memory}
+\begin{itemize}
+\item \textbf{Stateless}: No memory between interactions
+\item \textbf{Short-term}: In-context memory (conversation history)
+\item \textbf{Long-term}: Persistent storage (vector DB, knowledge graph)
+\end{itemize}
+\bottomnote{Architecture choice depends on task complexity and latency requirements.}
+\end{frame}
+
+% ==================== SLIDE 9: Core Components ====================
+\begin{frame}[t]{Core Agent Components}
+\textbf{1. LLM Core (Brain)}
+\begin{itemize}
+\item Reasoning, planning, decision-making
+\item GPT-4, Claude, Gemini, open-source alternatives
+\end{itemize}
+\vspace{0.2cm}
+\textbf{2. Memory System}
+\begin{itemize}
+\item Short-term: Conversation context, working memory
+\item Long-term: Vector stores, knowledge graphs
+\end{itemize}
+\vspace{0.2cm}
+\textbf{3. Tool Interface}
+\begin{itemize}
+\item Function calling, MCP protocol
+\item APIs, databases, code execution
+\end{itemize}
+\vspace{0.2cm}
+\textbf{4. Planning Module}
+\begin{itemize}
+\item Task decomposition, goal tracking
+\item Reflexion, self-correction
+\end{itemize}
+\bottomnote{These four components form the backbone of modern agent systems.}
+\end{frame}
+
+% ==================== SLIDE 10: Agent Landscape ====================
+\begin{frame}[t]{Current Agent Landscape}
+\textbf{Commercial Agents}
+\begin{itemize}
+\item \textbf{GitHub Copilot}: Code completion and generation
+\item \textbf{Devin} (Cognition): Autonomous software engineer
+\item \textbf{Claude Computer Use}: Desktop automation
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Research Systems}
+\begin{itemize}
+\item \textbf{AutoGPT}: Goal-directed autonomous agent
+\item \textbf{BabyAGI}: Task-driven autonomous agent
+\item \textbf{Voyager} (NVIDIA): Minecraft exploration agent
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Frameworks}
+\begin{itemize}
+\item LangChain/LangGraph, AutoGen, CrewAI, Semantic Kernel
+\end{itemize}
+\bottomnote{The field is rapidly evolving -- new systems appear weekly.}
+\end{frame}
+
+% ==================== SLIDE 11: Capabilities ====================
+\begin{frame}[t]{Agent Capabilities}
+\textbf{What Agents Can Do Well}
+\begin{itemize}
+\item Multi-step task execution with tool use
+\item Information retrieval and synthesis
+\item Code generation and debugging
+\item Document analysis and summarization
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Current Limitations}
+\begin{itemize}
+\item \textbf{Reliability}: Hallucinations, error propagation
+\item \textbf{Planning}: Struggle with long-horizon tasks
+\item \textbf{Evaluation}: Hard to measure agent quality
+\item \textbf{Safety}: Unintended actions, jailbreaks
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Key Metric}
+\begin{itemize}
+\item AgentBench: GPT-4 achieves ~30\% on complex tasks
+\end{itemize}
+\bottomnote{Agents are powerful but not yet reliable for high-stakes autonomous operation.}
+\end{frame}
+
+% ==================== SLIDE 12: Research Frontiers ====================
+\begin{frame}[t]{Research Frontiers}
+\textbf{Open Problems}
+\begin{itemize}
+\item \textbf{Scalable alignment}: How to align autonomous agents?
+\item \textbf{Compositional generalization}: Transfer to new tasks
+\item \textbf{Long-term memory}: Efficient persistent memory
+\item \textbf{Multi-agent coordination}: Emergent communication
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Emerging Directions}
+\begin{itemize}
+\item Embodied agents (robotics, simulation)
+\item Agent-agent learning and co-evolution
+\item Constitutional AI for agent safety
+\item World models for planning
+\end{itemize}
+\bottomnote{These open problems define the research agenda for the next 3-5 years.}
+\end{frame}
+
+% ==================== SLIDE 13: Course Roadmap ====================
+\begin{frame}[t]{Course Roadmap: 12 Weeks}
+\small
+\begin{tabular}{lll}
+\toprule
+\textbf{Week} & \textbf{Topic} & \textbf{Key Concept} \\
+\midrule
+1 & Introduction to Agentic AI & ReAct paradigm \\
+2 & LLM Foundations & CoT, ToT, prompting \\
+3 & Tool Use \& Function Calling & MCP protocol \\
+4 & Planning \& Reasoning & Reflexion, LATS \\
+5 & Multi-Agent Architectures & Coordination \\
+6 & Agent Frameworks & LangGraph, AutoGen \\
+\midrule
+7 & Advanced RAG & Self-RAG, CRAG \\
+8 & GraphRAG \& Knowledge & Knowledge graphs \\
+9 & Hallucination Prevention & Verification \\
+10 & Agent Evaluation & Benchmarks \\
+11 & Domain Applications & Finance, Healthcare \\
+12 & Research Frontiers & Projects \\
+\bottomrule
+\end{tabular}
+\bottomnote{Each week includes slides, notebook, exercise, and paper reading.}
+\end{frame}
+
+% ==================== SLIDE 14: Key Papers ====================
+\begin{frame}[t]{Required Readings}
+\textbf{This Week}
+\begin{itemize}
+\item Yao et al. (2023). ``ReAct: Synergizing Reasoning and Acting in Language Models.'' \textit{ICLR 2023}. arXiv:2210.03629
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Supplementary}
+\begin{itemize}
+\item Wang et al. (2024). ``A Survey on Large Language Model based Autonomous Agents.'' arXiv:2308.11432
+\item Xi et al. (2023). ``The Rise and Potential of LLM Based Agents.'' arXiv:2309.07864
+\item Sumers et al. (2024). ``Language Agents: From Next-Token Prediction to Digital Automation.'' arXiv:2403.12897
+\end{itemize}
+\bottomnote{Start with ReAct paper -- it's foundational for everything that follows.}
+\end{frame}
+
+% ==================== SLIDE 15: Summary ====================
+\begin{frame}[t]{Summary and Key Takeaways}
+\textbf{Key Concepts}
+\begin{itemize}
+\item \textbf{Agent}: Autonomous system that perceives, reasons, and acts
+\item \textbf{ReAct}: Interleave reasoning traces with actions
+\item \textbf{Components}: LLM core, memory, tools, planning
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Key Equations}
+\begin{itemize}
+\item Policy: $\pi(a_t | s_t, h_{<t})$
+\item Trajectory: $\tau = (s_0, t_1, a_1, o_1, \ldots)$
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Next Week}
+\begin{itemize}
+\item LLM Foundations for Agents
+\item Chain-of-Thought and Tree-of-Thought prompting
+\item Context window management
+\end{itemize}
+\bottomnote{Agents = LLM + Memory + Tools + Planning}
+\end{frame}
+
+\end{document}
