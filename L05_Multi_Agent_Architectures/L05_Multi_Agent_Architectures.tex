@@ -1,0 +1,259 @@
+\documentclass[8pt,aspectratio=169]{beamer}
+\usetheme{Madrid}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\definecolor{mlblue}{RGB}{0,102,204}
+\definecolor{mlpurple}{RGB}{51,51,178}
+\definecolor{mllavender}{RGB}{173,173,224}
+\definecolor{mllavender2}{RGB}{193,193,232}
+\definecolor{mllavender3}{RGB}{204,204,235}
+\definecolor{mlorange}{RGB}{255,127,14}
+\definecolor{mlgreen}{RGB}{44,160,44}
+\definecolor{mlgray}{RGB}{127,127,127}
+
+\setbeamercolor{palette primary}{bg=mllavender3,fg=mlpurple}
+\setbeamercolor{palette secondary}{bg=mllavender2,fg=mlpurple}
+\setbeamercolor{palette tertiary}{bg=mllavender,fg=white}
+\setbeamercolor{structure}{fg=mlpurple}
+\setbeamercolor{frametitle}{fg=mlpurple,bg=mllavender3}
+
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{itemize items}[circle]
+\setbeamersize{text margin left=5mm,text margin right=5mm}
+
+\newcommand{\bottomnote}[1]{\vspace{\fill}\vspace{-2mm}\textcolor{mllavender2}{\rule{\textwidth}{0.4pt}}\vspace{1mm}{\footnotesize\textbf{#1}}}
+
+\title{Multi-Agent Architectures}
+\subtitle{Week 5: Collaborative AI Systems}
+\author{Agentic Artificial Intelligence}
+\date{2025}
+
+\begin{document}
+
+\setbeamertemplate{footline}{\hbox{\begin{beamercolorbox}[wd=\paperwidth,ht=2.5ex,dp=1ex,center]{author in head/foot}\tiny (c) Joerg Osterrieder 2025\end{beamercolorbox}}}
+
+\begin{frame}[plain]
+\vspace{1.5cm}
+\begin{center}
+{\Huge\textcolor{mlpurple}{Multi-Agent Architectures}}\\[0.5cm]
+{\Large Week 5: Collaborative AI Systems}\\[1.5cm]
+{\normalsize PhD Course in Agentic Artificial Intelligence}
+\end{center}
+\end{frame}
+
+\begin{frame}[t]{Learning Objectives}
+\textbf{Bloom's Taxonomy Levels}
+\begin{itemize}
+\item \textbf{Remember}: Define multi-agent systems, coordination, communication
+\item \textbf{Understand}: Explain different agent topologies and roles
+\item \textbf{Apply}: Implement message passing between agents
+\item \textbf{Analyze}: Compare centralized vs. decentralized architectures
+\item \textbf{Evaluate}: Assess trade-offs in multi-agent design
+\item \textbf{Create}: Design a multi-agent system for a complex task
+\end{itemize}
+\bottomnote{Multi-agent systems enable complex tasks beyond single-agent capabilities.}
+\end{frame}
+
+\begin{frame}[t]{Why Multi-Agent Systems?}
+\textbf{Single Agent Limitations}
+\begin{itemize}
+\item Context window constraints
+\item No specialization (jack of all trades)
+\item Sequential processing bottleneck
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Multi-Agent Benefits}
+\begin{itemize}
+\item Role specialization (expert agents)
+\item Parallel task execution
+\item Divide and conquer complex problems
+\item Emergent collective intelligence
+\end{itemize}
+\bottomnote{Division of labor amplifies capabilities beyond individual agents.}
+\end{frame}
+
+\begin{frame}[t]{Communication Topologies}
+\begin{center}
+\includegraphics[width=0.70\textwidth]{01_communication_topology/chart.pdf}
+\end{center}
+\bottomnote{Topology choice affects coordination overhead and flexibility.}
+\end{frame}
+
+\begin{frame}[t]{Agent Role Specialization}
+\begin{center}
+\includegraphics[width=0.60\textwidth]{02_role_specialization/chart.pdf}
+\end{center}
+\bottomnote{Specialized roles enable division of cognitive labor.}
+\end{frame}
+
+\begin{frame}[t]{AutoGen Framework}
+\textbf{Key Concepts} (Wu et al., 2023)
+\begin{itemize}
+\item Conversable agents with defined roles
+\item Multi-turn message exchange
+\item Human-in-the-loop integration
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Agent Types}
+\begin{itemize}
+\item \textbf{AssistantAgent}: LLM-powered responder
+\item \textbf{UserProxyAgent}: Executes code, proxies human
+\item \textbf{GroupChat}: Multi-agent conversation manager
+\end{itemize}
+\bottomnote{AutoGen simplifies multi-agent orchestration with conversation patterns.}
+\end{frame}
+
+\begin{frame}[t]{MetaGPT: Software Company Simulation}
+\textbf{Key Idea} (Hong et al., 2023)
+\begin{itemize}
+\item Agents simulate software development roles
+\item Product Manager, Architect, Engineer, QA
+\item Structured output protocols between roles
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Communication Protocol}
+\begin{itemize}
+\item Standardized document formats (PRD, Design Doc)
+\item Explicit handoff criteria between roles
+\item Version control for artifacts
+\end{itemize}
+\bottomnote{Structured protocols reduce miscommunication in multi-agent systems.}
+\end{frame}
+
+\begin{frame}[t]{ChatDev: End-to-End Development}
+\textbf{Key Idea} (Qian et al., 2024)
+\begin{itemize}
+\item Chat-based software development simulation
+\item Phase-based workflow (Design, Coding, Testing)
+\item Role-play dialogues between agents
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Phases}
+\begin{enumerate}
+\item \textbf{Design}: CEO + CTO discuss requirements
+\item \textbf{Coding}: Programmer + Code Reviewer iterate
+\item \textbf{Testing}: Tester + Programmer fix bugs
+\item \textbf{Documentation}: Technical writer finalizes
+\end{enumerate}
+\bottomnote{ChatDev generates complete software from natural language specs.}
+\end{frame}
+
+\begin{frame}[t]{Coordination Mechanisms}
+\textbf{Explicit Coordination}
+\begin{itemize}
+\item Central orchestrator assigns tasks
+\item Defined protocols and interfaces
+\item Clear responsibility boundaries
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Emergent Coordination}
+\begin{itemize}
+\item Agents negotiate in shared environment
+\item Consensus through multi-round discussion
+\item Voting or debate to resolve conflicts
+\end{itemize}
+\vspace{0.2cm}
+\textbf{Hybrid Approaches}: Structure where needed, flexibility elsewhere
+\bottomnote{Choose coordination mechanism based on task predictability.}
+\end{frame}
+
+\begin{frame}[t]{Message Passing Patterns}
+\textbf{Request-Response}
+\begin{itemize}
+\item Agent A sends query to Agent B
+\item B processes and returns result
+\item Simple, synchronous, easy to trace
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Publish-Subscribe}
+\begin{itemize}
+\item Agents subscribe to topics
+\item Publishers broadcast to all subscribers
+\item Decoupled, scalable, event-driven
+\end{itemize}
+\vspace{0.2cm}
+\textbf{Shared Blackboard}
+\begin{itemize}
+\item Common workspace all agents can read/write
+\item Good for collaborative problem-solving
+\end{itemize}
+\bottomnote{Pattern choice depends on coupling, latency, and complexity needs.}
+\end{frame}
+
+\begin{frame}[t]{Challenges in Multi-Agent Systems}
+\textbf{Coordination Overhead}
+\begin{itemize}
+\item Communication cost increases with agent count
+\item Synchronization delays
+\item Context management across agents
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Failure Modes}
+\begin{itemize}
+\item Cascading errors (one agent fails, chain breaks)
+\item Infinite loops (agents talking past each other)
+\item Conflicting actions (race conditions)
+\end{itemize}
+\vspace{0.2cm}
+\textbf{Mitigations}: Timeouts, circuit breakers, conflict resolution
+\bottomnote{Multi-agent complexity requires robust error handling.}
+\end{frame}
+
+\begin{frame}[t]{Design Principles}
+\textbf{Best Practices}
+\begin{enumerate}
+\item Start with minimal agents, add as needed
+\item Define clear role boundaries
+\item Use structured output formats
+\item Implement graceful degradation
+\item Monitor agent interactions
+\end{enumerate}
+\vspace{0.3cm}
+\textbf{Anti-Patterns}
+\begin{itemize}
+\item Too many agents for simple tasks
+\item Unclear responsibility boundaries
+\item No termination conditions
+\end{itemize}
+\bottomnote{Simpler architectures are easier to debug and maintain.}
+\end{frame}
+
+\begin{frame}[t]{Required Readings}
+\textbf{This Week}
+\begin{itemize}
+\item Tran et al. (2025). ``Multi-Agent Collaboration Survey.'' arXiv:2501.06322
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Supplementary}
+\begin{itemize}
+\item Wu et al. (2023). ``AutoGen.'' arXiv:2308.08155
+\item Hong et al. (2023). ``MetaGPT.'' arXiv:2308.00352
+\item Qian et al. (2024). ``ChatDev.'' arXiv:2307.07924
+\end{itemize}
+\bottomnote{Survey provides comprehensive overview; frameworks show implementation.}
+\end{frame}
+
+\begin{frame}[t]{Summary and Key Takeaways}
+\textbf{Key Concepts}
+\begin{itemize}
+\item \textbf{Topologies}: Centralized, hierarchical, peer-to-peer
+\item \textbf{Roles}: Orchestrator, planner, executor, critic
+\item \textbf{Coordination}: Explicit protocols vs. emergent
+\item \textbf{Frameworks}: AutoGen, MetaGPT, ChatDev
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Design Decisions}
+\begin{itemize}
+\item When to use multi-agent vs. single agent
+\item Centralized vs. decentralized coordination
+\item Structured vs. free-form communication
+\end{itemize}
+\vspace{0.2cm}
+\textbf{Next Week}: Agent Frameworks (LangGraph, CrewAI)
+\bottomnote{Multi-agent architectures enable complex collaborative intelligence.}
+\end{frame}
+
+\end{document}
