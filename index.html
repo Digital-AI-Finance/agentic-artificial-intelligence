@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agentic Artificial Intelligence - PhD Course</title>
+    <style>
+        :root {
+            --primary: #3333B2;
+            --secondary: #0066CC;
+            --accent: #FF7F0E;
+            --bg: #f8f9fa;
+            --card-bg: #ffffff;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg);
+            color: #333;
+            line-height: 1.6;
+        }
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+        header h1 { font-size: 2.5rem; margin-bottom: 0.5rem; }
+        header p { font-size: 1.2rem; opacity: 0.9; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+        .week-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        .week-card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .week-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+        }
+        .week-card h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+        .week-card p { color: #666; font-size: 0.9rem; }
+        .week-card .links { margin-top: 1rem; }
+        .week-card .links a {
+            display: inline-block;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+            padding: 0.3rem 0.8rem;
+            background: var(--bg);
+            color: var(--secondary);
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 0.85rem;
+        }
+        .week-card .links a:hover { background: var(--secondary); color: white; }
+        .badge {
+            display: inline-block;
+            padding: 0.2rem 0.5rem;
+            background: var(--accent);
+            color: white;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            margin-left: 0.5rem;
+        }
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        footer a { color: var(--secondary); }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Agentic Artificial Intelligence</h1>
+        <p>PhD Course - 12 Week Curriculum</p>
+    </header>
+
+    <div class="container">
+        <h2>Course Modules</h2>
+        <div class="week-grid">
+            <div class="week-card">
+                <h3>Week 1: Introduction to Agentic AI</h3>
+                <p>Agent definitions, ReAct paradigm, autonomous systems overview</p>
+                <div class="links">
+                    <a href="L01_Introduction_Agentic_AI/L01_Introduction_Agentic_AI.pdf">Slides</a>
+                    <a href="https://colab.research.google.com/github/Digital-AI-Finance/agentic-artificial-intelligence/blob/main/L01_Introduction_Agentic_AI/notebooks/L01_first_agent.ipynb">Notebook</a>
+                </div>
+            </div>
+
+            <div class="week-card">
+                <h3>Week 2: LLM Foundations for Agents</h3>
+                <p>Chain-of-Thought, Tree-of-Thoughts, prompting strategies</p>
+                <div class="links">
+                    <a href="L02_LLM_Foundations_Agents/L02_LLM_Foundations_Agents.pdf">Slides</a>
+                    <a href="https://colab.research.google.com/github/Digital-AI-Finance/agentic-artificial-intelligence/blob/main/L02_LLM_Foundations_Agents/notebooks/L02_prompting_strategies.ipynb">Notebook</a>
+                </div>
+            </div>
+
+            <div class="week-card">
+                <h3>Week 3: Tool Use and Function Calling</h3>
+                <p>MCP protocol, OpenAI/Anthropic APIs, tool design</p>
+                <div class="links">
+                    <a href="L03_Tool_Use_Function_Calling/L03_Tool_Use_Function_Calling.pdf">Slides</a>
+                    <a href="https://colab.research.google.com/github/Digital-AI-Finance/agentic-artificial-intelligence/blob/main/L03_Tool_Use_Function_Calling/notebooks/L03_mcp_tool_implementation.ipynb">MCP Notebook</a>
+                    <a href="https://colab.research.google.com/github/Digital-AI-Finance/agentic-artificial-intelligence/blob/main/L03_Tool_Use_Function_Calling/notebooks/L03_function_calling_comparison.ipynb">API Notebook</a>
+                </div>
+            </div>
+
+            <div class="week-card">
+                <h3>Week 4: Planning and Reasoning</h3>
+                <p>Reflexion, LATS, hierarchical planning, memory</p>
+                <div class="links">
+                    <a href="L04_Planning_Reasoning/L04_Planning_Reasoning.pdf">Slides</a>
+                    <a href="https://colab.research.google.com/github/Digital-AI-Finance/agentic-artificial-intelligence/blob/main/L04_Planning_Reasoning/notebooks/L04_reflexion_implementation.ipynb">Notebook</a>
+                </div>
+            </div>
+
+            <div class="week-card">
+                <h3>Week 5: Multi-Agent Architectures</h3>
+                <p>Communication topologies, AutoGen, MetaGPT, ChatDev</p>
+                <div class="links">
+                    <a href="L05_Multi_Agent_Architectures/L05_Multi_Agent_Architectures.pdf">Slides</a>
+                    <a href="https://colab.research.google.com/github/Digital-AI-Finance/agentic-artificial-intelligence/blob/main/L05_Multi_Agent_Architectures/notebooks/L05_message_passing.ipynb">Message Passing</a>
+                    <a href="https://colab.research.google.com/github/Digital-AI-Finance/agentic-artificial-intelligence/blob/main/L05_Multi_Agent_Architectures/notebooks/L05_coordination_demo.ipynb">Coordination</a>
+                </div>
+            </div>
+
+            <div class="week-card">
+                <h3>Week 6: Agent Frameworks <span class="badge">Coming Soon</span></h3>
+                <p>LangGraph, CrewAI, framework comparison</p>
+            </div>
+
+            <div class="week-card">
+                <h3>Week 7: Advanced RAG <span class="badge">Coming Soon</span></h3>
+                <p>Self-RAG, CRAG, RAPTOR, agentic retrieval</p>
+            </div>
+
+            <div class="week-card">
+                <h3>Week 8: GraphRAG and Knowledge <span class="badge">Coming Soon</span></h3>
+                <p>Knowledge graphs, Graph of Thoughts, HippoRAG</p>
+            </div>
+
+            <div class="week-card">
+                <h3>Week 9: Hallucination Prevention <span class="badge">Coming Soon</span></h3>
+                <p>FActScore, Chain-of-Verification, Self-Refine</p>
+            </div>
+
+            <div class="week-card">
+                <h3>Week 10: Agent Evaluation <span class="badge">Coming Soon</span></h3>
+                <p>AgentBench, WebArena, GAIA, SWE-bench</p>
+            </div>
+
+            <div class="week-card">
+                <h3>Week 11: Domain Applications <span class="badge">Coming Soon</span></h3>
+                <p>Coding agents, research assistants, finance applications</p>
+            </div>
+
+            <div class="week-card">
+                <h3>Week 12: Research Frontiers <span class="badge">Coming Soon</span></h3>
+                <p>Generative agents, Voyager, Constitutional AI</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Joerg Osterrieder | <a href="https://github.com/Digital-AI-Finance/agentic-artificial-intelligence">GitHub Repository</a></p>
+    </footer>
+</body>
+</html>
