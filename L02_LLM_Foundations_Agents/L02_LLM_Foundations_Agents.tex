@@ -1,0 +1,326 @@
+\documentclass[8pt,aspectratio=169]{beamer}
+\usetheme{Madrid}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{hyperref}
+
+% Color definitions
+\definecolor{mlblue}{RGB}{0,102,204}
+\definecolor{mlpurple}{RGB}{51,51,178}
+\definecolor{mllavender}{RGB}{173,173,224}
+\definecolor{mllavender2}{RGB}{193,193,232}
+\definecolor{mllavender3}{RGB}{204,204,235}
+\definecolor{mllavender4}{RGB}{214,214,239}
+\definecolor{mlorange}{RGB}{255,127,14}
+\definecolor{mlgreen}{RGB}{44,160,44}
+\definecolor{mlred}{RGB}{214,39,40}
+\definecolor{mlgray}{RGB}{127,127,127}
+
+\setbeamercolor{palette primary}{bg=mllavender3,fg=mlpurple}
+\setbeamercolor{palette secondary}{bg=mllavender2,fg=mlpurple}
+\setbeamercolor{palette tertiary}{bg=mllavender,fg=white}
+\setbeamercolor{palette quaternary}{bg=mlpurple,fg=white}
+\setbeamercolor{structure}{fg=mlpurple}
+\setbeamercolor{frametitle}{fg=mlpurple,bg=mllavender3}
+\setbeamercolor{block title}{bg=mllavender2,fg=mlpurple}
+\setbeamercolor{block body}{bg=mllavender4,fg=black}
+
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{itemize items}[circle]
+\setbeamersize{text margin left=5mm,text margin right=5mm}
+
+\newcommand{\bottomnote}[1]{%
+\vfill\vspace{-2mm}
+\textcolor{mllavender2}{\rule{\textwidth}{0.4pt}}
+\vspace{1mm}\footnotesize\textbf{#1}
+}
+
+\title{LLM Foundations for Agents}
+\subtitle{Week 2: Prompting, Reasoning, and Context}
+\author{Agentic Artificial Intelligence}
+\institute{PhD Course}
+\date{2025}
+
+\begin{document}
+
+\setbeamertemplate{footline}{
+    \hbox{\begin{beamercolorbox}[wd=\paperwidth,ht=2.5ex,dp=1ex,center]{author in head/foot}
+    \tiny (c) Joerg Osterrieder 2025
+    \end{beamercolorbox}}
+}
+
+% ==================== SLIDE 1: Title ====================
+\begin{frame}[plain]
+\vspace{1.5cm}
+\begin{center}
+{\Huge\textcolor{mlpurple}{LLM Foundations for Agents}}\\[0.5cm]
+{\Large Week 2: Prompting, Reasoning, and Context}\\[1.5cm]
+{\normalsize PhD Course in Agentic Artificial Intelligence}
+\end{center}
+\end{frame}
+
+% ==================== SLIDE 2: Learning Objectives ====================
+\begin{frame}[t]{Learning Objectives}
+\textbf{Bloom's Taxonomy Levels}
+\begin{itemize}
+\item \textbf{Remember}: Define Chain-of-Thought, Tree-of-Thoughts, Self-Consistency
+\item \textbf{Understand}: Explain how reasoning emerges from prompting strategies
+\item \textbf{Apply}: Implement various prompting techniques for complex reasoning
+\item \textbf{Analyze}: Compare effectiveness of different prompting strategies
+\item \textbf{Evaluate}: Assess trade-offs between reasoning depth and cost
+\item \textbf{Create}: Design custom prompting strategies for specific domains
+\end{itemize}
+\bottomnote{These prompting techniques are the foundation of agent reasoning.}
+\end{frame}
+
+% ==================== SLIDE 3: Why Prompting Matters ====================
+\begin{frame}[t]{Why Prompting Matters for Agents}
+\textbf{The Reasoning Gap}
+\begin{itemize}
+\item LLMs can reason, but not always reliably
+\item Prompting is ``programming in natural language''
+\item The right prompt can unlock latent capabilities
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Agent Applications}
+\begin{itemize}
+\item \textbf{Planning}: Decompose complex tasks into steps
+\item \textbf{Decision-making}: Weigh alternatives systematically
+\item \textbf{Error recovery}: Self-diagnose and correct mistakes
+\item \textbf{Tool selection}: Choose appropriate actions
+\end{itemize}
+\bottomnote{Effective prompting is essential for building reliable agents.}
+\end{frame}
+
+% ==================== SLIDE 4: Chain-of-Thought ====================
+\begin{frame}[t]{Chain-of-Thought Prompting}
+\textbf{Key Insight (Wei et al., 2022)}
+\begin{itemize}
+\item Elicit intermediate reasoning steps before final answer
+\item ``Let's think step by step'' unlocks reasoning
+\end{itemize}
+\vspace{0.2cm}
+\textbf{Example}
+\begin{block}{Without CoT}
+Q: Roger has 5 tennis balls. He buys 2 cans of 3 balls each. How many balls? \\
+A: 11
+\end{block}
+\begin{block}{With CoT}
+Q: [same question] Let's think step by step. \\
+A: Roger starts with 5 balls. 2 cans of 3 = 6 balls. Total: 5 + 6 = 11.
+\end{block}
+\bottomnote{CoT significantly improves math and multi-step reasoning tasks.}
+\end{frame}
+
+% ==================== SLIDE 5: CoT vs ToT ====================
+\begin{frame}[t]{Chain-of-Thought vs Tree-of-Thoughts}
+\begin{center}
+\includegraphics[width=0.65\textwidth]{01_cot_vs_tot/chart.pdf}
+\end{center}
+\bottomnote{ToT (Yao et al., 2023) enables exploration and backtracking.}
+\end{frame}
+
+% ==================== SLIDE 6: Tree-of-Thoughts ====================
+\begin{frame}[t]{Tree-of-Thoughts: Deliberate Problem Solving}
+\textbf{Key Innovation (Yao et al., 2023)}
+\begin{itemize}
+\item Explore multiple reasoning paths simultaneously
+\item Evaluate intermediate states with value function
+\item Backtrack when paths look unpromising
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Algorithm}
+\begin{enumerate}
+\item Generate multiple candidate thoughts
+\item Evaluate each thought (LLM as evaluator)
+\item Select best paths for expansion
+\item Repeat until solution or budget exhausted
+\end{enumerate}
+\vspace{0.2cm}
+\textbf{Complexity}: $O(b^d)$ where $b$ = branching factor, $d$ = depth
+\bottomnote{ToT excels at creative and planning tasks where exploration helps.}
+\end{frame}
+
+% ==================== SLIDE 7: Self-Consistency ====================
+\begin{frame}[t]{Self-Consistency Decoding}
+\textbf{Key Idea (Wang et al., 2023)}
+\begin{itemize}
+\item Sample multiple reasoning paths at temperature $> 0$
+\item Take majority vote on final answers
+\item Robust answers emerge from diverse reasoning
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Formula}
+$$\hat{a} = \arg\max_a \sum_{i=1}^{k} \mathbb{1}[a_i = a]$$
+
+\textbf{When to Use}
+\begin{itemize}
+\item Math problems, logical reasoning
+\item When single path may hallucinate
+\item Trade-off: More tokens, more cost, better accuracy
+\end{itemize}
+\bottomnote{Self-consistency is simple but effective for improving reliability.}
+\end{frame}
+
+% ==================== SLIDE 8: Zero-Shot Reasoning ====================
+\begin{frame}[t]{Zero-Shot Chain-of-Thought}
+\textbf{``Let's think step by step'' (Kojima et al., 2022)}
+\begin{itemize}
+\item No few-shot examples needed
+\item Simple prompt addition unlocks reasoning
+\item Works across many task types
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Effective Phrases}
+\begin{itemize}
+\item ``Let's think step by step''
+\item ``Let's work this out in a step by step way''
+\item ``First, ... Then, ... Finally, ...''
+\item ``Let me break this down''
+\end{itemize}
+\vspace{0.2cm}
+\textbf{Agent Application}
+\begin{itemize}
+\item Use in ReAct ``Thought'' steps
+\item Combine with tool-use for grounded reasoning
+\end{itemize}
+\bottomnote{Zero-shot CoT is the simplest way to improve LLM reasoning.}
+\end{frame}
+
+% ==================== SLIDE 9: Context Window ====================
+\begin{frame}[t]{Context Window and Agent Performance}
+\begin{center}
+\includegraphics[width=0.60\textwidth]{02_context_window/chart.pdf}
+\end{center}
+\bottomnote{Context length determines how much history and context an agent can use.}
+\end{frame}
+
+% ==================== SLIDE 10: Context Management ====================
+\begin{frame}[t]{Context Window Management}
+\textbf{The Challenge}
+\begin{itemize}
+\item Agents need: system prompt + history + tools + current task
+\item Context fills up quickly in multi-turn interactions
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Strategies}
+\begin{itemize}
+\item \textbf{Sliding window}: Keep recent N turns
+\item \textbf{Summarization}: Compress old history
+\item \textbf{RAG}: Retrieve relevant context on demand
+\item \textbf{Hierarchical}: Use different models for different tasks
+\end{itemize}
+\vspace{0.2cm}
+\textbf{Token Budget Planning}
+\begin{itemize}
+\item Reserve space for: System (500-2K), Tools (1-5K), Response (1-4K)
+\item Remaining: Available for history and context
+\end{itemize}
+\bottomnote{Context management is crucial for long-running agent tasks.}
+\end{frame}
+
+% ==================== SLIDE 11: Prompting Strategies ====================
+\begin{frame}[t]{Comparison of Prompting Strategies}
+\small
+\begin{tabular}{llll}
+\toprule
+\textbf{Strategy} & \textbf{Tokens} & \textbf{Best For} & \textbf{Trade-off} \\
+\midrule
+Zero-shot & Low & Simple tasks & May miss nuance \\
+Few-shot & Medium & Task demonstration & Example selection \\
+Chain-of-Thought & Medium & Math, logic & Linear only \\
+Tree-of-Thoughts & High & Creative, planning & Cost, latency \\
+Self-Consistency & Very High & Reliability & Many samples \\
+\bottomrule
+\end{tabular}
+\vspace{0.3cm}
+
+\textbf{For Agents}
+\begin{itemize}
+\item Use Zero-shot CoT for simple reasoning
+\item ToT for planning and task decomposition
+\item Self-Consistency for critical decisions
+\end{itemize}
+\bottomnote{Choose prompting strategy based on task complexity and cost constraints.}
+\end{frame}
+
+% ==================== SLIDE 12: Temperature and Sampling ====================
+\begin{frame}[t]{Temperature and Sampling for Agents}
+\textbf{Temperature Effects}
+\begin{itemize}
+\item $T = 0$: Deterministic, best for factual tasks
+\item $T = 0.3-0.7$: Balanced creativity and coherence
+\item $T > 1.0$: High creativity, risk of incoherence
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Agent Guidelines}
+\begin{itemize}
+\item \textbf{Tool selection}: $T = 0$ (deterministic)
+\item \textbf{Planning}: $T = 0.2-0.5$ (some exploration)
+\item \textbf{Self-Consistency}: $T = 0.7+$ (diversity)
+\item \textbf{Creative writing}: $T = 0.8-1.0$
+\end{itemize}
+\bottomnote{Temperature is a key hyperparameter for agent behavior.}
+\end{frame}
+
+% ==================== SLIDE 13: Practical Implementation ====================
+\begin{frame}[t]{Practical Implementation Tips}
+\textbf{Prompt Structure for Agents}
+\begin{enumerate}
+\item System context and role
+\item Available tools and their descriptions
+\item Output format specification
+\item Few-shot examples (if applicable)
+\item Current task and context
+\end{enumerate}
+\vspace{0.3cm}
+\textbf{Common Pitfalls}
+\begin{itemize}
+\item Overloading system prompt (keep focused)
+\item Inconsistent formatting (LLM gets confused)
+\item Missing error handling instructions
+\item Vague tool descriptions
+\end{itemize}
+\bottomnote{Clear, consistent prompts lead to reliable agent behavior.}
+\end{frame}
+
+% ==================== SLIDE 14: Key Papers ====================
+\begin{frame}[t]{Required Readings}
+\textbf{This Week}
+\begin{itemize}
+\item Wei et al. (2022). ``Chain-of-Thought Prompting Elicits Reasoning.'' \textit{NeurIPS 2022}. arXiv:2201.11903
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Supplementary}
+\begin{itemize}
+\item Yao et al. (2023). ``Tree of Thoughts.'' arXiv:2305.10601
+\item Wang et al. (2023). ``Self-Consistency.'' arXiv:2203.11171
+\item Kojima et al. (2022). ``Zero-Shot Reasoners.'' arXiv:2205.11916
+\end{itemize}
+\bottomnote{Chain-of-Thought is required; others are recommended.}
+\end{frame}
+
+% ==================== SLIDE 15: Summary ====================
+\begin{frame}[t]{Summary and Key Takeaways}
+\textbf{Key Concepts}
+\begin{itemize}
+\item \textbf{Chain-of-Thought}: Linear reasoning traces
+\item \textbf{Tree-of-Thoughts}: Branching exploration
+\item \textbf{Self-Consistency}: Majority vote over samples
+\item \textbf{Context Window}: Limits agent memory and complexity
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Key Equation}
+$$\hat{a} = \arg\max_a \sum_{i=1}^{k} \mathbb{1}[a_i = a] \quad \text{(Self-Consistency)}$$
+\vspace{0.2cm}
+\textbf{Next Week}
+\begin{itemize}
+\item Tool Use and Function Calling
+\item Model Context Protocol (MCP)
+\end{itemize}
+\bottomnote{Prompting strategies form the reasoning backbone of LLM agents.}
+\end{frame}
+
+\end{document}
