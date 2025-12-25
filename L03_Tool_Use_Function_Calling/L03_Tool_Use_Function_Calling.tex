@@ -1,0 +1,288 @@
+\documentclass[8pt,aspectratio=169]{beamer}
+\usetheme{Madrid}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\definecolor{mlblue}{RGB}{0,102,204}
+\definecolor{mlpurple}{RGB}{51,51,178}
+\definecolor{mllavender}{RGB}{173,173,224}
+\definecolor{mllavender2}{RGB}{193,193,232}
+\definecolor{mllavender3}{RGB}{204,204,235}
+\definecolor{mlorange}{RGB}{255,127,14}
+\definecolor{mlgreen}{RGB}{44,160,44}
+\definecolor{mlgray}{RGB}{127,127,127}
+
+\setbeamercolor{palette primary}{bg=mllavender3,fg=mlpurple}
+\setbeamercolor{palette secondary}{bg=mllavender2,fg=mlpurple}
+\setbeamercolor{palette tertiary}{bg=mllavender,fg=white}
+\setbeamercolor{structure}{fg=mlpurple}
+\setbeamercolor{frametitle}{fg=mlpurple,bg=mllavender3}
+
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{itemize items}[circle]
+\setbeamersize{text margin left=5mm,text margin right=5mm}
+
+\newcommand{\bottomnote}[1]{\vspace{\fill}\vspace{-2mm}\textcolor{mllavender2}{\rule{\textwidth}{0.4pt}}\vspace{1mm}{\footnotesize\textbf{#1}}}
+
+\title{Tool Use and Function Calling}
+\subtitle{Week 3: Extending LLMs with External Capabilities}
+\author{Agentic Artificial Intelligence}
+\date{2025}
+
+\begin{document}
+
+\setbeamertemplate{footline}{\hbox{\begin{beamercolorbox}[wd=\paperwidth,ht=2.5ex,dp=1ex,center]{author in head/foot}\tiny (c) Joerg Osterrieder 2025\end{beamercolorbox}}}
+
+\begin{frame}[plain]
+\vspace{1.5cm}
+\begin{center}
+{\Huge\textcolor{mlpurple}{Tool Use and Function Calling}}\\[0.5cm]
+{\Large Week 3: Extending LLMs with External Capabilities}\\[1.5cm]
+{\normalsize PhD Course in Agentic Artificial Intelligence}
+\end{center}
+\end{frame}
+
+\begin{frame}[t]{Learning Objectives}
+\textbf{Bloom's Taxonomy Levels}
+\begin{itemize}
+\item \textbf{Remember}: Define function calling, MCP protocol, tool augmentation
+\item \textbf{Understand}: Explain how LLMs learn to use external tools
+\item \textbf{Apply}: Implement tool-using agents with OpenAI and Anthropic APIs
+\item \textbf{Analyze}: Compare different tool integration approaches
+\item \textbf{Evaluate}: Assess tool selection strategies and error handling
+\item \textbf{Create}: Design custom tools and integrate into agent workflows
+\end{itemize}
+\bottomnote{Tool use transforms LLMs from text generators into action-taking agents.}
+\end{frame}
+
+\begin{frame}[t]{Why Tools Matter}
+\textbf{LLM Limitations}
+\begin{itemize}
+\item Knowledge cutoff (can't access current information)
+\item No computation ability (unreliable at math)
+\item Can't interact with external systems
+\item Hallucinate when uncertain
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Tools Enable}
+\begin{itemize}
+\item Real-time information retrieval (web search, APIs)
+\item Precise computation (calculators, code execution)
+\item System interaction (databases, file systems)
+\item Grounded responses (verified facts)
+\end{itemize}
+\bottomnote{Toolformer (Schick et al., 2023): LLMs can learn to use tools autonomously.}
+\end{frame}
+
+\begin{frame}[t]{Model Context Protocol (MCP)}
+\begin{center}
+\includegraphics[width=0.60\textwidth]{01_mcp_architecture/chart.pdf}
+\end{center}
+\bottomnote{MCP is Anthropic's open protocol for connecting LLMs to external tools.}
+\end{frame}
+
+\begin{frame}[t]{MCP Core Concepts}
+\textbf{Three Primitives}
+\begin{itemize}
+\item \textbf{Tools}: Functions the LLM can call (search, calculate, etc.)
+\item \textbf{Resources}: Data sources (files, databases, APIs)
+\item \textbf{Prompts}: Reusable prompt templates
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Transport Layer}
+\begin{itemize}
+\item JSON-RPC 2.0 over stdio (local) or HTTP (remote)
+\item Request/response pattern with typed schemas
+\item Supports streaming for long-running operations
+\end{itemize}
+\vspace{0.2cm}
+\textbf{Key Advantage}: Standardized protocol across different LLM providers
+\bottomnote{MCP enables tool portability: write once, use with any LLM.}
+\end{frame}
+
+\begin{frame}[t]{Function Calling Sequence}
+\begin{center}
+\includegraphics[width=0.58\textwidth]{02_tool_calling_sequence/chart.pdf}
+\end{center}
+\bottomnote{The LLM decides when and which tool to call based on the query.}
+\end{frame}
+
+\begin{frame}[t,fragile]{OpenAI Function Calling}
+\textbf{Tool Definition (JSON Schema)}
+\begin{verbatim}
+{"type":"function","function":{"name":"get_weather",
+ "description":"Get weather for a location",
+ "parameters":{"type":"object",
+  "properties":{"location":{"type":"string"}},
+  "required":["location"]}}}
+\end{verbatim}
+\vspace{0.2cm}
+\textbf{Key Points}
+\begin{itemize}
+\item Clear descriptions help LLM choose correct tool
+\item JSON Schema for parameter validation
+\item LLM returns structured \texttt{tool\_calls} array
+\end{itemize}
+\bottomnote{Good tool descriptions are critical for reliable tool selection.}
+\end{frame}
+
+\begin{frame}[t,fragile]{Anthropic Tool Use}
+\textbf{Claude Tool Definition}
+\begin{verbatim}
+{"name":"get_weather",
+ "description":"Get weather for a location",
+ "input_schema":{"type":"object",
+  "properties":{"location":{"type":"string"}},
+  "required":["location"]}}
+\end{verbatim}
+\vspace{0.2cm}
+\textbf{Differences from OpenAI}
+\begin{itemize}
+\item Uses \texttt{input\_schema} instead of \texttt{parameters}
+\item Returns \texttt{tool\_use} content blocks
+\item Supports \texttt{tool\_choice} for forcing specific tools
+\end{itemize}
+\bottomnote{Anthropic and OpenAI have similar but not identical APIs.}
+\end{frame}
+
+\begin{frame}[t]{Tool Selection Strategies}
+\textbf{Selection Approaches}
+\begin{itemize}
+\item \textbf{Auto}: LLM decides when/which tool (default)
+\item \textbf{Required}: Force at least one tool call
+\item \textbf{Specific}: Force a particular tool
+\item \textbf{None}: Disable tool use
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Best Practices}
+\begin{itemize}
+\item Start with ``auto'' and monitor selection quality
+\item Use ``required'' when you know a tool is needed
+\item Provide 3-5 tools max for reliable selection
+\item Include negative examples in descriptions
+\end{itemize}
+\bottomnote{Too many tools degrade selection accuracy -- keep toolsets focused.}
+\end{frame}
+
+\begin{frame}[t]{Error Handling}
+\textbf{Common Failure Modes}
+\begin{itemize}
+\item Tool not found or invalid parameters
+\item Tool execution timeout
+\item External API failure
+\item Malformed tool response
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Recovery Strategies}
+\begin{itemize}
+\item \textbf{Retry with backoff}: For transient failures
+\item \textbf{Fallback tools}: Alternative tools for same task
+\item \textbf{Graceful degradation}: Inform user of limitation
+\item \textbf{Self-correction}: Let LLM try different approach
+\end{itemize}
+\bottomnote{Robust error handling is essential for production agents.}
+\end{frame}
+
+\begin{frame}[t]{API-Bank and ToolLLM}
+\textbf{API-Bank (Li et al., 2023)}
+\begin{itemize}
+\item Benchmark with 73 APIs across 3 levels of complexity
+\item Tests tool selection, parameter extraction, composition
+\item GPT-4 achieves 80\%+ on single-tool tasks
+\end{itemize}
+\vspace{0.3cm}
+\textbf{ToolLLM (Qin et al., 2024)}
+\begin{itemize}
+\item 16,000+ real-world APIs from RapidAPI
+\item Trains open models for tool use
+\item Introduces ToolBench for evaluation
+\end{itemize}
+\vspace{0.2cm}
+\textbf{Gorilla (Patil et al., 2023)}
+\begin{itemize}
+\item LLM fine-tuned for API documentation
+\item Reduces hallucination in API parameters
+\end{itemize}
+\bottomnote{Research shows tool use is learnable but challenging to scale.}
+\end{frame}
+
+\begin{frame}[t]{Security Considerations}
+\textbf{Risks}
+\begin{itemize}
+\item \textbf{Prompt injection}: User tricks LLM into calling dangerous tools
+\item \textbf{Parameter injection}: Malicious inputs to tool parameters
+\item \textbf{Privilege escalation}: Tools with more access than intended
+\item \textbf{Data exfiltration}: Tools sending sensitive data externally
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Mitigations}
+\begin{itemize}
+\item Validate and sanitize all tool inputs
+\item Implement principle of least privilege
+\item Use allowlists for external connections
+\item Log all tool calls for audit
+\end{itemize}
+\bottomnote{Tool use introduces new attack surfaces -- security is critical.}
+\end{frame}
+
+\begin{frame}[t]{Building Custom Tools}
+\textbf{Tool Design Checklist}
+\begin{enumerate}
+\item Clear, specific name (verb + noun)
+\item Detailed description with examples
+\item Minimal required parameters
+\item Typed parameters with constraints
+\item Structured return format
+\end{enumerate}
+\vspace{0.3cm}
+\textbf{Example: Search Tool}
+\begin{itemize}
+\item Name: \texttt{search\_web}
+\item Description: ``Search the web for current information. Use for recent events, facts to verify, or when knowledge might be outdated.''
+\item Parameters: \texttt{query} (string, required)
+\item Returns: structured JSON with title, snippet, url
+\end{itemize}
+\bottomnote{Good tool design = clear intent + minimal friction.}
+\end{frame}
+
+\begin{frame}[t]{Required Readings}
+\textbf{This Week}
+\begin{itemize}
+\item Anthropic MCP Documentation: \texttt{docs.anthropic.com/mcp}
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Supplementary}
+\begin{itemize}
+\item Schick et al. (2023). ``Toolformer.'' arXiv:2302.04761
+\item Li et al. (2023). ``API-Bank.'' arXiv:2304.08244
+\item Qin et al. (2024). ``ToolLLM.'' arXiv:2307.16789
+\item Patil et al. (2023). ``Gorilla.'' arXiv:2305.15334
+\end{itemize}
+\bottomnote{MCP documentation is required; papers provide research context.}
+\end{frame}
+
+\begin{frame}[t]{Summary and Key Takeaways}
+\textbf{Key Concepts}
+\begin{itemize}
+\item \textbf{Function Calling}: Structured tool invocation by LLMs
+\item \textbf{MCP}: Open protocol for tool integration
+\item \textbf{Tool Design}: Clear names, descriptions, typed parameters
+\item \textbf{Security}: Validate inputs, minimize privileges
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Key APIs}
+\begin{itemize}
+\item OpenAI: \texttt{tools} parameter with JSON Schema
+\item Anthropic: \texttt{tools} with \texttt{input\_schema}
+\end{itemize}
+\vspace{0.2cm}
+\textbf{Next Week}
+\begin{itemize}
+\item Planning and Reasoning
+\item Reflexion: Learning from mistakes
+\end{itemize}
+\bottomnote{Tools transform LLMs from passive responders to active agents.}
+\end{frame}
+
+\end{document}
