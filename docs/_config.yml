@@ -89,10 +89,10 @@ exclude:
   - vendor/
   - .git/
   - "*.py"
-  - "*.pdf"
   - "*.tex"
   - temp/
   - __pycache__/
+# Note: PDFs in slides/ folder are included for download
 
 # Mermaid diagrams
 mermaid:

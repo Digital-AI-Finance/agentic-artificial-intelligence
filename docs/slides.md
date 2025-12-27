@@ -17,7 +17,7 @@ Download lecture slides for each week. All slides are in PDF format, optimized f
 ## Available Slides
 
 {% for week in site.data.weeks %}
-{% assign pdf_path = week.folder | append: "/" | append: week.folder | append: ".pdf" %}
+{% assign pdf_name = week.folder | append: ".pdf" %}
 <div class="slide-card" style="display: flex; justify-content: space-between; align-items: center; padding: 1rem; margin: 0.5rem 0; background: var(--bg-secondary, #f8f9fa); border-radius: 8px; border-left: 4px solid #2CA02C;">
   <div>
     <h4 style="margin: 0 0 0.25rem 0;">
@@ -26,10 +26,10 @@ Download lecture slides for each week. All slides are in PDF format, optimized f
     <p style="margin: 0; color: #666; font-size: 0.9rem;">{{ week.description }}</p>
   </div>
   <div style="text-align: right;">
-    <a href="https://github.com/Digital-AI-Finance/agentic-artificial-intelligence/raw/main/{{ pdf_path }}" class="btn btn-primary" style="white-space: nowrap;">
+    <a href="{{ '/slides/' | append: pdf_name | relative_url }}" class="btn btn-primary" style="white-space: nowrap;" download>
       Download PDF
     </a>
-    <a href="https://github.com/Digital-AI-Finance/agentic-artificial-intelligence/blob/main/{{ pdf_path }}" class="btn btn-outline" style="white-space: nowrap; margin-left: 0.5rem;">
+    <a href="{{ '/slides/' | append: pdf_name | relative_url }}" class="btn btn-outline" style="white-space: nowrap; margin-left: 0.5rem;" target="_blank">
       View
     </a>
   </div>
