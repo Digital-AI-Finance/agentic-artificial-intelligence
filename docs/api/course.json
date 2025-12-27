@@ -1,0 +1,68 @@
+---
+layout: null
+---
+{
+  "course": {
+    "name": "{{ site.course.name }}",
+    "code": "{{ site.course.code }}",
+    "semester": "{{ site.course.semester }}",
+    "credits": {{ site.course.credits }},
+    "weeks": {{ site.course.weeks }},
+    "instructor": {
+      "name": "{{ site.course.instructor.name }}",
+      "email": "{{ site.course.instructor.email }}",
+      "institution": "{{ site.course.instructor.institution }}"
+    },
+    "github": "{{ site.course.github }}",
+    "website": "{{ site.url }}{{ site.baseurl }}"
+  },
+  "weeks": [
+    {% for week in site.data.weeks %}
+    {
+      "number": {{ week.number }},
+      "title": "{{ week.title }}",
+      "description": "{{ week.description | escape }}",
+      "folder": "{{ week.folder }}",
+      "status": "{{ week.status }}",
+      "topics": {{ week.topics | jsonify }},
+      "learning_objectives": {{ week.learning_objectives | jsonify }},
+      "notebooks": [
+        {% for notebook in week.notebooks %}
+        {
+          "name": "{{ notebook.name }}",
+          "file": "{{ notebook.file }}",
+          "colab_url": "https://colab.research.google.com/github/Digital-AI-Finance/agentic-artificial-intelligence/blob/main/{{ week.folder }}/{{ notebook.file }}"
+        }{% unless forloop.last %},{% endunless %}
+        {% endfor %}
+      ],
+      "papers": [
+        {% for paper in week.papers %}
+        {
+          "title": "{{ paper.title | escape }}",
+          "authors": "{{ paper.authors | escape }}",
+          "year": {{ paper.year }},
+          {% if paper.arxiv %}"arxiv": "{{ paper.arxiv }}",
+          "url": "https://arxiv.org/abs/{{ paper.arxiv }}"{% elsif paper.url %}"url": "{{ paper.url }}"{% endif %}
+        }{% unless forloop.last %},{% endunless %}
+        {% endfor %}
+      ],
+      "slides_url": "{{ site.url }}{{ site.baseurl }}/{{ week.folder }}/{{ week.folder }}.pdf",
+      "page_url": "{{ site.url }}{{ site.baseurl }}/weeks/week-{{ week.number }}"
+    }{% unless forloop.last %},{% endunless %}
+    {% endfor %}
+  ],
+  "glossary": [
+    {% for term in site.data.glossary %}
+    {
+      "term": "{{ term.term }}",
+      "definition": "{{ term.definition | escape }}",
+      "related": {{ term.related | jsonify }},
+      "week": {{ term.week }}
+    }{% unless forloop.last %},{% endunless %}
+    {% endfor %}
+  ],
+  "meta": {
+    "generated_at": "{{ site.time | date_to_xmlschema }}",
+    "api_version": "1.0"
+  }
+}

@@ -1,0 +1,323 @@
+/* Accessibility Enhancements */
+
+/* Skip Links */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: #3333B2;
+  color: white;
+  padding: 8px 16px;
+  z-index: 10000;
+  transition: top 0.2s;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
+/* Focus indicators */
+*:focus {
+  outline: 2px solid #3333B2;
+  outline-offset: 2px;
+}
+
+*:focus:not(:focus-visible) {
+  outline: none;
+}
+
+*:focus-visible {
+  outline: 2px solid #3333B2;
+  outline-offset: 2px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .btn, button {
+    border: 2px solid currentColor !important;
+  }
+  
+  a {
+    text-decoration: underline !important;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Code copy button styles */
+pre {
+  position: relative;
+}
+
+.copy-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: #3333B2;
+  color: white;
+  border: none;
+  padding: 4px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+pre:hover .copy-btn,
+.copy-btn:focus {
+  opacity: 1;
+}
+
+.copy-btn.copied {
+  background: #2CA02C;
+}
+
+/* Reading time badge */
+.reading-time {
+  background: #f0f0f0;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  color: #666;
+  margin-left: 1rem;
+}
+
+/* Progress indicator */
+.progress-indicator {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: #3333B2;
+  z-index: 9999;
+  transition: width 0.1s;
+}
+
+/* Auto TOC styles */
+.auto-toc {
+  position: fixed;
+  right: 20px;
+  top: 100px;
+  width: 200px;
+  max-height: calc(100vh - 150px);
+  overflow-y: auto;
+  background: white;
+  border-left: 2px solid #3333B2;
+  padding: 1rem;
+  font-size: 0.85rem;
+}
+
+.auto-toc a {
+  display: block;
+  padding: 4px 0;
+  color: #666;
+  text-decoration: none;
+}
+
+.auto-toc a:hover,
+.auto-toc a.active {
+  color: #3333B2;
+}
+
+@media (max-width: 1200px) {
+  .auto-toc {
+    display: none;
+  }
+}
+
+/* Keyboard shortcut overlay */
+.keyboard-help {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+  z-index: 10000;
+  display: none;
+}
+
+.keyboard-help.active {
+  display: block;
+}
+
+.keyboard-help kbd {
+  background: #f0f0f0;
+  padding: 2px 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  font-family: monospace;
+}
+
+/* Print Stylesheets */
+@media print {
+  /* Hide navigation and non-essential elements */
+  nav,
+  .site-nav,
+  .search-container,
+  .skip-link,
+  .copy-btn,
+  .auto-toc,
+  .keyboard-help,
+  .progress-indicator,
+  .btn,
+  button:not(.print-btn),
+  footer,
+  .no-print {
+    display: none !important;
+  }
+
+  /* Reset colors for print */
+  body {
+    background: white !important;
+    color: black !important;
+    font-size: 12pt;
+    line-height: 1.5;
+  }
+
+  /* Ensure links are visible */
+  a {
+    color: black !important;
+    text-decoration: underline;
+  }
+
+  /* Show URLs after links */
+  a[href^="http"]:after {
+    content: " (" attr(href) ")";
+    font-size: 0.8em;
+    font-style: italic;
+  }
+
+  /* Internal links don't need URLs */
+  a[href^="#"]:after,
+  a[href^="/"]:after {
+    content: "";
+  }
+
+  /* Page breaks */
+  h1, h2, h3 {
+    page-break-after: avoid;
+    page-break-inside: avoid;
+  }
+
+  pre, code, blockquote, table, figure, img {
+    page-break-inside: avoid;
+  }
+
+  /* Reference cards specific */
+  .ref-card {
+    page-break-after: always;
+    border: 1px solid #333 !important;
+  }
+
+  .ref-card:last-child {
+    page-break-after: auto;
+  }
+
+  /* Ensure code blocks are readable */
+  pre {
+    background: #f5f5f5 !important;
+    border: 1px solid #ccc !important;
+    padding: 1rem !important;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+
+  code {
+    background: #f5f5f5 !important;
+    color: black !important;
+  }
+
+  /* Quiz answers hidden in print */
+  .quiz-answer {
+    display: none !important;
+  }
+
+  /* Table formatting */
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  th, td {
+    border: 1px solid #333;
+    padding: 0.5rem;
+    text-align: left;
+  }
+
+  th {
+    background: #f0f0f0 !important;
+  }
+
+  /* Header info for print */
+  @page {
+    margin: 2cm;
+  }
+
+  /* Print header */
+  .main-content::before {
+    content: "Agentic AI Course - Digital AI Finance";
+    display: block;
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #333;
+  }
+}
+
+/* Accessibility statement page styles */
+.a11y-feature {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1rem;
+  background: #f8f9fa;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.a11y-feature-icon {
+  font-size: 1.5rem;
+  color: #3333B2;
+}
+
+.a11y-checklist {
+  list-style: none;
+  padding: 0;
+}
+
+.a11y-checklist li {
+  padding: 0.5rem 0;
+  padding-left: 1.5rem;
+  position: relative;
+}
+
+.a11y-checklist li::before {
+  content: "Y";
+  position: absolute;
+  left: 0;
+  color: #2CA02C;
+  font-weight: bold;
+}
+
+/* Chart alt text display */
+.chart-alt-text {
+  font-size: 0.85rem;
+  color: #666;
+  font-style: italic;
+  margin-top: 0.5rem;
+}

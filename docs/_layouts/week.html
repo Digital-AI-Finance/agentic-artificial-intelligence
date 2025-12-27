@@ -1,0 +1,208 @@
+---
+layout: default
+---
+
+{% assign week_num = page.week_number %}
+{% assign week = site.data.weeks | where: "number", week_num | first %}
+
+<div class="week-header">
+  <div class="week-nav">
+    {% if week_num > 1 %}
+    <a href="{{ '/weeks/week-' | append: week_num | minus: 1 | relative_url }}" class="btn btn-outline">&larr; Week {{ week_num | minus: 1 }}</a>
+    {% endif %}
+    {% if week_num < 12 %}
+    <a href="{{ '/weeks/week-' | append: week_num | plus: 1 | relative_url }}" class="btn btn-outline">Week {{ week_num | plus: 1 }} &rarr;</a>
+    {% endif %}
+  </div>
+</div>
+
+<h1>Week {{ week.number }}: {{ week.title }}</h1>
+
+<p class="fs-5">{{ week.description }}</p>
+
+<div class="progress-bar" style="margin: 1.5rem 0;">
+  <div class="progress-fill" style="width: {{ week_num | times: 100 | divided_by: 12 }}%;"></div>
+</div>
+<p class="fs-3" style="text-align: center; color: #666;">Week {{ week_num }} of 12</p>
+
+## Learning Objectives
+
+{% for objective in week.learning_objectives %}
+- {{ objective }}
+{% endfor %}
+
+## Topics Covered
+
+{% for topic in week.topics %}
+- {{ topic }}
+{% endfor %}
+
+## Resources
+
+<div class="resource-links" style="margin: 1.5rem 0;">
+  <a href="{{ site.baseurl }}/{{ week.folder }}/{{ week.folder }}.pdf" class="btn btn-primary">
+    Download Slides (PDF)
+  </a>
+</div>
+
+{% if week.notebooks.size > 0 %}
+### Jupyter Notebooks
+
+<div style="display: flex; flex-wrap: wrap; gap: 1rem; margin: 1rem 0;">
+{% for notebook in week.notebooks %}
+  <a href="https://colab.research.google.com/github/Digital-AI-Finance/agentic-artificial-intelligence/blob/main/{{ week.folder }}/{{ notebook.file }}" target="_blank" style="text-decoration: none;">
+    <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open {{ notebook.name }} in Colab" style="height: 24px;">
+    <span style="display: block; font-size: 0.85rem; color: #666; margin-top: 0.25rem;">{{ notebook.name }}</span>
+  </a>
+{% endfor %}
+</div>
+{% endif %}
+
+## Required Readings
+
+| Paper | Authors | Year | Link |
+|:------|:--------|:-----|:-----|
+{% for paper in week.papers %}
+| {{ paper.title }} | {{ paper.authors }} | {{ paper.year }} | {% if paper.arxiv %}[arXiv](https://arxiv.org/abs/{{ paper.arxiv }}){% elsif paper.url %}[Link]({{ paper.url }}){% endif %} |
+{% endfor %}
+
+{% assign reading = site.data.readings | where: "week", week_num | first %}
+{% if reading %}
+## Reading Guide: {{ reading.title }}
+
+<div class="reading-card" style="background: var(--bg-secondary, #f8f9fa); border-radius: 8px; padding: 1.5rem; margin: 1.5rem 0; border-left: 4px solid #0066CC;">
+  <div class="reading-meta" style="display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 1rem;">
+    <span class="badge" style="background: #0066CC; color: white; padding: 0.25rem 0.75rem; border-radius: 4px; font-size: 0.85rem;">{{ reading.estimated_time }}</span>
+    {% for topic in reading.topics %}
+    <span class="badge" style="background: #3333B2; color: white; padding: 0.25rem 0.75rem; border-radius: 4px; font-size: 0.85rem;">{{ topic }}</span>
+    {% endfor %}
+  </div>
+
+  <p style="margin-bottom: 1rem;">{{ reading.description }}</p>
+
+  <h4 style="margin-bottom: 0.5rem; color: #333;">Primary Paper</h4>
+  <div style="background: white; padding: 1rem; border-radius: 4px; margin-bottom: 1rem; border: 1px solid #ddd;">
+    <strong>{{ reading.primary_paper.title }}</strong><br>
+    <span style="color: #666;">{{ reading.primary_paper.authors }} ({{ reading.primary_paper.year }})</span><br>
+    <span style="font-style: italic; color: #888;">{{ reading.primary_paper.venue }}</span>
+    {% if reading.primary_paper.arxiv %}
+    <a href="https://arxiv.org/abs/{{ reading.primary_paper.arxiv }}" style="margin-left: 0.5rem; background: #b31b1b; color: white; padding: 0.15rem 0.5rem; border-radius: 3px; font-size: 0.75rem; text-decoration: none;">arXiv</a>
+    {% elsif reading.primary_paper.url %}
+    <a href="{{ reading.primary_paper.url }}" style="margin-left: 0.5rem; background: #0066CC; color: white; padding: 0.15rem 0.5rem; border-radius: 3px; font-size: 0.75rem; text-decoration: none;">Link</a>
+    {% endif %}
+  </div>
+
+  {% if reading.secondary_papers %}
+  <h4 style="margin-bottom: 0.5rem; color: #333;">Secondary Papers</h4>
+  <ul style="margin-bottom: 1rem;">
+  {% for paper in reading.secondary_papers %}
+    <li>
+      <strong>{{ paper.title }}</strong>
+      {% if paper.authors %}<span style="color: #666;"> - {{ paper.authors }}</span>{% endif %}
+      {% if paper.year %}<span style="color: #888;"> ({{ paper.year }})</span>{% endif %}
+      {% if paper.arxiv %}
+      <a href="https://arxiv.org/abs/{{ paper.arxiv }}" style="margin-left: 0.25rem; background: #b31b1b; color: white; padding: 0.1rem 0.4rem; border-radius: 3px; font-size: 0.7rem; text-decoration: none;">arXiv</a>
+      {% elsif paper.url %}
+      <a href="{{ paper.url }}" style="margin-left: 0.25rem; background: #0066CC; color: white; padding: 0.1rem 0.4rem; border-radius: 3px; font-size: 0.7rem; text-decoration: none;">Link</a>
+      {% endif %}
+    </li>
+  {% endfor %}
+  </ul>
+  {% endif %}
+
+  <div class="resource-links">
+    <a href="https://github.com/Digital-AI-Finance/agentic-artificial-intelligence/blob/main/{{ reading.file }}" class="btn btn-primary" style="background: #0066CC; border-color: #0066CC;">
+      View Reading Guide
+    </a>
+    <a href="https://github.com/Digital-AI-Finance/agentic-artificial-intelligence/raw/main/{{ reading.file }}" class="btn btn-secondary">
+      Download (MD)
+    </a>
+  </div>
+</div>
+{% endif %}
+
+{% assign exercise = site.data.exercises | where: "week", week_num | first %}
+{% if exercise %}
+## Exercise: {{ exercise.title }}
+
+<div class="exercise-card" style="background: var(--bg-secondary, #f8f9fa); border-radius: 8px; padding: 1.5rem; margin: 1.5rem 0; border-left: 4px solid #FF7F0E;">
+  <div class="exercise-meta" style="display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 1rem;">
+    <span class="badge" style="background: #FF7F0E; color: white; padding: 0.25rem 0.75rem; border-radius: 4px; font-size: 0.85rem;">{{ exercise.total_points }} Points</span>
+    <span class="badge" style="background: #3333B2; color: white; padding: 0.25rem 0.75rem; border-radius: 4px; font-size: 0.85rem;">{{ exercise.estimated_time }}</span>
+    <span class="badge" style="background: #0066CC; color: white; padding: 0.25rem 0.75rem; border-radius: 4px; font-size: 0.85rem;">{{ exercise.difficulty }}</span>
+  </div>
+
+  <p style="margin-bottom: 1rem;">{{ exercise.description }}</p>
+
+  <h4 style="margin-bottom: 0.5rem; color: #333;">Learning Objectives</h4>
+  <ul style="margin-bottom: 1rem;">
+  {% for obj in exercise.objectives %}
+    <li>{{ obj }}</li>
+  {% endfor %}
+  </ul>
+
+  <h4 style="margin-bottom: 0.5rem; color: #333;">Tasks</h4>
+  <table style="width: 100%; margin-bottom: 1rem;">
+    <thead>
+      <tr><th style="text-align: left;">Task</th><th style="text-align: center;">Points</th><th style="text-align: left;">Description</th></tr>
+    </thead>
+    <tbody>
+    {% for task in exercise.tasks %}
+      <tr>
+        <td style="font-weight: 500;">{{ task.name }}</td>
+        <td style="text-align: center;">{{ task.points }}</td>
+        <td>{{ task.description }}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+
+  <div class="resource-links">
+    <a href="https://github.com/Digital-AI-Finance/agentic-artificial-intelligence/blob/main/{{ exercise.file }}" class="btn btn-primary" style="background: #FF7F0E; border-color: #FF7F0E;">
+      View Full Exercise
+    </a>
+    <a href="https://github.com/Digital-AI-Finance/agentic-artificial-intelligence/raw/main/{{ exercise.file }}" class="btn btn-secondary">
+      Download (MD)
+    </a>
+  </div>
+</div>
+{% endif %}
+
+{{ content }}
+
+## Discussion & Questions
+
+<div class="discussion-section" style="background: var(--bg-secondary, #f8f9fa); border-radius: 8px; padding: 1.5rem; margin: 1.5rem 0; border-left: 4px solid #3333B2;">
+  <h3 style="margin-top: 0; color: #3333B2;">Join the Conversation</h3>
+  <p>Have questions about this week's material? Want to discuss concepts with fellow students?</p>
+  <div class="resource-links">
+    <a href="https://github.com/Digital-AI-Finance/agentic-artificial-intelligence/discussions/categories/week-{{ week_num }}-discussion" class="btn btn-primary">
+      Week {{ week_num }} Discussion
+    </a>
+    <a href="https://github.com/Digital-AI-Finance/agentic-artificial-intelligence/discussions/new?category=q-a" class="btn btn-secondary">
+      Ask a Question
+    </a>
+    <a href="https://github.com/Digital-AI-Finance/agentic-artificial-intelligence/issues/new?labels=week-{{ week_num }}&template=bug_report.md" class="btn btn-outline">
+      Report an Issue
+    </a>
+  </div>
+</div>
+
+<hr style="margin: 2rem 0;">
+
+<div class="week-nav" style="display: flex; justify-content: space-between;">
+  {% if week_num > 1 %}
+  {% assign prev_week = site.data.weeks | where: "number", week_num | first %}
+  <a href="{{ '/weeks/week-' | append: week_num | minus: 1 | relative_url }}" class="btn btn-outline">&larr; Previous Week</a>
+  {% else %}
+  <span></span>
+  {% endif %}
+
+  <a href="{{ '/' | relative_url }}" class="btn btn-outline">Course Home</a>
+
+  {% if week_num < 12 %}
+  <a href="{{ '/weeks/week-' | append: week_num | plus: 1 | relative_url }}" class="btn btn-outline">Next Week &rarr;</a>
+  {% else %}
+  <span></span>
+  {% endif %}
+</div>

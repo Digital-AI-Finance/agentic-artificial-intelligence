@@ -1,0 +1,302 @@
+# Chart Gallery Data
+# 48 visualizations across 12 weeks
+
+- week: 1
+  folder: L01_Introduction_Agentic_AI
+  title: "Introduction to Agentic AI"
+  charts:
+    - id: "01_agent_definition"
+      name: "Agent Definition"
+      description: "Comparison of agent vs standard LLM inference patterns"
+      type: "diagram"
+      topics: ["agent", "llm", "comparison"]
+    - id: "02_react_paradigm"
+      name: "ReAct Paradigm"
+      description: "The Reasoning-Acting cycle with thought, action, observation loop"
+      type: "flowchart"
+      topics: ["react", "reasoning", "acting"]
+    - id: "03_agent_capabilities"
+      name: "Agent Capabilities"
+      description: "Overview of core agent capabilities and components"
+      type: "diagram"
+      topics: ["capabilities", "components"]
+    - id: "04_autonomy_spectrum"
+      name: "Autonomy Spectrum"
+      description: "Spectrum from fully manual to fully autonomous systems"
+      type: "scale"
+      topics: ["autonomy", "spectrum"]
+
+- week: 2
+  folder: L02_LLM_Foundations_Agents
+  title: "LLM Foundations for Agents"
+  charts:
+    - id: "01_cot_vs_tot"
+      name: "CoT vs ToT Comparison"
+      description: "Chain-of-Thought vs Tree-of-Thoughts reasoning patterns"
+      type: "comparison"
+      topics: ["cot", "tot", "reasoning"]
+    - id: "02_context_window"
+      name: "Context Window Impact"
+      description: "Effect of context window size on agent performance"
+      type: "plot"
+      topics: ["context", "performance"]
+    - id: "03_prompting_comparison"
+      name: "Prompting Strategies"
+      description: "Zero-shot, few-shot, and chain-of-thought comparison"
+      type: "comparison"
+      topics: ["prompting", "zero-shot", "few-shot"]
+    - id: "04_token_efficiency"
+      name: "Token Efficiency"
+      description: "Token usage across different prompting strategies"
+      type: "bar"
+      topics: ["tokens", "efficiency", "cost"]
+
+- week: 3
+  folder: L03_Tool_Use_Function_Calling
+  title: "Tool Use and Function Calling"
+  charts:
+    - id: "01_mcp_architecture"
+      name: "MCP Architecture"
+      description: "Model Context Protocol architecture and components"
+      type: "architecture"
+      topics: ["mcp", "protocol", "tools"]
+    - id: "02_tool_calling_sequence"
+      name: "Tool Calling Sequence"
+      description: "Sequence diagram for function calling flow"
+      type: "sequence"
+      topics: ["function-calling", "sequence"]
+    - id: "03_tool_selection"
+      name: "Tool Selection"
+      description: "How agents select appropriate tools for tasks"
+      type: "flowchart"
+      topics: ["tools", "selection", "routing"]
+    - id: "04_api_comparison"
+      name: "API Comparison"
+      description: "OpenAI vs Anthropic tool use API comparison"
+      type: "comparison"
+      topics: ["api", "openai", "anthropic"]
+
+- week: 4
+  folder: L04_Planning_Reasoning
+  title: "Planning and Reasoning"
+  charts:
+    - id: "01_hierarchical_planning"
+      name: "Hierarchical Planning"
+      description: "Multi-level task decomposition and planning"
+      type: "hierarchy"
+      topics: ["planning", "decomposition", "hierarchy"]
+    - id: "02_memory_types"
+      name: "Memory Types"
+      description: "Episodic, semantic, and working memory in agents"
+      type: "diagram"
+      topics: ["memory", "episodic", "semantic"]
+    - id: "03_reflexion_loop"
+      name: "Reflexion Loop"
+      description: "Self-reflection and improvement cycle"
+      type: "flowchart"
+      topics: ["reflexion", "self-improvement"]
+    - id: "04_planning_comparison"
+      name: "Planning Strategies"
+      description: "Comparison of planning approaches (LATS, Plan-and-Solve)"
+      type: "comparison"
+      topics: ["lats", "planning", "strategies"]
+
+- week: 5
+  folder: L05_Multi_Agent_Architectures
+  title: "Multi-Agent Architectures"
+  charts:
+    - id: "01_communication_topology"
+      name: "Communication Topology"
+      description: "Hub-and-spoke, mesh, and hierarchical patterns"
+      type: "network"
+      topics: ["communication", "topology", "patterns"]
+    - id: "02_role_specialization"
+      name: "Role Specialization"
+      description: "Agent roles in multi-agent systems"
+      type: "diagram"
+      topics: ["roles", "specialization"]
+    - id: "03_autogen_flow"
+      name: "AutoGen Flow"
+      description: "AutoGen conversation and task flow"
+      type: "flowchart"
+      topics: ["autogen", "conversation"]
+    - id: "04_coordination_overhead"
+      name: "Coordination Overhead"
+      description: "Communication cost vs agent count"
+      type: "plot"
+      topics: ["coordination", "overhead", "scaling"]
+
+- week: 6
+  folder: L06_Agent_Frameworks
+  title: "Agent Frameworks"
+  charts:
+    - id: "01_framework_comparison"
+      name: "Framework Comparison"
+      description: "LangGraph vs CrewAI vs AutoGen radar comparison"
+      type: "radar"
+      topics: ["langgraph", "crewai", "autogen", "comparison"]
+    - id: "02_langgraph_flow"
+      name: "LangGraph Flow"
+      description: "State machine and graph execution in LangGraph"
+      type: "flowchart"
+      topics: ["langgraph", "state-machine"]
+    - id: "03_state_management"
+      name: "State Management"
+      description: "Agent state persistence and checkpointing"
+      type: "diagram"
+      topics: ["state", "persistence", "checkpointing"]
+    - id: "04_orchestration_patterns"
+      name: "Orchestration Patterns"
+      description: "Common orchestration patterns for agent workflows"
+      type: "patterns"
+      topics: ["orchestration", "patterns", "workflows"]
+
+- week: 7
+  folder: L07_Advanced_RAG
+  title: "Advanced RAG"
+  charts:
+    - id: "01_rag_evolution"
+      name: "RAG Evolution"
+      description: "Timeline from basic RAG to advanced architectures"
+      type: "timeline"
+      topics: ["rag", "evolution", "history"]
+    - id: "02_self_rag_flow"
+      name: "Self-RAG Flow"
+      description: "Self-RAG architecture with reflection tokens"
+      type: "flowchart"
+      topics: ["self-rag", "reflection"]
+    - id: "03_crag_architecture"
+      name: "CRAG Architecture"
+      description: "Corrective RAG pipeline and components"
+      type: "architecture"
+      topics: ["crag", "corrective", "retrieval"]
+    - id: "04_retrieval_comparison"
+      name: "Retrieval Comparison"
+      description: "Performance comparison of RAG strategies"
+      type: "comparison"
+      topics: ["retrieval", "performance", "comparison"]
+
+- week: 8
+  folder: L08_GraphRAG_Knowledge
+  title: "GraphRAG and Knowledge"
+  charts:
+    - id: "01_graphrag_architecture"
+      name: "GraphRAG Architecture"
+      description: "Knowledge graph construction and retrieval flow"
+      type: "architecture"
+      topics: ["graphrag", "knowledge-graph"]
+    - id: "02_entity_extraction"
+      name: "Entity Extraction"
+      description: "Named entity recognition and relationship extraction"
+      type: "diagram"
+      topics: ["ner", "entities", "relationships"]
+    - id: "03_community_detection"
+      name: "Community Detection"
+      description: "Graph community detection and summarization"
+      type: "network"
+      topics: ["community", "clustering", "summarization"]
+    - id: "04_query_routing"
+      name: "Query Routing"
+      description: "Local vs global search routing in GraphRAG"
+      type: "flowchart"
+      topics: ["routing", "local", "global"]
+
+- week: 9
+  folder: L09_Hallucination_Prevention
+  title: "Hallucination Prevention"
+  charts:
+    - id: "01_hallucination_types"
+      name: "Hallucination Types"
+      description: "Taxonomy of intrinsic and extrinsic hallucinations"
+      type: "taxonomy"
+      topics: ["hallucination", "taxonomy", "types"]
+    - id: "02_verification_pipeline"
+      name: "Verification Pipeline"
+      description: "Chain-of-Verification (CoVe) pipeline"
+      type: "flowchart"
+      topics: ["cove", "verification", "pipeline"]
+    - id: "03_factscore"
+      name: "FActScore Evaluation"
+      description: "Fine-grained atomic fact scoring methodology"
+      type: "diagram"
+      topics: ["factscore", "evaluation", "atomic"]
+    - id: "04_mitigation_strategies"
+      name: "Mitigation Strategies"
+      description: "Comparison of hallucination mitigation approaches"
+      type: "comparison"
+      topics: ["mitigation", "strategies"]
+
+- week: 10
+  folder: L10_Agent_Evaluation
+  title: "Agent Evaluation"
+  charts:
+    - id: "01_benchmark_landscape"
+      name: "Benchmark Landscape"
+      description: "Overview of agent evaluation benchmarks"
+      type: "landscape"
+      topics: ["benchmarks", "evaluation", "landscape"]
+    - id: "02_evaluation_dimensions"
+      name: "Evaluation Dimensions"
+      description: "Multi-dimensional agent evaluation framework"
+      type: "radar"
+      topics: ["dimensions", "framework", "metrics"]
+    - id: "03_agentbench_results"
+      name: "AgentBench Results"
+      description: "Performance of models on AgentBench tasks"
+      type: "bar"
+      topics: ["agentbench", "results", "leaderboard"]
+    - id: "04_human_eval"
+      name: "Human Evaluation"
+      description: "LLM-as-Judge vs human evaluation comparison"
+      type: "comparison"
+      topics: ["human-eval", "llm-judge", "agreement"]
+
+- week: 11
+  folder: L11_Domain_Applications
+  title: "Domain Applications"
+  charts:
+    - id: "01_application_domains"
+      name: "Application Domains"
+      description: "Overview of agent application domains"
+      type: "taxonomy"
+      topics: ["domains", "applications"]
+    - id: "02_code_agents"
+      name: "Code Agents"
+      description: "Architecture of code generation agents"
+      type: "architecture"
+      topics: ["code", "devin", "alphacodium"]
+    - id: "03_finance_agents"
+      name: "Finance Agents"
+      description: "Financial agent architecture and constraints"
+      type: "diagram"
+      topics: ["finance", "trading", "compliance"]
+    - id: "04_healthcare_agents"
+      name: "Healthcare Agents"
+      description: "Medical agent safety and regulatory requirements"
+      type: "diagram"
+      topics: ["healthcare", "medical", "safety"]
+
+- week: 12
+  folder: L12_Research_Frontiers
+  title: "Research Frontiers"
+  charts:
+    - id: "01_research_timeline"
+      name: "Research Timeline"
+      description: "Timeline of major agent research milestones"
+      type: "timeline"
+      topics: ["timeline", "history", "milestones"]
+    - id: "02_open_problems"
+      name: "Open Problems"
+      description: "Key open research problems in agentic AI"
+      type: "diagram"
+      topics: ["open-problems", "research"]
+    - id: "03_safety_challenges"
+      name: "Safety Challenges"
+      description: "Agent safety and alignment challenges"
+      type: "taxonomy"
+      topics: ["safety", "alignment", "challenges"]
+    - id: "04_future_directions"
+      name: "Future Directions"
+      description: "Emerging research directions and opportunities"
+      type: "diagram"
+      topics: ["future", "directions", "opportunities"]

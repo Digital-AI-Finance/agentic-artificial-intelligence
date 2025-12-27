@@ -1,0 +1,176 @@
+# Glossary of Agentic AI Terms
+
+- term: "Agent"
+  definition: "An autonomous system that perceives its environment, reasons about it, and takes actions to achieve goals."
+  related: ["Autonomous Agent", "LLM Agent", "Multi-Agent System"]
+  week: 1
+
+- term: "ReAct"
+  definition: "Reasoning and Acting paradigm that interleaves thought, action, and observation steps."
+  related: ["Chain-of-Thought", "Agent Loop"]
+  week: 1
+
+- term: "Trajectory"
+  definition: "The complete sequence of states, actions, and observations an agent takes during task execution."
+  related: ["Agent", "Episode"]
+  week: 1
+
+- term: "Chain-of-Thought (CoT)"
+  definition: "Prompting technique that elicits step-by-step reasoning from language models."
+  related: ["Tree-of-Thoughts", "Reasoning"]
+  week: 2
+
+- term: "Tree-of-Thoughts (ToT)"
+  definition: "Framework that explores multiple reasoning paths and evaluates them to find optimal solutions."
+  related: ["Chain-of-Thought", "Search"]
+  week: 2
+
+- term: "Self-Consistency"
+  definition: "Sampling multiple reasoning paths and selecting the most common answer through majority voting."
+  related: ["Chain-of-Thought", "Ensemble"]
+  week: 2
+
+- term: "Tool Use"
+  definition: "The ability of an agent to invoke external tools or APIs to accomplish tasks."
+  related: ["Function Calling", "MCP"]
+  week: 3
+
+- term: "Function Calling"
+  definition: "API feature allowing LLMs to generate structured calls to predefined functions."
+  related: ["Tool Use", "JSON Schema"]
+  week: 3
+
+- term: "Model Context Protocol (MCP)"
+  definition: "Anthropic's open protocol for connecting LLMs to external tools and data sources."
+  related: ["Tool Use", "API"]
+  week: 3
+
+- term: "Reflexion"
+  definition: "Framework where agents learn from verbal self-reflection on past failures."
+  related: ["Self-Improvement", "Memory"]
+  week: 4
+
+- term: "Planning"
+  definition: "The process of decomposing complex tasks into manageable steps before execution."
+  related: ["Reasoning", "Task Decomposition"]
+  week: 4
+
+- term: "Episodic Memory"
+  definition: "Memory system storing past experiences and reflections for future reference."
+  related: ["Memory", "Reflexion"]
+  week: 4
+
+- term: "Multi-Agent System"
+  definition: "System with multiple agents that coordinate to solve complex tasks."
+  related: ["Agent", "Coordination"]
+  week: 5
+
+- term: "Message Passing"
+  definition: "Communication pattern where agents exchange structured messages."
+  related: ["Multi-Agent System", "Coordination"]
+  week: 5
+
+- term: "Orchestration"
+  definition: "Coordination pattern where a central agent manages workflow across multiple agents."
+  related: ["Multi-Agent System", "Workflow"]
+  week: 5
+
+- term: "LangGraph"
+  definition: "LangChain's framework for building stateful, multi-actor applications using graphs."
+  related: ["Framework", "State Machine"]
+  week: 6
+
+- term: "CrewAI"
+  definition: "Framework for building role-playing autonomous AI agents that collaborate."
+  related: ["Framework", "Multi-Agent"]
+  week: 6
+
+- term: "RAG"
+  definition: "Retrieval-Augmented Generation - combining retrieval with generation for grounded responses."
+  related: ["Retrieval", "Generation"]
+  week: 7
+
+- term: "Self-RAG"
+  definition: "RAG system that learns when to retrieve and how to critique its own outputs."
+  related: ["RAG", "Self-Improvement"]
+  week: 7
+
+- term: "CRAG"
+  definition: "Corrective RAG - system that evaluates and corrects poor retrievals before generation."
+  related: ["RAG", "Verification"]
+  week: 7
+
+- term: "Knowledge Graph"
+  definition: "Graph-based representation of entities and their relationships."
+  related: ["GraphRAG", "Entity"]
+  week: 8
+
+- term: "GraphRAG"
+  definition: "RAG approach using knowledge graphs for structured, multi-hop retrieval."
+  related: ["RAG", "Knowledge Graph"]
+  week: 8
+
+- term: "Entity Extraction"
+  definition: "Process of identifying and extracting named entities from text."
+  related: ["NER", "Knowledge Graph"]
+  week: 8
+
+- term: "Hallucination"
+  definition: "When an LLM generates plausible but factually incorrect information."
+  related: ["Verification", "Grounding"]
+  week: 9
+
+- term: "Chain-of-Verification"
+  definition: "Technique to reduce hallucinations through independent verification of claims."
+  related: ["Hallucination", "Verification"]
+  week: 9
+
+- term: "Claim Decomposition"
+  definition: "Breaking down text into atomic, independently verifiable claims."
+  related: ["Verification", "Fact-Checking"]
+  week: 9
+
+- term: "FActScore"
+  definition: "Metric for evaluating factual precision in long-form text generation."
+  related: ["Evaluation", "Hallucination"]
+  week: 9
+
+- term: "AgentBench"
+  definition: "Benchmark for evaluating LLMs as agents across multiple environments."
+  related: ["Evaluation", "Benchmark"]
+  week: 10
+
+- term: "LLM-as-Judge"
+  definition: "Using an LLM to evaluate the quality of outputs from another model or agent."
+  related: ["Evaluation", "Automated Assessment"]
+  week: 10
+
+- term: "Pass@k"
+  definition: "Metric measuring success rate when k attempts are allowed."
+  related: ["Evaluation", "Metric"]
+  week: 10
+
+- term: "Code Agent"
+  definition: "Agent specialized for code generation, testing, and debugging."
+  related: ["Domain Agent", "Software Engineering"]
+  week: 11
+
+- term: "Domain Agent"
+  definition: "Agent designed for a specific domain with specialized tools and constraints."
+  related: ["Agent", "Specialization"]
+  week: 11
+
+- term: "Generative Agent"
+  definition: "Agent that simulates human behavior in interactive environments."
+  related: ["Simulation", "Emergence"]
+  week: 12
+
+- term: "Emergent Behavior"
+  definition: "Complex behaviors arising from simple agent interactions."
+  related: ["Multi-Agent", "Complexity"]
+  week: 12
+
+- term: "Constitutional AI"
+  definition: "Approach to AI safety using principles to guide self-improvement."
+  related: ["Safety", "Alignment"]
+  week: 12

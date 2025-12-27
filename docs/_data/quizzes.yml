@@ -1,0 +1,463 @@
+# Quiz Questions by Week
+
+week1:
+  - question: "What does the 'A' in ReAct stand for?"
+    options:
+      - "Analysis"
+      - "Acting"
+      - "Automation"
+      - "Algorithm"
+    correct: 1
+    explanation: "ReAct stands for 'Reasoning and Acting' - it combines thought processes with actions."
+
+  - question: "Which of the following best describes an AI agent?"
+    options:
+      - "A chatbot that responds to queries"
+      - "An autonomous system that perceives, reasons, and acts to achieve goals"
+      - "A language model that generates text"
+      - "A database that stores information"
+    correct: 1
+    explanation: "Agents are autonomous systems with perception, reasoning, and action capabilities oriented toward goals."
+
+  - question: "What is a trajectory in the context of agents?"
+    options:
+      - "The path a robot takes in physical space"
+      - "The sequence of states, actions, and observations during task execution"
+      - "The training data used to train the model"
+      - "The neural network architecture"
+    correct: 1
+    explanation: "A trajectory captures the complete sequence of an agent's interactions during task execution."
+
+week2:
+  - question: "What is the main purpose of Chain-of-Thought prompting?"
+    options:
+      - "To make responses shorter"
+      - "To elicit step-by-step reasoning"
+      - "To reduce API costs"
+      - "To improve response speed"
+    correct: 1
+    explanation: "Chain-of-Thought prompting encourages models to show their reasoning steps, improving accuracy on complex tasks."
+
+  - question: "How does Self-Consistency improve upon standard Chain-of-Thought?"
+    options:
+      - "By using a smaller model"
+      - "By sampling multiple reasoning paths and taking majority vote"
+      - "By removing the reasoning steps"
+      - "By using a single, deterministic path"
+    correct: 1
+    explanation: "Self-Consistency samples multiple reasoning paths at higher temperature and selects the most common answer."
+
+  - question: "Tree-of-Thoughts differs from Chain-of-Thought by:"
+    options:
+      - "Using shorter prompts"
+      - "Exploring multiple reasoning branches and evaluating them"
+      - "Avoiding all reasoning"
+      - "Using only zero-shot prompts"
+    correct: 1
+    explanation: "Tree-of-Thoughts explores multiple reasoning paths in a tree structure and evaluates each to find optimal solutions."
+
+week3:
+  - question: "What is function calling in the context of LLMs?"
+    options:
+      - "A way for users to call support"
+      - "An API feature for generating structured calls to predefined functions"
+      - "A programming language feature"
+      - "A way to train models"
+    correct: 1
+    explanation: "Function calling allows LLMs to generate structured JSON calls to external functions/APIs."
+
+  - question: "What does MCP stand for?"
+    options:
+      - "Model Configuration Protocol"
+      - "Model Context Protocol"
+      - "Machine Control Program"
+      - "Multi-Chain Processing"
+    correct: 1
+    explanation: "MCP stands for Model Context Protocol - Anthropic's open protocol for connecting LLMs to tools and data."
+
+week4:
+  - question: "What are the three main components of the Reflexion framework?"
+    options:
+      - "Encoder, Decoder, Classifier"
+      - "Actor, Evaluator, Self-Reflection"
+      - "Input, Processing, Output"
+      - "Retriever, Generator, Ranker"
+    correct: 1
+    explanation: "Reflexion uses an Actor (generates actions), Evaluator (provides success/failure signals), and Self-Reflection (generates verbal feedback)."
+
+  - question: "How does Reflexion improve agent performance without traditional RL?"
+    options:
+      - "By updating model weights through backpropagation"
+      - "Through verbal self-reflection stored in episodic memory"
+      - "By fine-tuning on large datasets"
+      - "Through reinforcement learning from human feedback"
+    correct: 1
+    explanation: "Reflexion uses verbal self-reflection stored in long-term memory, requiring no gradient updates."
+
+  - question: "What is LATS (Language Agent Tree Search)?"
+    options:
+      - "A database indexing algorithm"
+      - "A tree search algorithm over ReAct trajectories"
+      - "A language translation system"
+      - "A tokenization method"
+    correct: 1
+    explanation: "LATS applies Monte Carlo Tree Search to explore multiple ReAct reasoning paths and select the best one."
+
+  - question: "In agent memory systems, what distinguishes episodic memory from semantic memory?"
+    options:
+      - "Episodic is faster, semantic is slower"
+      - "Episodic stores experiences, semantic stores general knowledge"
+      - "Episodic is temporary, semantic is permanent"
+      - "They are the same thing"
+    correct: 1
+    explanation: "Episodic memory stores specific experiences and trajectories, while semantic memory stores general knowledge and facts."
+
+  - question: "What is the key advantage of Plan-and-Solve prompting?"
+    options:
+      - "It requires less compute"
+      - "It breaks complex problems into subtasks before solving"
+      - "It uses smaller models"
+      - "It avoids chain-of-thought reasoning"
+    correct: 1
+    explanation: "Plan-and-Solve explicitly separates the planning phase (decomposing problems) from the execution phase (solving subtasks)."
+
+week5:
+  - question: "In a multi-agent system, what is message passing?"
+    options:
+      - "Sending emails between users"
+      - "A communication pattern where agents exchange structured messages"
+      - "A file transfer protocol"
+      - "A database operation"
+    correct: 1
+    explanation: "Message passing is how agents communicate by sending and receiving structured messages."
+
+  - question: "What is an orchestrator in multi-agent systems?"
+    options:
+      - "A music conductor"
+      - "A central agent that coordinates workflow across multiple agents"
+      - "A load balancer"
+      - "A database"
+    correct: 1
+    explanation: "An orchestrator is a central agent that routes tasks and coordinates between specialized agents."
+
+week6:
+  - question: "What is a StateGraph in LangGraph?"
+    options:
+      - "A visualization of database relationships"
+      - "A graph-based abstraction for defining stateful agent workflows"
+      - "A social network graph"
+      - "A neural network architecture"
+    correct: 1
+    explanation: "StateGraph is LangGraph's core abstraction for defining agent workflows as directed graphs with state management."
+
+  - question: "What does checkpointing enable in agent frameworks?"
+    options:
+      - "Faster execution speed"
+      - "Saving and restoring agent state for persistence and debugging"
+      - "Automatic code optimization"
+      - "Model weight updates"
+    correct: 1
+    explanation: "Checkpointing saves agent state at specific points, enabling persistence, debugging, and recovery from failures."
+
+  - question: "In AutoGen, what is a ConversableAgent?"
+    options:
+      - "An agent that can only read messages"
+      - "A base class for agents that can send and receive messages"
+      - "An agent for data conversion"
+      - "A visualization component"
+    correct: 1
+    explanation: "ConversableAgent is AutoGen's base class for agents capable of participating in conversations."
+
+  - question: "What distinguishes CrewAI from other frameworks?"
+    options:
+      - "It only works with OpenAI models"
+      - "Its focus on role-based team composition with specialized agents"
+      - "It requires no API keys"
+      - "It only handles text generation"
+    correct: 1
+    explanation: "CrewAI emphasizes role-based teams where agents have defined roles, goals, and backstories."
+
+  - question: "What is a reducer in LangGraph state management?"
+    options:
+      - "A function to decrease token count"
+      - "A function that merges state updates from different nodes"
+      - "A model compression technique"
+      - "A cost optimization feature"
+    correct: 1
+    explanation: "Reducers define how state updates from different graph nodes are combined into the unified state."
+
+week7:
+  - question: "What are reflection tokens in Self-RAG?"
+    options:
+      - "Tokens used for authentication"
+      - "Special tokens that indicate retrieval and relevance decisions"
+      - "Compressed representations"
+      - "Error codes"
+    correct: 1
+    explanation: "Self-RAG generates special reflection tokens to decide when to retrieve and assess relevance."
+
+  - question: "How does CRAG (Corrective RAG) improve retrieval?"
+    options:
+      - "By using larger embeddings"
+      - "By evaluating retrieval quality and triggering corrective actions"
+      - "By caching all results"
+      - "By using smaller chunks"
+    correct: 1
+    explanation: "CRAG evaluates if retrieved documents are correct/ambiguous/incorrect and takes corrective action accordingly."
+
+  - question: "What is adaptive retrieval in RAG systems?"
+    options:
+      - "Retrieving all documents at once"
+      - "Dynamically deciding whether to retrieve based on query complexity"
+      - "Using the same retrieval for all queries"
+      - "Manual document selection"
+    correct: 1
+    explanation: "Adaptive retrieval decides on-the-fly whether retrieval is needed based on query characteristics."
+
+  - question: "What does RAPTOR stand for in RAG?"
+    options:
+      - "Rapid Autonomous Processing Tool for Retrieval"
+      - "Recursive Abstractive Processing for Tree-Organized Retrieval"
+      - "Real-time Adaptive Protocol for Text Operations"
+      - "Retrieval Augmented Parsing and Text Output Reformulation"
+    correct: 1
+    explanation: "RAPTOR creates hierarchical summaries of documents organized in a tree structure for multi-level retrieval."
+
+  - question: "What is query decomposition in RAG?"
+    options:
+      - "Breaking the database into smaller parts"
+      - "Splitting complex queries into simpler sub-queries"
+      - "Compressing query text"
+      - "Removing stop words"
+    correct: 1
+    explanation: "Query decomposition breaks complex questions into simpler sub-queries that can be answered independently."
+
+week8:
+  - question: "What is the key insight of GraphRAG?"
+    options:
+      - "Graphs are faster than vectors"
+      - "Using knowledge graphs enables both local and global search over documents"
+      - "All documents should be converted to graphs"
+      - "Vectors are unnecessary"
+    correct: 1
+    explanation: "GraphRAG builds knowledge graphs to support both local (entity-specific) and global (thematic) queries."
+
+  - question: "What is community detection used for in GraphRAG?"
+    options:
+      - "Finding social network friends"
+      - "Grouping related entities for hierarchical summarization"
+      - "Spam filtering"
+      - "User authentication"
+    correct: 1
+    explanation: "Community detection groups related entities, enabling global summarization at different hierarchy levels."
+
+  - question: "What is entity extraction in knowledge graph construction?"
+    options:
+      - "Removing entities from text"
+      - "Identifying and extracting named entities and their relationships from text"
+      - "Compressing entity representations"
+      - "Translating entities to other languages"
+    correct: 1
+    explanation: "Entity extraction identifies named entities (people, organizations, concepts) and relationships between them."
+
+  - question: "How does HippoRAG differ from standard RAG?"
+    options:
+      - "It uses hippopotamus-themed prompts"
+      - "It uses hippocampus-inspired memory indexing for associative retrieval"
+      - "It only works with medical data"
+      - "It requires specialized hardware"
+    correct: 1
+    explanation: "HippoRAG is inspired by hippocampal memory systems, using pattern separation and completion for retrieval."
+
+  - question: "What is the difference between local and global search in GraphRAG?"
+    options:
+      - "Local is faster, global is slower"
+      - "Local queries specific entities, global queries thematic patterns across communities"
+      - "Local uses SQL, global uses NoSQL"
+      - "They are the same"
+    correct: 1
+    explanation: "Local search targets specific entities/relationships, while global search leverages community summaries for themes."
+
+week9:
+  - question: "What is an intrinsic hallucination?"
+    options:
+      - "A hallucination about internal states"
+      - "Output that contradicts the source input"
+      - "A visual illusion"
+      - "A memory error"
+    correct: 1
+    explanation: "Intrinsic hallucinations contradict information provided in the source/input documents."
+
+  - question: "How does Chain-of-Verification (CoVe) reduce hallucinations?"
+    options:
+      - "By using a verification API"
+      - "By generating verification questions and independently answering them"
+      - "By reducing model temperature"
+      - "By limiting output length"
+    correct: 1
+    explanation: "CoVe generates verification questions about the output and answers them independently to check consistency."
+
+  - question: "What does FActScore measure?"
+    options:
+      - "Model speed"
+      - "Fine-grained factual precision of generated text"
+      - "User satisfaction"
+      - "Token efficiency"
+    correct: 1
+    explanation: "FActScore breaks text into atomic facts and measures what fraction are supported by a knowledge source."
+
+  - question: "What is claim decomposition in hallucination detection?"
+    options:
+      - "Removing claims from text"
+      - "Breaking complex statements into atomic, verifiable claims"
+      - "Compressing claims"
+      - "Translating claims"
+    correct: 1
+    explanation: "Claim decomposition splits complex statements into atomic facts that can be individually verified."
+
+  - question: "Why might self-correction be less effective than independent verification?"
+    options:
+      - "Self-correction is slower"
+      - "Models tend to confirm their own errors when reviewing their own output"
+      - "Self-correction uses more tokens"
+      - "There is no difference"
+    correct: 1
+    explanation: "Models often confirm their initial errors. Independent verification with fresh context is more reliable."
+
+week10:
+  - question: "What does AgentBench evaluate?"
+    options:
+      - "Agent speed only"
+      - "LLM performance across multiple agent environments"
+      - "Model size"
+      - "Training data quality"
+    correct: 1
+    explanation: "AgentBench evaluates LLMs as agents across 8 different environments including OS, web, and games."
+
+  - question: "What is pass@k in agent evaluation?"
+    options:
+      - "A password requirement"
+      - "The probability of at least one of k attempts passing"
+      - "A network protocol"
+      - "A file format"
+    correct: 1
+    explanation: "Pass@k measures if any of k independent attempts successfully completes the task."
+
+  - question: "What does SWE-bench evaluate?"
+    options:
+      - "Swimming performance"
+      - "Ability to resolve real GitHub issues in repositories"
+      - "Speech recognition"
+      - "Image generation"
+    correct: 1
+    explanation: "SWE-bench tests if agents can fix real software engineering issues from GitHub repositories."
+
+  - question: "What is LLM-as-Judge?"
+    options:
+      - "A legal application"
+      - "Using an LLM to automatically evaluate agent outputs"
+      - "A game show format"
+      - "A training method"
+    correct: 1
+    explanation: "LLM-as-Judge uses a language model to automatically score and evaluate agent performance."
+
+  - question: "Why are human baselines important in agent evaluation?"
+    options:
+      - "Humans are always better"
+      - "They provide calibration for interpreting agent performance"
+      - "They are required by law"
+      - "They reduce costs"
+    correct: 1
+    explanation: "Human baselines help calibrate what performance levels are achievable and meaningful."
+
+week11:
+  - question: "What enables Devin to handle long-horizon coding tasks?"
+    options:
+      - "Larger context windows"
+      - "Integrated shell, browser, and editor tools with persistent state"
+      - "Faster inference"
+      - "Better training data"
+    correct: 1
+    explanation: "Devin combines multiple tools (shell, browser, editor) with persistent state for complex, multi-step tasks."
+
+  - question: "What is flow engineering in AlphaCodium?"
+    options:
+      - "Managing network traffic"
+      - "Designing multi-stage code generation workflows with tests"
+      - "Water management systems"
+      - "Traffic optimization"
+    correct: 1
+    explanation: "Flow engineering in AlphaCodium designs iterative code generation flows with test-driven feedback."
+
+  - question: "Why are regulatory constraints critical for financial agents?"
+    options:
+      - "They make agents faster"
+      - "Financial advice has legal requirements (SEC, etc.)"
+      - "They reduce costs"
+      - "They are optional"
+    correct: 1
+    explanation: "Financial agents must comply with regulations like SEC rules to avoid unauthorized financial advice."
+
+  - question: "What is a key safety concern for healthcare agents?"
+    options:
+      - "Speed of response"
+      - "Patient data privacy (HIPAA) and accuracy of medical information"
+      - "Cost of API calls"
+      - "Model size"
+    correct: 1
+    explanation: "Healthcare agents must protect patient privacy (HIPAA) and provide accurate medical information."
+
+  - question: "What is code sandboxing in agent systems?"
+    options:
+      - "Writing code on a beach"
+      - "Isolating code execution to prevent security vulnerabilities"
+      - "Compressing code"
+      - "Debugging"
+    correct: 1
+    explanation: "Sandboxing isolates code execution in a secure environment to prevent malicious or erroneous code from causing harm."
+
+week12:
+  - question: "What enables emergent behaviors in Generative Agents?"
+    options:
+      - "Larger models"
+      - "Memory architecture with reflection and planning"
+      - "More training data"
+      - "Faster inference"
+    correct: 1
+    explanation: "Generative Agents use memory streams, reflection, and planning to enable emergent social behaviors."
+
+  - question: "What is the skill library in Voyager?"
+    options:
+      - "A collection of tutorials"
+      - "A growing repository of reusable code functions learned from experience"
+      - "A database of facts"
+      - "A model checkpoint"
+    correct: 1
+    explanation: "Voyager builds a skill library of code functions it learns, enabling continual skill acquisition."
+
+  - question: "What is curriculum learning in open-ended agents like Voyager?"
+    options:
+      - "Following a school curriculum"
+      - "Automatically proposing progressively harder tasks"
+      - "Learning from textbooks"
+      - "Taking online courses"
+    correct: 1
+    explanation: "Curriculum learning has the agent propose and pursue increasingly difficult tasks to expand capabilities."
+
+  - question: "What is Constitutional AI?"
+    options:
+      - "AI for governments"
+      - "A method for training AI to follow principles through self-improvement"
+      - "Legal document analysis"
+      - "A type of neural network"
+    correct: 1
+    explanation: "Constitutional AI trains models to follow explicit principles through AI-generated feedback and revision."
+
+  - question: "What is an open research problem for agent memory systems?"
+    options:
+      - "Memory is fully solved"
+      - "Efficient consolidation and retrieval over very long horizons"
+      - "Memory is not important"
+      - "There are no open problems"
+    correct: 1
+    explanation: "Long-term memory consolidation and efficient retrieval over extended time horizons remain challenging."

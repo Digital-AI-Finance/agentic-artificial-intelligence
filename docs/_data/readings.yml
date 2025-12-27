@@ -1,0 +1,267 @@
+# Reading Guide Data for All 12 Weeks
+
+- week: 1
+  title: "ReAct Paper"
+  file: "L01_Introduction_Agentic_AI/readings/L01_react_reading_guide.md"
+  description: "Critical reading of the foundational ReAct paper introducing reasoning-acting paradigm"
+  primary_paper:
+    title: "ReAct: Synergizing Reasoning and Acting in Language Models"
+    authors: "Yao, S., Zhao, J., Yu, D., et al."
+    year: 2023
+    venue: "ICLR 2023"
+    arxiv: "2210.03629"
+  topics:
+    - "ReAct paradigm"
+    - "Reasoning traces"
+    - "Agent trajectories"
+  estimated_time: "2-3 hours"
+
+- week: 2
+  title: "Chain-of-Thought Paper"
+  file: "L02_LLM_Foundations_Agents/readings/L02_cot_reading_guide.md"
+  description: "Analysis of Chain-of-Thought prompting and its role in agent reasoning"
+  primary_paper:
+    title: "Chain-of-Thought Prompting Elicits Reasoning in Large Language Models"
+    authors: "Wei, J., Wang, X., Schuurmans, D., et al."
+    year: 2022
+    venue: "NeurIPS 2022"
+    arxiv: "2201.11903"
+  topics:
+    - "Chain-of-Thought"
+    - "Reasoning steps"
+    - "Emergent abilities"
+  estimated_time: "1-2 hours"
+
+- week: 3
+  title: "Toolformer Paper"
+  file: "L03_Tool_Use_Function_Calling/readings/L03_toolformer_reading_guide.md"
+  description: "Study of self-supervised tool learning in language models"
+  primary_paper:
+    title: "Toolformer: Language Models Can Teach Themselves to Use Tools"
+    authors: "Schick, T., Dwivedi-Yu, J., et al."
+    year: 2023
+    venue: "NeurIPS 2023"
+    arxiv: "2302.04761"
+  topics:
+    - "Tool learning"
+    - "Self-supervised training"
+    - "API integration"
+  estimated_time: "2-3 hours"
+
+- week: 4
+  title: "Reflexion Paper"
+  file: "L04_Planning_Reasoning/readings/L04_reflexion_reading_guide.md"
+  description: "Deep dive into verbal reinforcement learning and self-reflection in agents"
+  primary_paper:
+    title: "Reflexion: Language Agents with Verbal Reinforcement Learning"
+    authors: "Shinn, N., Cassano, F., et al."
+    year: 2023
+    venue: "NeurIPS 2023"
+    arxiv: "2303.11366"
+  topics:
+    - "Verbal reinforcement"
+    - "Self-reflection"
+    - "Episodic memory"
+  estimated_time: "2-3 hours"
+
+- week: 5
+  title: "Multi-Agent Systems Survey"
+  file: "L05_Multi_Agent_Architectures/readings/L05_mas_survey_reading_guide.md"
+  description: "Comprehensive survey of LLM-based multi-agent collaboration"
+  primary_paper:
+    title: "A Systematic Survey on Large Language Model-based Multi-Agent Collaboration"
+    authors: "Tran, et al."
+    year: 2025
+    venue: "arXiv"
+    arxiv: "2501.06322"
+  topics:
+    - "Multi-agent architectures"
+    - "Communication patterns"
+    - "Role specialization"
+  estimated_time: "2-3 hours"
+
+- week: 6
+  title: "Agent Frameworks"
+  file: "L06_Agent_Frameworks/L06_Reading_Guide.md"
+  description: "Comparison of AutoGen, LangGraph, and TaskWeaver frameworks"
+  primary_paper:
+    title: "AutoGen: Enabling Next-Gen LLM Applications"
+    authors: "Wu, Q., Bansal, G., Zhang, J., et al."
+    year: 2023
+    venue: "arXiv"
+    arxiv: "2308.08155"
+  secondary_papers:
+    - title: "LangGraph Documentation"
+      authors: "LangChain"
+      url: "https://langchain-ai.github.io/langgraph"
+    - title: "TaskWeaver: A Code-First Agent Framework"
+      authors: "Qiao, B., et al."
+      year: 2024
+      arxiv: "2311.17541"
+  topics:
+    - "LangGraph"
+    - "AutoGen"
+    - "State management"
+  estimated_time: "3-4 hours"
+
+- week: 7
+  title: "Advanced RAG"
+  file: "L07_Advanced_RAG/L07_Reading_Guide.md"
+  description: "Study of Self-RAG, CRAG, and adaptive retrieval strategies"
+  primary_paper:
+    title: "Self-RAG: Learning to Retrieve, Generate, and Critique"
+    authors: "Asai, A., Wu, Z., Wang, Y., et al."
+    year: 2023
+    venue: "arXiv"
+    arxiv: "2310.11511"
+  secondary_papers:
+    - title: "Corrective Retrieval Augmented Generation (CRAG)"
+      authors: "Yan, S., et al."
+      year: 2024
+      arxiv: "2401.15884"
+    - title: "RAPTOR: Recursive Abstractive Processing"
+      authors: "Sarthi, P., et al."
+      year: 2024
+      arxiv: "2401.18059"
+  topics:
+    - "Self-RAG"
+    - "CRAG"
+    - "Adaptive retrieval"
+  estimated_time: "3-4 hours"
+
+- week: 8
+  title: "GraphRAG and Knowledge Graphs"
+  file: "L08_GraphRAG_Knowledge/L08_Reading_Guide.md"
+  description: "Exploration of graph-based retrieval and knowledge graph construction"
+  primary_paper:
+    title: "GraphRAG: Unlocking LLM Discovery on Narrative Private Data"
+    authors: "Edge, D., Trinh, H., Cheng, N., et al."
+    year: 2024
+    venue: "Microsoft Research"
+    url: "https://www.microsoft.com/en-us/research/blog/graphrag-unlocking-llm-discovery-on-narrative-private-data/"
+  secondary_papers:
+    - title: "HippoRAG: Neurobiologically Inspired Long-Term Memory"
+      authors: "Gutierrez, B. J., et al."
+      year: 2024
+      arxiv: "2405.14831"
+    - title: "Graph of Thoughts"
+      authors: "Besta, M., et al."
+      year: 2024
+      arxiv: "2308.09687"
+  topics:
+    - "GraphRAG"
+    - "Knowledge graphs"
+    - "Entity extraction"
+  estimated_time: "3-4 hours"
+
+- week: 9
+  title: "Hallucination Detection and Prevention"
+  file: "L09_Hallucination_Prevention/L09_Reading_Guide.md"
+  description: "Study of Chain-of-Verification, FActScore, and hallucination mitigation"
+  primary_paper:
+    title: "Chain-of-Verification Reduces Hallucination in Large Language Models"
+    authors: "Dhuliawala, S., Komeili, M., Xu, J., et al."
+    year: 2023
+    venue: "arXiv"
+    arxiv: "2309.11495"
+  secondary_papers:
+    - title: "FActScore: Fine-grained Atomic Evaluation of Factual Precision"
+      authors: "Min, S., Krishna, K., Lyu, X., et al."
+      year: 2023
+      arxiv: "2305.14251"
+    - title: "Self-Refine: Iterative Refinement with Self-Feedback"
+      authors: "Madaan, A., Tandon, N., et al."
+      year: 2023
+      arxiv: "2303.17651"
+  topics:
+    - "CoVe"
+    - "FActScore"
+    - "Hallucination types"
+  estimated_time: "3-4 hours"
+
+- week: 10
+  title: "Agent Evaluation and Benchmarking"
+  file: "L10_Agent_Evaluation/L10_Reading_Guide.md"
+  description: "Analysis of AgentBench, WebArena, GAIA, and SWE-bench"
+  primary_paper:
+    title: "AgentBench: Evaluating LLMs as Agents"
+    authors: "Liu, X., Yu, H., Zhang, H., et al."
+    year: 2023
+    venue: "arXiv"
+    arxiv: "2308.03688"
+  secondary_papers:
+    - title: "WebArena: A Realistic Web Environment for Building Autonomous Agents"
+      authors: "Zhou, S., Xu, F. F., et al."
+      year: 2024
+      arxiv: "2307.13854"
+    - title: "GAIA: A Benchmark for General AI Assistants"
+      authors: "Mialon, G., et al."
+      year: 2024
+      arxiv: "2311.12983"
+    - title: "SWE-bench: Can Language Models Resolve Real-World GitHub Issues?"
+      authors: "Jimenez, C. E., et al."
+      year: 2024
+      arxiv: "2310.06770"
+  topics:
+    - "AgentBench"
+    - "SWE-bench"
+    - "Evaluation metrics"
+  estimated_time: "3-4 hours"
+
+- week: 11
+  title: "Domain Applications"
+  file: "L11_Domain_Applications/L11_Reading_Guide.md"
+  description: "Study of domain-specific agents for code, finance, and healthcare"
+  primary_paper:
+    title: "Devin: An Autonomous Software Engineer"
+    authors: "Cognition AI"
+    year: 2024
+    venue: "Technical Report"
+    url: "https://www.cognition-labs.com/introducing-devin"
+  secondary_papers:
+    - title: "AlphaCodium: From Prompt Engineering to Flow Engineering"
+      authors: "Ridnik, T., et al."
+      year: 2024
+      arxiv: "2401.08500"
+    - title: "MDAgents: Adaptive Collaboration of LLMs for Medical Decision-Making"
+      authors: "Kim, Y., et al."
+      year: 2024
+      arxiv: "2404.15488"
+    - title: "LLM Agents for Financial Applications Survey"
+      authors: "Li, S., et al."
+      year: 2024
+      arxiv: "2402.18485"
+  topics:
+    - "Code agents"
+    - "Financial agents"
+    - "Healthcare agents"
+  estimated_time: "3-4 hours"
+
+- week: 12
+  title: "Research Frontiers"
+  file: "L12_Research_Frontiers/L12_Reading_Guide.md"
+  description: "Exploration of Generative Agents, Voyager, and open research problems"
+  primary_paper:
+    title: "Generative Agents: Interactive Simulacra of Human Behavior"
+    authors: "Park, J. S., O'Brien, J. C., et al."
+    year: 2023
+    venue: "arXiv"
+    arxiv: "2304.03442"
+  secondary_papers:
+    - title: "Voyager: Open-Ended Embodied Agent with LLMs"
+      authors: "Wang, G., Xie, Y., et al."
+      year: 2023
+      arxiv: "2305.16291"
+    - title: "Constitutional AI: Harmlessness from AI Feedback"
+      authors: "Bai, Y., Kadavath, S., et al."
+      year: 2022
+      arxiv: "2212.08073"
+    - title: "Language Agents: A Critical Perspective"
+      authors: "Sumers, T. R., et al."
+      year: 2024
+      arxiv: "2403.12897"
+  topics:
+    - "Generative Agents"
+    - "Voyager"
+    - "Open problems"
+  estimated_time: "4-5 hours"

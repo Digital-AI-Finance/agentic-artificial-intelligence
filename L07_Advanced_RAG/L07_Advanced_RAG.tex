@@ -1,0 +1,283 @@
+\documentclass[8pt,aspectratio=169]{beamer}
+\usetheme{Madrid}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{adjustbox}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{hyperref}
+
+% Color definitions
+\definecolor{mlblue}{RGB}{0,102,204}
+\definecolor{mlpurple}{RGB}{51,51,178}
+\definecolor{mllavender}{RGB}{173,173,224}
+\definecolor{mllavender2}{RGB}{193,193,232}
+\definecolor{mllavender3}{RGB}{204,204,235}
+\definecolor{mllavender4}{RGB}{214,214,239}
+\definecolor{mlorange}{RGB}{255,127,14}
+\definecolor{mlgreen}{RGB}{44,160,44}
+\definecolor{mlred}{RGB}{214,39,40}
+\definecolor{mlgray}{RGB}{127,127,127}
+
+\setbeamercolor{palette primary}{bg=mllavender3,fg=mlpurple}
+\setbeamercolor{palette secondary}{bg=mllavender2,fg=mlpurple}
+\setbeamercolor{palette tertiary}{bg=mllavender,fg=white}
+\setbeamercolor{palette quaternary}{bg=mlpurple,fg=white}
+\setbeamercolor{structure}{fg=mlpurple}
+\setbeamercolor{frametitle}{fg=mlpurple,bg=mllavender3}
+\setbeamercolor{block title}{bg=mllavender2,fg=mlpurple}
+\setbeamercolor{block body}{bg=mllavender4,fg=black}
+
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{itemize items}[circle]
+\setbeamersize{text margin left=5mm,text margin right=5mm}
+
+\newcommand{\bottomnote}[1]{%
+\vfill
+\vspace{-2mm}
+\textcolor{mllavender2}{\rule{\textwidth}{0.4pt}}
+\vspace{1mm}
+\footnotesize\textbf{#1}
+}
+
+\title{Advanced RAG Systems}
+\subtitle{Week 7: Self-RAG, CRAG, and Agentic Retrieval}
+\author{Agentic Artificial Intelligence}
+\institute{PhD Course}
+\date{2025}
+
+\begin{document}
+
+\setbeamertemplate{footline}{
+    \hbox{\begin{beamercolorbox}[wd=\paperwidth,ht=2.5ex,dp=1ex,center]{author in head/foot}
+    \tiny (c) Joerg Osterrieder 2025
+    \end{beamercolorbox}}
+}
+
+% ==================== SLIDE 1: Title ====================
+\begin{frame}[plain]
+\vspace{1.5cm}
+\begin{center}
+{\Huge\textcolor{mlpurple}{Advanced RAG Systems}}\\[0.5cm]
+{\Large Week 7: Self-RAG, CRAG, and Agentic Retrieval}\\[1.5cm]
+{\normalsize PhD Course in Agentic Artificial Intelligence}\\[0.5cm]
+{\small 12-Week Research-Level Course}
+\end{center}
+\end{frame}
+
+% ==================== SLIDE 2: Learning Objectives ====================
+\begin{frame}[t]{Learning Objectives}
+\textbf{Bloom's Taxonomy Levels Covered}
+\begin{itemize}
+\item \textbf{Remember}: Define Self-RAG, CRAG, critique tokens, relevance scoring
+\item \textbf{Understand}: Explain how self-reflection improves retrieval quality
+\item \textbf{Apply}: Implement a Self-RAG system with critique generation
+\item \textbf{Analyze}: Compare retrieval strategies across different domains
+\item \textbf{Evaluate}: Assess when to use adaptive vs. fixed retrieval
+\item \textbf{Create}: Design a custom agentic RAG pipeline
+\end{itemize}
+\bottomnote{By end of lecture, you will understand how agents make retrieval decisions.}
+\end{frame}
+
+% ==================== SLIDE 3: RAG Limitations ====================
+\begin{frame}[t]{Limitations of Naive RAG}
+\textbf{Fixed Retrieval Problems}
+\begin{itemize}
+\item Always retrieves, even when not needed
+\item No quality check on retrieved documents
+\item Cannot correct retrieval errors
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Common Failure Modes}
+\begin{itemize}
+\item \textbf{Over-retrieval}: Adds noise for simple queries
+\item \textbf{Under-retrieval}: Misses relevant documents
+\item \textbf{Irrelevant context}: Retrieved docs don't match query intent
+\item \textbf{Conflicting sources}: No resolution strategy
+\end{itemize}
+\vspace{0.3cm}
+\textbf{The Solution}
+\begin{itemize}
+\item Make retrieval adaptive and self-correcting
+\end{itemize}
+\bottomnote{Advanced RAG adds decision-making to the retrieval process.}
+\end{frame}
+
+% ==================== SLIDE 4: RAG Evolution ====================
+\begin{frame}[t]{Evolution of RAG Systems}
+\begin{center}
+\includegraphics[width=0.65\textwidth]{01_rag_evolution/chart.pdf}
+\end{center}
+\bottomnote{Each generation adds more intelligence to the retrieval process.}
+\end{frame}
+
+% ==================== SLIDE 5: Self-RAG Overview ====================
+\begin{frame}[t]{Self-RAG: Learning to Retrieve}
+\textbf{Core Innovation (Asai et al., 2023)}
+\begin{itemize}
+\item LLM learns when and what to retrieve through special tokens
+\item Generates critique tokens to evaluate retrieval quality
+\item Adaptive: retrieves only when beneficial
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Critique Tokens}
+\begin{itemize}
+\item \texttt{[Retrieve]}: yes/no -- should we retrieve?
+\item \texttt{[IsRel]}: relevant/irrelevant -- is document relevant?
+\item \texttt{[IsSup]}: supported/contradicted -- does doc support answer?
+\item \texttt{[IsUse]}: useful/not useful -- is final output useful?
+\end{itemize}
+\bottomnote{Self-RAG is trained to generate these tokens alongside normal output.}
+\end{frame}
+
+% ==================== SLIDE 6: Self-RAG Flow ====================
+\begin{frame}[t]{Self-RAG: Decision Flow}
+\begin{center}
+\includegraphics[width=0.60\textwidth]{02_self_rag_flow/chart.pdf}
+\end{center}
+\bottomnote{The model decides at each step whether to retrieve, generate, or retry.}
+\end{frame}
+
+% ==================== SLIDE 7: CRAG ====================
+\begin{frame}[t]{CRAG: Corrective RAG}
+\textbf{Core Innovation (Yan et al., 2024)}
+\begin{itemize}
+\item Evaluate retrieval quality with confidence scores
+\item Take corrective actions based on evaluation
+\item Use web search as fallback for low-confidence retrieval
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Three-Way Decision}
+\begin{itemize}
+\item \textbf{Correct} ($>0.7$): Use retrieved documents directly
+\item \textbf{Ambiguous} (0.3-0.7): Refine query and re-retrieve
+\item \textbf{Incorrect} ($<0.3$): Fall back to web search
+\end{itemize}
+\bottomnote{CRAG adds a lightweight evaluator to trigger corrective actions.}
+\end{frame}
+
+% ==================== SLIDE 8: CRAG Architecture ====================
+\begin{frame}[t]{CRAG: Architecture}
+\begin{center}
+\includegraphics[width=0.60\textwidth]{03_crag_architecture/chart.pdf}
+\end{center}
+\bottomnote{The evaluator routes to different actions based on confidence.}
+\end{frame}
+
+% ==================== SLIDE 9: Agentic RAG ====================
+\begin{frame}[t]{Agentic RAG}
+\textbf{Beyond Single-Step Retrieval}
+\begin{itemize}
+\item Agent decides retrieval strategy dynamically
+\item Multi-step: search, summarize, verify, refine
+\item Tool integration: calculators, APIs, databases
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Key Capabilities}
+\begin{itemize}
+\item \textbf{Query decomposition}: Break complex queries into sub-queries
+\item \textbf{Source triangulation}: Cross-reference multiple sources
+\item \textbf{Iterative refinement}: Multiple retrieval rounds
+\item \textbf{Citation generation}: Track provenance
+\end{itemize}
+\bottomnote{Agentic RAG = RAG + Planning + Tool Use}
+\end{frame}
+
+% ==================== SLIDE 10: Strategy Comparison ====================
+\begin{frame}[t]{Retrieval Strategy Comparison}
+\begin{center}
+\includegraphics[width=0.60\textwidth]{04_retrieval_comparison/chart.pdf}
+\end{center}
+\bottomnote{Higher accuracy comes with increased latency -- choose based on use case.}
+\end{frame}
+
+% ==================== SLIDE 11: Implementation Patterns ====================
+\begin{frame}[t]{Implementation Patterns}
+\textbf{Query Enhancement}
+\begin{itemize}
+\item Query rewriting with LLM
+\item HyDE: Hypothetical Document Embeddings
+\item Multi-query: Generate query variations
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Retrieval Enhancement}
+\begin{itemize}
+\item Hybrid search: Dense + sparse retrieval
+\item Reranking: Cross-encoder scoring
+\item Maximal Marginal Relevance (MMR)
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Generation Enhancement}
+\begin{itemize}
+\item Citation injection
+\item Answer verification
+\item Confidence calibration
+\end{itemize}
+\bottomnote{Combine patterns based on accuracy/latency requirements.}
+\end{frame}
+
+% ==================== SLIDE 12: RAPTOR ====================
+\begin{frame}[t]{RAPTOR: Hierarchical Retrieval}
+\textbf{Recursive Abstractive Processing (Sarthi et al., 2024)}
+\begin{itemize}
+\item Build hierarchical document tree through summarization
+\item Cluster documents, summarize clusters, repeat
+\item Retrieve from multiple abstraction levels
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Key Benefits}
+\begin{itemize}
+\item Captures both detail and high-level themes
+\item Handles long documents naturally
+\item Provides multi-granularity context
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Use Cases}
+\begin{itemize}
+\item Long document QA
+\item Multi-document synthesis
+\item Thematic analysis
+\end{itemize}
+\bottomnote{RAPTOR trades indexing cost for better retrieval on complex queries.}
+\end{frame}
+
+% ==================== SLIDE 13: Readings ====================
+\begin{frame}[t]{Required Readings}
+\textbf{This Week}
+\begin{itemize}
+\item Asai et al. (2023). ``Self-RAG: Learning to Retrieve, Generate, and Critique.'' arXiv:2310.11511
+\item Yan et al. (2024). ``Corrective Retrieval Augmented Generation.'' arXiv:2401.15884
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Supplementary}
+\begin{itemize}
+\item Gao et al. (2024). ``Retrieval-Augmented Generation for Large Language Models: A Survey.'' arXiv:2312.10997
+\item Sarthi et al. (2024). ``RAPTOR: Recursive Abstractive Processing for Tree-Organized Retrieval.'' arXiv:2401.18059
+\end{itemize}
+\bottomnote{Start with Self-RAG -- it introduces the core concepts of adaptive retrieval.}
+\end{frame}
+
+% ==================== SLIDE 14: Summary ====================
+\begin{frame}[t]{Summary and Key Takeaways}
+\textbf{Key Concepts}
+\begin{itemize}
+\item \textbf{Self-RAG}: LLM decides when to retrieve with critique tokens
+\item \textbf{CRAG}: Corrective actions based on confidence scores
+\item \textbf{Agentic RAG}: Full agent loop for complex retrieval
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Design Principles}
+\begin{itemize}
+\item Make retrieval adaptive, not fixed
+\item Add evaluation/critique steps
+\item Enable corrective actions
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Next Week}
+\begin{itemize}
+\item GraphRAG and Knowledge Integration
+\end{itemize}
+\bottomnote{Advanced RAG = Adaptive Retrieval + Self-Correction + Quality Critique}
+\end{frame}
+
+\end{document}

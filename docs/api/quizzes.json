@@ -1,0 +1,17 @@
+---
+layout: null
+---
+{
+  "quizzes": [
+    {% for quiz in site.data.quizzes %}
+    {
+      "week": {{ quiz.week }},
+      "title": "{{ quiz.title }}",
+      "question_count": {{ quiz.questions | size }},
+      "topics": {{ quiz.questions | map: "topic" | uniq | jsonify }}
+    }{% unless forloop.last %},{% endunless %}
+    {% endfor %}
+  ],
+  "total_quizzes": {{ site.data.quizzes | size }},
+  "generated": "{{ site.time | date_to_xmlschema }}"
+}

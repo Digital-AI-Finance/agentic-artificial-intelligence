@@ -1,0 +1,297 @@
+\documentclass[8pt,aspectratio=169]{beamer}
+\usetheme{Madrid}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{adjustbox}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{hyperref}
+
+% Color definitions
+\definecolor{mlblue}{RGB}{0,102,204}
+\definecolor{mlpurple}{RGB}{51,51,178}
+\definecolor{mllavender}{RGB}{173,173,224}
+\definecolor{mllavender2}{RGB}{193,193,232}
+\definecolor{mllavender3}{RGB}{204,204,235}
+\definecolor{mllavender4}{RGB}{214,214,239}
+\definecolor{mlorange}{RGB}{255,127,14}
+\definecolor{mlgreen}{RGB}{44,160,44}
+\definecolor{mlred}{RGB}{214,39,40}
+\definecolor{mlgray}{RGB}{127,127,127}
+
+% Apply custom colors to Madrid theme
+\setbeamercolor{palette primary}{bg=mllavender3,fg=mlpurple}
+\setbeamercolor{palette secondary}{bg=mllavender2,fg=mlpurple}
+\setbeamercolor{palette tertiary}{bg=mllavender,fg=white}
+\setbeamercolor{palette quaternary}{bg=mlpurple,fg=white}
+\setbeamercolor{structure}{fg=mlpurple}
+\setbeamercolor{frametitle}{fg=mlpurple,bg=mllavender3}
+\setbeamercolor{block title}{bg=mllavender2,fg=mlpurple}
+\setbeamercolor{block body}{bg=mllavender4,fg=black}
+
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{itemize items}[circle]
+\setbeamersize{text margin left=5mm,text margin right=5mm}
+
+% Bottom note command
+\newcommand{\bottomnote}[1]{%
+\vfill
+\vspace{-2mm}
+\textcolor{mllavender2}{\rule{\textwidth}{0.4pt}}
+\vspace{1mm}
+\footnotesize\textbf{#1}
+}
+
+\title{Agent Frameworks and Tools}
+\subtitle{Week 6: LangGraph, AutoGen, and Production Patterns}
+\author{Agentic Artificial Intelligence}
+\institute{PhD Course}
+\date{2025}
+
+\begin{document}
+
+% Copyright footer
+\setbeamertemplate{footline}{
+    \hbox{\begin{beamercolorbox}[wd=\paperwidth,ht=2.5ex,dp=1ex,center]{author in head/foot}
+    \tiny (c) Joerg Osterrieder 2025
+    \end{beamercolorbox}}
+}
+
+% ==================== SLIDE 1: Title ====================
+\begin{frame}[plain]
+\vspace{1.5cm}
+\begin{center}
+{\Huge\textcolor{mlpurple}{Agent Frameworks and Tools}}\\[0.5cm]
+{\Large Week 6: LangGraph, AutoGen, and Production Patterns}\\[1.5cm]
+{\normalsize PhD Course in Agentic Artificial Intelligence}\\[0.5cm]
+{\small 12-Week Research-Level Course}
+\end{center}
+\end{frame}
+
+% ==================== SLIDE 2: Learning Objectives ====================
+\begin{frame}[t]{Learning Objectives}
+\textbf{Bloom's Taxonomy Levels Covered}
+\begin{itemize}
+\item \textbf{Remember}: Define state machines, graphs, orchestration patterns
+\item \textbf{Understand}: Explain LangGraph vs LangChain architecture differences
+\item \textbf{Apply}: Implement a stateful agent using LangGraph
+\item \textbf{Analyze}: Compare framework trade-offs for different use cases
+\item \textbf{Evaluate}: Assess production readiness of agent frameworks
+\item \textbf{Create}: Design a custom agent orchestration system
+\end{itemize}
+\bottomnote{By end of lecture, you will understand how to select and use production agent frameworks.}
+\end{frame}
+
+% ==================== SLIDE 3: Framework Landscape ====================
+\begin{frame}[t]{Agent Framework Landscape}
+\textbf{First Generation (2023)}
+\begin{itemize}
+\item \textbf{LangChain}: Chain-based composition, extensive tool library
+\item \textbf{LlamaIndex}: Data-centric, RAG-focused framework
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Second Generation (2024)}
+\begin{itemize}
+\item \textbf{LangGraph}: Graph-based state machines, cycles allowed
+\item \textbf{AutoGen}: Multi-agent conversations, code execution
+\item \textbf{CrewAI}: Role-based multi-agent orchestration
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Enterprise Frameworks}
+\begin{itemize}
+\item \textbf{Semantic Kernel} (Microsoft): Enterprise integration
+\item \textbf{Haystack} (deepset): Production NLP pipelines
+\end{itemize}
+\bottomnote{Framework choice depends on: complexity, multi-agent needs, production requirements.}
+\end{frame}
+
+% ==================== SLIDE 4: Framework Comparison ====================
+\begin{frame}[t]{Framework Comparison}
+\begin{center}
+\includegraphics[width=0.55\textwidth]{01_framework_comparison/chart.pdf}
+\end{center}
+\bottomnote{LangGraph excels at flexibility and state management; CrewAI at ease of use.}
+\end{frame}
+
+% ==================== SLIDE 5: LangGraph Architecture ====================
+\begin{frame}[t]{LangGraph: Graph-Based Agents}
+\textbf{Core Concepts}
+\begin{itemize}
+\item \textbf{StateGraph}: Define nodes and edges as a directed graph
+\item \textbf{Nodes}: Functions that modify state
+\item \textbf{Edges}: Conditional routing between nodes
+\item \textbf{Cycles}: Enable iterative refinement loops
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Key Advantages}
+\begin{itemize}
+\item Explicit control flow visualization
+\item Built-in checkpointing and persistence
+\item Human-in-the-loop interrupts
+\item Streaming support for real-time output
+\end{itemize}
+\bottomnote{LangGraph treats agent logic as a stateful graph, not a linear chain.}
+\end{frame}
+
+% ==================== SLIDE 6: LangGraph Flow ====================
+\begin{frame}[t]{LangGraph: State Machine Flow}
+\begin{center}
+\includegraphics[width=0.60\textwidth]{02_langgraph_flow/chart.pdf}
+\end{center}
+\bottomnote{The graph cycles through Agent-Tools-Check until task completion.}
+\end{frame}
+
+% ==================== SLIDE 7: State Management ====================
+\begin{frame}[t]{State Management in Agents}
+\begin{center}
+\includegraphics[width=0.55\textwidth]{03_state_management/chart.pdf}
+\end{center}
+\bottomnote{Production agents typically require persistent state for reliability.}
+\end{frame}
+
+% ==================== SLIDE 8: LangGraph State Definition ====================
+\begin{frame}[t]{Defining Agent State}
+\textbf{TypedDict State Schema}
+\begin{itemize}
+\item Define state as Python TypedDict for type safety
+\item Messages list tracks conversation history
+\item Custom fields for domain-specific context
+\end{itemize}
+\vspace{0.3cm}
+\textbf{State Updates}
+\begin{itemize}
+\item Nodes return partial state updates
+\item Reducers merge updates (append, replace, custom)
+\item Checkpointing persists state after each node
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Persistence Options}
+\begin{itemize}
+\item MemorySaver: In-memory (development)
+\item SqliteSaver: SQLite database
+\item PostgresSaver: PostgreSQL (production)
+\end{itemize}
+\bottomnote{State schema determines what information flows through the agent graph.}
+\end{frame}
+
+% ==================== SLIDE 9: AutoGen Overview ====================
+\begin{frame}[t]{AutoGen: Multi-Agent Conversations}
+\textbf{Core Abstraction}
+\begin{itemize}
+\item Agents communicate through message passing
+\item ConversableAgent: Base class for all agents
+\item UserProxyAgent: Represents human user
+\item AssistantAgent: LLM-powered responder
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Key Features}
+\begin{itemize}
+\item \textbf{Code Execution}: Docker/local code sandbox
+\item \textbf{Group Chat}: Multi-agent discussions
+\item \textbf{Nested Chats}: Hierarchical conversations
+\item \textbf{Custom Replies}: Programmable response logic
+\end{itemize}
+\bottomnote{AutoGen excels at collaborative multi-agent problem solving.}
+\end{frame}
+
+% ==================== SLIDE 10: Orchestration Patterns ====================
+\begin{frame}[t]{Orchestration Patterns}
+\begin{center}
+\includegraphics[width=0.60\textwidth]{04_orchestration_patterns/chart.pdf}
+\end{center}
+\bottomnote{Choose pattern based on task parallelizability and coordination needs.}
+\end{frame}
+
+% ==================== SLIDE 11: Production Considerations ====================
+\begin{frame}[t]{Production Deployment}
+\textbf{Reliability}
+\begin{itemize}
+\item Retry logic with exponential backoff
+\item Graceful degradation on API failures
+\item Timeout handling for long-running tasks
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Observability}
+\begin{itemize}
+\item LangSmith/LangFuse for tracing
+\item Structured logging with correlation IDs
+\item Metrics: latency, token usage, success rate
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Security}
+\begin{itemize}
+\item Sandboxed code execution
+\item Input validation and sanitization
+\item Rate limiting and cost controls
+\end{itemize}
+\bottomnote{Production agents require robust error handling and monitoring.}
+\end{frame}
+
+% ==================== SLIDE 12: Framework Selection ====================
+\begin{frame}[t]{Choosing a Framework}
+\small
+\begin{tabular}{lll}
+\toprule
+\textbf{Use Case} & \textbf{Recommended} & \textbf{Reason} \\
+\midrule
+Simple RAG chatbot & LangChain & Easy setup \\
+Complex workflows & LangGraph & Graph control \\
+Multi-agent debate & AutoGen & Conversation \\
+Role-based teams & CrewAI & Agent roles \\
+Enterprise apps & Semantic Kernel & .NET/Azure \\
+Custom pipeline & Build own & Full control \\
+\bottomrule
+\end{tabular}
+\vspace{0.4cm}
+
+\textbf{Decision Criteria}
+\begin{itemize}
+\item Complexity of agent logic and state management
+\item Need for multi-agent coordination
+\item Production requirements (observability, persistence)
+\end{itemize}
+\bottomnote{Start simple (LangChain), migrate to LangGraph when you need cycles/state.}
+\end{frame}
+
+% ==================== SLIDE 13: Readings ====================
+\begin{frame}[t]{Required Readings}
+\textbf{This Week}
+\begin{itemize}
+\item LangGraph Documentation: \url{langchain-ai.github.io/langgraph}
+\item Wu et al. (2023). ``AutoGen: Enabling Next-Gen LLM Applications.'' arXiv:2308.08155
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Supplementary}
+\begin{itemize}
+\item Wooldridge \& Jennings (1995). ``Intelligent Agents: Theory and Practice.'' \textit{Knowledge Engineering Review}.
+\item CrewAI Documentation: \url{docs.crewai.com}
+\item Qiao et al. (2024). ``TaskWeaver: A Code-First Agent Framework.'' arXiv:2311.17541
+\end{itemize}
+\bottomnote{Focus on LangGraph docs -- hands-on implementation is essential.}
+\end{frame}
+
+% ==================== SLIDE 14: Summary ====================
+\begin{frame}[t]{Summary and Key Takeaways}
+\textbf{Key Concepts}
+\begin{itemize}
+\item \textbf{LangGraph}: Graph-based state machines with cycles
+\item \textbf{AutoGen}: Conversational multi-agent framework
+\item \textbf{State}: TypedDict schema with persistence
+\item \textbf{Patterns}: Sequential, parallel, router, hierarchical
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Production Checklist}
+\begin{itemize}
+\item Checkpointing enabled
+\item Error handling and retries
+\item Observability instrumentation
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Next Week}
+\begin{itemize}
+\item Advanced RAG: Self-RAG, CRAG, Agentic RAG
+\end{itemize}
+\bottomnote{Framework mastery = understanding state management + orchestration patterns.}
+\end{frame}
+
+\end{document}

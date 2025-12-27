@@ -1,0 +1,132 @@
+---
+layout: null
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Offline - Agentic AI Course</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: linear-gradient(135deg, #3333B2, #0066CC);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      color: white;
+    }
+
+    .offline-container {
+      text-align: center;
+      max-width: 500px;
+    }
+
+    .offline-icon {
+      font-size: 4rem;
+      margin-bottom: 1.5rem;
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      font-size: 1.1rem;
+      opacity: 0.9;
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
+    }
+
+    .cached-pages {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin: 1.5rem 0;
+      text-align: left;
+    }
+
+    .cached-pages h3 {
+      margin-bottom: 1rem;
+      font-size: 1rem;
+    }
+
+    .cached-pages ul {
+      list-style: none;
+    }
+
+    .cached-pages li {
+      margin: 0.5rem 0;
+    }
+
+    .cached-pages a {
+      color: white;
+      text-decoration: none;
+      opacity: 0.9;
+    }
+
+    .cached-pages a:hover {
+      opacity: 1;
+      text-decoration: underline;
+    }
+
+    .retry-btn {
+      display: inline-block;
+      background: white;
+      color: #3333B2;
+      padding: 0.75rem 1.5rem;
+      border-radius: 4px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: transform 0.2s;
+    }
+
+    .retry-btn:hover {
+      transform: scale(1.05);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      body {
+        background: linear-gradient(135deg, #1a1a4e, #0d2d4d);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="offline-container">
+    <div class="offline-icon">&#128268;</div>
+    <h1>You're Offline</h1>
+    <p>It looks like you've lost your internet connection. Some pages may still be available from cache.</p>
+
+    <div class="cached-pages">
+      <h3>Try these cached pages:</h3>
+      <ul>
+        <li><a href="{{ site.baseurl }}/">Course Home</a></li>
+        <li><a href="{{ site.baseurl }}/syllabus">Syllabus</a></li>
+        <li><a href="{{ site.baseurl }}/getting-started">Getting Started</a></li>
+        <li><a href="{{ site.baseurl }}/glossary">Glossary</a></li>
+        <li><a href="{{ site.baseurl }}/papers">Papers</a></li>
+        <li><a href="{{ site.baseurl }}/faq">FAQ</a></li>
+      </ul>
+    </div>
+
+    <a href="javascript:location.reload()" class="retry-btn">Try Again</a>
+  </div>
+
+  <script>
+    // Check if we're back online
+    window.addEventListener('online', function() {
+      location.reload();
+    });
+  </script>
+</body>
+</html>

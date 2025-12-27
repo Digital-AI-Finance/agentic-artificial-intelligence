@@ -1,0 +1,177 @@
+---
+layout: null
+---
+{
+  "exercises": [
+    {
+      "week": 1,
+      "title": "Introduction to Agentic AI",
+      "exercises": [
+        {
+          "id": "L01-E1",
+          "title": "Implement a Basic ReAct Agent",
+          "difficulty": "beginner",
+          "estimated_time": "2 hours",
+          "skills": ["python", "prompting", "agent-loops"]
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "LLM Foundations",
+      "exercises": [
+        {
+          "id": "L02-E1",
+          "title": "Compare Prompting Strategies",
+          "difficulty": "beginner",
+          "estimated_time": "1.5 hours",
+          "skills": ["prompting", "evaluation"]
+        },
+        {
+          "id": "L02-E2",
+          "title": "Implement Chain-of-Thought",
+          "difficulty": "intermediate",
+          "estimated_time": "2 hours",
+          "skills": ["python", "cot", "reasoning"]
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Tool Use",
+      "exercises": [
+        {
+          "id": "L03-E1",
+          "title": "Build a Simple MCP Server",
+          "difficulty": "intermediate",
+          "estimated_time": "3 hours",
+          "skills": ["python", "mcp", "tools"]
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Planning and Reasoning",
+      "exercises": [
+        {
+          "id": "L04-E1",
+          "title": "Implement Reflexion Loop",
+          "difficulty": "advanced",
+          "estimated_time": "4 hours",
+          "skills": ["python", "reflexion", "memory"]
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Multi-Agent Systems",
+      "exercises": [
+        {
+          "id": "L05-E1",
+          "title": "Create Agent Team with AutoGen",
+          "difficulty": "intermediate",
+          "estimated_time": "3 hours",
+          "skills": ["python", "autogen", "multi-agent"]
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Agent Frameworks",
+      "exercises": [
+        {
+          "id": "L06-E1",
+          "title": "Build Stateful Agent with LangGraph",
+          "difficulty": "intermediate",
+          "estimated_time": "3 hours",
+          "skills": ["python", "langgraph", "state-management"]
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Advanced RAG",
+      "exercises": [
+        {
+          "id": "L07-E1",
+          "title": "Implement Self-RAG Pipeline",
+          "difficulty": "advanced",
+          "estimated_time": "4 hours",
+          "skills": ["python", "rag", "self-rag"]
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "GraphRAG",
+      "exercises": [
+        {
+          "id": "L08-E1",
+          "title": "Build Knowledge Graph from Documents",
+          "difficulty": "advanced",
+          "estimated_time": "5 hours",
+          "skills": ["python", "graphrag", "knowledge-graphs"]
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Hallucination Prevention",
+      "exercises": [
+        {
+          "id": "L09-E1",
+          "title": "Implement CoVe Verification",
+          "difficulty": "advanced",
+          "estimated_time": "4 hours",
+          "skills": ["python", "verification", "cove"]
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Agent Evaluation",
+      "exercises": [
+        {
+          "id": "L10-E1",
+          "title": "Create Agent Benchmark Suite",
+          "difficulty": "advanced",
+          "estimated_time": "5 hours",
+          "skills": ["python", "evaluation", "benchmarks"]
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Domain Applications",
+      "exercises": [
+        {
+          "id": "L11-E1",
+          "title": "Build Domain-Specific Agent",
+          "difficulty": "advanced",
+          "estimated_time": "6 hours",
+          "skills": ["python", "domain-agents", "safety"]
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Research Frontiers",
+      "exercises": [
+        {
+          "id": "L12-E1",
+          "title": "Research Paper Implementation",
+          "difficulty": "advanced",
+          "estimated_time": "8 hours",
+          "skills": ["python", "research", "implementation"]
+        }
+      ]
+    }
+  ],
+  "total_exercises": 14,
+  "difficulty_distribution": {
+    "beginner": 2,
+    "intermediate": 4,
+    "advanced": 8
+  },
+  "generated": "{{ site.time | date_to_xmlschema }}"
+}

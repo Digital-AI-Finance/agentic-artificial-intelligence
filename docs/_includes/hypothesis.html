@@ -1,0 +1,104 @@
+<!-- Hypothesis Annotation Layer -->
+<!-- Enables collaborative annotation of course materials -->
+{% if site.hypothesis.enabled %}
+<script src="https://hypothes.is/embed.js" async></script>
+
+<style>
+/* Hypothesis sidebar adjustments */
+.annotator-frame {
+  z-index: 1000 !important;
+}
+
+/* Don't show annotations in print */
+@media print {
+  .annotator-frame,
+  .annotator-adder,
+  .annotator-notice,
+  .annotator-hl {
+    display: none !important;
+  }
+}
+
+/* Highlight visibility in dark mode */
+[data-theme="dark"] .annotator-hl {
+  background-color: rgba(255, 255, 0, 0.2) !important;
+}
+</style>
+{% endif %}
+
+<!-- Annotation prompt for users -->
+{% if site.hypothesis.show_prompt %}
+<div id="annotation-prompt" class="annotation-prompt" style="display: none;">
+  <div class="annotation-prompt-content">
+    <button class="annotation-prompt-close" aria-label="Close">&times;</button>
+    <h4>Annotate this page</h4>
+    <p>Select any text to add highlights and notes. Your annotations can be public or private.</p>
+    <a href="https://web.hypothes.is/start/" target="_blank" class="btn btn-primary">Get Started with Hypothesis</a>
+  </div>
+</div>
+
+<style>
+.annotation-prompt {
+  position: fixed;
+  bottom: 5rem;
+  right: 1.5rem;
+  z-index: 999;
+  background: var(--bg-secondary, white);
+  border: 1px solid var(--border-color, #ddd);
+  border-radius: 8px;
+  padding: 1rem;
+  max-width: 280px;
+  box-shadow: 0 4px 12px var(--shadow-color, rgba(0,0,0,0.15));
+}
+
+.annotation-prompt-content h4 {
+  margin: 0 0 0.5rem 0;
+  color: #3333B2;
+}
+
+.annotation-prompt-content p {
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+  color: var(--text-secondary, #666);
+}
+
+.annotation-prompt-close {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--text-muted, #999);
+  line-height: 1;
+}
+
+.annotation-prompt-close:hover {
+  color: var(--text-primary, #333);
+}
+
+@media print {
+  .annotation-prompt {
+    display: none !important;
+  }
+}
+</style>
+
+<script>
+(function() {
+  // Show prompt once per session
+  const prompt = document.getElementById('annotation-prompt');
+  if (prompt && !sessionStorage.getItem('annotation-prompt-dismissed')) {
+    setTimeout(function() {
+      prompt.style.display = 'block';
+    }, 5000);
+
+    prompt.querySelector('.annotation-prompt-close').addEventListener('click', function() {
+      prompt.style.display = 'none';
+      sessionStorage.setItem('annotation-prompt-dismissed', 'true');
+    });
+  }
+})();
+</script>
+{% endif %}

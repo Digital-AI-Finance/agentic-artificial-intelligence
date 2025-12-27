@@ -1,0 +1,123 @@
+---
+layout: null
+---
+{
+  "charts": [
+    {% assign chart_folders = "" | split: "" %}
+    {% for i in (1..12) %}
+      {% assign week_num = i | prepend: "0" | slice: -2, 2 %}
+      {% capture week_prefix %}L{{ week_num }}{% endcapture %}
+      {% assign chart_folders = chart_folders | push: week_prefix %}
+    {% endfor %}
+    {
+      "week": 1,
+      "title": "Introduction to Agentic AI",
+      "charts": [
+        {"name": "agent_evolution", "description": "Evolution of AI agents over time"},
+        {"name": "react_loop", "description": "ReAct reasoning-action loop diagram"},
+        {"name": "agent_taxonomy", "description": "Taxonomy of AI agent types"}
+      ]
+    },
+    {
+      "week": 2,
+      "title": "LLM Foundations",
+      "charts": [
+        {"name": "cot_comparison", "description": "Chain-of-thought vs standard prompting"},
+        {"name": "prompting_strategies", "description": "Comparison of prompting strategies"},
+        {"name": "tot_tree", "description": "Tree-of-thought search visualization"}
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Tool Use",
+      "charts": [
+        {"name": "function_calling", "description": "Function calling flow diagram"},
+        {"name": "mcp_architecture", "description": "MCP protocol architecture"},
+        {"name": "tool_selection", "description": "Tool selection decision tree"}
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Planning and Reasoning",
+      "charts": [
+        {"name": "reflexion_loop", "description": "Reflexion self-improvement cycle"},
+        {"name": "lats_tree", "description": "LATS tree search visualization"},
+        {"name": "memory_types", "description": "Agent memory type comparison"}
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Multi-Agent Systems",
+      "charts": [
+        {"name": "topology_comparison", "description": "Multi-agent topology comparison"},
+        {"name": "communication_patterns", "description": "Agent communication patterns"},
+        {"name": "role_distribution", "description": "Agent role distribution"}
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Agent Frameworks",
+      "charts": [
+        {"name": "langgraph_flow", "description": "LangGraph state machine flow"},
+        {"name": "framework_comparison", "description": "Framework feature comparison"},
+        {"name": "autogen_chat", "description": "AutoGen conversation pattern"}
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Advanced RAG",
+      "charts": [
+        {"name": "self_rag_flow", "description": "Self-RAG decision flow"},
+        {"name": "crag_pipeline", "description": "CRAG corrective pipeline"},
+        {"name": "raptor_hierarchy", "description": "RAPTOR hierarchical structure"}
+      ]
+    },
+    {
+      "week": 8,
+      "title": "GraphRAG",
+      "charts": [
+        {"name": "entity_extraction", "description": "Entity extraction pipeline"},
+        {"name": "community_detection", "description": "Community detection visualization"},
+        {"name": "hipporag_architecture", "description": "HippoRAG architecture diagram"}
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Hallucination Prevention",
+      "charts": [
+        {"name": "hallucination_types", "description": "Types of hallucinations"},
+        {"name": "cove_pipeline", "description": "CoVe verification pipeline"},
+        {"name": "factscore_decomposition", "description": "FActScore atomic decomposition"}
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Agent Evaluation",
+      "charts": [
+        {"name": "benchmark_comparison", "description": "Benchmark comparison chart"},
+        {"name": "pass_at_k", "description": "Pass@k metric visualization"},
+        {"name": "llm_judge", "description": "LLM-as-judge evaluation flow"}
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Domain Applications",
+      "charts": [
+        {"name": "code_agent_flow", "description": "Code agent execution flow"},
+        {"name": "finance_guardrails", "description": "Financial agent guardrails"},
+        {"name": "safety_patterns", "description": "Agent safety pattern comparison"}
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Research Frontiers",
+      "charts": [
+        {"name": "generative_agents", "description": "Generative agents architecture"},
+        {"name": "voyager_curriculum", "description": "Voyager curriculum learning"},
+        {"name": "open_problems", "description": "Open research problems timeline"}
+      ]
+    }
+  ],
+  "total_charts": 36,
+  "generated": "{{ site.time | date_to_xmlschema }}"
+}

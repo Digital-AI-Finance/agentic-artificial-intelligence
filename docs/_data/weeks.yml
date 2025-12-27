@@ -1,0 +1,328 @@
+# Course week data
+- number: 1
+  title: "Introduction to Agentic AI"
+  folder: "L01_Introduction_Agentic_AI"
+  description: "Agent definitions, ReAct paradigm, autonomous systems overview"
+  topics:
+    - Agent definitions and taxonomy
+    - ReAct paradigm (Yao et al., 2023)
+    - Thought-Action-Observation loop
+    - Agent vs. standard LLM inference
+  learning_objectives:
+    - Define what constitutes an AI agent
+    - Implement a basic ReAct agent from scratch
+    - Understand the agent trajectory structure
+  papers:
+    - title: "ReAct: Synergizing Reasoning and Acting in Language Models"
+      authors: "Yao et al."
+      year: 2023
+      arxiv: "2210.03629"
+    - title: "A Survey on Large Language Model based Autonomous Agents"
+      authors: "Wang et al."
+      year: 2024
+      arxiv: "2308.11432"
+  notebooks:
+    - name: "First Agent"
+      file: "notebooks/L01_first_agent.ipynb"
+  status: "complete"
+
+- number: 2
+  title: "LLM Foundations for Agents"
+  folder: "L02_LLM_Foundations_Agents"
+  description: "Chain-of-Thought, Tree-of-Thoughts, prompting strategies"
+  topics:
+    - Chain-of-Thought prompting
+    - Self-Consistency decoding
+    - Tree-of-Thoughts reasoning
+    - Zero-shot vs few-shot approaches
+  learning_objectives:
+    - Implement CoT, ToT, and Self-Consistency
+    - Compare prompting strategies on reasoning tasks
+    - Analyze accuracy vs. cost trade-offs
+  papers:
+    - title: "Chain-of-Thought Prompting Elicits Reasoning"
+      authors: "Wei et al."
+      year: 2022
+      arxiv: "2201.11903"
+    - title: "Tree of Thoughts"
+      authors: "Yao et al."
+      year: 2023
+      arxiv: "2305.10601"
+  notebooks:
+    - name: "Prompting Strategies"
+      file: "notebooks/L02_prompting_strategies.ipynb"
+  status: "complete"
+
+- number: 3
+  title: "Tool Use and Function Calling"
+  folder: "L03_Tool_Use_Function_Calling"
+  description: "MCP protocol, OpenAI/Anthropic APIs, tool design"
+  topics:
+    - Model Context Protocol (MCP)
+    - OpenAI function calling API
+    - Anthropic tool use API
+    - Tool design best practices
+  learning_objectives:
+    - Implement MCP tools using Python SDK
+    - Compare OpenAI and Anthropic function calling
+    - Design effective tool schemas
+  papers:
+    - title: "Toolformer: Language Models Can Teach Themselves to Use Tools"
+      authors: "Schick et al."
+      year: 2023
+      arxiv: "2302.04761"
+    - title: "Gorilla: Large Language Model Connected with APIs"
+      authors: "Patil et al."
+      year: 2023
+      arxiv: "2305.15334"
+  notebooks:
+    - name: "MCP Tool Implementation"
+      file: "notebooks/L03_mcp_tool_implementation.ipynb"
+    - name: "Function Calling Comparison"
+      file: "notebooks/L03_function_calling_comparison.ipynb"
+  status: "complete"
+
+- number: 4
+  title: "Planning and Reasoning"
+  folder: "L04_Planning_Reasoning"
+  description: "Reflexion, LATS, hierarchical planning, memory"
+  topics:
+    - Reflexion framework
+    - Language Agent Tree Search (LATS)
+    - Plan-and-Solve prompting
+    - Episodic memory for agents
+  learning_objectives:
+    - Implement verbal reflection mechanisms
+    - Build self-improving agents
+    - Design effective memory systems
+  papers:
+    - title: "Reflexion: Language Agents with Verbal Reinforcement Learning"
+      authors: "Shinn et al."
+      year: 2023
+      arxiv: "2303.11366"
+    - title: "LATS: Language Agent Tree Search"
+      authors: "Zhou et al."
+      year: 2024
+      arxiv: "2310.04406"
+  notebooks:
+    - name: "Reflexion Implementation"
+      file: "notebooks/L04_reflexion_implementation.ipynb"
+  status: "complete"
+
+- number: 5
+  title: "Multi-Agent Architectures"
+  folder: "L05_Multi_Agent_Architectures"
+  description: "Communication topologies, AutoGen, MetaGPT, ChatDev"
+  topics:
+    - Multi-agent communication patterns
+    - AutoGen framework
+    - MetaGPT software development
+    - Role-based agent teams
+  learning_objectives:
+    - Implement message passing between agents
+    - Build coordination patterns
+    - Design multi-agent workflows
+  papers:
+    - title: "AutoGen: Enabling Next-Gen LLM Applications"
+      authors: "Wu et al."
+      year: 2023
+      arxiv: "2308.08155"
+    - title: "MetaGPT: Meta Programming for Multi-Agent Collaboration"
+      authors: "Hong et al."
+      year: 2023
+      arxiv: "2308.00352"
+  notebooks:
+    - name: "Message Passing"
+      file: "notebooks/L05_message_passing.ipynb"
+    - name: "Coordination Demo"
+      file: "notebooks/L05_coordination_demo.ipynb"
+  status: "complete"
+
+- number: 6
+  title: "Agent Frameworks"
+  folder: "L06_Agent_Frameworks"
+  description: "LangGraph, CrewAI, framework comparison and selection"
+  topics:
+    - LangGraph state machines
+    - CrewAI team agents
+    - Framework comparison
+    - Orchestration patterns
+  learning_objectives:
+    - Build agents with LangGraph
+    - Compare framework trade-offs
+    - Select appropriate frameworks for tasks
+  papers:
+    - title: "LangGraph Documentation"
+      authors: "LangChain"
+      year: 2024
+      url: "https://langchain-ai.github.io/langgraph/"
+    - title: "TaskWeaver: A Code-First Agent Framework"
+      authors: "Qiao et al."
+      year: 2024
+      arxiv: "2311.17541"
+  notebooks:
+    - name: "LangGraph Agent"
+      file: "L06_LangGraph_Agent.ipynb"
+  status: "complete"
+
+- number: 7
+  title: "Advanced RAG"
+  folder: "L07_Advanced_RAG"
+  description: "Self-RAG, CRAG, RAPTOR, agentic retrieval"
+  topics:
+    - Self-RAG architecture
+    - Corrective RAG (CRAG)
+    - RAPTOR hierarchical retrieval
+    - Adaptive retrieval strategies
+  learning_objectives:
+    - Implement Self-RAG with reflection
+    - Build corrective retrieval systems
+    - Compare RAG strategies
+  papers:
+    - title: "Self-RAG: Learning to Retrieve, Generate, and Critique"
+      authors: "Asai et al."
+      year: 2023
+      arxiv: "2310.11511"
+    - title: "Corrective Retrieval Augmented Generation"
+      authors: "Yan et al."
+      year: 2024
+      arxiv: "2401.15884"
+  notebooks:
+    - name: "Self-RAG Implementation"
+      file: "L07_Self_RAG.ipynb"
+  status: "complete"
+
+- number: 8
+  title: "GraphRAG and Knowledge"
+  folder: "L08_GraphRAG_Knowledge"
+  description: "Knowledge graphs, Graph of Thoughts, HippoRAG"
+  topics:
+    - GraphRAG architecture
+    - Entity and relationship extraction
+    - Knowledge graph construction
+    - Multi-hop reasoning
+  learning_objectives:
+    - Build knowledge graphs from text
+    - Implement graph-based retrieval
+    - Compare graph vs. vector retrieval
+  papers:
+    - title: "GraphRAG: Unlocking LLM Discovery on Narrative Private Data"
+      authors: "Edge et al."
+      year: 2024
+      url: "https://microsoft.github.io/graphrag/"
+    - title: "Graph of Thoughts"
+      authors: "Besta et al."
+      year: 2024
+      arxiv: "2308.09687"
+  notebooks:
+    - name: "GraphRAG Implementation"
+      file: "L08_GraphRAG.ipynb"
+  status: "complete"
+
+- number: 9
+  title: "Hallucination Prevention"
+  folder: "L09_Hallucination_Prevention"
+  description: "FActScore, Chain-of-Verification, Self-Refine"
+  topics:
+    - Hallucination taxonomy
+    - Chain-of-Verification (CoVe)
+    - Claim decomposition
+    - Confidence calibration
+  learning_objectives:
+    - Implement claim decomposition
+    - Build verification pipelines
+    - Detect and mitigate hallucinations
+  papers:
+    - title: "Chain-of-Verification Reduces Hallucination"
+      authors: "Dhuliawala et al."
+      year: 2023
+      arxiv: "2309.11495"
+    - title: "FActScore: Fine-grained Atomic Evaluation"
+      authors: "Min et al."
+      year: 2023
+      arxiv: "2305.14251"
+  notebooks:
+    - name: "Verification Pipeline"
+      file: "L09_Verification.ipynb"
+  status: "complete"
+
+- number: 10
+  title: "Agent Evaluation"
+  folder: "L10_Agent_Evaluation"
+  description: "AgentBench, WebArena, GAIA, SWE-bench"
+  topics:
+    - Evaluation metrics for agents
+    - AgentBench benchmark
+    - LLM-as-Judge evaluation
+    - Task success measurement
+  learning_objectives:
+    - Design evaluation frameworks
+    - Implement automated assessment
+    - Analyze agent performance
+  papers:
+    - title: "AgentBench: Evaluating LLMs as Agents"
+      authors: "Liu et al."
+      year: 2023
+      arxiv: "2308.03688"
+    - title: "SWE-bench: Can Language Models Resolve Real-World GitHub Issues?"
+      authors: "Jimenez et al."
+      year: 2024
+      arxiv: "2310.06770"
+  notebooks:
+    - name: "Benchmarking Suite"
+      file: "L10_Benchmarking.ipynb"
+  status: "complete"
+
+- number: 11
+  title: "Domain Applications"
+  folder: "L11_Domain_Applications"
+  description: "Coding agents, research assistants, finance applications"
+  topics:
+    - Code generation agents
+    - Research assistants
+    - Financial analysis agents
+    - Domain-specific constraints
+  learning_objectives:
+    - Build domain-specific agents
+    - Handle regulatory constraints
+    - Integrate specialized tools
+  papers:
+    - title: "AlphaCodium: From Prompt Engineering to Flow Engineering"
+      authors: "Ridnik et al."
+      year: 2024
+      arxiv: "2401.08500"
+    - title: "FinAgent: LLM Agents for Financial Applications"
+      authors: "Li et al."
+      year: 2024
+      arxiv: "2402.18485"
+  notebooks:
+    - name: "Code Generation Agent"
+      file: "L11_Code_Agent.ipynb"
+  status: "complete"
+
+- number: 12
+  title: "Research Frontiers"
+  folder: "L12_Research_Frontiers"
+  description: "Generative agents, Voyager, Constitutional AI"
+  topics:
+    - Generative agents simulation
+    - Voyager open-ended learning
+    - Agent safety and alignment
+    - Future research directions
+  learning_objectives:
+    - Understand emergent behaviors
+    - Analyze safety considerations
+    - Identify open research problems
+  papers:
+    - title: "Generative Agents: Interactive Simulacra of Human Behavior"
+      authors: "Park et al."
+      year: 2023
+      arxiv: "2304.03442"
+    - title: "Voyager: An Open-Ended Embodied Agent"
+      authors: "Wang et al."
+      year: 2023
+      arxiv: "2305.16291"
+  notebooks:
+    - name: "Generative Agents Demo"
+      file: "L12_Generative_Agents.ipynb"
+  status: "complete"

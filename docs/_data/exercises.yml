@@ -1,0 +1,265 @@
+# Exercise Data for All 12 Weeks
+
+- week: 1
+  title: "Agent Classification"
+  file: "L01_Introduction_Agentic_AI/exercises/L01_agent_classification.md"
+  description: "Analyze and classify AI systems according to agent taxonomy"
+  objectives:
+    - "Analyze: Classify systems according to agent properties"
+    - "Evaluate: Assess strengths and limitations of architectures"
+    - "Apply: Apply formal definitions to real-world systems"
+  tasks:
+    - name: "System Classification"
+      points: 40
+      description: "Classify 6 systems (ChatGPT, Copilot, Roomba, etc.)"
+    - name: "Architecture Analysis"
+      points: 35
+      description: "Identify architecture types and memory/tool access"
+    - name: "Design Proposal"
+      points: 25
+      description: "Design a research assistant agent"
+  total_points: 100
+  estimated_time: "3-5 hours"
+  difficulty: "Intermediate"
+
+- week: 2
+  title: "Prompt Engineering"
+  file: "L02_LLM_Foundations_Agents/exercises/L02_prompt_engineering.md"
+  description: "Compare prompting strategies on reasoning tasks"
+  objectives:
+    - "Apply: Implement CoT, ToT, and Self-Consistency"
+    - "Analyze: Compare accuracy vs cost trade-offs"
+    - "Evaluate: Select optimal strategy for task type"
+  tasks:
+    - name: "CoT Implementation"
+      points: 30
+      description: "Implement chain-of-thought prompting"
+    - name: "ToT Implementation"
+      points: 30
+      description: "Implement tree-of-thoughts reasoning"
+    - name: "Strategy Comparison"
+      points: 40
+      description: "Benchmark and compare strategies"
+  total_points: 100
+  estimated_time: "4-6 hours"
+  difficulty: "Intermediate"
+
+- week: 3
+  title: "Tool Design"
+  file: "L03_Tool_Use_Function_Calling/exercises/L03_tool_design.md"
+  description: "Design and implement MCP tools for agent use"
+  objectives:
+    - "Create: Design effective tool schemas"
+    - "Apply: Implement MCP tools using Python SDK"
+    - "Analyze: Compare OpenAI and Anthropic APIs"
+  tasks:
+    - name: "Tool Schema Design"
+      points: 25
+      description: "Design JSON schemas for 3 tools"
+    - name: "MCP Implementation"
+      points: 40
+      description: "Implement tools using MCP SDK"
+    - name: "API Comparison"
+      points: 35
+      description: "Compare function calling across providers"
+  total_points: 100
+  estimated_time: "4-6 hours"
+  difficulty: "Advanced"
+
+- week: 4
+  title: "Planning Agent"
+  file: "L04_Planning_Reasoning/exercises/L04_planning_agent.md"
+  description: "Build an agent with planning and reflection capabilities"
+  objectives:
+    - "Create: Implement verbal reflection mechanisms"
+    - "Apply: Build self-improving agents"
+    - "Analyze: Evaluate planning strategies"
+  tasks:
+    - name: "Reflexion Implementation"
+      points: 40
+      description: "Implement the Reflexion framework"
+    - name: "Memory System"
+      points: 30
+      description: "Build episodic memory for agent"
+    - name: "Evaluation"
+      points: 30
+      description: "Measure improvement over iterations"
+  total_points: 100
+  estimated_time: "5-7 hours"
+  difficulty: "Advanced"
+
+- week: 5
+  title: "Multi-Agent Design"
+  file: "L05_Multi_Agent_Architectures/exercises/L05_multi_agent_design.md"
+  description: "Design and implement multi-agent coordination"
+  objectives:
+    - "Create: Design multi-agent workflows"
+    - "Apply: Implement message passing between agents"
+    - "Analyze: Compare coordination patterns"
+  tasks:
+    - name: "Agent Team Design"
+      points: 30
+      description: "Design roles for a multi-agent team"
+    - name: "Message Passing"
+      points: 40
+      description: "Implement agent communication"
+    - name: "Coordination Analysis"
+      points: 30
+      description: "Measure coordination overhead"
+  total_points: 100
+  estimated_time: "5-7 hours"
+  difficulty: "Advanced"
+
+- week: 6
+  title: "Framework Implementation"
+  file: "L06_Agent_Frameworks/L06_Exercise.md"
+  description: "Build agents using LangGraph and compare frameworks"
+  objectives:
+    - "Apply: Build agents with LangGraph"
+    - "Analyze: Compare framework trade-offs"
+    - "Evaluate: Select appropriate frameworks"
+  tasks:
+    - name: "LangGraph Agent"
+      points: 40
+      description: "Build research assistant with LangGraph"
+    - name: "AutoGen Agent"
+      points: 30
+      description: "Implement same agent in AutoGen"
+    - name: "Comparison Report"
+      points: 30
+      description: "Compare implementation experiences"
+  total_points: 100
+  estimated_time: "5-8 hours"
+  difficulty: "Advanced"
+
+- week: 7
+  title: "RAG Pipeline"
+  file: "L07_Advanced_RAG/L07_Exercise.md"
+  description: "Implement advanced RAG strategies"
+  objectives:
+    - "Create: Implement Self-RAG with reflection"
+    - "Apply: Build corrective retrieval systems"
+    - "Analyze: Compare RAG strategies"
+  tasks:
+    - name: "Self-RAG Implementation"
+      points: 40
+      description: "Implement Self-RAG with reflection tokens"
+    - name: "CRAG Pipeline"
+      points: 35
+      description: "Build corrective retrieval pipeline"
+    - name: "Strategy Comparison"
+      points: 25
+      description: "Benchmark RAG approaches"
+  total_points: 100
+  estimated_time: "5-7 hours"
+  difficulty: "Advanced"
+
+- week: 8
+  title: "GraphRAG"
+  file: "L08_GraphRAG_Knowledge/L08_Exercise.md"
+  description: "Build knowledge graphs and graph-based retrieval"
+  objectives:
+    - "Create: Build knowledge graphs from text"
+    - "Apply: Implement graph-based retrieval"
+    - "Analyze: Compare graph vs vector retrieval"
+  tasks:
+    - name: "Entity Extraction"
+      points: 30
+      description: "Extract entities and relationships"
+    - name: "Graph Construction"
+      points: 35
+      description: "Build and index knowledge graph"
+    - name: "Query Implementation"
+      points: 35
+      description: "Implement local and global queries"
+  total_points: 100
+  estimated_time: "6-8 hours"
+  difficulty: "Advanced"
+
+- week: 9
+  title: "Verification Pipeline"
+  file: "L09_Hallucination_Prevention/L09_Exercise.md"
+  description: "Implement claim verification and hallucination detection"
+  objectives:
+    - "Create: Build verification pipelines"
+    - "Apply: Implement claim decomposition"
+    - "Evaluate: Detect and mitigate hallucinations"
+  tasks:
+    - name: "Claim Decomposition"
+      points: 30
+      description: "Break text into atomic claims"
+    - name: "Verification System"
+      points: 40
+      description: "Implement CoVe pipeline"
+    - name: "FActScore Evaluation"
+      points: 30
+      description: "Evaluate factual precision"
+  total_points: 100
+  estimated_time: "5-7 hours"
+  difficulty: "Advanced"
+
+- week: 10
+  title: "Agent Evaluation"
+  file: "L10_Agent_Evaluation/L10_Exercise.md"
+  description: "Design and implement agent evaluation frameworks"
+  objectives:
+    - "Create: Design evaluation frameworks"
+    - "Apply: Implement automated assessment"
+    - "Analyze: Analyze agent performance"
+  tasks:
+    - name: "Benchmark Design"
+      points: 35
+      description: "Design custom evaluation tasks"
+    - name: "LLM-as-Judge"
+      points: 35
+      description: "Implement automated evaluation"
+    - name: "Analysis Report"
+      points: 30
+      description: "Analyze results and limitations"
+  total_points: 100
+  estimated_time: "5-7 hours"
+  difficulty: "Advanced"
+
+- week: 11
+  title: "Domain Agent"
+  file: "L11_Domain_Applications/L11_Exercise.md"
+  description: "Build a domain-specific agent with specialized tools"
+  objectives:
+    - "Create: Build domain-specific agents"
+    - "Apply: Handle regulatory constraints"
+    - "Integrate: Integrate specialized tools"
+  tasks:
+    - name: "Domain Analysis"
+      points: 25
+      description: "Analyze domain requirements"
+    - name: "Agent Implementation"
+      points: 45
+      description: "Build specialized agent"
+    - name: "Evaluation"
+      points: 30
+      description: "Evaluate on domain tasks"
+  total_points: 100
+  estimated_time: "6-8 hours"
+  difficulty: "Expert"
+
+- week: 12
+  title: "Research Proposal"
+  file: "L12_Research_Frontiers/L12_Exercise.md"
+  description: "Develop a research proposal for agent advancement"
+  objectives:
+    - "Create: Design novel agent approach"
+    - "Evaluate: Critically assess current limitations"
+    - "Synthesize: Propose research directions"
+  tasks:
+    - name: "Literature Review"
+      points: 30
+      description: "Survey current research"
+    - name: "Research Proposal"
+      points: 45
+      description: "Propose novel contribution"
+    - name: "Feasibility Analysis"
+      points: 25
+      description: "Assess implementation feasibility"
+  total_points: 100
+  estimated_time: "8-10 hours"
+  difficulty: "Expert"

@@ -1,0 +1,21 @@
+---
+layout: null
+---
+{
+  "weeks": [
+    {% for week in site.data.weeks %}
+    {
+      "number": {{ week.number }},
+      "title": "{{ week.title }}",
+      "folder": "{{ week.folder }}",
+      "description": "{{ week.description | escape }}",
+      "status": "{{ week.status }}",
+      "topics": {{ week.topics | jsonify }},
+      "learning_objectives": {{ week.learning_objectives | jsonify }},
+      "papers": {{ week.papers | jsonify }},
+      "notebooks": {{ week.notebooks | jsonify }}
+    }{% unless forloop.last %},{% endunless %}
+    {% endfor %}
+  ],
+  "generated_at": "{{ site.time | date_to_xmlschema }}"
+}

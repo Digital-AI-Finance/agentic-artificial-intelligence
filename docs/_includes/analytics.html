@@ -1,0 +1,70 @@
+<!-- Privacy-focused analytics using Plausible (optional) -->
+{% if site.analytics.plausible %}
+<script defer data-domain="{{ site.analytics.plausible.domain }}" src="https://plausible.io/js/script.js"></script>
+{% endif %}
+
+<!-- Minimal self-hosted analytics (no cookies, GDPR compliant) -->
+{% if site.analytics.simple %}
+<script>
+(function() {
+  // Simple page view tracking - no cookies, no personal data
+  // Data stays on GitHub Pages via beacon API to a simple endpoint
+  if (navigator.doNotTrack === '1') return; // Respect DNT
+
+  var data = {
+    page: window.location.pathname,
+    referrer: document.referrer || 'direct',
+    timestamp: new Date().toISOString().split('T')[0], // Date only
+    viewport: window.innerWidth + 'x' + window.innerHeight
+  };
+
+  // Log to console for development
+  if (window.location.hostname === 'localhost') {
+    console.log('Page view:', data);
+    return;
+  }
+
+  // For production: would send to analytics endpoint
+  // navigator.sendBeacon('{{ site.analytics.simple.endpoint }}', JSON.stringify(data));
+})();
+</script>
+{% endif %}
+
+<!-- Basic event tracking helper -->
+<script>
+window.trackEvent = function(category, action, label) {
+  if (typeof plausible !== 'undefined') {
+    plausible(action, { props: { category: category, label: label }});
+  }
+  // Console log for debugging
+  console.log('Event:', category, action, label);
+};
+</script>
+
+<!-- Track notebook opens -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Track Colab link clicks
+  document.querySelectorAll('a[href*="colab.research.google.com"]').forEach(function(link) {
+    link.addEventListener('click', function() {
+      var notebook = this.href.split('/').pop().replace('.ipynb', '');
+      window.trackEvent('Notebook', 'Open', notebook);
+    });
+  });
+
+  // Track PDF downloads
+  document.querySelectorAll('a[href$=".pdf"]').forEach(function(link) {
+    link.addEventListener('click', function() {
+      var pdf = this.href.split('/').pop();
+      window.trackEvent('PDF', 'Download', pdf);
+    });
+  });
+
+  // Track external link clicks
+  document.querySelectorAll('a[href^="http"]:not([href*="' + window.location.hostname + '"])').forEach(function(link) {
+    link.addEventListener('click', function() {
+      window.trackEvent('External', 'Click', this.href);
+    });
+  });
+});
+</script>

@@ -9,9 +9,9 @@ from pathlib import Path
 
 # Chart settings for Beamer slides (scaled for 70% display)
 plt.rcParams.update({
-    'font.size': 14,
-    'axes.labelsize': 14,
-    'axes.titlesize': 16,
+    'font.size': 24,
+    'axes.labelsize': 24,
+    'axes.titlesize': 26,
     'xtick.labelsize': 12,
     'ytick.labelsize': 12,
     'legend.fontsize': 11,

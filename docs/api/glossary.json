@@ -1,0 +1,15 @@
+---
+layout: null
+---
+{
+  "glossary": [
+    {% for term in site.data.glossary %}
+    {
+      "term": "{{ term.term }}",
+      "definition": "{{ term.definition | escape }}",
+      "related": {{ term.related | jsonify }},
+      "week": {{ term.week }}
+    }{% unless forloop.last %},{% endunless %}
+    {% endfor %}
+  ]
+}

@@ -1,0 +1,58 @@
+<!-- Accessibility enhancements -->
+<meta name="theme-color" content="#3333B2">
+<meta name="color-scheme" content="light dark">
+
+<!-- Custom CSS for accessibility and print -->
+<link rel="stylesheet" href="{{ '/assets/css/custom.css' | relative_url }}" media="all">
+
+<!-- Site enhancements script -->
+<script src="{{ '/assets/js/enhancements.js' | relative_url }}" defer></script>
+
+<!-- Prevent flash of wrong theme -->
+<script>
+  (function() {
+    var theme = localStorage.getItem('theme');
+    if (!theme) {
+      theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    }
+    document.documentElement.setAttribute('data-theme', theme);
+    if (theme === 'dark') {
+      document.documentElement.style.setProperty('--bg-primary', '#0d1117');
+      document.documentElement.style.backgroundColor = '#0d1117';
+    }
+  })();
+</script>
+
+<!-- Preconnect for performance -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<!-- Accessibility statement link -->
+<link rel="help" href="{{ '/accessibility' | relative_url }}" title="Accessibility Statement">
+
+<!-- Structured data for course -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Course",
+  "name": "{{ site.course.name }}",
+  "description": "{{ site.description }}",
+  "provider": {
+    "@type": "Organization",
+    "name": "{{ site.course.instructor.institution }}",
+    "sameAs": "{{ site.course.github }}"
+  },
+  "instructor": {
+    "@type": "Person",
+    "name": "{{ site.course.instructor.name }}"
+  },
+  "courseCode": "{{ site.course.code }}",
+  "numberOfCredits": {{ site.course.credits }},
+  "educationalCredentialAwarded": "PhD-level coursework",
+  "hasCourseInstance": {
+    "@type": "CourseInstance",
+    "courseMode": "online",
+    "startDate": "2025-02-01"
+  }
+}
+</script>
