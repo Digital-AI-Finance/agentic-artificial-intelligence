@@ -26,7 +26,7 @@ This course consists of 12 weeks covering the theory and practice of agentic AI 
   </h3>
   <p class="week-meta">{{ week.description }}</p>
   <div class="resource-links">
-    <a href="{{ site.baseurl }}/{{ week.folder }}/{{ week.folder }}.pdf">Slides</a>
+    <a href="{{ '/slides/' | append: week.folder | append: '.pdf' | relative_url }}">Slides</a>
     {% for notebook in week.notebooks %}
     <a href="https://colab.research.google.com/github/Digital-AI-Finance/agentic-artificial-intelligence/blob/main/{{ week.folder }}/{{ notebook.file }}">
       {{ notebook.name }}
