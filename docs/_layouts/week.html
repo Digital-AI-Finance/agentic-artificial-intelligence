@@ -27,19 +27,23 @@ layout: default
 </div>
 <p class="fs-3" style="text-align: center; color: #666;">Week {{ week_num }} of 12</p>
 
-## Learning Objectives
+<h2>Learning Objectives</h2>
 
+<ul>
 {% for objective in week.learning_objectives %}
-- {{ objective }}
+<li>{{ objective }}</li>
 {% endfor %}
+</ul>
 
-## Topics Covered
+<h2>Topics Covered</h2>
 
+<ul>
 {% for topic in week.topics %}
-- {{ topic }}
+<li>{{ topic }}</li>
 {% endfor %}
+</ul>
 
-## Resources
+<h2>Resources</h2>
 
 <div class="resource-links" style="margin: 1.5rem 0;">
   <a href="{{ '/slides/' | append: week.folder | append: '.pdf' | relative_url }}" class="btn btn-primary">
@@ -48,7 +52,7 @@ layout: default
 </div>
 
 {% if week.notebooks.size > 0 %}
-### Jupyter Notebooks
+<h3>Jupyter Notebooks</h3>
 
 <div style="display: flex; flex-wrap: wrap; gap: 1rem; margin: 1rem 0;">
 {% for notebook in week.notebooks %}
@@ -60,17 +64,27 @@ layout: default
 </div>
 {% endif %}
 
-## Required Readings
+<h2>Required Readings</h2>
 
-| Paper | Authors | Year | Link |
-|:------|:--------|:-----|:-----|
+<table>
+<thead>
+<tr><th style="text-align: left;">Paper</th><th style="text-align: left;">Authors</th><th style="text-align: left;">Year</th><th style="text-align: left;">Link</th></tr>
+</thead>
+<tbody>
 {% for paper in week.papers %}
-| {{ paper.title }} | {{ paper.authors }} | {{ paper.year }} | {% if paper.arxiv %}[arXiv](https://arxiv.org/abs/{{ paper.arxiv }}){% elsif paper.url %}[Link]({{ paper.url }}){% endif %} |
+<tr>
+<td>{{ paper.title }}</td>
+<td>{{ paper.authors }}</td>
+<td>{{ paper.year }}</td>
+<td>{% if paper.arxiv %}<a href="https://arxiv.org/abs/{{ paper.arxiv }}">arXiv</a>{% elsif paper.url %}<a href="{{ paper.url }}">Link</a>{% endif %}</td>
+</tr>
 {% endfor %}
+</tbody>
+</table>
 
 {% assign reading = site.data.readings | where: "week", week_num | first %}
 {% if reading %}
-## Reading Guide: {{ reading.title }}
+<h2>Reading Guide: {{ reading.title }}</h2>
 
 <div class="reading-card" style="background: var(--bg-secondary, #f8f9fa); border-radius: 8px; padding: 1.5rem; margin: 1.5rem 0; border-left: 4px solid #0066CC;">
   <div class="reading-meta" style="display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 1rem;">
@@ -125,7 +139,7 @@ layout: default
 
 {% assign exercise = site.data.exercises | where: "week", week_num | first %}
 {% if exercise %}
-## Exercise: {{ exercise.title }}
+<h2>Exercise: {{ exercise.title }}</h2>
 
 <div class="exercise-card" style="background: var(--bg-secondary, #f8f9fa); border-radius: 8px; padding: 1.5rem; margin: 1.5rem 0; border-left: 4px solid #FF7F0E;">
   <div class="exercise-meta" style="display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 1rem;">
@@ -172,7 +186,7 @@ layout: default
 
 {{ content }}
 
-## Discussion & Questions
+<h2>Discussion &amp; Questions</h2>
 
 <div class="discussion-section" style="background: var(--bg-secondary, #f8f9fa); border-radius: 8px; padding: 1.5rem; margin: 1.5rem 0; border-left: 4px solid #3333B2;">
   <h3 style="margin-top: 0; color: #3333B2;">Join the Conversation</h3>
