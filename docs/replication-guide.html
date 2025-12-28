@@ -1,0 +1,1428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Website Replication Guide - Agentic AI</title>
+    <style>
+        :root {
+            --primary: #3333B2;
+            --secondary: #0066CC;
+            --accent: #FF7F0E;
+            --success: #2CA02C;
+            --danger: #D62728;
+            --bg: #f8f9fa;
+            --text: #333;
+            --border: #ddd;
+            --code-bg: #1e1e1e;
+            --code-text: #d4d4d4;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background: var(--bg);
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+        header h1 { font-size: 2.5rem; margin-bottom: 0.5rem; }
+        header p { font-size: 1.2rem; opacity: 0.9; }
+
+        /* Navigation */
+        nav {
+            background: white;
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 1rem;
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            justify-content: center;
+        }
+        nav a {
+            color: var(--primary);
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            transition: background 0.2s;
+        }
+        nav a:hover { background: rgba(51, 51, 178, 0.1); }
+
+        /* Sections */
+        section {
+            background: white;
+            border-radius: 8px;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        h2 {
+            color: var(--primary);
+            border-bottom: 3px solid var(--primary);
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+        h3 {
+            color: var(--secondary);
+            margin: 1.5rem 0 1rem;
+        }
+        h4 {
+            color: var(--text);
+            margin: 1rem 0 0.5rem;
+        }
+
+        /* Code blocks */
+        pre {
+            background: var(--code-bg);
+            color: var(--code-text);
+            padding: 1rem;
+            border-radius: 6px;
+            overflow-x: auto;
+            margin: 1rem 0;
+            font-size: 0.85rem;
+            line-height: 1.5;
+        }
+        code {
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+        }
+        :not(pre) > code {
+            background: #e9ecef;
+            padding: 0.2rem 0.4rem;
+            border-radius: 3px;
+            color: var(--danger);
+            font-size: 0.9em;
+        }
+
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+        th, td {
+            padding: 0.75rem;
+            text-align: left;
+            border: 1px solid var(--border);
+        }
+        th {
+            background: var(--primary);
+            color: white;
+        }
+        tr:nth-child(even) { background: #f8f9fa; }
+
+        /* Lists */
+        ul, ol { margin: 1rem 0; padding-left: 2rem; }
+        li { margin: 0.5rem 0; }
+
+        /* Alerts */
+        .alert {
+            padding: 1rem;
+            border-radius: 6px;
+            margin: 1rem 0;
+            border-left: 4px solid;
+        }
+        .alert-info { background: #e7f3ff; border-color: var(--secondary); }
+        .alert-warning { background: #fff3e0; border-color: var(--accent); }
+        .alert-danger { background: #ffebee; border-color: var(--danger); }
+        .alert-success { background: #e8f5e9; border-color: var(--success); }
+        .alert strong { display: block; margin-bottom: 0.25rem; }
+
+        /* File tree */
+        .file-tree {
+            font-family: monospace;
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 1rem;
+            border-radius: 6px;
+            line-height: 1.8;
+        }
+        .file-tree .folder { color: #4ec9b0; }
+        .file-tree .file { color: #9cdcfe; }
+        .file-tree .comment { color: #6a9955; }
+
+        /* Steps */
+        .step {
+            display: flex;
+            gap: 1rem;
+            margin: 1.5rem 0;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+        .step-number {
+            background: var(--primary);
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+        .step-content { flex: 1; }
+
+        /* Checklist */
+        .checklist { list-style: none; padding-left: 0; }
+        .checklist li {
+            padding: 0.5rem 0 0.5rem 2rem;
+            position: relative;
+        }
+        .checklist li::before {
+            content: '[ ]';
+            position: absolute;
+            left: 0;
+            font-family: monospace;
+            color: var(--primary);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: #666;
+            border-top: 1px solid var(--border);
+            margin-top: 2rem;
+        }
+
+        /* Print styles */
+        @media print {
+            nav { display: none; }
+            section { break-inside: avoid; box-shadow: none; border: 1px solid #ddd; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Course Website Replication Guide</h1>
+        <p>Complete instructions for building a Jekyll-based academic course website with GitHub Pages</p>
+        <p style="margin-top: 1rem; font-size: 0.9rem;">Based on: Agentic Artificial Intelligence PhD Course</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#overview">Overview</a></li>
+            <li><a href="#architecture">Architecture</a></li>
+            <li><a href="#directory">Directory Structure</a></li>
+            <li><a href="#configuration">Configuration</a></li>
+            <li><a href="#data-files">Data Files</a></li>
+            <li><a href="#layouts">Layouts</a></li>
+            <li><a href="#components">Components</a></li>
+            <li><a href="#styling">Styling</a></li>
+            <li><a href="#deployment">Deployment</a></li>
+            <li><a href="#errors">Common Errors</a></li>
+            <li><a href="#checklist">Checklist</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <!-- OVERVIEW -->
+        <section id="overview">
+            <h2>1. Project Overview</h2>
+
+            <h3>What We Built</h3>
+            <p>A complete 12-week PhD course website featuring:</p>
+            <ul>
+                <li><strong>12 Week Pages</strong> - Each with learning objectives, topics, required readings, exercises</li>
+                <li><strong>PDF Slide Decks</strong> - 12 Beamer presentations with charts</li>
+                <li><strong>Interactive Quizzes</strong> - 60+ questions with immediate feedback</li>
+                <li><strong>Jupyter Notebooks</strong> - 15+ Colab-linked notebooks</li>
+                <li><strong>Reading Guides</strong> - Structured paper reading assignments</li>
+                <li><strong>Exercises</strong> - Graded coding assignments</li>
+                <li><strong>Python Playground</strong> - Browser-based Pyodide environment</li>
+            </ul>
+
+            <h3>Technology Stack</h3>
+            <table>
+                <tr><th>Component</th><th>Technology</th><th>Version</th></tr>
+                <tr><td>Static Site Generator</td><td>Jekyll</td><td>4.x</td></tr>
+                <tr><td>Theme</td><td>Just the Docs</td><td>v0.8.2</td></tr>
+                <tr><td>Hosting</td><td>GitHub Pages</td><td>-</td></tr>
+                <tr><td>CI/CD</td><td>GitHub Actions</td><td>-</td></tr>
+                <tr><td>Slides</td><td>LaTeX Beamer</td><td>-</td></tr>
+                <tr><td>Charts</td><td>Python matplotlib/plotly</td><td>-</td></tr>
+                <tr><td>Browser Python</td><td>Pyodide</td><td>0.24.x</td></tr>
+            </table>
+
+            <h3>Final Metrics</h3>
+            <table>
+                <tr><th>Metric</th><th>Count</th></tr>
+                <tr><td>Course Weeks</td><td>12</td></tr>
+                <tr><td>Slide Decks</td><td>12 PDFs</td></tr>
+                <tr><td>Total Charts</td><td>48+</td></tr>
+                <tr><td>Jupyter Notebooks</td><td>15+</td></tr>
+                <tr><td>Quiz Questions</td><td>60+</td></tr>
+                <tr><td>Reading Guides</td><td>12</td></tr>
+                <tr><td>Exercises</td><td>12</td></tr>
+                <tr><td>GitHub Issues Closed</td><td>225</td></tr>
+            </table>
+        </section>
+
+        <!-- ARCHITECTURE -->
+        <section id="architecture">
+            <h2>2. Architecture</h2>
+
+            <h3>Repository Structure</h3>
+            <p>The project uses a monorepo structure with the website source in <code>/docs</code>:</p>
+
+            <div class="alert alert-info">
+                <strong>Key Insight</strong>
+                GitHub Pages can deploy from: (1) root <code>/</code>, (2) <code>/docs</code> folder, or (3) gh-pages branch.
+                We use <code>/docs</code> to keep website separate from lecture source files.
+            </div>
+
+            <h3>Data Flow</h3>
+            <pre>
+YAML Data Files          Liquid Templates         HTML Output
+----------------         ----------------         -----------
+_data/weeks.yml    -->   _layouts/week.html  -->  weeks/week-1.html
+_data/readings.yml -->   _layouts/week.html  -->  (reading section)
+_data/exercises.yml -->  _layouts/week.html  -->  (exercise section)
+_data/quizzes.yml  -->   _includes/quiz.html -->  (quiz component)
+            </pre>
+
+            <h3>URL Structure</h3>
+            <table>
+                <tr><th>Path</th><th>Content</th><th>Source</th></tr>
+                <tr><td>/</td><td>Homepage</td><td>docs/index.md</td></tr>
+                <tr><td>/weeks/</td><td>Week listing</td><td>docs/weeks/index.md</td></tr>
+                <tr><td>/weeks/week-1/</td><td>Week 1 page</td><td>docs/weeks/week-1.md</td></tr>
+                <tr><td>/slides/</td><td>Slide listing</td><td>docs/slides.md</td></tr>
+                <tr><td>/slides/*.pdf</td><td>PDF files</td><td>docs/slides/*.pdf</td></tr>
+                <tr><td>/playground/</td><td>Python IDE</td><td>docs/playground.md</td></tr>
+            </table>
+        </section>
+
+        <!-- DIRECTORY STRUCTURE -->
+        <section id="directory">
+            <h2>3. Directory Structure</h2>
+
+            <div class="file-tree">
+<span class="folder">agentic-artificial-intelligence/</span>
+<span class="comment"># Root repository</span>
++-- <span class="folder">L01_Introduction_Agentic_AI/</span>      <span class="comment"># Lecture 1 source</span>
+|   +-- <span class="file">L01_Introduction_Agentic_AI.tex</span>  <span class="comment"># Beamer slides</span>
+|   +-- <span class="folder">01_chart_name/</span>                   <span class="comment"># Chart folder</span>
+|   |   +-- <span class="file">chart.py</span>                     <span class="comment"># Python script</span>
+|   |   +-- <span class="file">chart.pdf</span>                    <span class="comment"># Generated chart</span>
+|   +-- <span class="folder">notebooks/</span>                       <span class="comment"># Jupyter notebooks</span>
+|       +-- <span class="file">L01_first_agent.ipynb</span>
++-- <span class="folder">L02_LLM_Foundations/</span>              <span class="comment"># Lecture 2 source</span>
++-- ... <span class="comment">(L03 through L12)</span>
+|
++-- <span class="folder">docs/</span>                              <span class="comment"># Jekyll website source</span>
+|   +-- <span class="file">_config.yml</span>                    <span class="comment"># Jekyll configuration</span>
+|   +-- <span class="file">index.md</span>                       <span class="comment"># Homepage</span>
+|   +-- <span class="file">Gemfile</span>                        <span class="comment"># Ruby dependencies</span>
+|   +-- <span class="folder">_data/</span>                         <span class="comment"># YAML data files</span>
+|   |   +-- <span class="file">weeks.yml</span>                  <span class="comment"># Week definitions</span>
+|   |   +-- <span class="file">readings.yml</span>               <span class="comment"># Reading guides</span>
+|   |   +-- <span class="file">exercises.yml</span>              <span class="comment"># Exercise definitions</span>
+|   |   +-- <span class="file">quizzes.yml</span>                <span class="comment"># Quiz questions</span>
+|   +-- <span class="folder">_layouts/</span>                      <span class="comment"># Page templates</span>
+|   |   +-- <span class="file">week.html</span>                  <span class="comment"># Week page layout</span>
+|   +-- <span class="folder">_includes/</span>                     <span class="comment"># Reusable components</span>
+|   |   +-- <span class="file">quiz.html</span>                  <span class="comment"># Quiz component</span>
+|   +-- <span class="folder">_sass/</span>                         <span class="comment"># Custom styles</span>
+|   |   +-- <span class="folder">color_schemes/</span>
+|   |       +-- <span class="file">custom.scss</span>            <span class="comment"># Theme customization</span>
+|   +-- <span class="folder">weeks/</span>                         <span class="comment"># Week pages</span>
+|   |   +-- <span class="file">index.md</span>                   <span class="comment"># Week listing</span>
+|   |   +-- <span class="file">week-1.md</span>                  <span class="comment"># Week 1 (uses week layout)</span>
+|   |   +-- <span class="file">week-2.md</span>
+|   |   +-- ... <span class="comment">(week-3 through week-12)</span>
+|   +-- <span class="folder">slides/</span>                        <span class="comment"># PDF slide files</span>
+|   |   +-- <span class="file">L01_Introduction_Agentic_AI.pdf</span>
+|   |   +-- <span class="file">L02_LLM_Foundations.pdf</span>
+|   |   +-- ... <span class="comment">(all 12 PDFs)</span>
+|   +-- <span class="file">slides.md</span>                      <span class="comment"># Slides download page</span>
+|   +-- <span class="file">playground.md</span>                  <span class="comment"># Python playground</span>
+|
++-- <span class="folder">.github/</span>                          <span class="comment"># GitHub configuration</span>
+|   +-- <span class="folder">workflows/</span>
+|       +-- <span class="file">pages.yml</span>                  <span class="comment"># GitHub Pages deployment</span>
+|
++-- <span class="file">status.md</span>                          <span class="comment"># Project status tracking</span>
++-- <span class="file">changelog.md</span>                       <span class="comment"># Change history</span>
+            </div>
+        </section>
+
+        <!-- CONFIGURATION -->
+        <section id="configuration">
+            <h2>4. Jekyll Configuration</h2>
+
+            <h3>_config.yml - Complete Reference</h3>
+            <pre><code># docs/_config.yml - Jekyll Configuration
+
+# Site Settings
+title: "Agentic Artificial Intelligence"
+description: "A comprehensive 12-week PhD course on building autonomous AI agents"
+baseurl: "/agentic-artificial-intelligence"  # Repository name
+url: "https://digital-ai-finance.github.io"  # GitHub Pages domain
+
+# Theme
+remote_theme: just-the-docs/just-the-docs@v0.8.2
+color_scheme: custom  # Uses _sass/color_schemes/custom.scss
+
+# Navigation
+nav_enabled: true
+nav_sort: "order"
+heading_anchors: true
+back_to_top: true
+back_to_top_text: "Back to top"
+
+# Search
+search_enabled: true
+search:
+  heading_level: 2
+  previews: 3
+  preview_words_before: 5
+  preview_words_after: 10
+  tokenizer_separator: /[\s/]+/
+  rel_url: true
+  button: false
+
+# Footer
+gh_edit_link: true
+gh_edit_link_text: "Edit this page on GitHub"
+gh_edit_repository: "https://github.com/Digital-AI-Finance/agentic-artificial-intelligence"
+gh_edit_branch: "main"
+gh_edit_source: docs
+gh_edit_view_mode: "edit"
+
+# Collections (optional - for additional content types)
+collections:
+  lectures:
+    output: true
+    permalink: /lectures/:path/
+
+# Plugins
+plugins:
+  - jekyll-seo-tag
+  - jekyll-relative-links
+  - jekyll-github-metadata
+
+# Build Settings
+markdown: kramdown
+kramdown:
+  syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    block:
+      line_numbers: true
+
+# Exclude from build
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor
+  - .git
+  - .gitignore
+  # NOTE: Do NOT exclude *.pdf or slides won't be served!
+
+# Custom Course Metadata
+course:
+  name: "Agentic Artificial Intelligence"
+  code: "AAI-PhD"
+  semester: "Spring 2025"
+  credits: 6
+  language: "English"
+  instructor:
+    name: "Prof. Dr. Joerg Osterrieder"
+    email: "joerg.osterrieder@fhgr.ch"
+    institution: "FHGR - University of Applied Sciences of the Grisons"
+    website: "https://www.fhgr.ch"
+  github:
+    org: "Digital-AI-Finance"
+    repo: "agentic-artificial-intelligence"
+</code></pre>
+
+            <div class="alert alert-warning">
+                <strong>Critical: Do NOT exclude PDFs!</strong>
+                If you add <code>*.pdf</code> to the exclude list, your slide downloads will return 404 errors.
+            </div>
+
+            <h3>Gemfile</h3>
+            <pre><code># docs/Gemfile
+source "https://rubygems.org"
+
+gem "jekyll", "~> 4.3"
+gem "just-the-docs", "~> 0.8.2"
+
+group :jekyll_plugins do
+  gem "jekyll-seo-tag"
+  gem "jekyll-relative-links"
+  gem "jekyll-github-metadata"
+end
+
+# Windows and JRuby
+platforms :mingw, :x64_mingw, :mswin, :jruby do
+  gem "tzinfo", ">= 1", "< 3"
+  gem "tzinfo-data"
+end
+
+gem "wdm", "~> 0.1", :platforms => [:mingw, :x64_mingw, :mswin]
+gem "http_parser.rb", "~> 0.6.0", :platforms => [:jruby]
+</code></pre>
+        </section>
+
+        <!-- DATA FILES -->
+        <section id="data-files">
+            <h2>5. Data Files</h2>
+
+            <h3>weeks.yml - Week Definitions</h3>
+            <p>This is the core data file that drives all week pages:</p>
+            <pre><code># docs/_data/weeks.yml
+- number: 1
+  title: "Introduction to Agentic AI"
+  folder: "L01_Introduction_Agentic_AI"  # Matches lecture folder name
+  description: "Agent definitions, ReAct paradigm, autonomous systems overview"
+
+  topics:
+    - "What makes an AI system 'agentic'"
+    - "The ReAct paradigm: Reasoning + Acting"
+    - "Agent architectures overview"
+    - "Tools and environment interaction"
+
+  learning_objectives:
+    - "Define agentic AI and distinguish from traditional ML"
+    - "Understand the ReAct framework"
+    - "Identify components of agent architectures"
+    - "Recognize real-world applications"
+
+  papers:
+    - title: "ReAct: Synergizing Reasoning and Acting in Language Models"
+      authors: "Yao et al."
+      year: 2023
+      arxiv: "2210.03629"  # Creates link to arxiv.org/abs/2210.03629
+    - title: "A Survey on Large Language Model based Autonomous Agents"
+      authors: "Wang et al."
+      year: 2023
+      arxiv: "2308.11432"
+
+  notebooks:
+    - name: "First Agent"
+      file: "notebooks/L01_first_agent.ipynb"  # Relative to folder
+    - name: "ReAct Implementation"
+      file: "notebooks/L01_react_demo.ipynb"
+
+- number: 2
+  title: "LLM Foundations"
+  folder: "L02_LLM_Foundations"
+  description: "Transformer architecture, attention mechanisms, prompting strategies"
+  # ... (same structure)
+
+# Continue for all 12 weeks
+</code></pre>
+
+            <h3>readings.yml - Reading Guides</h3>
+            <pre><code># docs/_data/readings.yml
+- week: 1
+  title: "Understanding the ReAct Paradigm"
+  file: "readings/week1_reading_guide.md"
+  estimated_time: "2-3 hours"
+  topics:
+    - "Reasoning traces"
+    - "Action generation"
+    - "Thought-action loops"
+  description: "Deep dive into the foundational ReAct paper and its implications"
+
+  primary_paper:
+    title: "ReAct: Synergizing Reasoning and Acting in Language Models"
+    authors: "Shunyu Yao, Jeffrey Zhao, Dian Yu, et al."
+    year: 2023
+    venue: "ICLR 2023"
+    arxiv: "2210.03629"
+
+  secondary_papers:
+    - title: "Chain-of-Thought Prompting"
+      authors: "Wei et al."
+      year: 2022
+      arxiv: "2201.11903"
+    - title: "Self-Consistency Improves CoT"
+      authors: "Wang et al."
+      year: 2023
+      arxiv: "2203.11171"
+
+- week: 2
+  title: "Transformer Deep Dive"
+  # ... (same structure)
+</code></pre>
+
+            <h3>exercises.yml - Exercise Definitions</h3>
+            <pre><code># docs/_data/exercises.yml
+- week: 1
+  title: "Building Your First Agent"
+  file: "exercises/week1_exercise.md"
+  total_points: 100
+  estimated_time: "4-6 hours"
+  difficulty: "Beginner"
+  description: "Implement a basic ReAct agent using LangChain"
+
+  objectives:
+    - "Set up a Python environment for agent development"
+    - "Implement basic ReAct loop"
+    - "Connect agent to external tools"
+    - "Evaluate agent performance"
+
+  tasks:
+    - name: "Environment Setup"
+      points: 10
+      description: "Configure Python environment and API keys"
+    - name: "Basic Agent"
+      points: 30
+      description: "Implement simple reasoning agent"
+    - name: "Tool Integration"
+      points: 35
+      description: "Add search and calculator tools"
+    - name: "Evaluation"
+      points: 25
+      description: "Test on benchmark questions"
+
+- week: 2
+  title: "Prompt Engineering Lab"
+  # ... (same structure)
+</code></pre>
+
+            <h3>quizzes.yml - Quiz Questions</h3>
+            <pre><code># docs/_data/quizzes.yml
+- week: 1
+  id: "week1-quiz"
+  questions:
+    - question: "What does ReAct stand for?"
+      options:
+        - "Reactive Actions"
+        - "Reasoning and Acting"
+        - "Real-time Activation"
+        - "Recursive Attention"
+      correct: 1  # 0-indexed (second option)
+      explanation: "ReAct combines Reasoning traces with Acting to solve complex tasks."
+
+    - question: "Which component generates tool calls in an agent?"
+      options:
+        - "Memory module"
+        - "Action selector"
+        - "Observation parser"
+        - "Environment"
+      correct: 1
+      explanation: "The action selector chooses which tool to invoke based on reasoning."
+
+    # Add 4-6 questions per week
+
+- week: 2
+  id: "week2-quiz"
+  questions:
+    # ... (same structure)
+</code></pre>
+        </section>
+
+        <!-- LAYOUTS -->
+        <section id="layouts">
+            <h2>6. Layouts and Templates</h2>
+
+            <h3>week.html - Week Page Layout</h3>
+            <p>This is the main template for rendering week pages:</p>
+            <pre><code>&lt;!-- docs/_layouts/week.html --&gt;
+---
+layout: default
+---
+
+{% assign week_num = page.week_number %}
+{% assign week = site.data.weeks | where: "number", week_num | first %}
+
+&lt;!-- CRITICAL: Pre-calculate week numbers BEFORE using in append --&gt;
+{% assign prev_week_num = week_num | minus: 1 %}
+{% assign next_week_num = week_num | plus: 1 %}
+
+&lt;!-- Navigation --&gt;
+&lt;div class="week-header"&gt;
+  &lt;div class="week-nav"&gt;
+    {% if week_num &gt; 1 %}
+    &lt;a href="{{ '/weeks/week-' | append: prev_week_num | relative_url }}" class="btn btn-outline"&gt;
+      &amp;larr; Week {{ prev_week_num }}
+    &lt;/a&gt;
+    {% endif %}
+    {% if week_num &lt; 12 %}
+    &lt;a href="{{ '/weeks/week-' | append: next_week_num | relative_url }}" class="btn btn-outline"&gt;
+      Week {{ next_week_num }} &amp;rarr;
+    &lt;/a&gt;
+    {% endif %}
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Header --&gt;
+&lt;h1&gt;Week {{ week.number }}: {{ week.title }}&lt;/h1&gt;
+&lt;p class="fs-5"&gt;{{ week.description }}&lt;/p&gt;
+
+&lt;!-- Progress Bar --&gt;
+&lt;div class="progress-bar" style="margin: 1.5rem 0;"&gt;
+  &lt;div class="progress-fill" style="width: {{ week_num | times: 100 | divided_by: 12 }}%;"&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p class="fs-3" style="text-align: center; color: #666;"&gt;Week {{ week_num }} of 12&lt;/p&gt;
+
+&lt;!-- Learning Objectives --&gt;
+## Learning Objectives
+
+{% for objective in week.learning_objectives %}
+- {{ objective }}
+{% endfor %}
+
+&lt;!-- Topics --&gt;
+## Topics Covered
+
+{% for topic in week.topics %}
+- {{ topic }}
+{% endfor %}
+
+&lt;!-- Resources --&gt;
+## Resources
+
+&lt;div class="resource-links" style="margin: 1.5rem 0;"&gt;
+  &lt;a href="{{ '/slides/' | append: week.folder | append: '.pdf' | relative_url }}" class="btn btn-primary"&gt;
+    Download Slides (PDF)
+  &lt;/a&gt;
+&lt;/div&gt;
+
+&lt;!-- Notebooks (if any) --&gt;
+{% if week.notebooks.size &gt; 0 %}
+### Jupyter Notebooks
+
+&lt;div style="display: flex; flex-wrap: wrap; gap: 1rem; margin: 1rem 0;"&gt;
+{% for notebook in week.notebooks %}
+  &lt;a href="https://colab.research.google.com/github/Digital-AI-Finance/agentic-artificial-intelligence/blob/main/{{ week.folder }}/{{ notebook.file }}" target="_blank" style="text-decoration: none;"&gt;
+    &lt;img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open {{ notebook.name }} in Colab" style="height: 24px;"&gt;
+    &lt;span style="display: block; font-size: 0.85rem; color: #666; margin-top: 0.25rem;"&gt;{{ notebook.name }}&lt;/span&gt;
+  &lt;/a&gt;
+{% endfor %}
+&lt;/div&gt;
+{% endif %}
+
+&lt;!-- Required Readings --&gt;
+## Required Readings
+
+| Paper | Authors | Year | Link |
+|:------|:--------|:-----|:-----|
+{% for paper in week.papers %}
+| {{ paper.title }} | {{ paper.authors }} | {{ paper.year }} | {% if paper.arxiv %}[arXiv](https://arxiv.org/abs/{{ paper.arxiv }}){% elsif paper.url %}[Link]({{ paper.url }}){% endif %} |
+{% endfor %}
+
+&lt;!-- Reading Guide (from readings.yml) --&gt;
+{% assign reading = site.data.readings | where: "week", week_num | first %}
+{% if reading %}
+## Reading Guide: {{ reading.title }}
+&lt;!-- ... reading card HTML ... --&gt;
+{% endif %}
+
+&lt;!-- Exercise (from exercises.yml) --&gt;
+{% assign exercise = site.data.exercises | where: "week", week_num | first %}
+{% if exercise %}
+## Exercise: {{ exercise.title }}
+&lt;!-- ... exercise card HTML ... --&gt;
+{% endif %}
+
+{{ content }}
+
+&lt;!-- Discussion Links --&gt;
+## Discussion &amp; Questions
+
+&lt;div class="discussion-section"&gt;
+  &lt;a href="https://github.com/Digital-AI-Finance/agentic-artificial-intelligence/discussions/categories/week-{{ week_num }}-discussion" class="btn btn-primary"&gt;
+    Week {{ week_num }} Discussion
+  &lt;/a&gt;
+  &lt;a href="https://github.com/Digital-AI-Finance/agentic-artificial-intelligence/discussions/new?category=q-a" class="btn btn-secondary"&gt;
+    Ask a Question
+  &lt;/a&gt;
+&lt;/div&gt;
+
+&lt;!-- Bottom Navigation --&gt;
+&lt;div class="week-nav" style="display: flex; justify-content: space-between;"&gt;
+  {% if week_num &gt; 1 %}
+  &lt;a href="{{ '/weeks/week-' | append: prev_week_num | relative_url }}" class="btn btn-outline"&gt;&amp;larr; Previous Week&lt;/a&gt;
+  {% else %}
+  &lt;span&gt;&lt;/span&gt;
+  {% endif %}
+
+  &lt;a href="{{ '/' | relative_url }}" class="btn btn-outline"&gt;Course Home&lt;/a&gt;
+
+  {% if week_num &lt; 12 %}
+  &lt;a href="{{ '/weeks/week-' | append: next_week_num | relative_url }}" class="btn btn-outline"&gt;Next Week &amp;rarr;&lt;/a&gt;
+  {% else %}
+  &lt;span&gt;&lt;/span&gt;
+  {% endif %}
+&lt;/div&gt;
+</code></pre>
+
+            <div class="alert alert-danger">
+                <strong>CRITICAL FIX: Liquid Filter Chain Bug</strong>
+                <p>This DOES NOT work:</p>
+                <pre>{{ '/weeks/week-' | append: week_num | minus: 1 | relative_url }}</pre>
+                <p>The <code>minus: 1</code> filter operates on the STRING result, not the number!</p>
+                <p>You MUST pre-calculate:</p>
+                <pre>{% assign prev_week_num = week_num | minus: 1 %}
+{{ '/weeks/week-' | append: prev_week_num | relative_url }}</pre>
+            </div>
+
+            <h3>Week Page Files</h3>
+            <p>Each week needs a minimal markdown file:</p>
+            <pre><code># docs/weeks/week-1.md
+---
+layout: week
+title: Week 1
+parent: Weeks
+nav_order: 1
+week_number: 1
+---
+
+&lt;!-- Optional: Additional content specific to this week --&gt;
+&lt;!-- The week layout will render everything from weeks.yml --&gt;
+</code></pre>
+        </section>
+
+        <!-- COMPONENTS -->
+        <section id="components">
+            <h2>7. Interactive Components</h2>
+
+            <h3>quiz.html - Quiz Include</h3>
+            <pre><code>&lt;!-- docs/_includes/quiz.html --&gt;
+&lt;!-- Quiz Component --&gt;
+&lt;!-- Usage: include quiz.html with id and questions parameters --&gt;
+&lt;!-- NOTE: Do NOT put Liquid tags in HTML comments! --&gt;
+
+&lt;div class="quiz-container" id="quiz-{{ include.id }}"&gt;
+  &lt;div class="quiz-progress"&gt;
+    &lt;span class="quiz-progress-text"&gt;
+      Question &lt;span class="current"&gt;1&lt;/span&gt; of &lt;span class="total"&gt;{{ include.questions | size }}&lt;/span&gt;
+    &lt;/span&gt;
+    &lt;div class="quiz-progress-bar"&gt;
+      &lt;div class="quiz-progress-fill" style="width: 0%"&gt;&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;div class="quiz-questions"&gt;
+    {% for q in include.questions %}
+    &lt;div class="quiz-question" data-index="{{ forloop.index0 }}" data-correct="{{ q.correct }}"
+         style="{% unless forloop.first %}display: none;{% endunless %}"&gt;
+      &lt;h4&gt;{{ q.question }}&lt;/h4&gt;
+      &lt;div class="quiz-options"&gt;
+        {% for option in q.options %}
+        &lt;button class="quiz-option" data-value="{{ forloop.index0 }}"&gt;
+          &lt;span class="option-letter"&gt;{{ forloop.index | plus: 64 | chr }}&lt;/span&gt;
+          {{ option }}
+        &lt;/button&gt;
+        {% endfor %}
+      &lt;/div&gt;
+      &lt;div class="quiz-feedback" style="display: none;"&gt;
+        &lt;p class="feedback-correct"&gt;Correct! {{ q.explanation }}&lt;/p&gt;
+        &lt;p class="feedback-incorrect"&gt;Not quite. {{ q.explanation }}&lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    {% endfor %}
+  &lt;/div&gt;
+
+  &lt;div class="quiz-navigation"&gt;
+    &lt;button class="quiz-btn quiz-prev" disabled&gt;Previous&lt;/button&gt;
+    &lt;button class="quiz-btn quiz-next" style="display: none;"&gt;Next&lt;/button&gt;
+    &lt;button class="quiz-btn quiz-submit" style="display: none;"&gt;See Results&lt;/button&gt;
+  &lt;/div&gt;
+
+  &lt;div class="quiz-results" style="display: none;"&gt;
+    &lt;h4&gt;Quiz Complete!&lt;/h4&gt;
+    &lt;p class="quiz-score"&gt;You scored &lt;span class="score"&gt;0&lt;/span&gt; out of &lt;span class="total"&gt;{{ include.questions | size }}&lt;/span&gt;&lt;/p&gt;
+    &lt;div class="quiz-score-bar"&gt;
+      &lt;div class="quiz-score-fill"&gt;&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;button class="quiz-btn quiz-restart"&gt;Try Again&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;style&gt;
+/* ... Quiz CSS styles ... */
+&lt;/style&gt;
+
+&lt;script&gt;
+(function() {
+  const container = document.getElementById('quiz-{{ include.id }}');
+  if (!container) return;
+
+  const questions = container.querySelectorAll('.quiz-question');
+  const prevBtn = container.querySelector('.quiz-prev');
+  const nextBtn = container.querySelector('.quiz-next');
+  // ... JavaScript quiz logic ...
+})();
+&lt;/script&gt;
+</code></pre>
+
+            <div class="alert alert-danger">
+                <strong>CRITICAL FIX: Liquid in HTML Comments</strong>
+                <p>This causes infinite recursion:</p>
+                <pre>&lt;!-- Usage: {% include quiz.html %} --&gt;</pre>
+                <p>Jekyll processes Liquid tags even inside HTML comments. Remove them!</p>
+            </div>
+
+            <h3>Using the Quiz in Pages</h3>
+            <pre><code># In any markdown file:
+{% assign quiz = site.data.quizzes | where: "week", 1 | first %}
+{% include quiz.html id=quiz.id questions=quiz.questions %}
+</code></pre>
+        </section>
+
+        <!-- STYLING -->
+        <section id="styling">
+            <h2>8. Custom Styling</h2>
+
+            <h3>custom.scss - Theme Customization</h3>
+            <pre><code>// docs/_sass/color_schemes/custom.scss
+
+// Color Palette
+$primary-color: #3333B2;      // Deep purple-blue
+$secondary-color: #0066CC;    // Bright blue
+$accent-color: #FF7F0E;       // Orange
+$success-color: #2CA02C;      // Green
+$danger-color: #D62728;       // Red
+
+// CRITICAL: Use rem units, NOT px!
+// Just the Docs theme uses rem internally
+$nav-width: 16.5rem;  // NOT 264px
+
+// Light theme
+$body-background-color: #ffffff;
+$sidebar-color: #f8f9fa;
+$body-text-color: #333333;
+$link-color: $primary-color;
+
+// Dark theme
+$body-background-color-dark: #0d1117;
+$sidebar-color-dark: #161b22;
+$body-text-color-dark: #c9d1d9;
+
+// Code highlighting
+$code-background-color: #f6f8fa;
+$code-background-color-dark: #161b22;
+
+// Apply colors
+:root {
+  --primary: #{$primary-color};
+  --secondary: #{$secondary-color};
+  --accent: #{$accent-color};
+  --success: #{$success-color};
+  --danger: #{$danger-color};
+}
+
+// Button styles
+.btn-primary {
+  background: $primary-color;
+  color: white;
+  &:hover { background: darken($primary-color, 10%); }
+}
+
+.btn-secondary {
+  background: $secondary-color;
+  color: white;
+}
+
+.btn-outline {
+  border: 1px solid $primary-color;
+  color: $primary-color;
+  background: transparent;
+  &:hover {
+    background: rgba($primary-color, 0.1);
+  }
+}
+
+// Progress bar
+.progress-bar {
+  background: #e9ecef;
+  border-radius: 8px;
+  height: 12px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  background: linear-gradient(90deg, $primary-color, $secondary-color);
+  height: 100%;
+  transition: width 0.3s ease;
+}
+
+// Cards
+.week-card, .reading-card, .exercise-card {
+  background: #f8f9fa;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin: 1rem 0;
+  border-left: 4px solid $primary-color;
+}
+
+.exercise-card {
+  border-left-color: $accent-color;
+}
+
+// Resource links
+.resource-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 1rem 0;
+
+  a {
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 0.9rem;
+  }
+}
+
+// Dark mode support
+@media (prefers-color-scheme: dark) {
+  .week-card, .reading-card, .exercise-card {
+    background: $sidebar-color-dark;
+  }
+}
+
+[data-theme="dark"] {
+  .week-card, .reading-card, .exercise-card {
+    background: $sidebar-color-dark;
+  }
+}
+</code></pre>
+
+            <div class="alert alert-danger">
+                <strong>CRITICAL FIX: Unit Incompatibility</strong>
+                <p>This causes Sass compilation to fail:</p>
+                <pre>$nav-width: 264px;  // ERROR with Just the Docs theme</pre>
+                <p>The theme internally does math with rem units. Use:</p>
+                <pre>$nav-width: 16.5rem;  // 264px / 16 = 16.5rem</pre>
+            </div>
+        </section>
+
+        <!-- DEPLOYMENT -->
+        <section id="deployment">
+            <h2>9. Deployment</h2>
+
+            <h3>GitHub Actions Workflow</h3>
+            <pre><code># .github/workflows/pages.yml
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.2'
+          bundler-cache: true
+          working-directory: docs
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: Build with Jekyll
+        run: |
+          cd docs
+          bundle exec jekyll build --baseurl "${{ steps.pages.outputs.base_path }}"
+        env:
+          JEKYLL_ENV: production
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs/_site
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+</code></pre>
+
+            <h3>Deployment Steps</h3>
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <strong>Enable GitHub Pages</strong>
+                    <p>Go to Settings > Pages > Build and deployment > Source: GitHub Actions</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <strong>Make Repository Public</strong>
+                    <pre>gh repo edit --visibility public --accept-visibility-change-consequences</pre>
+                    <p>GitHub Pages requires public repos (or GitHub Pro for private).</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <strong>Enable Discussions (Optional)</strong>
+                    <pre>gh repo edit --enable-discussions</pre>
+                    <p>Required if your pages link to GitHub Discussions.</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                    <strong>Push to Main</strong>
+                    <pre>git add .
+git commit -m "Deploy course website"
+git push origin main</pre>
+                    <p>GitHub Actions will automatically build and deploy.</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">5</div>
+                <div class="step-content">
+                    <strong>Check Deployment Status</strong>
+                    <pre>gh run list --limit 5
+gh run view --log-failed  # If failed</pre>
+                </div>
+            </div>
+
+            <h3>Debugging Failed Builds</h3>
+            <pre><code># View recent workflow runs
+gh run list --limit 5
+
+# View failed run logs
+gh run view &lt;run-id&gt; --log-failed
+
+# Common issues:
+# 1. Sass compilation errors - check _sass/ files
+# 2. Liquid syntax errors - check {% %} tags
+# 3. Missing dependencies - check Gemfile
+# 4. File not found - check paths in includes
+</code></pre>
+        </section>
+
+        <!-- COMMON ERRORS -->
+        <section id="errors">
+            <h2>10. Common Errors and Fixes</h2>
+
+            <h3>Error Reference Table</h3>
+            <table>
+                <tr>
+                    <th>Error</th>
+                    <th>Cause</th>
+                    <th>Fix</th>
+                </tr>
+                <tr>
+                    <td><code>404 Not Found</code> on PDFs</td>
+                    <td>Repository is private</td>
+                    <td><code>gh repo edit --visibility public</code></td>
+                </tr>
+                <tr>
+                    <td><code>404 Not Found</code> on PDFs (public repo)</td>
+                    <td>PDFs excluded in _config.yml or wrong path</td>
+                    <td>Remove <code>*.pdf</code> from exclude list; use <code>/slides/</code> path</td>
+                </tr>
+                <tr>
+                    <td><code>Liquid error: Nesting too deep</code></td>
+                    <td>Liquid tag in HTML comment</td>
+                    <td>Remove <code>{% %}</code> from comments</td>
+                </tr>
+                <tr>
+                    <td><code>264px and 50rem have incompatible units</code></td>
+                    <td>Mixing px with rem in Sass math</td>
+                    <td>Convert px to rem: <code>264px -> 16.5rem</code></td>
+                </tr>
+                <tr>
+                    <td>Navigation shows <code>/week-1</code> instead of <code>/week-0</code></td>
+                    <td>Liquid filter chain order</td>
+                    <td>Pre-calculate numbers before append</td>
+                </tr>
+                <tr>
+                    <td>GitHub Discussions 404</td>
+                    <td>Discussions not enabled</td>
+                    <td><code>gh repo edit --enable-discussions</code></td>
+                </tr>
+                <tr>
+                    <td>Colab badge broken</td>
+                    <td>Private repo or wrong path</td>
+                    <td>Make public; verify notebook path</td>
+                </tr>
+                <tr>
+                    <td><code>No such file or directory</code> in build</td>
+                    <td>Include file doesn't exist</td>
+                    <td>Verify _includes/ files exist</td>
+                </tr>
+                <tr>
+                    <td>Styles not applying</td>
+                    <td>Color scheme not set</td>
+                    <td>Add <code>color_scheme: custom</code> to _config.yml</td>
+                </tr>
+                <tr>
+                    <td>Search not working</td>
+                    <td>Search plugin not configured</td>
+                    <td>Enable <code>search_enabled: true</code></td>
+                </tr>
+            </table>
+
+            <h3>Detailed Fix: Liquid Filter Chain</h3>
+            <div class="alert alert-danger">
+                <strong>The Problem</strong>
+                <pre>{{ '/weeks/week-' | append: week_num | minus: 1 | relative_url }}</pre>
+                <p>When <code>week_num = 2</code>, this produces <code>/weeks/week-1</code> (correct by accident).</p>
+                <p>But the math is wrong! <code>append</code> creates string <code>"/weeks/week-2"</code>, then <code>minus: 1</code> tries to subtract from a string.</p>
+            </div>
+
+            <div class="alert alert-success">
+                <strong>The Fix</strong>
+                <pre>{% assign prev_week_num = week_num | minus: 1 %}
+{% assign next_week_num = week_num | plus: 1 %}
+{{ '/weeks/week-' | append: prev_week_num | relative_url }}</pre>
+                <p>Always do math BEFORE string operations.</p>
+            </div>
+
+            <h3>Detailed Fix: Sass Units</h3>
+            <div class="alert alert-danger">
+                <strong>The Problem</strong>
+                <pre>// Your custom.scss
+$nav-width: 264px;
+
+// Just the Docs theme (internally)
+$something: $nav-width + 50rem;  // ERROR!</pre>
+            </div>
+
+            <div class="alert alert-success">
+                <strong>The Fix</strong>
+                <pre>$nav-width: 16.5rem;  // 264 / 16 = 16.5</pre>
+                <p>Always use rem units when customizing Just the Docs theme.</p>
+            </div>
+        </section>
+
+        <!-- CHECKLIST -->
+        <section id="checklist">
+            <h2>11. Replication Checklist</h2>
+
+            <h3>Phase 1: Repository Setup</h3>
+            <ul class="checklist">
+                <li>Create new GitHub repository</li>
+                <li>Create <code>docs/</code> folder for Jekyll site</li>
+                <li>Create <code>.github/workflows/pages.yml</code></li>
+                <li>Initialize Git and push to remote</li>
+                <li>Make repository public</li>
+                <li>Enable GitHub Pages (Source: GitHub Actions)</li>
+                <li>Enable Discussions (if using discussion links)</li>
+            </ul>
+
+            <h3>Phase 2: Jekyll Configuration</h3>
+            <ul class="checklist">
+                <li>Create <code>docs/_config.yml</code> with course metadata</li>
+                <li>Create <code>docs/Gemfile</code> with dependencies</li>
+                <li>Set <code>baseurl</code> to your repository name</li>
+                <li>Set <code>url</code> to your GitHub Pages domain</li>
+                <li>Configure <code>remote_theme: just-the-docs/just-the-docs@v0.8.2</code></li>
+                <li>DO NOT exclude PDFs in config</li>
+            </ul>
+
+            <h3>Phase 3: Data Files</h3>
+            <ul class="checklist">
+                <li>Create <code>docs/_data/weeks.yml</code> with all week data</li>
+                <li>Create <code>docs/_data/readings.yml</code> with reading guides</li>
+                <li>Create <code>docs/_data/exercises.yml</code> with exercises</li>
+                <li>Create <code>docs/_data/quizzes.yml</code> with quiz questions</li>
+                <li>Verify all arXiv IDs and paper URLs are correct</li>
+                <li>Verify all notebook paths match actual files</li>
+            </ul>
+
+            <h3>Phase 4: Layouts and Includes</h3>
+            <ul class="checklist">
+                <li>Create <code>docs/_layouts/week.html</code></li>
+                <li>Create <code>docs/_includes/quiz.html</code></li>
+                <li>Verify NO Liquid tags in HTML comments</li>
+                <li>Pre-calculate week numbers before append filters</li>
+            </ul>
+
+            <h3>Phase 5: Styling</h3>
+            <ul class="checklist">
+                <li>Create <code>docs/_sass/color_schemes/custom.scss</code></li>
+                <li>Use REM units only (no px in calculations)</li>
+                <li>Set <code>color_scheme: custom</code> in _config.yml</li>
+                <li>Test dark mode compatibility</li>
+            </ul>
+
+            <h3>Phase 6: Content Pages</h3>
+            <ul class="checklist">
+                <li>Create <code>docs/index.md</code> (homepage)</li>
+                <li>Create <code>docs/weeks/index.md</code> (week listing)</li>
+                <li>Create <code>docs/weeks/week-N.md</code> for each week (1-12)</li>
+                <li>Create <code>docs/slides.md</code> (slide downloads)</li>
+                <li>Create <code>docs/slides/</code> folder with PDFs</li>
+                <li>Verify all PDF files are present</li>
+            </ul>
+
+            <h3>Phase 7: Lecture Content</h3>
+            <ul class="checklist">
+                <li>Create lecture folders: <code>L01_Topic_Name/</code></li>
+                <li>Create Beamer .tex files</li>
+                <li>Create chart folders with chart.py and chart.pdf</li>
+                <li>Create notebooks/ folders with .ipynb files</li>
+                <li>Compile all PDFs and copy to docs/slides/</li>
+            </ul>
+
+            <h3>Phase 8: Testing</h3>
+            <ul class="checklist">
+                <li>Run local Jekyll build: <code>cd docs && bundle exec jekyll serve</code></li>
+                <li>Check for Sass compilation errors</li>
+                <li>Check for Liquid syntax errors</li>
+                <li>Verify all internal links work</li>
+                <li>Verify all PDF downloads work</li>
+                <li>Verify all Colab badge links work</li>
+                <li>Test quiz functionality</li>
+                <li>Run link checker on deployed site</li>
+            </ul>
+
+            <h3>Phase 9: Final Deployment</h3>
+            <ul class="checklist">
+                <li>Push all changes to main branch</li>
+                <li>Verify GitHub Actions workflow succeeds</li>
+                <li>Check live site loads correctly</li>
+                <li>Verify all 12 weeks are accessible</li>
+                <li>Test navigation between weeks</li>
+                <li>Verify footer links work</li>
+            </ul>
+        </section>
+
+        <!-- QUICK REFERENCE -->
+        <section>
+            <h2>12. Quick Reference Commands</h2>
+
+            <h3>GitHub CLI</h3>
+            <pre><code># Make repo public
+gh repo edit --visibility public --accept-visibility-change-consequences
+
+# Enable discussions
+gh repo edit --enable-discussions
+
+# View workflow runs
+gh run list --limit 5
+
+# View failed run logs
+gh run view --log-failed
+
+# Open Pages in browser
+gh browse --settings  # Then navigate to Pages
+</code></pre>
+
+            <h3>Jekyll</h3>
+            <pre><code># Install dependencies
+cd docs && bundle install
+
+# Local development server
+bundle exec jekyll serve --livereload
+
+# Build for production
+bundle exec jekyll build --baseurl "/repo-name"
+
+# Clean build artifacts
+bundle exec jekyll clean
+</code></pre>
+
+            <h3>Link Checker</h3>
+            <pre><code># Run link checker (if you have the utility)
+python link_checker.py https://your-site.github.io/repo-name/ \
+    --depth 3 --timeout 15 --output ./reports
+</code></pre>
+        </section>
+
+        <!-- TEMPLATE FILES -->
+        <section>
+            <h2>13. Starter Templates</h2>
+
+            <h3>Minimal Week Page (week-N.md)</h3>
+            <pre><code>---
+layout: week
+title: Week N
+parent: Weeks
+nav_order: N
+week_number: N
+---
+
+&lt;!-- All content comes from _data/weeks.yml --&gt;
+&lt;!-- Add week-specific content below if needed --&gt;
+</code></pre>
+
+            <h3>Minimal Homepage (index.md)</h3>
+            <pre><code>---
+layout: default
+title: Home
+nav_order: 1
+---
+
+# Course Title
+
+Welcome to the course!
+
+## Quick Links
+
+| Week | Topic | Materials |
+|:-----|:------|:----------|
+{% for week in site.data.weeks %}
+| [{{ week.number }}]({{ '/weeks/week-' | append: week.number | relative_url }}) | {{ week.title }} | [Slides]({{ '/slides/' | append: week.folder | append: '.pdf' | relative_url }}) |
+{% endfor %}
+</code></pre>
+
+            <h3>Minimal Week Data (weeks.yml entry)</h3>
+            <pre><code>- number: 1
+  title: "Topic Title"
+  folder: "L01_Topic_Title"
+  description: "Brief description"
+  topics:
+    - "Topic 1"
+    - "Topic 2"
+  learning_objectives:
+    - "Objective 1"
+    - "Objective 2"
+  papers:
+    - title: "Paper Title"
+      authors: "Authors"
+      year: 2024
+      arxiv: "2401.00001"
+  notebooks: []
+</code></pre>
+        </section>
+    </div>
+
+    <footer>
+        <p>Generated: December 28, 2025</p>
+        <p>Course: Agentic Artificial Intelligence PhD Program</p>
+        <p>Repository: <a href="https://github.com/Digital-AI-Finance/agentic-artificial-intelligence">Digital-AI-Finance/agentic-artificial-intelligence</a></p>
+    </footer>
+</body>
+</html>
