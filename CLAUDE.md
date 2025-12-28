@@ -4,9 +4,10 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-PhD-level 12-week course on Agentic AI: LLM agents, multi-agent systems, RAG, and knowledge graphs. Content managed via GitHub Issues (81 total) with Beamer slides, Jupyter notebooks, Python chart scripts, and a Jekyll-based GitHub Pages site.
+PhD-level 12-week course on Agentic AI: LLM agents, multi-agent systems, RAG, and knowledge graphs. All content complete (225 GitHub issues closed). Beamer slides, Jupyter notebooks, Python chart scripts, and Jekyll-based GitHub Pages site.
 
 **Live Site**: https://digital-ai-finance.github.io/agentic-artificial-intelligence/
+**Status**: Course complete - 12 slide decks, 48+ charts, 15 notebooks, 60+ quiz questions
 
 ## Commands
 
@@ -235,3 +236,58 @@ plt.close()
 | type:quiz | #7057ff | Quiz content |
 | type:qa | #d93f0b | Quality assurance |
 | type:a11y | #0e8a16 | Accessibility |
+
+## Critical Jekyll/Liquid Gotchas
+
+These issues caused build failures - avoid them:
+
+1. **Liquid filter chain bug**: Pre-calculate numbers BEFORE append
+   ```liquid
+   <!-- WRONG: minus operates on string result -->
+   {{ '/weeks/week-' | append: week_num | minus: 1 }}
+
+   <!-- CORRECT: calculate first, then append -->
+   {% assign prev = week_num | minus: 1 %}
+   {{ '/weeks/week-' | append: prev | relative_url }}
+   ```
+
+2. **Markdown in HTML layouts**: Use HTML tags, not markdown syntax
+   ```html
+   <!-- WRONG in _layouts/*.html -->
+   ## Learning Objectives
+
+   <!-- CORRECT -->
+   <h2>Learning Objectives</h2>
+   ```
+
+3. **Liquid in HTML comments**: Jekyll processes tags even in comments
+   ```html
+   <!-- WRONG: causes infinite recursion -->
+   <!-- Usage: {% include quiz.html %} -->
+
+   <!-- CORRECT: remove Liquid syntax -->
+   <!-- Usage: include quiz.html with id parameter -->
+   ```
+
+4. **Sass unit incompatibility**: Just the Docs uses rem internally
+   ```scss
+   /* WRONG: causes compilation error */
+   $nav-width: 264px;
+
+   /* CORRECT: convert to rem (264/16) */
+   $nav-width: 16.5rem;
+   ```
+
+5. **PDF 404 errors**: Never exclude PDFs in _config.yml
+   ```yaml
+   # WRONG in exclude list
+   - "*.pdf"
+
+   # PDFs must be accessible for slide downloads
+   ```
+
+## Replication Guides
+
+For creating similar course websites:
+- `docs/replication-guide.html` - Complete technical reference
+- `docs/prompts-guide.html` - All prompts needed to replicate from scratch
