@@ -1,0 +1,124 @@
+{
+  "fix_date": "2025-12-28",
+  "summary": "Fixed markdown rendering in week layout template - all 12 weeks verified",
+  "layout_file": "docs/_layouts/week.html",
+  "commit": "bb70827",
+  "changes_made": [
+    "Converted '## Learning Objectives' to <h2>Learning Objectives</h2>",
+    "Converted '## Topics Covered' to <h2>Topics Covered</h2>",
+    "Converted '## Resources' to <h2>Resources</h2>",
+    "Converted '### Jupyter Notebooks' to <h3>Jupyter Notebooks</h3>",
+    "Converted '## Required Readings' to <h2>Required Readings</h2>",
+    "Converted markdown table (| Paper | Authors |...) to HTML <table>",
+    "Converted '## Reading Guide:' to <h2>Reading Guide:</h2>",
+    "Converted '## Exercise:' to <h2>Exercise:</h2>",
+    "Converted '## Discussion & Questions' to <h2>Discussion &amp; Questions</h2>",
+    "Converted markdown lists (- item) to HTML <ul><li> tags"
+  ],
+  "weeks": {
+    "week-1": {
+      "status": "verified",
+      "title": "Introduction to Agentic AI",
+      "layout_fix_applied": true,
+      "md_content_sections": ["Exercise", "Discussion Questions", "Additional Resources"],
+      "verified_at": "2025-12-28T12:00:00Z",
+      "renders_correctly": true
+    },
+    "week-2": {
+      "status": "verified",
+      "title": "LLM Foundations for Agents",
+      "layout_fix_applied": true,
+      "md_content_sections": ["Exercise", "Discussion Questions", "Additional Resources"],
+      "verified_at": "2025-12-28T12:00:00Z",
+      "renders_correctly": true
+    },
+    "week-3": {
+      "status": "verified",
+      "title": "Tool Use and Function Calling",
+      "layout_fix_applied": true,
+      "md_content_sections": ["Exercise", "Discussion Questions", "Additional Resources"],
+      "verified_at": "2025-12-28T12:00:00Z",
+      "renders_correctly": true
+    },
+    "week-4": {
+      "status": "verified",
+      "title": "Planning and Reasoning",
+      "layout_fix_applied": true,
+      "md_content_sections": ["Exercise", "Discussion Questions", "Additional Resources"],
+      "verified_at": "2025-12-28T12:00:00Z",
+      "renders_correctly": true
+    },
+    "week-5": {
+      "status": "verified",
+      "title": "Multi-Agent Architectures",
+      "layout_fix_applied": true,
+      "md_content_sections": ["Exercise", "Discussion Questions", "Additional Resources"],
+      "verified_at": "2025-12-28T12:00:00Z",
+      "renders_correctly": true
+    },
+    "week-6": {
+      "status": "verified",
+      "title": "Agent Frameworks",
+      "layout_fix_applied": true,
+      "md_content_sections": ["Exercise", "Discussion Questions", "Additional Resources"],
+      "verified_at": "2025-12-28T12:00:00Z",
+      "renders_correctly": true,
+      "screenshot": "week6_verify.png"
+    },
+    "week-7": {
+      "status": "verified",
+      "title": "Advanced RAG",
+      "layout_fix_applied": true,
+      "md_content_sections": ["Exercise", "Discussion Questions", "Additional Resources"],
+      "verified_at": "2025-12-28T12:00:00Z",
+      "renders_correctly": true
+    },
+    "week-8": {
+      "status": "verified",
+      "title": "GraphRAG and Knowledge",
+      "layout_fix_applied": true,
+      "md_content_sections": ["Exercise", "Discussion Questions", "Additional Resources"],
+      "verified_at": "2025-12-28T12:00:00Z",
+      "renders_correctly": true
+    },
+    "week-9": {
+      "status": "verified",
+      "title": "Hallucination Prevention",
+      "layout_fix_applied": true,
+      "md_content_sections": ["Exercise", "Discussion Questions", "Additional Resources"],
+      "verified_at": "2025-12-28T12:00:00Z",
+      "renders_correctly": true
+    },
+    "week-10": {
+      "status": "verified",
+      "title": "Agent Evaluation",
+      "layout_fix_applied": true,
+      "md_content_sections": ["Exercise", "Discussion Questions", "Additional Resources"],
+      "verified_at": "2025-12-28T12:00:00Z",
+      "renders_correctly": true
+    },
+    "week-11": {
+      "status": "verified",
+      "title": "Domain Applications",
+      "layout_fix_applied": true,
+      "md_content_sections": ["Exercise", "Discussion Questions", "Additional Resources"],
+      "verified_at": "2025-12-28T12:00:00Z",
+      "renders_correctly": true
+    },
+    "week-12": {
+      "status": "verified",
+      "title": "Research Frontiers",
+      "layout_fix_applied": true,
+      "md_content_sections": ["Final Project Presentations", "Exercise", "Discussion Questions", "Additional Resources"],
+      "verified_at": "2025-12-28T12:00:00Z",
+      "renders_correctly": true,
+      "screenshot": "week12_verify.png"
+    }
+  },
+  "verification_summary": {
+    "total_weeks": 12,
+    "verified_ok": 12,
+    "issues_found": 0,
+    "method": "Playwright automated check for raw markdown indicators"
+  }
+}
