@@ -23,7 +23,8 @@ $table-background-color: #ffffff;
 $feedback-color: $success-color;
 
 // Sidebar styling
-$nav-width: 264px;
+// Note: Use rem units for compatibility with Just the Docs theme
+$nav-width: 16.5rem;
 
 // Code highlighting
 $code-font-size: 0.85em;
