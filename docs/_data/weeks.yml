@@ -162,7 +162,7 @@
       arxiv: "2311.17541"
   notebooks:
     - name: "LangGraph Agent"
-      file: "L06_LangGraph_Agent.ipynb"
+      file: "notebooks/L06_LangGraph_Agent.ipynb"
   status: "complete"
 
 - number: 7
@@ -189,7 +189,7 @@
       arxiv: "2401.15884"
   notebooks:
     - name: "Self-RAG Implementation"
-      file: "L07_Self_RAG.ipynb"
+      file: "notebooks/L07_Self_RAG.ipynb"
   status: "complete"
 
 - number: 8
@@ -216,7 +216,7 @@
       arxiv: "2308.09687"
   notebooks:
     - name: "GraphRAG Implementation"
-      file: "L08_GraphRAG.ipynb"
+      file: "notebooks/L08_GraphRAG.ipynb"
   status: "complete"
 
 - number: 9
@@ -243,7 +243,7 @@
       arxiv: "2305.14251"
   notebooks:
     - name: "Verification Pipeline"
-      file: "L09_Verification.ipynb"
+      file: "notebooks/L09_Verification.ipynb"
   status: "complete"
 
 - number: 10
@@ -270,7 +270,7 @@
       arxiv: "2310.06770"
   notebooks:
     - name: "Benchmarking Suite"
-      file: "L10_Benchmarking.ipynb"
+      file: "notebooks/L10_Benchmarking.ipynb"
   status: "complete"
 
 - number: 11
@@ -297,7 +297,7 @@
       arxiv: "2402.18485"
   notebooks:
     - name: "Code Generation Agent"
-      file: "L11_Code_Agent.ipynb"
+      file: "notebooks/L11_Code_Agent.ipynb"
   status: "complete"
 
 - number: 12
@@ -324,5 +324,5 @@
       arxiv: "2305.16291"
   notebooks:
     - name: "Generative Agents Demo"
-      file: "L12_Generative_Agents.ipynb"
+      file: "notebooks/L12_Generative_Agents.ipynb"
   status: "complete"

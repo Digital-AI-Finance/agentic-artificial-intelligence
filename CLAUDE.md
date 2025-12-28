@@ -33,6 +33,31 @@ for f in L*/*/chart.py; do python "$f"; done
 pytest --nbval-lax L*/notebooks/*.ipynb
 ```
 
+### Chart Tests
+```bash
+# Run all chart tests (generates 48 PDFs)
+pytest tests/test_charts.py -v
+
+# Run single chart test
+pytest tests/test_charts.py -k "L01" -v
+
+# Quick validation (skip PDF generation)
+pytest tests/test_charts.py -k "not generates_pdf" -v
+```
+
+### Pre-commit Hooks
+```bash
+# Install hooks (one-time)
+pip install pre-commit
+pre-commit install
+
+# Run on all files
+pre-commit run --all-files
+
+# Run specific hook
+pre-commit run black --all-files
+```
+
 ### GitHub Pages / Jekyll
 ```bash
 # Local development (from docs/ folder)
