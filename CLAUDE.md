@@ -38,13 +38,16 @@ pytest --nbval-lax L*/notebooks/*.ipynb
 # Local development (from docs/ folder)
 cd docs
 bundle install
-bundle exec jekyll serve --livereload
+bundle exec jekyll serve --livereload  # Default: http://localhost:4000
 
 # Build only (no serve)
 bundle exec jekyll build
 
 # Check for broken links
 bundle exec htmlproofer ./_site --disable-external
+
+# Verify specific week page
+open http://localhost:4000/weeks/week-1/
 ```
 
 ### Issue Management
@@ -68,16 +71,17 @@ agentic-artificial-intelligence/
   SYLLABUS.md             # Course schedule
 ```
 
-### Lesson Structure
+### Lesson Structure (Consistent across L01-L12)
 ```
 LXX_Topic_Name/
   LXX_Topic_Name.tex      # Beamer slides (Madrid theme, 8pt)
+  LXX_Topic_Name.pdf      # Compiled PDF
   01_concept_name/        # Chart folder
     chart.py              # Standalone script -> chart.pdf
     chart.pdf
-  notebooks/              # Jupyter notebooks
-  exercises/              # Student exercises
-  readings/               # Paper annotations
+  notebooks/              # Jupyter notebooks (LXX_*.ipynb)
+  exercises/              # Student exercises (LXX_Exercise.md)
+  readings/               # Paper annotations (LXX_Reading_Guide.md)
   temp/                   # LaTeX auxiliary files
 ```
 
@@ -108,13 +112,14 @@ docs/
   visual-assets.md        # Icons and infographics
 ```
 
-### Issue Types and Counts (81 total)
+### Issue Types (225 total, all closed)
 - **SLIDES** (13): Bloom's taxonomy objectives, 15-slide structure, 3-5 papers
 - **NOTEBOOK** (21): Python 3.11+, API requirements, implementation sections
 - **CHART** (22): Single figure, figsize=(10,6), ML color palette
 - **EXERCISE** (12): 100-point rubric, time estimates
 - **READING** (12): Critical reading guide, discussion questions
 - **PROJECT** (1): Final project requirements
+- **PAGES** (~144): Jekyll site, quizzes, glossary, accessibility, JSON API
 
 ### Beamer Template Conventions
 ```latex
