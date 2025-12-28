@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete Prompt Guide - Course Website Replication</title>
+    <style>
+        :root {
+            --primary: #3333B2;
+            --secondary: #0066CC;
+            --accent: #FF7F0E;
+            --success: #2CA02C;
+            --bg: #f8f9fa;
+            --code-bg: #1e1e1e;
+            --code-text: #d4d4d4;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: var(--bg);
+        }
+        .container { max-width: 1000px; margin: 0 auto; padding: 2rem; }
+
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+        header h1 { font-size: 2.2rem; margin-bottom: 0.5rem; }
+        header p { opacity: 0.9; }
+
+        nav {
+            background: white;
+            border-bottom: 1px solid #ddd;
+            padding: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        nav ul { list-style: none; display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: center; }
+        nav a { color: var(--primary); text-decoration: none; padding: 0.5rem 0.75rem; border-radius: 4px; font-size: 0.85rem; }
+        nav a:hover { background: rgba(51,51,178,0.1); }
+
+        section {
+            background: white;
+            border-radius: 8px;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            color: var(--primary);
+            border-bottom: 3px solid var(--primary);
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+        h3 { color: var(--secondary); margin: 1.5rem 0 1rem; }
+        h4 { margin: 1rem 0 0.5rem; }
+
+        .prompt-box {
+            background: var(--code-bg);
+            color: var(--code-text);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            font-family: 'Consolas', monospace;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            position: relative;
+            border-left: 4px solid var(--accent);
+        }
+        .prompt-box::before {
+            content: 'PROMPT';
+            position: absolute;
+            top: -10px;
+            left: 10px;
+            background: var(--accent);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 3px;
+            font-size: 0.7rem;
+            font-weight: bold;
+        }
+
+        .response-box {
+            background: #e8f5e9;
+            border-left: 4px solid var(--success);
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .response-box::before {
+            content: 'Expected Result:';
+            font-weight: bold;
+            color: var(--success);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .phase-header {
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            margin: 2rem 0 1rem;
+            font-size: 1.3rem;
+        }
+
+        .step-number {
+            background: var(--primary);
+            color: white;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.85rem;
+            margin-right: 0.5rem;
+        }
+
+        .tip {
+            background: #fff3e0;
+            border-left: 4px solid var(--accent);
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .tip strong { color: var(--accent); }
+
+        .warning {
+            background: #ffebee;
+            border-left: 4px solid #d32f2f;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .warning strong { color: #d32f2f; }
+
+        table { width: 100%; border-collapse: collapse; margin: 1rem 0; }
+        th, td { padding: 0.75rem; text-align: left; border: 1px solid #ddd; }
+        th { background: var(--primary); color: white; }
+        tr:nth-child(even) { background: #f8f9fa; }
+
+        code {
+            background: #e9ecef;
+            padding: 0.2rem 0.4rem;
+            border-radius: 3px;
+            font-family: 'Consolas', monospace;
+            font-size: 0.9em;
+        }
+
+        .checklist { list-style: none; padding: 0; }
+        .checklist li { padding: 0.5rem 0 0.5rem 2rem; position: relative; }
+        .checklist li::before { content: '[ ]'; position: absolute; left: 0; font-family: monospace; color: var(--primary); }
+
+        footer { text-align: center; padding: 2rem; color: #666; border-top: 1px solid #ddd; margin-top: 2rem; }
+
+        @media print {
+            nav { display: none; }
+            .prompt-box { background: #f5f5f5 !important; color: #333 !important; border: 1px solid #ddd; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Complete Prompt Guide</h1>
+        <p>Every prompt needed to replicate a 12-week academic course website from scratch</p>
+        <p style="margin-top: 1rem; font-size: 0.9rem;">Based on: Agentic Artificial Intelligence PhD Course</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#overview">Overview</a></li>
+            <li><a href="#phase1">Phase 1: Setup</a></li>
+            <li><a href="#phase2">Phase 2: Structure</a></li>
+            <li><a href="#phase3">Phase 3: Content</a></li>
+            <li><a href="#phase4">Phase 4: Slides</a></li>
+            <li><a href="#phase5">Phase 5: Deploy</a></li>
+            <li><a href="#phase6">Phase 6: Fix</a></li>
+            <li><a href="#variables">Variables</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+
+        <!-- OVERVIEW -->
+        <section id="overview">
+            <h2>How to Use This Guide</h2>
+
+            <p>This guide contains <strong>every prompt</strong> needed to create a complete 12-week academic course website with:</p>
+            <ul>
+                <li>Jekyll-based GitHub Pages site</li>
+                <li>12 week pages with learning objectives, readings, exercises</li>
+                <li>12 Beamer slide decks with charts</li>
+                <li>Jupyter notebooks linked to Google Colab</li>
+                <li>Interactive quizzes</li>
+                <li>Reading guides and exercises</li>
+            </ul>
+
+            <h3>Before You Start</h3>
+            <p>Replace these variables throughout all prompts:</p>
+
+            <table>
+                <tr><th>Variable</th><th>Example</th><th>Your Value</th></tr>
+                <tr><td><code>[COURSE_TITLE]</code></td><td>Agentic Artificial Intelligence</td><td>_____________</td></tr>
+                <tr><td><code>[COURSE_CODE]</code></td><td>AAI-PhD</td><td>_____________</td></tr>
+                <tr><td><code>[REPO_NAME]</code></td><td>agentic-artificial-intelligence</td><td>_____________</td></tr>
+                <tr><td><code>[ORG_NAME]</code></td><td>Digital-AI-Finance</td><td>_____________</td></tr>
+                <tr><td><code>[INSTRUCTOR_NAME]</code></td><td>Prof. Dr. Joerg Osterrieder</td><td>_____________</td></tr>
+                <tr><td><code>[INSTITUTION]</code></td><td>FHGR</td><td>_____________</td></tr>
+                <tr><td><code>[SEMESTER]</code></td><td>Spring 2025</td><td>_____________</td></tr>
+            </table>
+
+            <div class="tip">
+                <strong>Tip:</strong> Copy each prompt, replace the variables, and paste into Claude Code. Execute prompts in order for best results.
+            </div>
+        </section>
+
+        <!-- PHASE 1: REPOSITORY SETUP -->
+        <section id="phase1">
+            <div class="phase-header">Phase 1: Repository Setup</div>
+
+            <h3><span class="step-number">1</span> Create GitHub Repository</h3>
+            <div class="prompt-box">Create a new GitHub repository for my course:
+- Organization: [ORG_NAME]
+- Repository name: [REPO_NAME]
+- Description: "[COURSE_TITLE] - A 12-week PhD/graduate course"
+- Make it private initially
+- Initialize with README
+
+Use gh CLI to create it.</div>
+
+            <div class="response-box">Repository created at github.com/[ORG_NAME]/[REPO_NAME]</div>
+
+            <h3><span class="step-number">2</span> Create Directory Structure</h3>
+            <div class="prompt-box">Create the following directory structure for my course repository at [LOCAL_PATH]:
+
+Root level:
+- L01_[Week1_Topic]/ through L12_[Week12_Topic]/ (lecture folders)
+- docs/ (Jekyll website)
+- .github/workflows/ (CI/CD)
+- README.md
+- status.md
+- changelog.md
+
+Inside docs/:
+- _config.yml
+- _data/ (weeks.yml, readings.yml, exercises.yml, quizzes.yml)
+- _layouts/ (week.html)
+- _includes/ (quiz.html)
+- _sass/color_schemes/ (custom.scss)
+- weeks/ (index.md, week-1.md through week-12.md)
+- slides/ (for PDF files)
+- index.md
+- slides.md
+- Gemfile
+
+Create all folders and placeholder files.</div>
+
+            <h3><span class="step-number">3</span> Initialize Jekyll Configuration</h3>
+            <div class="prompt-box">Create the Jekyll _config.yml for my course website with:
+- Title: "[COURSE_TITLE]"
+- Base URL: "/[REPO_NAME]"
+- URL: "https://[ORG_NAME].github.io"
+- Theme: just-the-docs v0.8.2 (remote theme)
+- Color scheme: custom
+- Search enabled
+- GitHub edit links enabled
+- Course metadata:
+  - Code: [COURSE_CODE]
+  - Semester: [SEMESTER]
+  - Instructor: [INSTRUCTOR_NAME]
+  - Institution: [INSTITUTION]
+
+IMPORTANT: Do NOT exclude *.pdf files.
+
+Write the complete _config.yml file.</div>
+
+            <h3><span class="step-number">4</span> Create Gemfile</h3>
+            <div class="prompt-box">Create the Gemfile for Jekyll with:
+- jekyll ~> 4.3
+- just-the-docs ~> 0.8.2
+- Plugins: jekyll-seo-tag, jekyll-relative-links, jekyll-github-metadata
+- Windows compatibility gems
+
+Write to docs/Gemfile.</div>
+
+            <h3><span class="step-number">5</span> Create GitHub Actions Workflow</h3>
+            <div class="prompt-box">Create a GitHub Actions workflow for deploying Jekyll to GitHub Pages:
+- Trigger on push to main
+- Use Ruby 3.2
+- Build from docs/ folder
+- Deploy to GitHub Pages using actions/deploy-pages
+
+Write to .github/workflows/pages.yml</div>
+        </section>
+
+        <!-- PHASE 2: WEBSITE STRUCTURE -->
+        <section id="phase2">
+            <div class="phase-header">Phase 2: Website Structure</div>
+
+            <h3><span class="step-number">6</span> Define Course Weeks Data</h3>
+            <div class="prompt-box">Create the weeks.yml data file for my 12-week course on [COURSE_TITLE].
+
+For each week, I need:
+- number (1-12)
+- title
+- folder (lecture folder name, e.g., L01_Topic_Name)
+- description (1-2 sentences)
+- topics (4-5 bullet points)
+- learning_objectives (3-4 objectives)
+- papers (2-3 required readings with title, authors, year, arxiv ID or URL)
+- notebooks (list of Jupyter notebooks with name and file path)
+
+Here are my 12 weeks:
+Week 1: [Topic 1]
+Week 2: [Topic 2]
+Week 3: [Topic 3]
+Week 4: [Topic 4]
+Week 5: [Topic 5]
+Week 6: [Topic 6]
+Week 7: [Topic 7]
+Week 8: [Topic 8]
+Week 9: [Topic 9]
+Week 10: [Topic 10]
+Week 11: [Topic 11]
+Week 12: [Topic 12]
+
+Generate comprehensive content for each week. Research real papers on arXiv for each topic. Write to docs/_data/weeks.yml.</div>
+
+            <div class="tip">
+                <strong>Tip:</strong> Be specific about your topics. The more detail you provide, the better the generated content.
+            </div>
+
+            <h3><span class="step-number">7</span> Create Reading Guides Data</h3>
+            <div class="prompt-box">Create docs/_data/readings.yml with reading guides for all 12 weeks.
+
+For each week include:
+- week number
+- title (reading guide title)
+- file (path to markdown file)
+- estimated_time (e.g., "2-3 hours")
+- topics (3-4 key topics)
+- description
+- primary_paper (title, authors, year, venue, arxiv)
+- secondary_papers (2-3 additional papers)
+
+Base this on the weeks.yml content. Ensure all arXiv IDs are real and verified.</div>
+
+            <h3><span class="step-number">8</span> Create Exercises Data</h3>
+            <div class="prompt-box">Create docs/_data/exercises.yml with exercises for all 12 weeks.
+
+For each week include:
+- week number
+- title
+- file (path to markdown file)
+- total_points (e.g., 100)
+- estimated_time (e.g., "4-6 hours")
+- difficulty (Beginner/Intermediate/Advanced)
+- description
+- objectives (3-4 learning objectives)
+- tasks (3-4 tasks with name, points, description)
+
+Make exercises progressively more challenging. Week 1 should be beginner-friendly, Week 12 should be advanced.</div>
+
+            <h3><span class="step-number">9</span> Create Week Layout Template</h3>
+            <div class="prompt-box">Create the week layout template at docs/_layouts/week.html that:
+
+1. Gets week data from site.data.weeks based on page.week_number
+2. Shows navigation to previous/next weeks
+3. Displays:
+   - Week title and description
+   - Progress bar (week X of 12)
+   - Learning Objectives (as HTML list)
+   - Topics Covered (as HTML list)
+   - Resources section with PDF download button
+   - Jupyter Notebooks with Colab badges
+   - Required Readings as HTML table
+   - Reading Guide card (from readings.yml)
+   - Exercise card (from exercises.yml)
+   - Discussion & Questions section with GitHub links
+
+CRITICAL: Use HTML tags (h2, h3, ul, li, table) NOT markdown syntax (##, -, |).
+CRITICAL: Pre-calculate prev_week_num and next_week_num BEFORE using in append filter.
+
+Base the styling on the course color scheme.</div>
+
+            <h3><span class="step-number">10</span> Create Quiz Component</h3>
+            <div class="prompt-box">Create an interactive quiz component at docs/_includes/quiz.html that:
+
+1. Takes 'id' and 'questions' parameters
+2. Shows one question at a time with multiple choice options
+3. Provides immediate feedback (correct/incorrect with explanation)
+4. Tracks progress with a progress bar
+5. Shows final score at the end
+6. Has a "Try Again" button to restart
+
+Include all CSS and JavaScript inline.
+CRITICAL: Do NOT put any Liquid tags ({% %}) inside HTML comments - Jekyll processes them anyway.</div>
+
+            <h3><span class="step-number">11</span> Create Custom Styling</h3>
+            <div class="prompt-box">Create custom SCSS styling at docs/_sass/color_schemes/custom.scss with:
+
+Color palette:
+- Primary: #3333B2 (deep purple-blue)
+- Secondary: #0066CC (bright blue)
+- Accent: #FF7F0E (orange)
+- Success: #2CA02C (green)
+- Danger: #D62728 (red)
+
+Include styles for:
+- Progress bars
+- Cards (week, reading, exercise)
+- Buttons (primary, secondary, outline)
+- Resource links
+- Badges
+- Dark mode support
+
+CRITICAL: Use rem units NOT px for any values that will be used in calculations (e.g., $nav-width: 16.5rem NOT 264px).</div>
+
+            <h3><span class="step-number">12</span> Create Week Pages</h3>
+            <div class="prompt-box">Create all 12 week markdown files in docs/weeks/:
+
+Each file (week-1.md through week-12.md) needs:
+- Frontmatter with layout: week, title, week_number, nav_order, parent: Weeks
+- Optional supplementary content sections:
+  - Exercise (hands-on task description)
+  - Discussion Questions (3 thought-provoking questions)
+  - Additional Resources (3-5 relevant links)
+
+Also create docs/weeks/index.md as the parent page listing all weeks.</div>
+
+            <h3><span class="step-number">13</span> Create Homepage</h3>
+            <div class="prompt-box">Create docs/index.md as the course homepage with:
+
+1. Course title and welcome message
+2. Quick overview table showing all 12 weeks with links
+3. Course information (instructor, semester, credits)
+4. Getting started section
+5. Links to slides, syllabus, resources
+
+Keep it compact - use a table layout for the week listing rather than large cards.</div>
+
+            <h3><span class="step-number">14</span> Create Slides Page</h3>
+            <div class="prompt-box">Create docs/slides.md as a download page for all slide decks:
+
+1. Title: "Lecture Slides"
+2. Table with all 12 weeks showing:
+   - Week number
+   - Topic
+   - Download link (PDF)
+3. Links should use: {{ '/slides/FOLDER_NAME.pdf' | relative_url }}
+
+Also create the docs/slides/ folder where PDFs will be stored.</div>
+        </section>
+
+        <!-- PHASE 3: COURSE CONTENT -->
+        <section id="phase3">
+            <div class="phase-header">Phase 3: Course Content Generation</div>
+
+            <h3><span class="step-number">15</span> Generate Week 1 Content</h3>
+            <div class="prompt-box">Generate complete content for Week 1: [Week 1 Topic]
+
+Create:
+1. Detailed learning objectives (4-5 specific, measurable objectives)
+2. Topic outline (main concepts to cover)
+3. Required readings (find 2-3 real papers on arXiv)
+4. Reading guide markdown file with:
+   - Paper summary
+   - Key concepts to understand
+   - Discussion questions
+5. Exercise markdown file with:
+   - Clear instructions
+   - Starter code or templates
+   - Grading rubric
+6. Quiz questions (5-6 multiple choice with explanations)
+
+Research actual papers and resources. Do not hallucinate citations.</div>
+
+            <div class="tip">
+                <strong>Tip:</strong> Repeat this prompt for weeks 2-12, replacing the topic each time. You can batch multiple weeks: "Generate content for Weeks 2, 3, and 4: [Topic 2], [Topic 3], [Topic 4]"
+            </div>
+
+            <h3><span class="step-number">16</span> Create Jupyter Notebooks</h3>
+            <div class="prompt-box">Create a Jupyter notebook for Week [N]: [Topic]
+
+The notebook should:
+1. Have a clear title and introduction
+2. Include necessary imports
+3. Provide step-by-step explanations
+4. Include runnable code cells with examples
+5. Have exercises for students to complete
+6. Work in Google Colab (use !pip install for dependencies)
+
+Save to L[N]_[Topic_Folder]/notebooks/L[N]_[notebook_name].ipynb
+
+Make the notebook self-contained and educational.</div>
+        </section>
+
+        <!-- PHASE 4: SLIDES -->
+        <section id="phase4">
+            <div class="phase-header">Phase 4: Beamer Slides Creation</div>
+
+            <h3><span class="step-number">17</span> Create Slide Deck Structure</h3>
+            <div class="prompt-box">Create a Beamer slide deck for Week [N]: [Topic]
+
+Structure:
+- 20-30 slides
+- Madrid theme, 8pt font
+- Title slide with course info
+- Outline slide
+- Content slides organized by subtopic
+- Summary slide
+- References slide
+
+For charts:
+- Create one standalone Python script per chart
+- Each chart in its own subfolder (01_chart_name/, 02_chart_name/)
+- figsize=(10, 6) for all charts
+- Minimum font size 14pt (scaled for 70% display)
+- Save as chart.pdf
+
+Include 3-5 charts per lecture. Topics for charts:
+[List specific visualizations needed for this topic]
+
+Write the .tex file to L[N]_[Topic]/L[N]_[Topic].tex</div>
+
+            <h3><span class="step-number">18</span> Generate Charts</h3>
+            <div class="prompt-box">Create the chart Python scripts for Week [N]: [Topic]
+
+For each chart:
+1. Create folder: L[N]_[Topic]/[NN]_[chart_name]/
+2. Create chart.py with:
+   - Descriptive docstring
+   - matplotlib with consistent style
+   - rcParams for font sizes (min 14pt)
+   - Color palette: MLPURPLE=#3333B2, MLBLUE=#0066CC, MLORANGE=#FF7F0E
+   - figsize=(10, 6)
+   - Save to chart.pdf
+3. Run the script to generate chart.pdf
+
+Charts needed:
+1. [Chart 1 description]
+2. [Chart 2 description]
+3. [Chart 3 description]
+
+Use synthetic/simulated data. Make charts educational and clear.</div>
+
+            <h3><span class="step-number">19</span> Compile Slides</h3>
+            <div class="prompt-box">Compile the Beamer slides for Week [N]:
+
+1. Run all chart.py scripts in L[N]_[Topic]/ subfolders
+2. Compile L[N]_[Topic].tex with pdflatex (run twice for references)
+3. Check for "Overfull" warnings - if any, fix by:
+   - Reducing bullet points
+   - Using smaller chart width (0.55 instead of 0.65)
+   - Splitting content across slides
+4. Copy final PDF to docs/slides/L[N]_[Topic].pdf
+5. Move auxiliary files (.aux, .log, .nav, etc.) to temp/ folder
+
+Verify zero overflow warnings before finalizing.</div>
+
+            <div class="warning">
+                <strong>Warning:</strong> Never allow "Overfull \vbox" or "Overfull \hbox" warnings. These cause content to overflow off slides.
+            </div>
+        </section>
+
+        <!-- PHASE 5: DEPLOYMENT -->
+        <section id="phase5">
+            <div class="phase-header">Phase 5: Deployment</div>
+
+            <h3><span class="step-number">20</span> Make Repository Public</h3>
+            <div class="prompt-box">Make the repository public and enable GitHub Pages:
+
+1. Make repo public: gh repo edit --visibility public --accept-visibility-change-consequences
+2. Enable GitHub Discussions: gh repo edit --enable-discussions
+3. Verify GitHub Pages is set to deploy from GitHub Actions
+4. Push all changes to main branch
+5. Wait for deployment and verify site loads
+
+Open the deployed site: https://[ORG_NAME].github.io/[REPO_NAME]/</div>
+
+            <h3><span class="step-number">21</span> Verify Deployment</h3>
+            <div class="prompt-box">Take a screenshot of the deployed site and verify:
+
+1. Homepage loads correctly
+2. All 12 weeks are accessible
+3. Navigation between weeks works
+4. PDF slides download correctly
+5. Colab notebook links work
+6. Required readings table renders properly
+7. Exercise and reading guide cards display correctly
+
+Use Playwright to automate verification across all pages.</div>
+
+            <h3><span class="step-number">22</span> Run Link Checker</h3>
+            <div class="prompt-box">Run a comprehensive link check on the deployed site:
+
+1. Check all internal links (week pages, slides, resources)
+2. Check all external links (arXiv, GitHub, documentation sites)
+3. Report any 404 errors or broken links
+4. Fix broken links in source files
+5. Re-deploy and verify fixes
+
+Generate a report of all links checked and their status.</div>
+        </section>
+
+        <!-- PHASE 6: TROUBLESHOOTING -->
+        <section id="phase6">
+            <div class="phase-header">Phase 6: Troubleshooting</div>
+
+            <h3><span class="step-number">23</span> Fix Common Issues</h3>
+            <div class="prompt-box">Debug and fix any issues with the deployed site.
+
+Common issues to check:
+1. Raw markdown showing (## headers, | tables) - convert to HTML in layouts
+2. PDF 404 errors - check paths and _config.yml exclude list
+3. Sass compilation errors - use rem not px for calculations
+4. Navigation showing wrong URLs - pre-calculate week numbers before append
+5. Infinite recursion - remove Liquid tags from HTML comments
+6. GitHub Discussions 404 - enable discussions on repo
+
+For each issue found:
+1. Identify the root cause
+2. Fix the source file
+3. Commit with descriptive message
+4. Verify fix on deployed site
+
+Document all fixes in a JSON file.</div>
+
+            <h3><span class="step-number">24</span> Final Verification</h3>
+            <div class="prompt-box">Perform final verification of all 12 weeks:
+
+1. Take screenshots of each week page
+2. Verify all sections render correctly:
+   - Learning Objectives
+   - Topics Covered
+   - Resources (PDF download)
+   - Jupyter Notebooks (Colab badges)
+   - Required Readings (table)
+   - Reading Guide (card)
+   - Exercise (card)
+   - Discussion section
+3. Check mobile responsiveness
+4. Verify search functionality
+5. Test dark mode if enabled
+
+Create a verification report JSON with status for each week.</div>
+        </section>
+
+        <!-- VARIABLES REFERENCE -->
+        <section id="variables">
+            <h2>Complete Variables Reference</h2>
+
+            <p>Replace these variables in all prompts:</p>
+
+            <table>
+                <tr><th>Variable</th><th>Description</th><th>Example</th></tr>
+                <tr><td><code>[COURSE_TITLE]</code></td><td>Full course name</td><td>Agentic Artificial Intelligence</td></tr>
+                <tr><td><code>[COURSE_CODE]</code></td><td>Course identifier</td><td>AAI-PhD</td></tr>
+                <tr><td><code>[REPO_NAME]</code></td><td>GitHub repository name (lowercase, hyphens)</td><td>agentic-artificial-intelligence</td></tr>
+                <tr><td><code>[ORG_NAME]</code></td><td>GitHub organization</td><td>Digital-AI-Finance</td></tr>
+                <tr><td><code>[INSTRUCTOR_NAME]</code></td><td>Your name with title</td><td>Prof. Dr. Joerg Osterrieder</td></tr>
+                <tr><td><code>[INSTITUTION]</code></td><td>University/organization</td><td>FHGR</td></tr>
+                <tr><td><code>[SEMESTER]</code></td><td>When course runs</td><td>Spring 2025</td></tr>
+                <tr><td><code>[LOCAL_PATH]</code></td><td>Local folder for repo</td><td>D:\Courses\my-course</td></tr>
+                <tr><td><code>[N]</code></td><td>Week number (1-12)</td><td>1, 2, 3...</td></tr>
+                <tr><td><code>[Topic]</code></td><td>Week topic name</td><td>Introduction_to_ML</td></tr>
+            </table>
+
+            <h3>Week Topics Template</h3>
+            <p>Define your 12 weeks before starting:</p>
+
+            <table>
+                <tr><th>Week</th><th>Topic</th><th>Folder Name</th></tr>
+                <tr><td>1</td><td>________________</td><td>L01_________________</td></tr>
+                <tr><td>2</td><td>________________</td><td>L02_________________</td></tr>
+                <tr><td>3</td><td>________________</td><td>L03_________________</td></tr>
+                <tr><td>4</td><td>________________</td><td>L04_________________</td></tr>
+                <tr><td>5</td><td>________________</td><td>L05_________________</td></tr>
+                <tr><td>6</td><td>________________</td><td>L06_________________</td></tr>
+                <tr><td>7</td><td>________________</td><td>L07_________________</td></tr>
+                <tr><td>8</td><td>________________</td><td>L08_________________</td></tr>
+                <tr><td>9</td><td>________________</td><td>L09_________________</td></tr>
+                <tr><td>10</td><td>________________</td><td>L10_________________</td></tr>
+                <tr><td>11</td><td>________________</td><td>L11_________________</td></tr>
+                <tr><td>12</td><td>________________</td><td>L12_________________</td></tr>
+            </table>
+        </section>
+
+        <!-- EXECUTION CHECKLIST -->
+        <section>
+            <h2>Execution Checklist</h2>
+
+            <h3>Phase 1: Setup</h3>
+            <ul class="checklist">
+                <li>Create GitHub repository</li>
+                <li>Create directory structure</li>
+                <li>Initialize Jekyll configuration</li>
+                <li>Create Gemfile</li>
+                <li>Create GitHub Actions workflow</li>
+            </ul>
+
+            <h3>Phase 2: Structure</h3>
+            <ul class="checklist">
+                <li>Create weeks.yml with all 12 weeks</li>
+                <li>Create readings.yml</li>
+                <li>Create exercises.yml</li>
+                <li>Create week.html layout</li>
+                <li>Create quiz.html component</li>
+                <li>Create custom.scss styling</li>
+                <li>Create all 12 week pages</li>
+                <li>Create homepage</li>
+                <li>Create slides page</li>
+            </ul>
+
+            <h3>Phase 3: Content</h3>
+            <ul class="checklist">
+                <li>Generate Week 1 content</li>
+                <li>Generate Week 2 content</li>
+                <li>Generate Week 3 content</li>
+                <li>Generate Week 4 content</li>
+                <li>Generate Week 5 content</li>
+                <li>Generate Week 6 content</li>
+                <li>Generate Week 7 content</li>
+                <li>Generate Week 8 content</li>
+                <li>Generate Week 9 content</li>
+                <li>Generate Week 10 content</li>
+                <li>Generate Week 11 content</li>
+                <li>Generate Week 12 content</li>
+                <li>Create Jupyter notebooks</li>
+            </ul>
+
+            <h3>Phase 4: Slides</h3>
+            <ul class="checklist">
+                <li>Create Week 1 slides and charts</li>
+                <li>Create Week 2 slides and charts</li>
+                <li>Create Week 3 slides and charts</li>
+                <li>Create Week 4 slides and charts</li>
+                <li>Create Week 5 slides and charts</li>
+                <li>Create Week 6 slides and charts</li>
+                <li>Create Week 7 slides and charts</li>
+                <li>Create Week 8 slides and charts</li>
+                <li>Create Week 9 slides and charts</li>
+                <li>Create Week 10 slides and charts</li>
+                <li>Create Week 11 slides and charts</li>
+                <li>Create Week 12 slides and charts</li>
+                <li>Copy all PDFs to docs/slides/</li>
+            </ul>
+
+            <h3>Phase 5: Deploy</h3>
+            <ul class="checklist">
+                <li>Make repository public</li>
+                <li>Enable GitHub Pages</li>
+                <li>Enable Discussions</li>
+                <li>Verify deployment</li>
+                <li>Run link checker</li>
+            </ul>
+
+            <h3>Phase 6: Fix</h3>
+            <ul class="checklist">
+                <li>Fix any rendering issues</li>
+                <li>Fix any broken links</li>
+                <li>Final verification of all weeks</li>
+                <li>Document all fixes</li>
+            </ul>
+        </section>
+
+        <!-- QUICK START -->
+        <section>
+            <h2>Quick Start: One-Shot Prompt</h2>
+
+            <p>If you want to create the entire course structure in one go, use this comprehensive prompt:</p>
+
+            <div class="prompt-box">Create a complete 12-week academic course website for "[COURSE_TITLE]".
+
+Course details:
+- Code: [COURSE_CODE]
+- Instructor: [INSTRUCTOR_NAME]
+- Institution: [INSTITUTION]
+- Semester: [SEMESTER]
+- GitHub Org: [ORG_NAME]
+- Repo Name: [REPO_NAME]
+
+Week topics:
+1. [Topic 1]
+2. [Topic 2]
+3. [Topic 3]
+4. [Topic 4]
+5. [Topic 5]
+6. [Topic 6]
+7. [Topic 7]
+8. [Topic 8]
+9. [Topic 9]
+10. [Topic 10]
+11. [Topic 11]
+12. [Topic 12]
+
+Create:
+1. GitHub repository with Jekyll site in docs/
+2. All data files (weeks.yml, readings.yml, exercises.yml)
+3. Week layout template (HTML not markdown)
+4. Custom styling with course color scheme
+5. All 12 week pages with supplementary content
+6. Homepage with week listing table
+7. GitHub Actions workflow for deployment
+
+For each week, research real papers on arXiv. Do not hallucinate citations.
+
+Use Just the Docs theme v0.8.2. Ensure:
+- PDF links use relative_url filter
+- Week navigation pre-calculates numbers before append
+- No Liquid tags in HTML comments
+- SCSS uses rem units not px
+
+Deploy to GitHub Pages when complete.</div>
+
+            <div class="warning">
+                <strong>Note:</strong> This one-shot approach works but may require follow-up prompts for refinement. The step-by-step approach in Phases 1-6 gives you more control.
+            </div>
+        </section>
+
+    </div>
+
+    <footer>
+        <p>Generated: December 28, 2025</p>
+        <p>Based on: Agentic Artificial Intelligence PhD Course</p>
+        <p>Repository: <a href="https://github.com/Digital-AI-Finance/agentic-artificial-intelligence">Digital-AI-Finance/agentic-artificial-intelligence</a></p>
+    </footer>
+</body>
+</html>
