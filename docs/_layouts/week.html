@@ -5,13 +5,15 @@ layout: default
 {% assign week_num = page.week_number %}
 {% assign week = site.data.weeks | where: "number", week_num | first %}
 
+{% assign prev_week_num = week_num | minus: 1 %}
+{% assign next_week_num = week_num | plus: 1 %}
 <div class="week-header">
   <div class="week-nav">
     {% if week_num > 1 %}
-    <a href="{{ '/weeks/week-' | append: week_num | minus: 1 | relative_url }}" class="btn btn-outline">&larr; Week {{ week_num | minus: 1 }}</a>
+    <a href="{{ '/weeks/week-' | append: prev_week_num | relative_url }}" class="btn btn-outline">&larr; Week {{ prev_week_num }}</a>
     {% endif %}
     {% if week_num < 12 %}
-    <a href="{{ '/weeks/week-' | append: week_num | plus: 1 | relative_url }}" class="btn btn-outline">Week {{ week_num | plus: 1 }} &rarr;</a>
+    <a href="{{ '/weeks/week-' | append: next_week_num | relative_url }}" class="btn btn-outline">Week {{ next_week_num }} &rarr;</a>
     {% endif %}
   </div>
 </div>
@@ -192,8 +194,7 @@ layout: default
 
 <div class="week-nav" style="display: flex; justify-content: space-between;">
   {% if week_num > 1 %}
-  {% assign prev_week = site.data.weeks | where: "number", week_num | first %}
-  <a href="{{ '/weeks/week-' | append: week_num | minus: 1 | relative_url }}" class="btn btn-outline">&larr; Previous Week</a>
+  <a href="{{ '/weeks/week-' | append: prev_week_num | relative_url }}" class="btn btn-outline">&larr; Previous Week</a>
   {% else %}
   <span></span>
   {% endif %}
@@ -201,7 +202,7 @@ layout: default
   <a href="{{ '/' | relative_url }}" class="btn btn-outline">Course Home</a>
 
   {% if week_num < 12 %}
-  <a href="{{ '/weeks/week-' | append: week_num | plus: 1 | relative_url }}" class="btn btn-outline">Next Week &rarr;</a>
+  <a href="{{ '/weeks/week-' | append: next_week_num | relative_url }}" class="btn btn-outline">Next Week &rarr;</a>
   {% else %}
   <span></span>
   {% endif %}
