@@ -4,9 +4,12 @@ on:
   push:
     paths:
       - 'L*/*/chart.py'
+      - 'tests/test_charts.py'
   pull_request:
     paths:
       - 'L*/*/chart.py'
+      - 'tests/test_charts.py'
+  workflow_dispatch:
 
 jobs:
   validate:
@@ -19,29 +22,22 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
+          cache: 'pip'
 
       - name: Install dependencies
         run: |
-          pip install matplotlib numpy seaborn plotly networkx
+          pip install matplotlib numpy seaborn plotly networkx pytest pytest-timeout
 
-      - name: Generate all charts
+      - name: Run chart tests with pytest
         run: |
-          for f in L*/*/chart.py; do
-            if [ -f "$f" ]; then
-              echo "Running $f"
-              python "$f"
-            fi
-          done
+          pytest tests/test_charts.py -v --timeout=120 --tb=short
 
-      - name: Verify PDFs created
+      - name: Verify all 48 PDFs exist
         run: |
-          for f in L*/*/chart.py; do
-            if [ -f "$f" ]; then
-              dir=$(dirname "$f")
-              if [ ! -f "$dir/chart.pdf" ]; then
-                echo "ERROR: Missing $dir/chart.pdf"
-                exit 1
-              fi
-            fi
-          done
+          count=$(find L*/*/chart.pdf -type f 2>/dev/null | wc -l)
+          echo "Found $count chart PDFs"
+          if [ "$count" -lt 48 ]; then
+            echo "ERROR: Expected 48+ PDFs, found $count"
+            exit 1
+          fi
           echo "All chart PDFs verified"
