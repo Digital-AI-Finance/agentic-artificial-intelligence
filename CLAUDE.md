@@ -116,7 +116,7 @@ docs/
   _config.yml             # Jekyll config (Just the Docs v0.8.2)
   _data/
     weeks.yml             # Course weeks metadata (topics, papers, notebooks)
-    glossary.yml          # 35+ term definitions by week
+    glossary.yml          # 68 term definitions by week
     quizzes.yml           # Interactive quiz questions
     icons.yml             # SVG icons for topics/actions
   _includes/
@@ -232,8 +232,9 @@ plt.close()
 - `requirements.txt`: Python dependencies (langchain, openai, anthropic, chromadb)
 - `docs/_config.yml`: Jekyll site configuration
 - `docs/_data/weeks.yml`: Week metadata (topics, papers, notebooks per week)
-- `docs/_data/glossary.yml`: 50+ agentic AI terms with definitions
+- `docs/_data/glossary.yml`: 68 agentic AI terms with definitions
 - `scripts/extract_glossary.py`: Extracts terms from all .tex files, generates glossary_inventory.json
+- `scripts/screenshot_website.py`: Playwright script for website verification screenshots
 
 ## GitHub Pages Features
 
@@ -263,7 +264,7 @@ plt.close()
 |------|---------|
 | weeks.yml | Course weeks metadata (topics, papers, notebooks) |
 | quizzes.yml | Interactive quiz questions for all 12 weeks |
-| glossary.yml | 50+ agentic AI term definitions |
+| glossary.yml | 68 agentic AI term definitions |
 | charts.yml | Chart metadata and descriptions |
 | exercises.yml | Exercise specifications with rubrics |
 | readings.yml | Reading guide metadata |
