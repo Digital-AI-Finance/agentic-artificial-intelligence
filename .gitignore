@@ -1,1 +1,6 @@
 */temp/
+.claude/
+*.vrb
+website_screenshot.png
+__pycache__/
+*.pyc
