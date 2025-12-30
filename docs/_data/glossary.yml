@@ -1,5 +1,25 @@
 # Glossary of Agentic AI Terms
 
+- term: "LLM"
+  definition: "Large Language Model - neural network trained on text to generate and understand language."
+  related: ["GPT-4", "Claude", "Gemini"]
+  week: 1
+
+- term: "API"
+  definition: "Application Programming Interface - structured interface for software communication."
+  related: ["Function Calling", "Tool Use"]
+  week: 1
+
+- term: "Token"
+  definition: "Basic unit of text processing in LLMs, roughly equivalent to 3/4 of a word."
+  related: ["Context Window", "Tokenization"]
+  week: 1
+
+- term: "Context Window"
+  definition: "Maximum number of tokens an LLM can process in a single interaction."
+  related: ["Token", "Memory"]
+  week: 1
+
 - term: "Agent"
   definition: "An autonomous system that perceives its environment, reasons about it, and takes actions to achieve goals."
   related: ["Autonomous Agent", "LLM Agent", "Multi-Agent System"]
@@ -45,6 +65,16 @@
   related: ["Tool Use", "API"]
   week: 3
 
+- term: "LATS"
+  definition: "Language Agent Tree Search - combines reasoning with Monte Carlo Tree Search for planning."
+  related: ["Planning", "Tree-of-Thoughts"]
+  week: 4
+
+- term: "World Model"
+  definition: "Internal representation of environment dynamics used for planning and simulation."
+  related: ["Planning", "Simulation"]
+  week: 4
+
 - term: "Reflexion"
   definition: "Framework where agents learn from verbal self-reflection on past failures."
   related: ["Self-Improvement", "Memory"]
@@ -75,14 +105,29 @@
   related: ["Multi-Agent System", "Workflow"]
   week: 5
 
+- term: "LangChain"
+  definition: "Python framework for building LLM applications using chains of components."
+  related: ["LangGraph", "LCEL"]
+  week: 6
+
 - term: "LangGraph"
   definition: "LangChain's framework for building stateful, multi-actor applications using graphs."
   related: ["Framework", "State Machine"]
   week: 6
 
+- term: "AutoGen"
+  definition: "Microsoft's framework for building multi-agent conversational systems."
+  related: ["Multi-Agent", "Conversation"]
+  week: 6
+
 - term: "CrewAI"
   definition: "Framework for building role-playing autonomous AI agents that collaborate."
   related: ["Framework", "Multi-Agent"]
+  week: 6
+
+- term: "Semantic Kernel"
+  definition: "Microsoft's SDK for integrating LLMs with conventional programming."
+  related: ["LangChain", "SDK"]
   week: 6
 
 - term: "RAG"
@@ -98,6 +143,16 @@
 - term: "CRAG"
   definition: "Corrective RAG - system that evaluates and corrects poor retrievals before generation."
   related: ["RAG", "Verification"]
+  week: 7
+
+- term: "RAPTOR"
+  definition: "Recursive Abstractive Processing for Tree-Organized Retrieval - hierarchical RAG approach."
+  related: ["RAG", "Hierarchical"]
+  week: 7
+
+- term: "Vector Store"
+  definition: "Embedding database for semantic similarity search used in RAG systems."
+  related: ["RAG", "Embedding", "ChromaDB"]
   week: 7
 
 - term: "Knowledge Graph"
@@ -150,6 +205,11 @@
   related: ["Evaluation", "Metric"]
   week: 10
 
+- term: "SWE-bench"
+  definition: "Benchmark for evaluating code agents on real-world GitHub issues."
+  related: ["Code Agent", "Evaluation"]
+  week: 10
+
 - term: "Code Agent"
   definition: "Agent specialized for code generation, testing, and debugging."
   related: ["Domain Agent", "Software Engineering"]
@@ -173,4 +233,19 @@
 - term: "Constitutional AI"
   definition: "Approach to AI safety using principles to guide self-improvement."
   related: ["Safety", "Alignment"]
+  week: 12
+
+- term: "Alignment"
+  definition: "Training AI systems to follow human values and intentions."
+  related: ["Safety", "Constitutional AI"]
+  week: 12
+
+- term: "Jailbreak"
+  definition: "Technique to bypass LLM safety restrictions through adversarial prompts."
+  related: ["Safety", "Adversarial"]
+  week: 12
+
+- term: "Embodied Agent"
+  definition: "Agent that interacts with a physical or simulated environment through sensors and actuators."
+  related: ["Robotics", "Simulation"]
   week: 12

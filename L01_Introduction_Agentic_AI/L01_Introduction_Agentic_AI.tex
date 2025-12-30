@@ -73,7 +73,7 @@
 \textbf{Bloom's Taxonomy Levels Covered}
 \begin{itemize}
 \item \textbf{Remember}: Define agent, tool use, ReAct paradigm, orchestration
-\item \textbf{Understand}: Explain difference between LLM inference and agentic behavior
+\item \textbf{Understand}: Explain difference between LLM (Large Language Model) inference and agentic behavior
 \item \textbf{Apply}: Implement a basic ReAct agent using LangChain
 \item \textbf{Analyze}: Compare reactive vs. deliberative architectures
 \item \textbf{Evaluate}: Assess capabilities and limitations of current LLM agents
@@ -123,10 +123,10 @@
 \vspace{0.3cm}
 \textbf{Enabling Factors (2023-2024)}
 \begin{itemize}
-\item \textbf{Reasoning}: Chain-of-Thought, Tree-of-Thoughts prompting
-\item \textbf{Tool Use}: Function calling APIs (OpenAI, Anthropic, Google)
-\item \textbf{Frameworks}: LangChain, LangGraph, AutoGen, CrewAI
-\item \textbf{Context}: 100K+ token windows enable complex interactions
+\item \textbf{Reasoning}: Chain-of-Thought (CoT), Tree-of-Thoughts (ToT) prompting
+\item \textbf{Tool Use}: Function calling via APIs (Application Programming Interfaces)
+\item \textbf{Frameworks}: LangChain/LangGraph, AutoGen, CrewAI (agent orchestration)
+\item \textbf{Context}: 100K+ token (text unit) windows enable complex interactions
 \end{itemize}
 \vspace{0.3cm}
 \textbf{Current State}
@@ -195,7 +195,7 @@ where $t_i$ = thought, $a_i$ = action, $o_i$ = observation
 \begin{itemize}
 \item \textbf{Stateless}: No memory between interactions
 \item \textbf{Short-term}: In-context memory (conversation history)
-\item \textbf{Long-term}: Persistent storage (vector DB, knowledge graph)
+\item \textbf{Long-term}: Vector DB (embedding search), knowledge graph (entities)
 \end{itemize}
 \bottomnote{Architecture choice depends on task complexity and latency requirements.}
 \end{frame}
@@ -216,14 +216,14 @@ where $t_i$ = thought, $a_i$ = action, $o_i$ = observation
 \vspace{0.2cm}
 \textbf{3. Tool Interface}
 \begin{itemize}
-\item Function calling, MCP protocol
+\item Function calling, MCP (Model Context Protocol)
 \item APIs, databases, code execution
 \end{itemize}
 \vspace{0.2cm}
 \textbf{4. Planning Module}
 \begin{itemize}
 \item Task decomposition, goal tracking
-\item Reflexion, self-correction
+\item Reflexion (learning from failures), self-correction
 \end{itemize}
 \bottomnote{These four components form the backbone of modern agent systems.}
 \end{frame}
@@ -263,10 +263,10 @@ where $t_i$ = thought, $a_i$ = action, $o_i$ = observation
 \vspace{0.3cm}
 \textbf{Current Limitations}
 \begin{itemize}
-\item \textbf{Reliability}: Hallucinations, error propagation
+\item \textbf{Reliability}: Hallucinations (fabricated facts), error propagation
 \item \textbf{Planning}: Struggle with long-horizon tasks
 \item \textbf{Evaluation}: Hard to measure agent quality
-\item \textbf{Safety}: Unintended actions, jailbreaks
+\item \textbf{Safety}: Unintended actions, jailbreaks (safety bypass)
 \end{itemize}
 \vspace{0.3cm}
 \textbf{Key Metric}
@@ -280,7 +280,7 @@ where $t_i$ = thought, $a_i$ = action, $o_i$ = observation
 \begin{frame}[t]{Research Frontiers}
 \textbf{Open Problems}
 \begin{itemize}
-\item \textbf{Scalable alignment}: How to align autonomous agents?
+\item \textbf{Scalable alignment} (human values): How to align agents?
 \item \textbf{Compositional generalization}: Transfer to new tasks
 \item \textbf{Long-term memory}: Efficient persistent memory
 \item \textbf{Multi-agent coordination}: Emergent communication
@@ -290,8 +290,8 @@ where $t_i$ = thought, $a_i$ = action, $o_i$ = observation
 \begin{itemize}
 \item Embodied agents (robotics, simulation)
 \item Agent-agent learning and co-evolution
-\item Constitutional AI for agent safety
-\item World models for planning
+\item Constitutional AI (principle-based safety)
+\item World models (environment simulation) for planning
 \end{itemize}
 \bottomnote{These open problems define the research agenda for the next 3-5 years.}
 \end{frame}
@@ -310,7 +310,7 @@ where $t_i$ = thought, $a_i$ = action, $o_i$ = observation
 5 & Multi-Agent Architectures & Coordination \\
 6 & Agent Frameworks & LangGraph, AutoGen \\
 \midrule
-7 & Advanced RAG & Self-RAG, CRAG \\
+7 & RAG (Retrieval-Augmented Gen.) & Self-RAG, CRAG \\
 8 & GraphRAG \& Knowledge & Knowledge graphs \\
 9 & Hallucination Prevention & Verification \\
 10 & Agent Evaluation & Benchmarks \\

@@ -1,0 +1,1210 @@
+{
+  "metadata": {
+    "generated_from": "scripts/extract_glossary.py",
+    "total_terms": 74,
+    "statistics": {
+      "total_terms": 74,
+      "by_category": {
+        "concept": 22,
+        "metric": 4,
+        "acronym": 2,
+        "framework": 5,
+        "system": 8,
+        "technique": 18,
+        "safety": 2,
+        "architecture": 6,
+        "memory_type": 5,
+        "protocol": 1,
+        "paradigm": 1
+      },
+      "by_week": {
+        "1": 50,
+        "2": 3,
+        "4": 2,
+        "7": 1,
+        "8": 1,
+        "9": 3,
+        "10": 1,
+        "12": 1,
+        "3": 1,
+        "5": 2,
+        "11": 2
+      },
+      "defined_at_first_use": 12,
+      "not_defined_at_first_use": 55,
+      "not_found_in_slides": 7
+    }
+  },
+  "glossary": [
+    {
+      "term": "agent",
+      "definition": "Autonomous system that perceives its environment, reasons about it, and takes actions to achieve goals",
+      "category": "concept",
+      "related_terms": [
+        "Autonomous Agent",
+        "LLM Agent",
+        "Multi-Agent System"
+      ],
+      "first_use": {
+        "week": 1,
+        "slide": 2,
+        "line": 75,
+        "file": "L01_Introduction_Agentic_AI\\L01_Introduction_Agentic_AI.tex"
+      },
+      "defined_at_first_use": true
+    },
+    {
+      "term": "AgentBench",
+      "definition": "Benchmark for evaluating LLMs as agents across multiple environments",
+      "category": "metric",
+      "related_terms": [
+        "Evaluation",
+        "Benchmark"
+      ],
+      "source_paper": "Liu et al. 2023",
+      "first_use": {
+        "week": 1,
+        "slide": 11,
+        "line": 274,
+        "file": "L01_Introduction_Agentic_AI\\L01_Introduction_Agentic_AI.tex"
+      },
+      "defined_at_first_use": true,
+      "week": 10
+    },
+    {
+      "term": "alignment",
+      "definition": "Training AI systems to follow human values and intentions",
+      "category": "concept",
+      "related_terms": [
+        "Safety",
+        "Constitutional AI"
+      ],
+      "first_use": {
+        "week": 1,
+        "slide": 12,
+        "line": 283,
+        "file": "L01_Introduction_Agentic_AI\\L01_Introduction_Agentic_AI.tex"
+      },
+      "defined_at_first_use": false
+    },
+    {
+      "term": "API",
+      "definition": "Application Programming Interface - structured interface for software communication",
+      "category": "acronym",
+      "related_terms": [
+        "Function Calling",
+        "Tool Use"
+      ],
+      "first_use": {
+        "week": 1,
+        "slide": 6,
+        "line": 146,
+        "file": "L01_Introduction_Agentic_AI\\L01_Introduction_Agentic_AI.tex"
+      },
+      "defined_at_first_use": false
+    },
+    {
+      "term": "AutoGen",
+      "definition": "Microsoft's framework for building multi-agent conversational systems",
+      "category": "framework",
+      "related_terms": [
+        "Multi-Agent",
+        "Conversation"
+      ],
+      "first_use": {
+        "week": 1,
+        "slide": 5,
+        "line": 128,
+        "file": "L01_Introduction_Agentic_AI\\L01_Introduction_Agentic_AI.tex"
+      },
+      "defined_at_first_use": false
+    },
+    {
+      "term": "AutoGPT",
+      "definition": "Goal-directed autonomous agent that chains LLM calls",
+      "category": "system",
+      "related_terms": [
+        "Agent",
+        "Autonomous"
+      ],
+      "first_use": {
+        "week": 1,
+        "slide": 10,
+        "line": 242,
+        "file": "L01_Introduction_Agentic_AI\\L01_Introduction_Agentic_AI.tex"
+      },
+      "defined_at_first_use": true
+    },
+    {
+      "term": "BabyAGI",
+      "definition": "Task-driven autonomous agent using task prioritization",
+      "category": "system",
+      "related_terms": [
+        "Agent",
+        "Task Management"
+      ],
+      "first_use": {
+        "week": 1,
+        "slide": 10,
+        "line": 243,
+        "file": "L01_Introduction_Agentic_AI\\L01_Introduction_Agentic_AI.tex"
+      },
+      "defined_at_first_use": true
+    },
+    {
+      "term": "Chain-of-Thought",
+      "definition": "Prompting technique that elicits step-by-step reasoning from language models",
+      "category": "technique",
+      "related_terms": [
+        "CoT",
+        "Reasoning"
+      ],
+      "source_paper": "Wei et al. 2022",
+      "first_use": {
+        "week": 1,
+        "slide": 5,
+        "line": 126,
+        "file": "L01_Introduction_Agentic_AI\\L01_Introduction_Agentic_AI.tex"
+      },
+      "defined_at_first_use": false
+    },
+    {
+      "term": "Claude",
+      "definition": "Anthropic's large language model with Constitutional AI safety",
+      "category": "system",
+      "related_terms": [
+        "LLM",
+        "Constitutional AI"
+      ],
+      "first_use": {
+        "week": 1,
+        "slide": 5,
+        "line": 134,
+        "file": "L01_Introduction_Agentic_AI\\L01_Introduction_Agentic_AI.tex"
+      },
+      "defined_at_first_use": false
+    },
+    {
+      "term": "Constitutional AI",
+      "definition": "Approach to AI safety using principles to guide self-improvement",
+      "category": "safety",
+      "related_terms": [
+        "Alignment",
+        "RLHF"
+      ],
+      "source_paper": "Bai et al. 2022",
+      "first_use": {
+        "week": 1,
+        "slide": 12,
+        "line": 293,
+        "file": "L01_Introduction_Agentic_AI\\L01_Introduction_Agentic_AI.tex"
+      },
+      "defined_at_first_use": false,
+      "week": 12
+    },
+    {
+      "term": "context window",
+      "definition": "Maximum number of tokens an LLM can process in a single interaction",
+      "category": "concept",
+      "related_terms": [
+        "Token",
+        "Memory"
+      ],
+      "first_use": {
+        "week": 1,
+        "slide": 15,
+        "line": 359,
+        "file": "L01_Introduction_Agentic_AI\\L01_Introduction_Agentic_AI.tex"
+      },
+      "defined_at_first_use": false
+    },
+    {
+      "term": "CoT",
+      "definition": "Chain-of-Thought prompting - technique that elicits step-by-step reasoning",
+      "category": "technique",
+      "related_terms": [
+        "Tree-of-Thoughts",
+        "Self-Consistency"
+      ],
+      "source_paper": "Wei et al. 2022",
+      "first_use": {
+        "week": 1,
+        "slide": 13,
+        "line": 307,
+        "file": "L01_Introduction_Agentic_AI\\L01_Introduction_Agentic_AI.tex"
+      },
+      "defined_at_first_use": false
+    },
+    {
+      "term": "CRAG",
+      "definition": "Corrective RAG - system that evaluates and corrects poor retrievals before generation",
+      "category": "technique",
+      "related_terms": [
+        "RAG",
+        "Self-RAG"
+      ],
+      "source_paper": "Yan et al. 2024",
+      "first_use": {
+        "week": 1,
+        "slide": 13,
+        "line": 313,
+        "file": "L01_Introduction_Agentic_AI\\L01_Introduction_Agentic_AI.tex"
+      },
+      "defined_at_first_use": false,
+      "week": 7
+    },
+    {
+      "term": "CrewAI",
+      "definition": "Framework for building role-playing autonomous AI agents that collaborate",
+      "category": "framework",
+      "related_terms": [
+        "Multi-Agent",
+        "Roles"
+      ],
+      "first_use": {
+        "week": 1,
+        "slide": 5,
+        "line": 128,
+        "file": "L01_Introduction_Agentic_AI\\L01_Introduction_Agentic_AI.tex"
+      },
+      "defined_at_first_use": false,
+      "week": 6
+    },
+    {
+      "term": "deliberative",
+      "definition": "Agent architecture that plans before executing (model-based)",
+      "category": "architecture",
+      "related_terms": [
+        "Reactive",
+        "Planning"
+      ],
+      "first_use": {
+        "week": 1,
+        "slide": 2,
+        "line": 78,
+        "file": "L01_Introduction_Agentic_AI\\L01_Introduction_Agentic_AI.tex"
+      },
+      "defined_at_first_use": false
+    },
+    {
+      "term": "Devin",
+      "definition": "Cognition's autonomous software engineering agent",
+      "category": "system",
+      "related_terms": [
+        "Code Agent",
+        "SWE-bench"
+      ],
+      "first_use": {
+        "week": 1,
+        "slide": 10,
+        "line": 236,
+        "file": "L01_Introduction_Agentic_AI\\L01_Introduction_Agentic_AI.tex"
+      },
+      "defined_at_first_use": true
+    },
+    {
+      "term": "function calling",
+      "definition": "API feature allowing LLMs to generate structured calls to predefined functions",
+      "category": "technique",
+      "related_terms": [
+        "Tool Use",
+        "JSON Schema"
+      ],
+      "first_use": {
+        "week": 1,
+        "slide": 5,
+        "line": 127,
+        "file": "L01_Introduction_Agentic_AI\\L01_Introduction_Agentic_AI.tex"
+      },
+      "defined_at_first_use": false
+    },
+    {
+      "term": "Gemini",
+      "definition": "Google's multimodal large language model",
+      "category": "system",
+      "related_terms": [
+        "LLM",
+        "Google"
+      ],
+      "first_use": {
+        "week": 1,
+        "slide": 9,
+        "line": 208,
+        "file": "L01_Introduction_Agentic_AI\\L01_Introduction_Agentic_AI.tex"
+      },
+      "defined_at_first_use": false
+    },
+    {
+      "term": "GitHub Copilot",
+      "definition": "AI-powered code completion and generation tool",
+      "category": "system",
+      "related_terms": [
+        "Code Agent",
+        "IDE"
+      ],
+      "first_use": {
+        "week": 1,
+        "slide": 5,
+        "line": 134,
+        "file": "L01_Introduction_Agentic_AI\\L01_Introduction_Agentic_AI.tex"
+      },
+      "defined_at_first_use": false
+    },
+    {
+      "term": "GPT-4",
+      "definition": "OpenAI's large language model powering ChatGPT and API",
+      "category": "system",
+      "related_terms": [
+        "LLM",
+        "OpenAI"
+      ],
+      "first_use": {
+        "week": 1,
+        "slide": 9,
+        "line": 208,
+        "file": "L01_Introduction_Agentic_AI\\L01_Introduction_Agentic_AI.tex"
+      },
+      "defined_at_first_use": false
+    },
+    {
+      "term": "GraphRAG",
+      "definition": "RAG approach using knowledge graphs for structured, multi-hop retrieval",
+      "category": "technique",
+      "related_terms": [
+        "RAG",
+        "Knowledge Graph"
+      ],
+      "source_paper": "Edge et al. 2024",
+      "first_use": {
+        "week": 1,
+        "slide": 13,
+        "line": 314,
+        "file": "L01_Introduction_Agentic_AI\\L01_Introduction_Agentic_AI.tex"
+      },
+      "defined_at_first_use": false,
+      "week": 8
+    },
+    {
+      "term": "hallucination",
+      "definition": "When an LLM generates plausible but factually incorrect information",
+      "category": "concept",
+      "related_terms": [
+        "Verification",
+        "Grounding",
+        "FActScore"
+      ],
+      "first_use": {
+        "week": 1,
+        "slide": 13,
+        "line": 315,
+        "file": "L01_Introduction_Agentic_AI\\L01_Introduction_Agentic_AI.tex"
+      },
+      "defined_at_first_use": false
+    },
+    {
+      "term": "hierarchical",
+      "definition": "Architecture where manager agents delegate to worker agents",
+      "category": "architecture",
+      "related_terms": [
+        "Multi-Agent",
+        "Orchestration"
+      ],
+      "first_use": {
+        "week": 1,
+        "slide": 8,
+        "line": 191,
+        "file": "L01_Introduction_Agentic_AI\\L01_Introduction_Agentic_AI.tex"
+      },
+      "defined_at_first_use": true
+    },
+    {
+      "term": "hybrid",
+      "definition": "Agent architecture combining reactive and deliberative layers",
+      "category": "architecture",
+      "related_terms": [
+        "Reactive",
+        "Deliberative"
+      ],
+      "first_use": {
+        "week": 1,
+        "slide": 8,
+        "line": 184,
+        "file": "L01_Introduction_Agentic_AI\\L01_Introduction_Agentic_AI.tex"
+      },
+      "defined_at_first_use": true
+    },
+    {
+      "term": "knowledge graph",
+      "definition": "Structured entity-relationship database for representing knowledge",
+      "category": "memory_type",
+      "related_terms": [
+        "GraphRAG",
+        "Entity Extraction"
+      ],
+      "first_use": {
+        "week": 1,
+        "slide": 8,
+        "line": 198,
+        "file": "L01_Introduction_Agentic_AI\\L01_Introduction_Agentic_AI.tex"
+      },
+      "defined_at_first_use": false
+    },
+    {
+      "term": "LangChain",
+      "definition": "Python framework for building LLM applications using chains of components",
+      "category": "framework",
+      "related_terms": [
+        "LangGraph",
+        "LCEL"
+      ],
+      "first_use": {
+        "week": 1,
+        "slide": 2,
+        "line": 77,
+        "file": "L01_Introduction_Agentic_AI\\L01_Introduction_Agentic_AI.tex"
+      },
+      "defined_at_first_use": false
+    },
+    {
+      "term": "LangGraph",
+      "definition": "LangChain's framework for building stateful, multi-actor applications using graphs",
+      "category": "framework",
+      "related_terms": [
+        "LangChain",
+        "State Machine"
+      ],
+      "first_use": {
+        "week": 1,
+        "slide": 5,
+        "line": 128,
+        "file": "L01_Introduction_Agentic_AI\\L01_Introduction_Agentic_AI.tex"
+      },
+      "defined_at_first_use": false,
+      "week": 6
+    },
+    {
+      "term": "LATS",
+      "definition": "Language Agent Tree Search - combines reasoning with Monte Carlo Tree Search",
+      "category": "technique",
+      "related_terms": [
+        "Planning",
+        "Tree-of-Thoughts"
+      ],
+      "source_paper": "Zhou et al. 2024",
+      "first_use": {
+        "week": 1,
+        "slide": 13,
+        "line": 309,
+        "file": "L01_Introduction_Agentic_AI\\L01_Introduction_Agentic_AI.tex"
+      },
+      "defined_at_first_use": false
+    },
+    {
+      "term": "LLM",
+      "definition": "Large Language Model - neural network trained on text to generate and understand language",
+      "category": "acronym",
+      "related_terms": [
+        "GPT-4",
+        "Claude",
+        "Gemini"
+      ],
+      "first_use": {
+        "week": 1,
+        "slide": 2,
+        "line": 76,
+        "file": "L01_Introduction_Agentic_AI\\L01_Introduction_Agentic_AI.tex"
+      },
+      "defined_at_first_use": false
+    },
+    {
+      "term": "long-term memory",
+      "definition": "Persistent storage across sessions (vector DB, knowledge graph)",
+      "category": "memory_type",
+      "related_terms": [
+        "Short-term Memory",
+        "Vector Store"
+      ],
+      "first_use": {
+        "week": 1,
+        "slide": 12,
+        "line": 285,
+        "file": "L01_Introduction_Agentic_AI\\L01_Introduction_Agentic_AI.tex"
+      },
+      "defined_at_first_use": true
+    },
+    {
+      "term": "MCP",
+      "definition": "Model Context Protocol - Anthropic's open standard for LLM-tool integration",
+      "category": "protocol",
+      "related_terms": [
+        "Tool Use",
+        "Function Calling"
+      ],
+      "first_use": {
+        "week": 1,
+        "slide": 9,
+        "line": 219,
+        "file": "L01_Introduction_Agentic_AI\\L01_Introduction_Agentic_AI.tex"
+      },
+      "defined_at_first_use": false
+    },
+    {
+      "term": "memory",
+      "definition": "System for storing and retrieving information across agent interactions",
+      "category": "concept",
+      "related_terms": [
+        "Short-term Memory",
+        "Long-term Memory",
+        "Episodic Memory"
+      ],
+      "first_use": {
+        "week": 1,
+        "slide": 4,
+        "line": 113,
+        "file": "L01_Introduction_Agentic_AI\\L01_Introduction_Agentic_AI.tex"
+      },
+      "defined_at_first_use": false
+    },
+    {
+      "term": "multi-agent",
+      "definition": "Architecture where specialized agents collaborate on tasks",
+      "category": "architecture",
+      "related_terms": [
+        "Single-Agent",
+        "Hierarchical",
+        "Orchestration"
+      ],
+      "first_use": {
+        "week": 1,
+        "slide": 5,
+        "line": 135,
+        "file": "L01_Introduction_Agentic_AI\\L01_Introduction_Agentic_AI.tex"
+      },
+      "defined_at_first_use": false
+    },
+    {
+      "term": "observation",
+      "definition": "Feedback from the environment after an agent takes an action",
+      "category": "concept",
+      "related_terms": [
+        "Action",
+        "State",
+        "ReAct"
+      ],
+      "first_use": {
+        "week": 1,
+        "slide": 6,
+        "line": 147,
+        "file": "L01_Introduction_Agentic_AI\\L01_Introduction_Agentic_AI.tex"
+      },
+      "defined_at_first_use": true
+    },
+    {
+      "term": "orchestration",
+      "definition": "Coordination pattern where a central agent manages workflow across multiple agents",
+      "category": "concept",
+      "related_terms": [
+        "Multi-Agent",
+        "Workflow"
+      ],
+      "first_use": {
+        "week": 1,
+        "slide": 2,
+        "line": 75,
+        "file": "L01_Introduction_Agentic_AI\\L01_Introduction_Agentic_AI.tex"
+      },
+      "defined_at_first_use": false
+    },
+    {
+      "term": "planning",
+      "definition": "Process of decomposing complex tasks into manageable steps before execution",
+      "category": "concept",
+      "related_terms": [
+        "Reasoning",
+        "Task Decomposition"
+      ],
+      "first_use": {
+        "week": 1,
+        "slide": 5,
+        "line": 121,
+        "file": "L01_Introduction_Agentic_AI\\L01_Introduction_Agentic_AI.tex"
+      },
+      "defined_at_first_use": false
+    },
+    {
+      "term": "RAG",
+      "definition": "Retrieval-Augmented Generation - combining retrieval with generation for grounded responses",
+      "category": "technique",
+      "related_terms": [
+        "Self-RAG",
+        "CRAG",
+        "GraphRAG"
+      ],
+      "first_use": {
+        "week": 1,
+        "slide": 13,
+        "line": 313,
+        "file": "L01_Introduction_Agentic_AI\\L01_Introduction_Agentic_AI.tex"
+      },
+      "defined_at_first_use": false,
+      "week": 7
+    },
+    {
+      "term": "ReAct",
+      "definition": "Reasoning and Acting paradigm that interleaves thought, action, and observation steps",
+      "category": "paradigm",
+      "related_terms": [
+        "Chain-of-Thought",
+        "Agent Loop"
+      ],
+      "source_paper": "Yao et al. 2023",
+      "first_use": {
+        "week": 1,
+        "slide": 2,
+        "line": 75,
+        "file": "L01_Introduction_Agentic_AI\\L01_Introduction_Agentic_AI.tex"
+      },
+      "defined_at_first_use": false,
+      "week": 1
+    },
+    {
+      "term": "reactive",
+      "definition": "Agent architecture using direct stimulus-response without planning (simple reflex)",
+      "category": "architecture",
+      "related_terms": [
+        "Deliberative",
+        "Hybrid"
+      ],
+      "first_use": {
+        "week": 1,
+        "slide": 2,
+        "line": 78,
+        "file": "L01_Introduction_Agentic_AI\\L01_Introduction_Agentic_AI.tex"
+      },
+      "defined_at_first_use": false
+    },
+    {
+      "term": "Reflexion",
+      "definition": "Framework where agents learn from verbal self-reflection on past failures",
+      "category": "technique",
+      "related_terms": [
+        "Self-Improvement",
+        "Memory"
+      ],
+      "source_paper": "Shinn et al. 2023",
+      "first_use": {
+        "week": 1,
+        "slide": 9,
+        "line": 226,
+        "file": "L01_Introduction_Agentic_AI\\L01_Introduction_Agentic_AI.tex"
+      },
+      "defined_at_first_use": false,
+      "week": 4
+    },
+    {
+      "term": "Self-RAG",
+      "definition": "RAG system that learns when to retrieve and how to critique its own outputs",
+      "category": "technique",
+      "related_terms": [
+        "RAG",
+        "Self-Improvement"
+      ],
+      "source_paper": "Asai et al. 2023",
+      "first_use": {
+        "week": 1,
+        "slide": 13,
+        "line": 313,
+        "file": "L01_Introduction_Agentic_AI\\L01_Introduction_Agentic_AI.tex"
+      },
+      "defined_at_first_use": false,
+      "week": 7
+    },
+    {
+      "term": "Semantic Kernel",
+      "definition": "Microsoft's SDK for integrating LLMs with conventional programming",
+      "category": "framework",
+      "related_terms": [
+        "LangChain",
+        "SDK"
+      ],
+      "first_use": {
+        "week": 1,
+        "slide": 10,
+        "line": 249,
+        "file": "L01_Introduction_Agentic_AI\\L01_Introduction_Agentic_AI.tex"
+      },
+      "defined_at_first_use": false
+    },
+    {
+      "term": "single-agent",
+      "definition": "Architecture where one LLM handles all tasks",
+      "category": "architecture",
+      "related_terms": [
+        "Multi-Agent",
+        "Hierarchical"
+      ],
+      "first_use": {
+        "week": 1,
+        "slide": 8,
+        "line": 189,
+        "file": "L01_Introduction_Agentic_AI\\L01_Introduction_Agentic_AI.tex"
+      },
+      "defined_at_first_use": true
+    },
+    {
+      "term": "task decomposition",
+      "definition": "Breaking complex tasks into smaller, manageable subtasks",
+      "category": "technique",
+      "related_terms": [
+        "Planning",
+        "Hierarchical"
+      ],
+      "first_use": {
+        "week": 1,
+        "slide": 9,
+        "line": 225,
+        "file": "L01_Introduction_Agentic_AI\\L01_Introduction_Agentic_AI.tex"
+      },
+      "defined_at_first_use": false
+    },
+    {
+      "term": "token",
+      "definition": "Basic unit of text processing in LLMs, roughly equivalent to 3/4 of a word",
+      "category": "concept",
+      "related_terms": [
+        "Context Window",
+        "Tokenization"
+      ],
+      "first_use": {
+        "week": 1,
+        "slide": 5,
+        "line": 129,
+        "file": "L01_Introduction_Agentic_AI\\L01_Introduction_Agentic_AI.tex"
+      },
+      "defined_at_first_use": false
+    },
+    {
+      "term": "tool use",
+      "definition": "Ability of an agent to invoke external tools or APIs to accomplish tasks",
+      "category": "concept",
+      "related_terms": [
+        "Function Calling",
+        "MCP"
+      ],
+      "first_use": {
+        "week": 1,
+        "slide": 2,
+        "line": 75,
+        "file": "L01_Introduction_Agentic_AI\\L01_Introduction_Agentic_AI.tex"
+      },
+      "defined_at_first_use": false
+    },
+    {
+      "term": "ToT",
+      "definition": "Tree-of-Thoughts - framework that explores multiple reasoning paths",
+      "category": "technique",
+      "related_terms": [
+        "Chain-of-Thought",
+        "Search"
+      ],
+      "source_paper": "Yao et al. 2023",
+      "first_use": {
+        "week": 1,
+        "slide": 13,
+        "line": 307,
+        "file": "L01_Introduction_Agentic_AI\\L01_Introduction_Agentic_AI.tex"
+      },
+      "defined_at_first_use": false
+    },
+    {
+      "term": "trajectory",
+      "definition": "Complete sequence of states, actions, and observations an agent takes during task execution",
+      "category": "concept",
+      "related_terms": [
+        "Agent",
+        "Episode",
+        "ReAct"
+      ],
+      "first_use": {
+        "week": 1,
+        "slide": 7,
+        "line": 164,
+        "file": "L01_Introduction_Agentic_AI\\L01_Introduction_Agentic_AI.tex"
+      },
+      "defined_at_first_use": false
+    },
+    {
+      "term": "Tree-of-Thoughts",
+      "definition": "Framework that explores multiple reasoning paths and evaluates them",
+      "category": "technique",
+      "related_terms": [
+        "ToT",
+        "Search"
+      ],
+      "source_paper": "Yao et al. 2023",
+      "first_use": {
+        "week": 1,
+        "slide": 5,
+        "line": 126,
+        "file": "L01_Introduction_Agentic_AI\\L01_Introduction_Agentic_AI.tex"
+      },
+      "defined_at_first_use": false
+    },
+    {
+      "term": "Voyager",
+      "definition": "NVIDIA's open-ended embodied agent for Minecraft exploration",
+      "category": "system",
+      "related_terms": [
+        "Embodied Agent",
+        "Curriculum Learning"
+      ],
+      "source_paper": "Wang et al. 2023",
+      "first_use": {
+        "week": 1,
+        "slide": 10,
+        "line": 244,
+        "file": "L01_Introduction_Agentic_AI\\L01_Introduction_Agentic_AI.tex"
+      },
+      "defined_at_first_use": true
+    },
+    {
+      "term": "Self-Consistency",
+      "definition": "Sampling multiple reasoning paths and selecting the most common answer",
+      "category": "technique",
+      "related_terms": [
+        "Chain-of-Thought",
+        "Ensemble"
+      ],
+      "first_use": {
+        "week": 2,
+        "slide": 2,
+        "line": 68,
+        "file": "L02_LLM_Foundations_Agents\\L02_LLM_Foundations_Agents.tex"
+      },
+      "defined_at_first_use": false,
+      "week": 2
+    },
+    {
+      "term": "episodic memory",
+      "definition": "Memory system storing past experiences and reflections for future reference",
+      "category": "memory_type",
+      "related_terms": [
+        "Reflexion",
+        "Long-term Memory"
+      ],
+      "first_use": {
+        "week": 4,
+        "slide": 8,
+        "line": 141,
+        "file": "L04_Planning_Reasoning\\L04_Planning_Reasoning.tex"
+      },
+      "defined_at_first_use": false
+    },
+    {
+      "term": "world model",
+      "definition": "Internal representation of environment dynamics used for planning",
+      "category": "concept",
+      "related_terms": [
+        "Planning",
+        "Simulation"
+      ],
+      "first_use": {
+        "week": 4,
+        "slide": 10,
+        "line": 168,
+        "file": "L04_Planning_Reasoning\\L04_Planning_Reasoning.tex"
+      },
+      "defined_at_first_use": false
+    },
+    {
+      "term": "RAPTOR",
+      "definition": "Recursive Abstractive Processing for Tree-Organized Retrieval",
+      "category": "technique",
+      "related_terms": [
+        "RAG",
+        "Hierarchical"
+      ],
+      "first_use": {
+        "week": 7,
+        "slide": 11,
+        "line": 219,
+        "file": "L07_Advanced_RAG\\L07_Advanced_RAG.tex"
+      },
+      "defined_at_first_use": false
+    },
+    {
+      "term": "entity extraction",
+      "definition": "Process of identifying and extracting named entities from text",
+      "category": "technique",
+      "related_terms": [
+        "NER",
+        "Knowledge Graph"
+      ],
+      "first_use": {
+        "week": 8,
+        "slide": 8,
+        "line": 111,
+        "file": "L08_GraphRAG_Knowledge\\L08_GraphRAG_Knowledge.tex"
+      },
+      "defined_at_first_use": true
+    },
+    {
+      "term": "Chain-of-Verification",
+      "definition": "Technique to reduce hallucinations through independent verification of claims",
+      "category": "technique",
+      "related_terms": [
+        "Hallucination",
+        "Verification"
+      ],
+      "source_paper": "Dhuliawala et al. 2023",
+      "first_use": {
+        "week": 9,
+        "slide": 3,
+        "line": 59,
+        "file": "L09_Hallucination_Prevention\\L09_Hallucination_Prevention.tex"
+      },
+      "defined_at_first_use": false,
+      "week": 9
+    },
+    {
+      "term": "claim decomposition",
+      "definition": "Breaking down text into atomic, independently verifiable claims",
+      "category": "technique",
+      "related_terms": [
+        "Verification",
+        "Fact-Checking"
+      ],
+      "first_use": {
+        "week": 9,
+        "slide": 7,
+        "line": 94,
+        "file": "L09_Hallucination_Prevention\\L09_Hallucination_Prevention.tex"
+      },
+      "defined_at_first_use": false
+    },
+    {
+      "term": "FActScore",
+      "definition": "Metric for evaluating factual precision in long-form text generation",
+      "category": "metric",
+      "related_terms": [
+        "Hallucination",
+        "Evaluation"
+      ],
+      "source_paper": "Min et al. 2023",
+      "first_use": {
+        "week": 9,
+        "slide": 4,
+        "line": 66,
+        "file": "L09_Hallucination_Prevention\\L09_Hallucination_Prevention.tex"
+      },
+      "defined_at_first_use": false,
+      "week": 9
+    },
+    {
+      "term": "SWE-bench",
+      "definition": "Benchmark for evaluating code agents on real GitHub issues",
+      "category": "metric",
+      "related_terms": [
+        "Code Agent",
+        "Evaluation"
+      ],
+      "source_paper": "Jimenez et al. 2024",
+      "first_use": {
+        "week": 10,
+        "slide": 7,
+        "line": 92,
+        "file": "L10_Agent_Evaluation\\L10_Agent_Evaluation.tex"
+      },
+      "defined_at_first_use": false
+    },
+    {
+      "term": "embodied agent",
+      "definition": "Agent that interacts with a physical or simulated environment through sensors and actuators",
+      "category": "concept",
+      "related_terms": [
+        "Robotics",
+        "Simulation"
+      ],
+      "first_use": {
+        "week": 12,
+        "slide": 6,
+        "line": 82,
+        "file": "L12_Research_Frontiers\\L12_Research_Frontiers.tex"
+      },
+      "defined_at_first_use": false
+    },
+    {
+      "term": "emergent behavior",
+      "definition": "Complex behaviors arising from simple agent interactions",
+      "category": "concept",
+      "related_terms": [
+        "Multi-Agent",
+        "Complexity"
+      ],
+      "first_use": null,
+      "defined_at_first_use": null
+    },
+    {
+      "term": "Generative Agent",
+      "definition": "Agent that simulates human behavior in interactive environments",
+      "category": "concept",
+      "related_terms": [
+        "Simulation",
+        "Emergence"
+      ],
+      "source_paper": "Park et al. 2023",
+      "first_use": null,
+      "defined_at_first_use": null,
+      "week": 12
+    },
+    {
+      "term": "jailbreak",
+      "definition": "Technique to bypass LLM safety restrictions through adversarial prompts",
+      "category": "safety",
+      "related_terms": [
+        "Safety",
+        "Adversarial"
+      ],
+      "first_use": null,
+      "defined_at_first_use": null
+    },
+    {
+      "term": "LLM-as-Judge",
+      "definition": "Using an LLM to evaluate the quality of outputs from another model or agent",
+      "category": "technique",
+      "related_terms": [
+        "Evaluation",
+        "Automated Assessment"
+      ],
+      "first_use": null,
+      "defined_at_first_use": null,
+      "week": 10
+    },
+    {
+      "term": "Pass@k",
+      "definition": "Metric measuring success rate when k attempts are allowed",
+      "category": "metric",
+      "related_terms": [
+        "Evaluation",
+        "Code Generation"
+      ],
+      "first_use": null,
+      "defined_at_first_use": null,
+      "week": 10
+    },
+    {
+      "term": "short-term memory",
+      "definition": "In-context memory stored within the current conversation",
+      "category": "memory_type",
+      "related_terms": [
+        "Long-term Memory",
+        "Context Window"
+      ],
+      "first_use": null,
+      "defined_at_first_use": null
+    },
+    {
+      "term": "vector store",
+      "definition": "Embedding database for semantic similarity search",
+      "category": "memory_type",
+      "related_terms": [
+        "RAG",
+        "Embedding",
+        "ChromaDB"
+      ],
+      "first_use": null,
+      "defined_at_first_use": null
+    },
+    {
+      "term": "Chain-of-Thought (CoT)",
+      "definition": "Prompting technique that elicits step-by-step reasoning from language models.",
+      "category": "concept",
+      "related_terms": [
+        "Tree-of-Thoughts",
+        "Reasoning"
+      ],
+      "first_use": {
+        "week": 2
+      },
+      "defined_at_first_use": null
+    },
+    {
+      "term": "Tree-of-Thoughts (ToT)",
+      "definition": "Framework that explores multiple reasoning paths and evaluates them to find optimal solutions.",
+      "category": "concept",
+      "related_terms": [
+        "Chain-of-Thought",
+        "Search"
+      ],
+      "first_use": {
+        "week": 2
+      },
+      "defined_at_first_use": null
+    },
+    {
+      "term": "Model Context Protocol (MCP)",
+      "definition": "Anthropic's open protocol for connecting LLMs to external tools and data sources.",
+      "category": "concept",
+      "related_terms": [
+        "Tool Use",
+        "API"
+      ],
+      "first_use": {
+        "week": 3
+      },
+      "defined_at_first_use": null
+    },
+    {
+      "term": "Multi-Agent System",
+      "definition": "System with multiple agents that coordinate to solve complex tasks.",
+      "category": "concept",
+      "related_terms": [
+        "Agent",
+        "Coordination"
+      ],
+      "first_use": {
+        "week": 5
+      },
+      "defined_at_first_use": null
+    },
+    {
+      "term": "Message Passing",
+      "definition": "Communication pattern where agents exchange structured messages.",
+      "category": "concept",
+      "related_terms": [
+        "Multi-Agent System",
+        "Coordination"
+      ],
+      "first_use": {
+        "week": 5
+      },
+      "defined_at_first_use": null
+    },
+    {
+      "term": "Code Agent",
+      "definition": "Agent specialized for code generation, testing, and debugging.",
+      "category": "concept",
+      "related_terms": [
+        "Domain Agent",
+        "Software Engineering"
+      ],
+      "first_use": {
+        "week": 11
+      },
+      "defined_at_first_use": null
+    },
+    {
+      "term": "Domain Agent",
+      "definition": "Agent designed for a specific domain with specialized tools and constraints.",
+      "category": "concept",
+      "related_terms": [
+        "Agent",
+        "Specialization"
+      ],
+      "first_use": {
+        "week": 11
+      },
+      "defined_at_first_use": null
+    }
+  ]
+}
