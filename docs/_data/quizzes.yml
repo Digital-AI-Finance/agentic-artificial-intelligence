@@ -28,6 +28,24 @@ week1:
     correct: 1
     explanation: "A trajectory captures the complete sequence of an agent's interactions during task execution."
 
+  - question: "Which architecture type combines reactive and deliberative approaches?"
+    options:
+      - "Pure reactive"
+      - "Hybrid architecture"
+      - "Single-agent"
+      - "Stateless"
+    correct: 1
+    explanation: "Hybrid architectures combine fast reactive responses with deliberative planning capabilities."
+
+  - question: "What is the difference between short-term and long-term memory in agents?"
+    options:
+      - "Short-term is faster to access"
+      - "Short-term is in-context, long-term persists across sessions"
+      - "Long-term is always larger"
+      - "They are the same"
+    correct: 1
+    explanation: "Short-term memory is the current context window, while long-term memory uses external storage like vector DBs."
+
 week2:
   - question: "What is the main purpose of Chain-of-Thought prompting?"
     options:
@@ -56,6 +74,24 @@ week2:
     correct: 1
     explanation: "Tree-of-Thoughts explores multiple reasoning paths in a tree structure and evaluates each to find optimal solutions."
 
+  - question: "What is zero-shot prompting?"
+    options:
+      - "Prompting with no examples provided"
+      - "Prompting with zero temperature"
+      - "Prompting for zero output"
+      - "Prompting without a system message"
+    correct: 0
+    explanation: "Zero-shot prompting gives the model a task without any examples, relying on its pre-trained knowledge."
+
+  - question: "In few-shot prompting, what role do examples serve?"
+    options:
+      - "They train the model"
+      - "They demonstrate the desired input-output format"
+      - "They reduce costs"
+      - "They speed up inference"
+    correct: 1
+    explanation: "Few-shot examples show the model what format and style of output is expected."
+
 week3:
   - question: "What is function calling in the context of LLMs?"
     options:
@@ -74,6 +110,24 @@ week3:
       - "Multi-Chain Processing"
     correct: 1
     explanation: "MCP stands for Model Context Protocol - Anthropic's open protocol for connecting LLMs to tools and data."
+
+  - question: "What is JSON Schema used for in function calling?"
+    options:
+      - "Storing conversation history"
+      - "Defining the structure and validation of function parameters"
+      - "Compressing responses"
+      - "Training the model"
+    correct: 1
+    explanation: "JSON Schema defines the expected structure, types, and constraints for function call parameters."
+
+  - question: "What is the benefit of tool descriptions in function calling?"
+    options:
+      - "They make tools run faster"
+      - "They help the LLM understand when and how to use each tool"
+      - "They reduce API costs"
+      - "They are optional"
+    correct: 1
+    explanation: "Tool descriptions help the LLM decide which tool to use and what parameters to provide."
 
 week4:
   - question: "What are the three main components of the Reflexion framework?"
@@ -139,6 +193,33 @@ week5:
       - "A database"
     correct: 1
     explanation: "An orchestrator is a central agent that routes tasks and coordinates between specialized agents."
+
+  - question: "What is the advantage of specialized agents over a single general agent?"
+    options:
+      - "They are always faster"
+      - "Each agent can focus on specific tasks with appropriate tools and expertise"
+      - "They use less memory"
+      - "They require no coordination"
+    correct: 1
+    explanation: "Specialized agents can excel at specific tasks, allowing the system to leverage focused expertise."
+
+  - question: "What is emergent behavior in multi-agent systems?"
+    options:
+      - "Planned behavior programmed explicitly"
+      - "Complex behaviors arising from simple agent interactions"
+      - "Error conditions"
+      - "System crashes"
+    correct: 1
+    explanation: "Emergent behavior arises spontaneously from agent interactions without being explicitly programmed."
+
+  - question: "What is the blackboard architecture in multi-agent systems?"
+    options:
+      - "A physical whiteboard"
+      - "A shared memory space where agents read and write information"
+      - "A message queue"
+      - "A neural network layer"
+    correct: 1
+    explanation: "Blackboard architecture uses a shared workspace that all agents can read from and write to."
 
 week6:
   - question: "What is a StateGraph in LangGraph?"

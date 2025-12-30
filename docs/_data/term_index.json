@@ -1,0 +1,1199 @@
+{
+  "matrix": {
+    "agent": {
+      "category": "concept",
+      "weeks": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        9,
+        10,
+        11,
+        12
+      ],
+      "first_week": 1,
+      "occurrences": 11,
+      "details": {
+        "1": 33,
+        "2": 10,
+        "3": 1,
+        "4": 7,
+        "5": 25,
+        "6": 23,
+        "7": 2,
+        "9": 2,
+        "10": 3,
+        "11": 4,
+        "12": 6
+      }
+    },
+    "AgentBench": {
+      "category": "metric",
+      "weeks": [
+        1,
+        10
+      ],
+      "first_week": 1,
+      "occurrences": 2,
+      "details": {
+        "1": 1,
+        "10": 4
+      }
+    },
+    "alignment": {
+      "category": "concept",
+      "weeks": [
+        1
+      ],
+      "first_week": 1,
+      "occurrences": 1,
+      "details": {
+        "1": 1
+      }
+    },
+    "API": {
+      "category": "acronym",
+      "weeks": [
+        1,
+        3,
+        6
+      ],
+      "first_week": 1,
+      "occurrences": 3,
+      "details": {
+        "1": 1,
+        "3": 6,
+        "6": 1
+      }
+    },
+    "AutoGen": {
+      "category": "framework",
+      "weeks": [
+        1,
+        5,
+        6,
+        12
+      ],
+      "first_week": 1,
+      "occurrences": 4,
+      "details": {
+        "1": 3,
+        "5": 4,
+        "6": 9,
+        "12": 1
+      }
+    },
+    "AutoGPT": {
+      "category": "system",
+      "weeks": [
+        1
+      ],
+      "first_week": 1,
+      "occurrences": 1,
+      "details": {
+        "1": 1
+      }
+    },
+    "BabyAGI": {
+      "category": "system",
+      "weeks": [
+        1
+      ],
+      "first_week": 1,
+      "occurrences": 1,
+      "details": {
+        "1": 1
+      }
+    },
+    "Chain-of-Thought": {
+      "category": "technique",
+      "weeks": [
+        1,
+        2
+      ],
+      "first_week": 1,
+      "occurrences": 2,
+      "details": {
+        "1": 2,
+        "2": 9
+      }
+    },
+    "Chain-of-Verification": {
+      "category": "technique",
+      "weeks": [
+        9
+      ],
+      "first_week": 9,
+      "occurrences": 1,
+      "details": {
+        "9": 3
+      }
+    },
+    "claim decomposition": {
+      "category": "technique",
+      "weeks": [
+        9
+      ],
+      "first_week": 9,
+      "occurrences": 1,
+      "details": {
+        "9": 1
+      }
+    },
+    "Claude": {
+      "category": "system",
+      "weeks": [
+        1,
+        3
+      ],
+      "first_week": 1,
+      "occurrences": 2,
+      "details": {
+        "1": 3,
+        "3": 1
+      }
+    },
+    "Constitutional AI": {
+      "category": "safety",
+      "weeks": [
+        1,
+        12
+      ],
+      "first_week": 1,
+      "occurrences": 2,
+      "details": {
+        "1": 1,
+        "12": 1
+      }
+    },
+    "context window": {
+      "category": "concept",
+      "weeks": [
+        1,
+        2,
+        5
+      ],
+      "first_week": 1,
+      "occurrences": 3,
+      "details": {
+        "1": 1,
+        "2": 4,
+        "5": 1
+      }
+    },
+    "CoT": {
+      "category": "technique",
+      "weeks": [
+        1,
+        2,
+        4
+      ],
+      "first_week": 1,
+      "occurrences": 3,
+      "details": {
+        "1": 2,
+        "2": 7,
+        "4": 1
+      }
+    },
+    "CRAG": {
+      "category": "technique",
+      "weeks": [
+        1,
+        6,
+        7
+      ],
+      "first_week": 1,
+      "occurrences": 3,
+      "details": {
+        "1": 1,
+        "6": 1,
+        "7": 9
+      }
+    },
+    "CrewAI": {
+      "category": "framework",
+      "weeks": [
+        1,
+        5,
+        6
+      ],
+      "first_week": 1,
+      "occurrences": 3,
+      "details": {
+        "1": 2,
+        "5": 1,
+        "6": 4
+      }
+    },
+    "deliberative": {
+      "category": "architecture",
+      "weeks": [
+        1,
+        4
+      ],
+      "first_week": 1,
+      "occurrences": 2,
+      "details": {
+        "1": 3,
+        "4": 2
+      }
+    },
+    "Devin": {
+      "category": "system",
+      "weeks": [
+        1
+      ],
+      "first_week": 1,
+      "occurrences": 1,
+      "details": {
+        "1": 1
+      }
+    },
+    "embodied agent": {
+      "category": "concept",
+      "weeks": [
+        12
+      ],
+      "first_week": 12,
+      "occurrences": 1,
+      "details": {
+        "12": 1
+      }
+    },
+    "emergent behavior": {
+      "category": "concept",
+      "weeks": [
+        1,
+        5
+      ],
+      "first_week": 1,
+      "occurrences": 2,
+      "details": {
+        "1": 1,
+        "5": 3
+      }
+    },
+    "entity extraction": {
+      "category": "technique",
+      "weeks": [
+        8
+      ],
+      "first_week": 8,
+      "occurrences": 1,
+      "details": {
+        "8": 1
+      }
+    },
+    "episodic memory": {
+      "category": "memory_type",
+      "weeks": [
+        4
+      ],
+      "first_week": 4,
+      "occurrences": 1,
+      "details": {
+        "4": 1
+      }
+    },
+    "FActScore": {
+      "category": "metric",
+      "weeks": [
+        9
+      ],
+      "first_week": 9,
+      "occurrences": 1,
+      "details": {
+        "9": 5
+      }
+    },
+    "function calling": {
+      "category": "technique",
+      "weeks": [
+        1,
+        2,
+        3
+      ],
+      "first_week": 1,
+      "occurrences": 3,
+      "details": {
+        "1": 3,
+        "2": 1,
+        "3": 6
+      }
+    },
+    "Gemini": {
+      "category": "system",
+      "weeks": [
+        1
+      ],
+      "first_week": 1,
+      "occurrences": 1,
+      "details": {
+        "1": 1
+      }
+    },
+    "Generative Agent": {
+      "category": "concept",
+      "weeks": [
+        12
+      ],
+      "first_week": 12,
+      "occurrences": 1,
+      "details": {
+        "12": 1
+      }
+    },
+    "GitHub Copilot": {
+      "category": "system",
+      "weeks": [
+        1
+      ],
+      "first_week": 1,
+      "occurrences": 1,
+      "details": {
+        "1": 2
+      }
+    },
+    "GPT-4": {
+      "category": "system",
+      "weeks": [
+        1,
+        3
+      ],
+      "first_week": 1,
+      "occurrences": 2,
+      "details": {
+        "1": 2,
+        "3": 1
+      }
+    },
+    "GraphRAG": {
+      "category": "technique",
+      "weeks": [
+        1,
+        7,
+        8,
+        12
+      ],
+      "first_week": 1,
+      "occurrences": 4,
+      "details": {
+        "1": 1,
+        "7": 1,
+        "8": 10,
+        "12": 1
+      }
+    },
+    "hallucination": {
+      "category": "concept",
+      "weeks": [
+        1,
+        3,
+        8,
+        9
+      ],
+      "first_week": 1,
+      "occurrences": 4,
+      "details": {
+        "1": 1,
+        "3": 1,
+        "8": 1,
+        "9": 5
+      }
+    },
+    "hierarchical": {
+      "category": "architecture",
+      "weeks": [
+        1,
+        2,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "first_week": 1,
+      "occurrences": 7,
+      "details": {
+        "1": 1,
+        "2": 1,
+        "4": 4,
+        "5": 1,
+        "6": 2,
+        "7": 2,
+        "8": 2
+      }
+    },
+    "hybrid": {
+      "category": "architecture",
+      "weeks": [
+        1,
+        5,
+        7,
+        8
+      ],
+      "first_week": 1,
+      "occurrences": 4,
+      "details": {
+        "1": 1,
+        "5": 1,
+        "7": 1,
+        "8": 2
+      }
+    },
+    "jailbreak": {
+      "category": "safety",
+      "weeks": [
+        1
+      ],
+      "first_week": 1,
+      "occurrences": 1,
+      "details": {
+        "1": 1
+      }
+    },
+    "knowledge graph": {
+      "category": "memory_type",
+      "weeks": [
+        1,
+        8
+      ],
+      "first_week": 1,
+      "occurrences": 2,
+      "details": {
+        "1": 3,
+        "8": 7
+      }
+    },
+    "LangChain": {
+      "category": "framework",
+      "weeks": [
+        1,
+        6
+      ],
+      "first_week": 1,
+      "occurrences": 2,
+      "details": {
+        "1": 3,
+        "6": 5
+      }
+    },
+    "LangGraph": {
+      "category": "framework",
+      "weeks": [
+        1,
+        5,
+        6,
+        12
+      ],
+      "first_week": 1,
+      "occurrences": 4,
+      "details": {
+        "1": 3,
+        "5": 1,
+        "6": 17,
+        "12": 1
+      }
+    },
+    "LATS": {
+      "category": "technique",
+      "weeks": [
+        1,
+        4
+      ],
+      "first_week": 1,
+      "occurrences": 2,
+      "details": {
+        "1": 1,
+        "4": 5
+      }
+    },
+    "LLM": {
+      "category": "acronym",
+      "weeks": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        10,
+        12
+      ],
+      "first_week": 1,
+      "occurrences": 10,
+      "details": {
+        "1": 11,
+        "2": 6,
+        "3": 11,
+        "4": 3,
+        "5": 1,
+        "6": 2,
+        "7": 3,
+        "8": 1,
+        "10": 1,
+        "12": 1
+      }
+    },
+    "LLM-as-Judge": {
+      "category": "technique",
+      "weeks": [
+        10
+      ],
+      "first_week": 10,
+      "occurrences": 1,
+      "details": {
+        "10": 1
+      }
+    },
+    "long-term memory": {
+      "category": "memory_type",
+      "weeks": [
+        1
+      ],
+      "first_week": 1,
+      "occurrences": 1,
+      "details": {
+        "1": 3
+      }
+    },
+    "MCP": {
+      "category": "protocol",
+      "weeks": [
+        1,
+        2,
+        3
+      ],
+      "first_week": 1,
+      "occurrences": 3,
+      "details": {
+        "1": 2,
+        "2": 1,
+        "3": 8
+      }
+    },
+    "memory": {
+      "category": "concept",
+      "weeks": [
+        1,
+        2,
+        4,
+        6,
+        12
+      ],
+      "first_week": 1,
+      "occurrences": 5,
+      "details": {
+        "1": 10,
+        "2": 1,
+        "4": 5,
+        "6": 1,
+        "12": 1
+      }
+    },
+    "multi-agent": {
+      "category": "architecture",
+      "weeks": [
+        1,
+        4,
+        5,
+        6,
+        9,
+        12
+      ],
+      "first_week": 1,
+      "occurrences": 6,
+      "details": {
+        "1": 4,
+        "4": 1,
+        "5": 16,
+        "6": 9,
+        "9": 1,
+        "12": 1
+      }
+    },
+    "observation": {
+      "category": "concept",
+      "weeks": [
+        1
+      ],
+      "first_week": 1,
+      "occurrences": 1,
+      "details": {
+        "1": 3
+      }
+    },
+    "orchestration": {
+      "category": "concept",
+      "weeks": [
+        1,
+        5,
+        6
+      ],
+      "first_week": 1,
+      "occurrences": 3,
+      "details": {
+        "1": 2,
+        "5": 1,
+        "6": 6
+      }
+    },
+    "Pass@k": {
+      "category": "metric",
+      "weeks": [
+        4
+      ],
+      "first_week": 4,
+      "occurrences": 1,
+      "details": {
+        "4": 1
+      }
+    },
+    "planning": {
+      "category": "concept",
+      "weeks": [
+        1,
+        2,
+        3,
+        4,
+        7,
+        12
+      ],
+      "first_week": 1,
+      "occurrences": 6,
+      "details": {
+        "1": 8,
+        "2": 6,
+        "3": 1,
+        "4": 22,
+        "7": 1,
+        "12": 2
+      }
+    },
+    "RAG": {
+      "category": "technique",
+      "weeks": [
+        1,
+        2,
+        6,
+        7,
+        8,
+        12
+      ],
+      "first_week": 1,
+      "occurrences": 6,
+      "details": {
+        "1": 1,
+        "2": 1,
+        "6": 3,
+        "7": 26,
+        "8": 1,
+        "12": 1
+      }
+    },
+    "RAPTOR": {
+      "category": "technique",
+      "weeks": [
+        7
+      ],
+      "first_week": 7,
+      "occurrences": 1,
+      "details": {
+        "7": 4
+      }
+    },
+    "ReAct": {
+      "category": "paradigm",
+      "weeks": [
+        1,
+        2,
+        12
+      ],
+      "first_week": 1,
+      "occurrences": 3,
+      "details": {
+        "1": 13,
+        "2": 1,
+        "12": 1
+      }
+    },
+    "reactive": {
+      "category": "architecture",
+      "weeks": [
+        1,
+        4
+      ],
+      "first_week": 1,
+      "occurrences": 2,
+      "details": {
+        "1": 3,
+        "4": 3
+      }
+    },
+    "Reflexion": {
+      "category": "technique",
+      "weeks": [
+        1,
+        3,
+        4
+      ],
+      "first_week": 1,
+      "occurrences": 3,
+      "details": {
+        "1": 2,
+        "3": 1,
+        "4": 7
+      }
+    },
+    "Self-Consistency": {
+      "category": "technique",
+      "weeks": [
+        2,
+        9
+      ],
+      "first_week": 2,
+      "occurrences": 2,
+      "details": {
+        "2": 10,
+        "9": 1
+      }
+    },
+    "Self-RAG": {
+      "category": "technique",
+      "weeks": [
+        1,
+        6,
+        7
+      ],
+      "first_week": 1,
+      "occurrences": 3,
+      "details": {
+        "1": 1,
+        "6": 1,
+        "7": 12
+      }
+    },
+    "Semantic Kernel": {
+      "category": "framework",
+      "weeks": [
+        1,
+        6
+      ],
+      "first_week": 1,
+      "occurrences": 2,
+      "details": {
+        "1": 1,
+        "6": 2
+      }
+    },
+    "short-term memory": {
+      "category": "memory_type",
+      "weeks": [
+        1
+      ],
+      "first_week": 1,
+      "occurrences": 1,
+      "details": {
+        "1": 2
+      }
+    },
+    "single-agent": {
+      "category": "architecture",
+      "weeks": [
+        1,
+        5
+      ],
+      "first_week": 1,
+      "occurrences": 2,
+      "details": {
+        "1": 1,
+        "5": 1
+      }
+    },
+    "SWE-bench": {
+      "category": "metric",
+      "weeks": [
+        10,
+        11
+      ],
+      "first_week": 10,
+      "occurrences": 2,
+      "details": {
+        "10": 1,
+        "11": 5
+      }
+    },
+    "task decomposition": {
+      "category": "technique",
+      "weeks": [
+        1,
+        2,
+        4
+      ],
+      "first_week": 1,
+      "occurrences": 3,
+      "details": {
+        "1": 1,
+        "2": 1,
+        "4": 2
+      }
+    },
+    "token": {
+      "category": "concept",
+      "weeks": [
+        1,
+        2,
+        6
+      ],
+      "first_week": 1,
+      "occurrences": 3,
+      "details": {
+        "1": 2,
+        "2": 1,
+        "6": 1
+      }
+    },
+    "tool use": {
+      "category": "concept",
+      "weeks": [
+        1,
+        2,
+        3,
+        7
+      ],
+      "first_week": 1,
+      "occurrences": 4,
+      "details": {
+        "1": 5,
+        "2": 1,
+        "3": 8,
+        "7": 1
+      }
+    },
+    "ToT": {
+      "category": "technique",
+      "weeks": [
+        1,
+        2
+      ],
+      "first_week": 1,
+      "occurrences": 2,
+      "details": {
+        "1": 2,
+        "2": 5
+      }
+    },
+    "trajectory": {
+      "category": "concept",
+      "weeks": [
+        1
+      ],
+      "first_week": 1,
+      "occurrences": 1,
+      "details": {
+        "1": 3
+      }
+    },
+    "Tree-of-Thoughts": {
+      "category": "technique",
+      "weeks": [
+        1,
+        2
+      ],
+      "first_week": 1,
+      "occurrences": 2,
+      "details": {
+        "1": 1,
+        "2": 6
+      }
+    },
+    "vector store": {
+      "category": "memory_type",
+      "weeks": [
+        1
+      ],
+      "first_week": 1,
+      "occurrences": 1,
+      "details": {
+        "1": 2
+      }
+    },
+    "Voyager": {
+      "category": "system",
+      "weeks": [
+        1,
+        12
+      ],
+      "first_week": 1,
+      "occurrences": 2,
+      "details": {
+        "1": 1,
+        "12": 1
+      }
+    },
+    "world model": {
+      "category": "concept",
+      "weeks": [
+        4
+      ],
+      "first_week": 4,
+      "occurrences": 1,
+      "details": {
+        "4": 2
+      }
+    }
+  },
+  "week_focus": {
+    "1": {
+      "new": [
+        "agent",
+        "AgentBench",
+        "alignment",
+        "API",
+        "AutoGen",
+        "AutoGPT",
+        "BabyAGI",
+        "Chain-of-Thought",
+        "Claude",
+        "Constitutional AI",
+        "context window",
+        "CoT",
+        "CRAG",
+        "CrewAI",
+        "deliberative",
+        "Devin",
+        "emergent behavior",
+        "function calling",
+        "Gemini",
+        "GitHub Copilot",
+        "GPT-4",
+        "GraphRAG",
+        "hallucination",
+        "hierarchical",
+        "hybrid",
+        "jailbreak",
+        "knowledge graph",
+        "LangChain",
+        "LangGraph",
+        "LATS",
+        "LLM",
+        "long-term memory",
+        "MCP",
+        "memory",
+        "multi-agent",
+        "observation",
+        "orchestration",
+        "planning",
+        "RAG",
+        "ReAct",
+        "reactive",
+        "Reflexion",
+        "Self-RAG",
+        "Semantic Kernel",
+        "short-term memory",
+        "single-agent",
+        "task decomposition",
+        "token",
+        "tool use",
+        "ToT",
+        "trajectory",
+        "Tree-of-Thoughts",
+        "vector store",
+        "Voyager"
+      ],
+      "continued": []
+    },
+    "2": {
+      "new": [
+        "Self-Consistency"
+      ],
+      "continued": [
+        "agent",
+        "Chain-of-Thought",
+        "context window",
+        "CoT",
+        "function calling",
+        "hierarchical",
+        "LLM",
+        "MCP",
+        "memory",
+        "planning",
+        "RAG",
+        "ReAct",
+        "task decomposition",
+        "token",
+        "tool use",
+        "ToT",
+        "Tree-of-Thoughts"
+      ]
+    },
+    "3": {
+      "new": [],
+      "continued": [
+        "agent",
+        "API",
+        "Claude",
+        "function calling",
+        "GPT-4",
+        "hallucination",
+        "LLM",
+        "MCP",
+        "planning",
+        "Reflexion",
+        "tool use"
+      ]
+    },
+    "4": {
+      "new": [
+        "episodic memory",
+        "Pass@k",
+        "world model"
+      ],
+      "continued": [
+        "agent",
+        "CoT",
+        "deliberative",
+        "hierarchical",
+        "LATS",
+        "LLM",
+        "memory",
+        "multi-agent",
+        "planning",
+        "reactive",
+        "Reflexion",
+        "task decomposition"
+      ]
+    },
+    "5": {
+      "new": [],
+      "continued": [
+        "agent",
+        "AutoGen",
+        "context window",
+        "CrewAI",
+        "emergent behavior",
+        "hierarchical",
+        "hybrid",
+        "LangGraph",
+        "LLM",
+        "multi-agent",
+        "orchestration",
+        "single-agent"
+      ]
+    },
+    "6": {
+      "new": [],
+      "continued": [
+        "agent",
+        "API",
+        "AutoGen",
+        "CRAG",
+        "CrewAI",
+        "hierarchical",
+        "LangChain",
+        "LangGraph",
+        "LLM",
+        "memory",
+        "multi-agent",
+        "orchestration",
+        "RAG",
+        "Self-RAG",
+        "Semantic Kernel",
+        "token"
+      ]
+    },
+    "7": {
+      "new": [
+        "RAPTOR"
+      ],
+      "continued": [
+        "agent",
+        "CRAG",
+        "GraphRAG",
+        "hierarchical",
+        "hybrid",
+        "LLM",
+        "planning",
+        "RAG",
+        "Self-RAG",
+        "tool use"
+      ]
+    },
+    "8": {
+      "new": [
+        "entity extraction"
+      ],
+      "continued": [
+        "GraphRAG",
+        "hallucination",
+        "hierarchical",
+        "hybrid",
+        "knowledge graph",
+        "LLM",
+        "RAG"
+      ]
+    },
+    "9": {
+      "new": [
+        "Chain-of-Verification",
+        "claim decomposition",
+        "FActScore"
+      ],
+      "continued": [
+        "agent",
+        "hallucination",
+        "multi-agent",
+        "Self-Consistency"
+      ]
+    },
+    "10": {
+      "new": [
+        "LLM-as-Judge",
+        "SWE-bench"
+      ],
+      "continued": [
+        "agent",
+        "AgentBench",
+        "LLM"
+      ]
+    },
+    "11": {
+      "new": [],
+      "continued": [
+        "agent",
+        "SWE-bench"
+      ]
+    },
+    "12": {
+      "new": [
+        "embodied agent",
+        "Generative Agent"
+      ],
+      "continued": [
+        "agent",
+        "AutoGen",
+        "Constitutional AI",
+        "GraphRAG",
+        "LangGraph",
+        "LLM",
+        "memory",
+        "multi-agent",
+        "planning",
+        "RAG",
+        "ReAct",
+        "Voyager"
+      ]
+    }
+  },
+  "statistics": {
+    "total_terms": 67,
+    "by_category": {}
+  }
+}
