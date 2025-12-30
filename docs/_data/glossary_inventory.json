@@ -18,18 +18,18 @@
         "paradigm": 1
       },
       "by_week": {
-        "1": 50,
+        "1": 54,
         "2": 1,
-        "4": 2,
+        "4": 3,
         "7": 1,
         "8": 1,
         "9": 3,
-        "10": 1,
-        "12": 1
+        "10": 2,
+        "12": 2
       },
-      "defined_at_first_use": 25,
-      "not_defined_at_first_use": 35,
-      "not_found_in_slides": 7
+      "defined_at_first_use": 24,
+      "not_defined_at_first_use": 43,
+      "not_found_in_slides": 0
     }
   },
   "glossary": [
@@ -296,6 +296,22 @@
       "defined_at_first_use": true
     },
     {
+      "term": "emergent behavior",
+      "definition": "Complex behaviors arising from simple agent interactions",
+      "category": "concept",
+      "related_terms": [
+        "Multi-Agent",
+        "Complexity"
+      ],
+      "first_use": {
+        "week": 1,
+        "slide": 12,
+        "line": 286,
+        "file": "L01_Introduction_Agentic_AI\\L01_Introduction_Agentic_AI.tex"
+      },
+      "defined_at_first_use": false
+    },
+    {
       "term": "function calling",
       "definition": "API feature allowing LLMs to generate structured calls to predefined functions",
       "category": "technique",
@@ -426,6 +442,22 @@
       "defined_at_first_use": true
     },
     {
+      "term": "jailbreak",
+      "definition": "Technique to bypass LLM safety restrictions through adversarial prompts",
+      "category": "safety",
+      "related_terms": [
+        "Safety",
+        "Adversarial"
+      ],
+      "first_use": {
+        "week": 1,
+        "slide": 11,
+        "line": 269,
+        "file": "L01_Introduction_Agentic_AI\\L01_Introduction_Agentic_AI.tex"
+      },
+      "defined_at_first_use": false
+    },
+    {
       "term": "knowledge graph",
       "definition": "Structured entity-relationship database for representing knowledge",
       "category": "memory_type",
@@ -517,11 +549,11 @@
       ],
       "first_use": {
         "week": 1,
-        "slide": 12,
-        "line": 285,
+        "slide": 8,
+        "line": 198,
         "file": "L01_Introduction_Agentic_AI\\L01_Introduction_Agentic_AI.tex"
       },
-      "defined_at_first_use": true
+      "defined_at_first_use": false
     },
     {
       "term": "MCP",
@@ -723,6 +755,22 @@
       "defined_at_first_use": false
     },
     {
+      "term": "short-term memory",
+      "definition": "In-context memory stored within the current conversation",
+      "category": "memory_type",
+      "related_terms": [
+        "Long-term Memory",
+        "Context Window"
+      ],
+      "first_use": {
+        "week": 1,
+        "slide": 8,
+        "line": 197,
+        "file": "L01_Introduction_Agentic_AI\\L01_Introduction_Agentic_AI.tex"
+      },
+      "defined_at_first_use": false
+    },
+    {
       "term": "single-agent",
       "definition": "Architecture where one LLM handles all tasks",
       "category": "architecture",
@@ -838,6 +886,23 @@
       "defined_at_first_use": true
     },
     {
+      "term": "vector store",
+      "definition": "Embedding database for semantic similarity search",
+      "category": "memory_type",
+      "related_terms": [
+        "RAG",
+        "Embedding",
+        "ChromaDB"
+      ],
+      "first_use": {
+        "week": 1,
+        "slide": 8,
+        "line": 198,
+        "file": "L01_Introduction_Agentic_AI\\L01_Introduction_Agentic_AI.tex"
+      },
+      "defined_at_first_use": false
+    },
+    {
       "term": "Voyager",
       "definition": "NVIDIA's open-ended embodied agent for Minecraft exploration",
       "category": "system",
@@ -882,6 +947,22 @@
         "week": 4,
         "slide": 8,
         "line": 141,
+        "file": "L04_Planning_Reasoning\\L04_Planning_Reasoning.tex"
+      },
+      "defined_at_first_use": false
+    },
+    {
+      "term": "Pass@k",
+      "definition": "Metric measuring success rate when k attempts are allowed",
+      "category": "metric",
+      "related_terms": [
+        "Evaluation",
+        "Code Generation"
+      ],
+      "first_use": {
+        "week": 4,
+        "slide": 8,
+        "line": 144,
         "file": "L04_Planning_Reasoning\\L04_Planning_Reasoning.tex"
       },
       "defined_at_first_use": false
@@ -985,6 +1066,22 @@
       "defined_at_first_use": false
     },
     {
+      "term": "LLM-as-Judge",
+      "definition": "Using an LLM to evaluate the quality of outputs from another model or agent",
+      "category": "technique",
+      "related_terms": [
+        "Evaluation",
+        "Automated Assessment"
+      ],
+      "first_use": {
+        "week": 10,
+        "slide": 7,
+        "line": 94,
+        "file": "L10_Agent_Evaluation\\L10_Agent_Evaluation.tex"
+      },
+      "defined_at_first_use": false
+    },
+    {
       "term": "SWE-bench",
       "definition": "Benchmark for evaluating code agents on real GitHub issues",
       "category": "metric",
@@ -1018,17 +1115,6 @@
       "defined_at_first_use": true
     },
     {
-      "term": "emergent behavior",
-      "definition": "Complex behaviors arising from simple agent interactions",
-      "category": "concept",
-      "related_terms": [
-        "Multi-Agent",
-        "Complexity"
-      ],
-      "first_use": null,
-      "defined_at_first_use": null
-    },
-    {
       "term": "Generative Agent",
       "definition": "Agent that simulates human behavior in interactive environments",
       "category": "concept",
@@ -1037,64 +1123,13 @@
         "Emergence"
       ],
       "source_paper": "Park et al. 2023",
-      "first_use": null,
-      "defined_at_first_use": null
-    },
-    {
-      "term": "jailbreak",
-      "definition": "Technique to bypass LLM safety restrictions through adversarial prompts",
-      "category": "safety",
-      "related_terms": [
-        "Safety",
-        "Adversarial"
-      ],
-      "first_use": null,
-      "defined_at_first_use": null
-    },
-    {
-      "term": "LLM-as-Judge",
-      "definition": "Using an LLM to evaluate the quality of outputs from another model or agent",
-      "category": "technique",
-      "related_terms": [
-        "Evaluation",
-        "Automated Assessment"
-      ],
-      "first_use": null,
-      "defined_at_first_use": null
-    },
-    {
-      "term": "Pass@k",
-      "definition": "Metric measuring success rate when k attempts are allowed",
-      "category": "metric",
-      "related_terms": [
-        "Evaluation",
-        "Code Generation"
-      ],
-      "first_use": null,
-      "defined_at_first_use": null
-    },
-    {
-      "term": "short-term memory",
-      "definition": "In-context memory stored within the current conversation",
-      "category": "memory_type",
-      "related_terms": [
-        "Long-term Memory",
-        "Context Window"
-      ],
-      "first_use": null,
-      "defined_at_first_use": null
-    },
-    {
-      "term": "vector store",
-      "definition": "Embedding database for semantic similarity search",
-      "category": "memory_type",
-      "related_terms": [
-        "RAG",
-        "Embedding",
-        "ChromaDB"
-      ],
-      "first_use": null,
-      "defined_at_first_use": null
+      "first_use": {
+        "week": 12,
+        "slide": 6,
+        "line": 83,
+        "file": "L12_Research_Frontiers\\L12_Research_Frontiers.tex"
+      },
+      "defined_at_first_use": false
     }
   ]
 }

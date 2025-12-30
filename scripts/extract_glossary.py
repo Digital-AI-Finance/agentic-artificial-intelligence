@@ -382,11 +382,26 @@ TERM_DEFINITIONS = {
     },
 }
 
-# Regex patterns for finding terms in LaTeX
-TERM_PATTERNS = {
-    term: re.compile(r'\b' + re.escape(term) + r'\b', re.IGNORECASE)
-    for term in TERM_DEFINITIONS.keys()
+# Variant mappings for terms that appear differently in slides
+TERM_VARIANTS = {
+    "short-term memory": ["short-term", "Short-term"],
+    "long-term memory": ["long-term", "Long-term"],
+    "vector store": ["vector store", "vector stores", "Vector stores", "Vector DB"],
+    "knowledge graph": ["knowledge graph", "knowledge graphs"],
+    "jailbreak": ["jailbreak", "jailbreaks"],
+    "emergent behavior": ["emergent", "Emergent"],
+    "Generative Agent": ["Generative Agent", "Generative Agents"],
+    "Pass@k": ["Pass@k", "pass@k", "pass@1", "Pass@1"],
+    "LLM-as-Judge": ["LLM-as-Judge", "LLM as Judge", "LLM-as-judge"],
 }
+
+# Regex patterns for finding terms in LaTeX
+TERM_PATTERNS = {}
+for term in TERM_DEFINITIONS.keys():
+    variants = TERM_VARIANTS.get(term, [term])
+    pattern_parts = [re.escape(v) for v in variants]
+    combined_pattern = r'\b(' + '|'.join(pattern_parts) + r')\b'
+    TERM_PATTERNS[term] = re.compile(combined_pattern, re.IGNORECASE)
 
 
 def extract_week_number(path: Path) -> int:
