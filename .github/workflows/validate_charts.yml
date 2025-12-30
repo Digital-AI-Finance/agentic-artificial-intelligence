@@ -3,11 +3,11 @@ name: Validate Charts
 on:
   push:
     paths:
-      - 'L*/*/chart.py'
+      - 'L*/*/*.py'
       - 'tests/test_charts.py'
   pull_request:
     paths:
-      - 'L*/*/chart.py'
+      - 'L*/*/*.py'
       - 'tests/test_charts.py'
   workflow_dispatch:
 
@@ -34,7 +34,8 @@ jobs:
 
       - name: Verify all 48 PDFs exist
         run: |
-          count=$(find L*/*/chart.pdf -type f 2>/dev/null | wc -l)
+          # Count PDFs in chart folders (named after folder content, not chart.pdf)
+          count=$(find L*/*/ -maxdepth 1 -name "*.pdf" -type f 2>/dev/null | wc -l)
           echo "Found $count chart PDFs"
           if [ "$count" -lt 48 ]; then
             echo "ERROR: Expected 48+ PDFs, found $count"
