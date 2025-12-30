@@ -1,8 +1,9 @@
 """
 Unit tests for chart generation scripts.
-Validates that all chart.py scripts run without errors and produce PDF output.
+Validates that all chart scripts run without errors and produce PDF output.
 """
 
+import re
 import subprocess
 import sys
 from pathlib import Path
@@ -14,8 +15,24 @@ ROOT = Path(__file__).parent.parent
 
 
 def discover_chart_scripts():
-    """Find all chart.py files in lecture folders."""
-    charts = list(ROOT.glob("L*/*/chart.py"))
+    """Find all chart Python files in lecture folders.
+
+    Charts are named after their folder, e.g.:
+    - 01_agent_definition/agent_definition.py
+    - 02_react_paradigm/react_paradigm.py
+    """
+    charts = []
+    for lesson_dir in ROOT.glob("L*_*"):
+        if lesson_dir.is_dir():
+            for chart_dir in lesson_dir.glob("*_*"):
+                if chart_dir.is_dir():
+                    # Extract expected name from folder (e.g., "01_agent_definition" -> "agent_definition")
+                    match = re.match(r"^\d+[a-z]?_(.+)$", chart_dir.name)
+                    if match:
+                        chart_name = match.group(1)
+                        chart_py = chart_dir / f"{chart_name}.py"
+                        if chart_py.exists():
+                            charts.append(chart_py)
     return sorted(charts)
 
 
@@ -26,15 +43,10 @@ CHART_SCRIPTS = discover_chart_scripts()
     "chart_path", CHART_SCRIPTS, ids=lambda p: f"{p.parent.parent.name}/{p.parent.name}"
 )
 def test_chart_generates_pdf(chart_path: Path, tmp_path: Path):
-    """Test that chart.py runs successfully and creates chart.pdf."""
+    """Test that chart script runs successfully and creates matching PDF."""
     chart_dir = chart_path.parent
-    expected_pdf = chart_dir / "chart.pdf"
-
-    # Remove existing PDF to verify regeneration
-    if expected_pdf.exists():
-        original_mtime = expected_pdf.stat().st_mtime
-    else:
-        original_mtime = None
+    chart_name = chart_path.stem  # e.g., "agent_definition"
+    expected_pdf = chart_dir / f"{chart_name}.pdf"
 
     # Run the chart script
     result = subprocess.run(
@@ -79,9 +91,13 @@ def test_chart_uses_standard_colors():
 
 
 def test_chart_saves_to_correct_location():
-    """Verify charts save to Path(__file__).parent / 'chart.pdf'."""
+    """Verify charts save to Path(__file__).parent / '<name>.pdf'."""
     for chart_path in CHART_SCRIPTS[:5]:
         content = chart_path.read_text(encoding="utf-8")
         assert (
             "Path(__file__).parent" in content
         ), f"Chart {chart_path} may not save to correct location"
+        # Verify it saves to a descriptive name (not chart.pdf)
+        assert (
+            f'"{chart_path.stem}.pdf"' in content or f"'{chart_path.stem}.pdf'" in content
+        ), f"Chart {chart_path} should save to {chart_path.stem}.pdf"

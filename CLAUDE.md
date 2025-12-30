@@ -4,10 +4,10 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-PhD-level 12-week course on Agentic AI: LLM agents, multi-agent systems, RAG, and knowledge graphs. All content complete (225 GitHub issues closed). Beamer slides, Jupyter notebooks, Python chart scripts, and Jekyll-based GitHub Pages site.
+PhD-level 12-week course on Agentic AI: LLM agents, multi-agent systems, RAG, and knowledge graphs. All content complete (242 GitHub issues closed). Beamer slides, Jupyter notebooks, Python chart scripts, and Jekyll-based GitHub Pages site.
 
 **Live Site**: https://digital-ai-finance.github.io/agentic-artificial-intelligence/
-**Status**: Course complete - 12 slide decks, 48+ charts, 15 notebooks, 60+ quiz questions
+**Status**: Course complete - 12 slide decks, 48 charts, 15 notebooks, 60+ quiz questions, 242 issues closed
 
 ## Commands
 
@@ -21,11 +21,11 @@ mv *.aux *.log *.nav *.out *.snm *.toc temp/
 
 ### Chart Generation
 ```bash
-# Run single chart
-python L01_Introduction_Agentic_AI/01_agent_definition/chart.py
+# Run single chart (named after folder content)
+python L01_Introduction_Agentic_AI/01_agent_definition/agent_definition.py
 
 # Validate all charts (CI workflow)
-for f in L*/*/chart.py; do python "$f"; done
+pytest tests/test_charts.py -v --timeout=120
 ```
 
 ### Notebook Validation
@@ -101,9 +101,9 @@ agentic-artificial-intelligence/
 LXX_Topic_Name/
   LXX_Topic_Name.tex      # Beamer slides (Madrid theme, 8pt)
   LXX_Topic_Name.pdf      # Compiled PDF
-  01_concept_name/        # Chart folder
-    chart.py              # Standalone script -> chart.pdf
-    chart.pdf
+  01_concept_name/        # Chart folder (descriptive name)
+    concept_name.py       # Script named after folder content
+    concept_name.pdf      # Output PDF with matching name
   notebooks/              # Jupyter notebooks (LXX_*.ipynb)
   exercises/              # Student exercises (LXX_Exercise.md)
   readings/               # Paper annotations (LXX_Reading_Guide.md)
@@ -137,7 +137,7 @@ docs/
   visual-assets.md        # Icons and infographics
 ```
 
-### Issue Types (225 total, all closed)
+### Issue Types (242 total, all closed)
 - **SLIDES** (13): Bloom's taxonomy objectives, 15-slide structure, 3-5 papers
 - **NOTEBOOK** (21): Python 3.11+, API requirements, implementation sections
 - **CHART** (22): Single figure, figsize=(10,6), ML color palette
@@ -167,6 +167,7 @@ docs/
 
 ### Chart Script Template
 ```python
+# File: 01_concept_name/concept_name.py
 import matplotlib.pyplot as plt
 from pathlib import Path
 
@@ -181,7 +182,8 @@ MLGREEN, MLRED = '#2CA02C', '#D62728'
 
 # ... plotting code ...
 
-plt.savefig(Path(__file__).parent / 'chart.pdf',
+# Output name matches script name (concept_name.py -> concept_name.pdf)
+plt.savefig(Path(__file__).parent / 'concept_name.pdf',
             dpi=300, bbox_inches='tight')
 plt.close()
 ```
@@ -203,11 +205,12 @@ plt.close()
 | 11 | L11 | Domain applications | Ridnik 2024, Li 2024 |
 | 12 | L12 | Research frontiers, projects | Park 2023, Wang 2023 |
 
-## CI/CD Workflows
+## CI/CD Workflows (7 total)
 
 - **compile_slides.yml**: Compiles L*/*.tex, checks for Overfull warnings
-- **validate_charts.yml**: Runs all chart.py scripts, verifies PDF output
+- **validate_charts.yml**: Runs pytest on tests/test_charts.py, verifies 48 PDFs
 - **validate_notebooks.yml**: pytest --nbval-lax on all notebooks
+- **pre-commit.yml**: Runs black, isort, flake8, markdownlint on all pushes/PRs
 - **pages.yml**: Deploys docs/ to GitHub Pages
 - **link-check.yml**: Weekly arXiv/DOI link validation (Sunday)
 - **lighthouse.yml**: Accessibility/performance scoring (>90 required)
