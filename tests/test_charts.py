@@ -2,6 +2,7 @@
 Unit tests for chart generation scripts.
 Validates that all chart.py scripts run without errors and produce PDF output.
 """
+
 import subprocess
 import sys
 from pathlib import Path
@@ -21,7 +22,9 @@ def discover_chart_scripts():
 CHART_SCRIPTS = discover_chart_scripts()
 
 
-@pytest.mark.parametrize("chart_path", CHART_SCRIPTS, ids=lambda p: f"{p.parent.parent.name}/{p.parent.name}")
+@pytest.mark.parametrize(
+    "chart_path", CHART_SCRIPTS, ids=lambda p: f"{p.parent.parent.name}/{p.parent.name}"
+)
 def test_chart_generates_pdf(chart_path: Path, tmp_path: Path):
     """Test that chart.py runs successfully and creates chart.pdf."""
     chart_dir = chart_path.parent
@@ -39,11 +42,13 @@ def test_chart_generates_pdf(chart_path: Path, tmp_path: Path):
         cwd=str(chart_dir),
         capture_output=True,
         text=True,
-        timeout=60
+        timeout=60,
     )
 
     # Check script ran successfully
-    assert result.returncode == 0, f"Script failed:\nstdout: {result.stdout}\nstderr: {result.stderr}"
+    assert (
+        result.returncode == 0
+    ), f"Script failed:\nstdout: {result.stdout}\nstderr: {result.stderr}"
 
     # Check PDF was created/updated
     assert expected_pdf.exists(), f"PDF not created: {expected_pdf}"
@@ -60,15 +65,15 @@ def test_all_charts_discovered():
 def test_chart_script_has_docstring():
     """Check that chart scripts have documentation."""
     for chart_path in CHART_SCRIPTS[:5]:  # Sample first 5
-        content = chart_path.read_text(encoding='utf-8')
+        content = chart_path.read_text(encoding="utf-8")
         assert '"""' in content or "'''" in content, f"No docstring in {chart_path}"
 
 
 def test_chart_uses_standard_colors():
     """Verify charts use the ML color palette."""
-    ml_colors = ['MLPURPLE', 'MLBLUE', 'MLORANGE', 'MLGREEN']
+    ml_colors = ["MLPURPLE", "MLBLUE", "MLORANGE", "MLGREEN"]
     for chart_path in CHART_SCRIPTS[:5]:  # Sample first 5
-        content = chart_path.read_text(encoding='utf-8')
+        content = chart_path.read_text(encoding="utf-8")
         has_color = any(color in content for color in ml_colors)
         assert has_color, f"Chart {chart_path} doesn't use ML color palette"
 
@@ -76,5 +81,7 @@ def test_chart_uses_standard_colors():
 def test_chart_saves_to_correct_location():
     """Verify charts save to Path(__file__).parent / 'chart.pdf'."""
     for chart_path in CHART_SCRIPTS[:5]:
-        content = chart_path.read_text(encoding='utf-8')
-        assert "Path(__file__).parent" in content, f"Chart {chart_path} may not save to correct location"
+        content = chart_path.read_text(encoding="utf-8")
+        assert (
+            "Path(__file__).parent" in content
+        ), f"Chart {chart_path} may not save to correct location"
