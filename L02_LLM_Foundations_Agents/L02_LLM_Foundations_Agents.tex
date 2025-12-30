@@ -65,7 +65,7 @@
 \begin{frame}[t]{Learning Objectives}
 \textbf{Bloom's Taxonomy Levels}
 \begin{itemize}
-\item \textbf{Remember}: Define Chain-of-Thought, Tree-of-Thoughts, Self-Consistency
+\item \textbf{Remember}: Define CoT (Chain-of-Thought), ToT (Tree-of-Thoughts), Self-Consistency
 \item \textbf{Understand}: Explain how reasoning emerges from prompting strategies
 \item \textbf{Apply}: Implement various prompting techniques for complex reasoning
 \item \textbf{Analyze}: Compare effectiveness of different prompting strategies
@@ -147,7 +147,7 @@ A: Roger starts with 5 balls. 2 cans of 3 = 6 balls. Total: 5 + 6 = 11.
 \begin{frame}[t]{Self-Consistency Decoding}
 \textbf{Key Idea (Wang et al., 2023)}
 \begin{itemize}
-\item Sample multiple reasoning paths at temperature $> 0$
+\item Sample multiple reasoning paths at temperature (randomness) $> 0$
 \item Take majority vote on final answers
 \item Robust answers emerge from diverse reasoning
 \end{itemize}
@@ -168,7 +168,7 @@ $$\hat{a} = \arg\max_a \sum_{i=1}^{k} \mathbb{1}[a_i = a]$$
 \begin{frame}[t]{Zero-Shot Chain-of-Thought}
 \textbf{``Let's think step by step'' (Kojima et al., 2022)}
 \begin{itemize}
-\item No few-shot examples needed
+\item No few-shot (example-based) prompts needed
 \item Simple prompt addition unlocks reasoning
 \item Works across many task types
 \end{itemize}
@@ -209,7 +209,7 @@ $$\hat{a} = \arg\max_a \sum_{i=1}^{k} \mathbb{1}[a_i = a]$$
 \begin{itemize}
 \item \textbf{Sliding window}: Keep recent N turns
 \item \textbf{Summarization}: Compress old history
-\item \textbf{RAG}: Retrieve relevant context on demand
+\item \textbf{RAG} (Retrieval-Augmented): Fetch relevant context on demand
 \item \textbf{Hierarchical}: Use different models for different tasks
 \end{itemize}
 \vspace{0.2cm}
@@ -229,7 +229,7 @@ $$\hat{a} = \arg\max_a \sum_{i=1}^{k} \mathbb{1}[a_i = a]$$
 \textbf{Strategy} & \textbf{Tokens} & \textbf{Best For} & \textbf{Trade-off} \\
 \midrule
 Zero-shot & Low & Simple tasks & May miss nuance \\
-Few-shot & Medium & Task demonstration & Example selection \\
+Few-shot (examples) & Medium & Task demonstration & Example selection \\
 Chain-of-Thought & Medium & Math, logic & Linear only \\
 Tree-of-Thoughts & High & Creative, planning & Cost, latency \\
 Self-Consistency & Very High & Reliability & Many samples \\

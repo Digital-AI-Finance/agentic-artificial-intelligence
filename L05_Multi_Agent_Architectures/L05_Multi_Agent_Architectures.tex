@@ -94,7 +94,7 @@
 \begin{itemize}
 \item Conversable agents with defined roles
 \item Multi-turn message exchange
-\item Human-in-the-loop integration
+\item Human-in-the-loop (human oversight) integration
 \end{itemize}
 \vspace{0.3cm}
 \textbf{Agent Types}
@@ -116,7 +116,7 @@
 \vspace{0.3cm}
 \textbf{Communication Protocol}
 \begin{itemize}
-\item Standardized document formats (PRD, Design Doc)
+\item Standardized documents (PRD = Product Reqs, Design Doc)
 \item Explicit handoff criteria between roles
 \item Version control for artifacts
 \end{itemize}
@@ -168,7 +168,7 @@
 \item Simple, synchronous, easy to trace
 \end{itemize}
 \vspace{0.3cm}
-\textbf{Publish-Subscribe}
+\textbf{Publish-Subscribe} (event broadcast)
 \begin{itemize}
 \item Agents subscribe to topics
 \item Publishers broadcast to all subscribers
@@ -198,7 +198,7 @@
 \item Conflicting actions (race conditions)
 \end{itemize}
 \vspace{0.2cm}
-\textbf{Mitigations}: Timeouts, circuit breakers, conflict resolution
+\textbf{Mitigations}: Timeouts, circuit breakers (failure isolation), conflict resolution
 \bottomnote{Multi-agent complexity requires robust error handling.}
 \end{frame}
 

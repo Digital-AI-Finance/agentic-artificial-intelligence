@@ -69,7 +69,7 @@
 \begin{frame}[t]{Learning Objectives}
 \textbf{Bloom's Taxonomy Levels Covered}
 \begin{itemize}
-\item \textbf{Remember}: Define Self-RAG, CRAG, critique tokens, relevance scoring
+\item \textbf{Remember}: Define Self-RAG, CRAG, critique tokens (quality markers), relevance scoring
 \item \textbf{Understand}: Explain how self-reflection improves retrieval quality
 \item \textbf{Apply}: Implement a Self-RAG system with critique generation
 \item \textbf{Analyze}: Compare retrieval strategies across different domains
@@ -178,7 +178,7 @@
 \item \textbf{Query decomposition}: Break complex queries into sub-queries
 \item \textbf{Source triangulation}: Cross-reference multiple sources
 \item \textbf{Iterative refinement}: Multiple retrieval rounds
-\item \textbf{Citation generation}: Track provenance
+\item \textbf{Citation generation}: Track provenance (source origin)
 \end{itemize}
 \bottomnote{Agentic RAG = RAG + Planning + Tool Use}
 \end{frame}
@@ -196,15 +196,15 @@
 \textbf{Query Enhancement}
 \begin{itemize}
 \item Query rewriting with LLM
-\item HyDE: Hypothetical Document Embeddings
+\item HyDE (Hypothetical Document Embeddings): generate fake answer to embed
 \item Multi-query: Generate query variations
 \end{itemize}
 \vspace{0.3cm}
 \textbf{Retrieval Enhancement}
 \begin{itemize}
-\item Hybrid search: Dense + sparse retrieval
+\item Hybrid search: Dense (embedding) + sparse (keyword) retrieval
 \item Reranking: Cross-encoder scoring
-\item Maximal Marginal Relevance (MMR)
+\item MMR (Maximal Marginal Relevance): diversify results
 \end{itemize}
 \vspace{0.3cm}
 \textbf{Generation Enhancement}

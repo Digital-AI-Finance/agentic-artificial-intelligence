@@ -50,7 +50,7 @@
 \item \textbf{Remember}: Define planning, reasoning, reflection in agent context
 \item \textbf{Understand}: Explain hierarchical task decomposition
 \item \textbf{Apply}: Implement Reflexion-style self-improvement
-\item \textbf{Analyze}: Compare planning strategies (LATS, Plan-and-Solve)
+\item \textbf{Analyze}: Compare planning strategies (LATS = tree search, Plan-and-Solve)
 \item \textbf{Evaluate}: Assess when planning helps vs. hinders performance
 \item \textbf{Create}: Design planning systems for complex tasks
 \end{itemize}
@@ -103,7 +103,7 @@
 \begin{frame}[t]{LATS: Language Agent Tree Search}
 \textbf{Key Idea} (Zhou et al., 2024)
 \begin{itemize}
-\item Combines LLM reasoning with Monte Carlo Tree Search
+\item Combines LLM reasoning with MCTS (Monte Carlo Tree Search)
 \item Explores multiple reasoning paths in parallel
 \item Uses value function to guide search
 \end{itemize}
@@ -115,7 +115,7 @@
 \item \textbf{Simulation}: Evaluate outcomes
 \item \textbf{Backpropagation}: Update value estimates
 \end{itemize}
-\bottomnote{LATS achieves SOTA on HotpotQA and WebShop benchmarks.}
+\bottomnote{LATS achieves state-of-the-art on HotpotQA (QA) and WebShop benchmarks.}
 \end{frame}
 
 \begin{frame}[t]{Agent Memory Types}
@@ -141,7 +141,7 @@
 \item Store in episodic memory
 \item Retry with reflection context
 \end{enumerate}
-\bottomnote{Reflexion improves pass@1 on HumanEval from 80\% to 91\%.}
+\bottomnote{Reflexion improves pass@1 (first-try success) on HumanEval code benchmark: 80\% to 91\%.}
 \end{frame}
 
 \begin{frame}[t]{Self-Refine Framework}

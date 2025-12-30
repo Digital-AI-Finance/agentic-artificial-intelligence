@@ -46,7 +46,7 @@
 \begin{frame}[t]{Learning Objectives}
 \textbf{Bloom's Taxonomy Levels}
 \begin{itemize}
-\item \textbf{Remember}: Define function calling, MCP protocol, tool augmentation
+\item \textbf{Remember}: Define function calling, MCP (Model Context Protocol), tool augmentation
 \item \textbf{Understand}: Explain how LLMs learn to use external tools
 \item \textbf{Apply}: Implement tool-using agents with OpenAI and Anthropic APIs
 \item \textbf{Analyze}: Compare different tool integration approaches
@@ -92,7 +92,7 @@
 \vspace{0.3cm}
 \textbf{Transport Layer}
 \begin{itemize}
-\item JSON-RPC 2.0 over stdio (local) or HTTP (remote)
+\item JSON-RPC 2.0 (structured messaging) over stdio or HTTP
 \item Request/response pattern with typed schemas
 \item Supports streaming for long-running operations
 \end{itemize}
@@ -109,7 +109,7 @@
 \end{frame}
 
 \begin{frame}[t,fragile]{OpenAI Function Calling}
-\textbf{Tool Definition (JSON Schema)}
+\textbf{Tool Definition (JSON Schema = typed structure)}
 \begin{verbatim}
 {"type":"function","function":{"name":"get_weather",
  "description":"Get weather for a location",
@@ -210,7 +210,7 @@
 \begin{frame}[t]{Security Considerations}
 \textbf{Risks}
 \begin{itemize}
-\item \textbf{Prompt injection}: User tricks LLM into calling dangerous tools
+\item \textbf{Prompt injection}: Malicious input that hijacks LLM behavior
 \item \textbf{Parameter injection}: Malicious inputs to tool parameters
 \item \textbf{Privilege escalation}: Tools with more access than intended
 \item \textbf{Data exfiltration}: Tools sending sensitive data externally
