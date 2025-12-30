@@ -30,8 +30,8 @@
         "5": 2,
         "11": 2
       },
-      "defined_at_first_use": 12,
-      "not_defined_at_first_use": 55,
+      "defined_at_first_use": 25,
+      "not_defined_at_first_use": 42,
       "not_found_in_slides": 7
     }
   },
@@ -101,7 +101,8 @@
         "line": 146,
         "file": "L01_Introduction_Agentic_AI\\L01_Introduction_Agentic_AI.tex"
       },
-      "defined_at_first_use": false
+      "defined_at_first_use": false,
+      "week": 1
     },
     {
       "term": "AutoGen",
@@ -117,7 +118,8 @@
         "line": 128,
         "file": "L01_Introduction_Agentic_AI\\L01_Introduction_Agentic_AI.tex"
       },
-      "defined_at_first_use": false
+      "defined_at_first_use": false,
+      "week": 6
     },
     {
       "term": "AutoGPT",
@@ -166,7 +168,7 @@
         "line": 126,
         "file": "L01_Introduction_Agentic_AI\\L01_Introduction_Agentic_AI.tex"
       },
-      "defined_at_first_use": false
+      "defined_at_first_use": true
     },
     {
       "term": "Claude",
@@ -199,7 +201,7 @@
         "line": 293,
         "file": "L01_Introduction_Agentic_AI\\L01_Introduction_Agentic_AI.tex"
       },
-      "defined_at_first_use": false,
+      "defined_at_first_use": true,
       "week": 12
     },
     {
@@ -229,8 +231,8 @@
       "source_paper": "Wei et al. 2022",
       "first_use": {
         "week": 1,
-        "slide": 13,
-        "line": 307,
+        "slide": 5,
+        "line": 126,
         "file": "L01_Introduction_Agentic_AI\\L01_Introduction_Agentic_AI.tex"
       },
       "defined_at_first_use": false
@@ -267,7 +269,7 @@
         "line": 128,
         "file": "L01_Introduction_Agentic_AI\\L01_Introduction_Agentic_AI.tex"
       },
-      "defined_at_first_use": false,
+      "defined_at_first_use": true,
       "week": 6
     },
     {
@@ -447,7 +449,7 @@
         "line": 198,
         "file": "L01_Introduction_Agentic_AI\\L01_Introduction_Agentic_AI.tex"
       },
-      "defined_at_first_use": false
+      "defined_at_first_use": true
     },
     {
       "term": "LangChain",
@@ -463,7 +465,8 @@
         "line": 77,
         "file": "L01_Introduction_Agentic_AI\\L01_Introduction_Agentic_AI.tex"
       },
-      "defined_at_first_use": false
+      "defined_at_first_use": false,
+      "week": 6
     },
     {
       "term": "LangGraph",
@@ -497,7 +500,8 @@
         "line": 309,
         "file": "L01_Introduction_Agentic_AI\\L01_Introduction_Agentic_AI.tex"
       },
-      "defined_at_first_use": false
+      "defined_at_first_use": false,
+      "week": 4
     },
     {
       "term": "LLM",
@@ -514,7 +518,8 @@
         "line": 76,
         "file": "L01_Introduction_Agentic_AI\\L01_Introduction_Agentic_AI.tex"
       },
-      "defined_at_first_use": false
+      "defined_at_first_use": true,
+      "week": 1
     },
     {
       "term": "long-term memory",
@@ -546,7 +551,7 @@
         "line": 219,
         "file": "L01_Introduction_Agentic_AI\\L01_Introduction_Agentic_AI.tex"
       },
-      "defined_at_first_use": false
+      "defined_at_first_use": true
     },
     {
       "term": "memory",
@@ -646,7 +651,7 @@
         "line": 313,
         "file": "L01_Introduction_Agentic_AI\\L01_Introduction_Agentic_AI.tex"
       },
-      "defined_at_first_use": false,
+      "defined_at_first_use": true,
       "week": 7
     },
     {
@@ -698,7 +703,7 @@
         "line": 226,
         "file": "L01_Introduction_Agentic_AI\\L01_Introduction_Agentic_AI.tex"
       },
-      "defined_at_first_use": false,
+      "defined_at_first_use": true,
       "week": 4
     },
     {
@@ -733,7 +738,8 @@
         "line": 249,
         "file": "L01_Introduction_Agentic_AI\\L01_Introduction_Agentic_AI.tex"
       },
-      "defined_at_first_use": false
+      "defined_at_first_use": false,
+      "week": 6
     },
     {
       "term": "single-agent",
@@ -781,7 +787,7 @@
         "line": 129,
         "file": "L01_Introduction_Agentic_AI\\L01_Introduction_Agentic_AI.tex"
       },
-      "defined_at_first_use": false
+      "defined_at_first_use": true
     },
     {
       "term": "tool use",
@@ -810,8 +816,8 @@
       "source_paper": "Yao et al. 2023",
       "first_use": {
         "week": 1,
-        "slide": 13,
-        "line": 307,
+        "slide": 5,
+        "line": 126,
         "file": "L01_Introduction_Agentic_AI\\L01_Introduction_Agentic_AI.tex"
       },
       "defined_at_first_use": false
@@ -848,7 +854,7 @@
         "line": 126,
         "file": "L01_Introduction_Agentic_AI\\L01_Introduction_Agentic_AI.tex"
       },
-      "defined_at_first_use": false
+      "defined_at_first_use": true
     },
     {
       "term": "Voyager",
@@ -930,7 +936,8 @@
         "line": 219,
         "file": "L07_Advanced_RAG\\L07_Advanced_RAG.tex"
       },
-      "defined_at_first_use": false
+      "defined_at_first_use": false,
+      "week": 7
     },
     {
       "term": "entity extraction",
@@ -980,7 +987,7 @@
         "line": 94,
         "file": "L09_Hallucination_Prevention\\L09_Hallucination_Prevention.tex"
       },
-      "defined_at_first_use": false
+      "defined_at_first_use": true
     },
     {
       "term": "FActScore",
@@ -1015,7 +1022,8 @@
         "line": 92,
         "file": "L10_Agent_Evaluation\\L10_Agent_Evaluation.tex"
       },
-      "defined_at_first_use": false
+      "defined_at_first_use": true,
+      "week": 10
     },
     {
       "term": "embodied agent",
@@ -1031,7 +1039,7 @@
         "line": 82,
         "file": "L12_Research_Frontiers\\L12_Research_Frontiers.tex"
       },
-      "defined_at_first_use": false
+      "defined_at_first_use": true
     },
     {
       "term": "emergent behavior",

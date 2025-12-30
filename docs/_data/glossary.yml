@@ -35,6 +35,81 @@
   related: ["Agent", "Episode"]
   week: 1
 
+- term: "Observation"
+  definition: "Feedback from the environment after an agent takes an action."
+  related: ["Action", "State", "ReAct"]
+  week: 1
+
+- term: "Memory"
+  definition: "System for storing and retrieving information across agent interactions."
+  related: ["Short-term Memory", "Long-term Memory", "Episodic Memory"]
+  week: 1
+
+- term: "GPT-4"
+  definition: "OpenAI's large language model powering ChatGPT and API."
+  related: ["LLM", "OpenAI"]
+  week: 1
+
+- term: "Claude"
+  definition: "Anthropic's large language model with Constitutional AI safety features."
+  related: ["LLM", "Constitutional AI"]
+  week: 1
+
+- term: "Gemini"
+  definition: "Google's multimodal large language model."
+  related: ["LLM", "Google"]
+  week: 1
+
+- term: "Reactive Architecture"
+  definition: "Agent architecture using direct stimulus-response without planning."
+  related: ["Deliberative", "Hybrid"]
+  week: 1
+
+- term: "Deliberative Architecture"
+  definition: "Agent architecture that plans before executing (model-based reasoning)."
+  related: ["Reactive", "Planning"]
+  week: 1
+
+- term: "Hybrid Architecture"
+  definition: "Agent architecture combining reactive and deliberative layers."
+  related: ["Reactive", "Deliberative"]
+  week: 1
+
+- term: "Single-Agent System"
+  definition: "Architecture where one LLM handles all tasks."
+  related: ["Multi-Agent System", "Hierarchical"]
+  week: 1
+
+- term: "Hierarchical Architecture"
+  definition: "Architecture where manager agents delegate to worker agents."
+  related: ["Multi-Agent System", "Orchestration"]
+  week: 1
+
+- term: "AutoGPT"
+  definition: "Goal-directed autonomous agent that chains LLM calls for open-ended tasks."
+  related: ["Agent", "Autonomous"]
+  week: 1
+
+- term: "BabyAGI"
+  definition: "Task-driven autonomous agent using task prioritization and queuing."
+  related: ["Agent", "Task Management"]
+  week: 1
+
+- term: "Devin"
+  definition: "Cognition's autonomous software engineering agent."
+  related: ["Code Agent", "SWE-bench"]
+  week: 1
+
+- term: "GitHub Copilot"
+  definition: "AI-powered code completion and generation tool by GitHub/Microsoft."
+  related: ["Code Agent", "IDE"]
+  week: 1
+
+- term: "Voyager"
+  definition: "Open-ended embodied agent for Minecraft exploration (NVIDIA/Microsoft)."
+  related: ["Embodied Agent", "Curriculum Learning"]
+  week: 1
+
 - term: "Chain-of-Thought (CoT)"
   definition: "Prompting technique that elicits step-by-step reasoning from language models."
   related: ["Tree-of-Thoughts", "Reasoning"]
@@ -88,6 +163,21 @@
 - term: "Episodic Memory"
   definition: "Memory system storing past experiences and reflections for future reference."
   related: ["Memory", "Reflexion"]
+  week: 4
+
+- term: "Short-term Memory"
+  definition: "In-context memory stored within the current conversation window."
+  related: ["Long-term Memory", "Context Window"]
+  week: 4
+
+- term: "Long-term Memory"
+  definition: "Persistent storage across sessions using vector DBs or knowledge graphs."
+  related: ["Short-term Memory", "Vector Store"]
+  week: 4
+
+- term: "Task Decomposition"
+  definition: "Breaking complex tasks into smaller, manageable subtasks."
+  related: ["Planning", "Hierarchical"]
   week: 4
 
 - term: "Multi-Agent System"

@@ -165,6 +165,16 @@ docs/
 \bottomnote{Key takeaway text}
 ```
 
+### Term Definition Conventions
+
+All key terms should be defined inline at first use:
+- **Acronyms**: Expand on first use: `LLM (Large Language Model)`, `CoT (Chain-of-Thought)`
+- **Technical terms**: Brief parenthetical: `checkpointing (state snapshots)`, `grounding (anchor to sources)`
+- **Algorithms**: Include type: `Leiden algorithm (graph clustering method)`
+- **Benchmarks**: Add domain: `SWE-bench (software engineering)`, `HotpotQA (QA)`
+
+Run `python scripts/extract_glossary.py` to audit term definitions across all lectures.
+
 ### Chart Script Template
 ```python
 # File: 01_concept_name/concept_name.py
@@ -222,7 +232,8 @@ plt.close()
 - `requirements.txt`: Python dependencies (langchain, openai, anthropic, chromadb)
 - `docs/_config.yml`: Jekyll site configuration
 - `docs/_data/weeks.yml`: Week metadata (topics, papers, notebooks per week)
-- `docs/_data/glossary.yml`: 35+ agentic AI terms with definitions
+- `docs/_data/glossary.yml`: 50+ agentic AI terms with definitions
+- `scripts/extract_glossary.py`: Extracts terms from all .tex files, generates glossary_inventory.json
 
 ## GitHub Pages Features
 
@@ -252,7 +263,7 @@ plt.close()
 |------|---------|
 | weeks.yml | Course weeks metadata (topics, papers, notebooks) |
 | quizzes.yml | Interactive quiz questions for all 12 weeks |
-| glossary.yml | 35+ agentic AI term definitions |
+| glossary.yml | 50+ agentic AI term definitions |
 | charts.yml | Chart metadata and descriptions |
 | exercises.yml | Exercise specifications with rubrics |
 | readings.yml | Reading guide metadata |
