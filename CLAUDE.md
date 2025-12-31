@@ -7,7 +7,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 PhD-level 12-week course on Agentic AI: LLM agents, multi-agent systems, RAG, and knowledge graphs. All content complete (242 GitHub issues closed). Beamer slides, Jupyter notebooks, Python chart scripts, and Jekyll-based GitHub Pages site.
 
 **Live Site**: https://digital-ai-finance.github.io/agentic-artificial-intelligence/
-**Status**: Course complete - 12 slide decks, 48 charts, 15 notebooks, 60+ quiz questions, 242 issues closed
+**Status**: Course complete - 12 slide decks, 48 charts, 15 notebooks, 68 quiz questions, 242 issues closed
 
 ## Commands
 
@@ -234,6 +234,8 @@ plt.close()
 - `docs/_data/weeks.yml`: Week metadata (topics, papers, notebooks per week)
 - `docs/_data/glossary.yml`: 68 agentic AI terms with definitions
 - `scripts/extract_glossary.py`: Extracts terms from all .tex files, generates glossary_inventory.json
+- `scripts/generate_term_index.py`: Creates cross-lecture term matrix (term_index.json, term-index.md)
+- `scripts/quality_check.py`: Playwright-based website accessibility and quality checker
 - `scripts/screenshot_website.py`: Playwright script for website verification screenshots
 
 ## GitHub Pages Features
@@ -248,6 +250,7 @@ plt.close()
 | Code Playground | playground.md | Pyodide browser-based Python |
 | Framework Comparison | comparison.md | Sortable/filterable tables |
 | Quick Reference | reference.md | Printable cards for all 12 weeks |
+| Term Index | term-index.md, _data/term_index.json | Cross-lecture term distribution matrix |
 | JSON API | api/*.json | weeks, charts, exercises, quizzes endpoints |
 | Accessibility | accessibility.md, custom.css | WCAG 2.1 AA, print stylesheets, skip links |
 
@@ -263,8 +266,9 @@ plt.close()
 | File | Purpose |
 |------|---------|
 | weeks.yml | Course weeks metadata (topics, papers, notebooks) |
-| quizzes.yml | Interactive quiz questions for all 12 weeks |
+| quizzes.yml | 68 interactive quiz questions for all 12 weeks |
 | glossary.yml | 68 agentic AI term definitions |
+| term_index.json | Term-week matrix showing cross-lecture distribution |
 | charts.yml | Chart metadata and descriptions |
 | exercises.yml | Exercise specifications with rubrics |
 | readings.yml | Reading guide metadata |
