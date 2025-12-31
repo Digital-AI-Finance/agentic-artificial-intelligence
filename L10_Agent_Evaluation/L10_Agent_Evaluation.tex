@@ -2,10 +2,12 @@
 \usetheme{Madrid}
 \usepackage{graphicx}
 \usepackage{booktabs}
+\usepackage{adjustbox}
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{hyperref}
 
+% Color definitions
 \definecolor{mlblue}{RGB}{0,102,204}
 \definecolor{mlpurple}{RGB}{51,51,178}
 \definecolor{mllavender}{RGB}{173,173,224}
@@ -14,6 +16,7 @@
 \definecolor{mllavender4}{RGB}{214,214,239}
 \definecolor{mlorange}{RGB}{255,127,14}
 \definecolor{mlgreen}{RGB}{44,160,44}
+\definecolor{mlred}{RGB}{214,39,40}
 \definecolor{mlgray}{RGB}{127,127,127}
 
 \setbeamercolor{palette primary}{bg=mllavender3,fg=mlpurple}
@@ -22,12 +25,20 @@
 \setbeamercolor{palette quaternary}{bg=mlpurple,fg=white}
 \setbeamercolor{structure}{fg=mlpurple}
 \setbeamercolor{frametitle}{fg=mlpurple,bg=mllavender3}
+\setbeamercolor{block title}{bg=mllavender2,fg=mlpurple}
+\setbeamercolor{block body}{bg=mllavender4,fg=black}
 
 \setbeamertemplate{navigation symbols}{}
 \setbeamertemplate{itemize items}[circle]
 \setbeamersize{text margin left=5mm,text margin right=5mm}
 
-\newcommand{\bottomnote}[1]{\vfill\vspace{-2mm}\textcolor{mllavender2}{\rule{\textwidth}{0.4pt}}\vspace{1mm}\footnotesize\textbf{#1}}
+\newcommand{\bottomnote}[1]{%
+\vfill
+\vspace{-2mm}
+\textcolor{mllavender2}{\rule{\textwidth}{0.4pt}}
+\vspace{1mm}
+\footnotesize\textbf{#1}
+}
 
 \title{Agent Evaluation}
 \subtitle{Week 10: Benchmarks, Metrics, and Assessment}
@@ -37,24 +48,123 @@
 
 \begin{document}
 
-\setbeamertemplate{footline}{\hbox{\begin{beamercolorbox}[wd=\paperwidth,ht=2.5ex,dp=1ex,center]{author in head/foot}\tiny (c) Joerg Osterrieder 2025\end{beamercolorbox}}}
+\setbeamertemplate{footline}{
+    \hbox{\begin{beamercolorbox}[wd=\paperwidth,ht=2.5ex,dp=1ex,center]{author in head/foot}
+    \tiny (c) Joerg Osterrieder 2025
+    \end{beamercolorbox}}
+}
 
+% ==================== SLIDE 1: Title ====================
 \begin{frame}[plain]
 \vspace{1.5cm}
 \begin{center}
 {\Huge\textcolor{mlpurple}{Agent Evaluation}}\\[0.5cm]
 {\Large Week 10: Benchmarks, Metrics, and Assessment}\\[1.5cm]
-{\normalsize PhD Course in Agentic Artificial Intelligence}
+{\normalsize PhD Course in Agentic Artificial Intelligence}\\[0.5cm]
+{\small 12-Week Research-Level Course}
 \end{center}
 \end{frame}
 
-\begin{frame}[t]{Benchmark Landscape}
+% ==================== SLIDE 2: Learning Objectives ====================
+\begin{frame}[t]{Learning Objectives}
+\textbf{Bloom's Taxonomy Levels Covered}
+\begin{itemize}
+\item \textbf{Remember}: Define AgentBench, SWE-bench (software engineering), GAIA, LLM-as-Judge
+\item \textbf{Understand}: Explain why agent evaluation differs from LLM evaluation
+\item \textbf{Apply}: Run agents against standard benchmarks and interpret results
+\item \textbf{Analyze}: Compare agent performance across different dimensions
+\item \textbf{Evaluate}: Assess reliability and validity of different evaluation methods
+\item \textbf{Create}: Design custom evaluation protocols for novel agent applications
+\end{itemize}
+\bottomnote{By end of lecture, you will understand how to rigorously evaluate agent systems.}
+\end{frame}
+
+% ==================== SLIDE 3: Why Agent Evaluation is Hard ====================
+\begin{frame}[t]{Why Agent Evaluation is Hard}
+\textbf{Beyond Single-Turn Accuracy}
+\begin{itemize}
+\item LLM evaluation: Measure output quality on single prompts
+\item Agent evaluation: Measure multi-step task completion in environments
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Key Challenges}
+\begin{itemize}
+\item \textbf{Trajectory dependence}: Many valid paths to same goal
+\item \textbf{Partial credit}: How to score incomplete solutions?
+\item \textbf{Environment variance}: Results depend on environment state
+\item \textbf{Cost}: Each evaluation run costs time and API calls
+\end{itemize}
+\vspace{0.3cm}
+\textbf{What to Measure}
+\begin{itemize}
+\item Success rate, efficiency, safety, robustness, cost
+\item Single metrics hide important trade-offs
+\end{itemize}
+\bottomnote{Agent evaluation requires thinking about process, not just outcomes.}
+\end{frame}
+
+% ==================== SLIDE 4: Benchmark Landscape ====================
+\begin{frame}[t]{Agent Benchmark Landscape}
 \begin{center}
 \includegraphics[width=0.65\textwidth]{01_benchmark_landscape/benchmark_landscape.pdf}
 \end{center}
 \bottomnote{Each benchmark tests different agent capabilities and environments.}
 \end{frame}
 
+% ==================== SLIDE 5: Major Benchmarks ====================
+\begin{frame}[t]{Major Agent Benchmarks}
+\textbf{AgentBench (Liu et al., 2023)}
+\begin{itemize}
+\item 8 environments: OS, database, knowledge graph, web, games, etc.
+\item Measures general-purpose agent capability across domains
+\end{itemize}
+\vspace{0.2cm}
+\textbf{SWE-bench (Jimenez et al., 2024)}
+\begin{itemize}
+\item Real GitHub issues from popular Python repos
+\item Task: Generate code patch to resolve issue
+\item Gold standard for code agent evaluation
+\end{itemize}
+\vspace{0.2cm}
+\textbf{WebArena (Zhou et al., 2024)}
+\begin{itemize}
+\item Realistic web environments (shopping, forums, maps)
+\item Tests navigation, form-filling, multi-step web tasks
+\end{itemize}
+\vspace{0.2cm}
+\textbf{GAIA (Mialon et al., 2024)}
+\begin{itemize}
+\item General AI Assistant benchmark
+\item Multi-modal, multi-step reasoning tasks
+\end{itemize}
+\bottomnote{Choose benchmarks based on your agent's intended domain.}
+\end{frame}
+
+% ==================== SLIDE 6: Evaluation Dimensions ====================
+\begin{frame}[t]{Evaluation Dimensions}
+\textbf{Primary Metrics}
+\begin{itemize}
+\item \textbf{Success Rate}: Task completed correctly (binary or graded)
+\item \textbf{Pass@k}: Success rate with k attempts allowed
+\item \textbf{Efficiency}: Steps/tokens/time to complete task
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Secondary Metrics}
+\begin{itemize}
+\item \textbf{Safety}: Avoids harmful actions, respects constraints
+\item \textbf{Robustness}: Performance under perturbations
+\item \textbf{Cost}: API calls, compute, latency
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Human-Centric Metrics}
+\begin{itemize}
+\item User satisfaction, trust calibration, explainability
+\item Often require human evaluation studies
+\end{itemize}
+\bottomnote{Multi-dimensional evaluation reveals trade-offs hidden by single metrics.}
+\end{frame}
+
+% ==================== SLIDE 7: Evaluation Dimensions Visualization ====================
 \begin{frame}[t]{Evaluation Dimensions}
 \begin{center}
 \includegraphics[width=0.55\textwidth]{02_evaluation_dimensions/evaluation_dimensions.pdf}
@@ -62,6 +172,31 @@
 \bottomnote{Comprehensive evaluation requires multiple dimensions beyond accuracy.}
 \end{frame}
 
+% ==================== SLIDE 8: AgentBench Results ====================
+\begin{frame}[t]{AgentBench Results Analysis}
+\textbf{Key Findings (Liu et al., 2023)}
+\begin{itemize}
+\item GPT-4 significantly outperforms other models (12.6\% avg success)
+\item Open-source models struggle (1-3\% on many environments)
+\item Performance varies dramatically across environments
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Performance by Environment}
+\begin{itemize}
+\item Web browsing: 15-20\% (relatively well-structured)
+\item Operating system: 5-10\% (complex state management)
+\item Database: 8-12\% (requires precise SQL)
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Implications}
+\begin{itemize}
+\item Current agents far from human-level on complex tasks
+\item Environment-specific optimization needed
+\end{itemize}
+\bottomnote{30\% success on complex tasks means 70\% failure rate.}
+\end{frame}
+
+% ==================== SLIDE 9: AgentBench Results Chart ====================
 \begin{frame}[t]{AgentBench Results}
 \begin{center}
 \includegraphics[width=0.60\textwidth]{03_agentbench_results/agentbench_results.pdf}
@@ -69,6 +204,32 @@
 \bottomnote{Performance varies significantly across environments and models.}
 \end{frame}
 
+% ==================== SLIDE 10: Evaluation Methods ====================
+\begin{frame}[t]{Evaluation Methods}
+\textbf{Automated Evaluation}
+\begin{itemize}
+\item \textbf{Exact match}: Output matches expected answer
+\item \textbf{Unit tests}: Code passes test suite (SWE-bench)
+\item \textbf{Reward model}: Trained model scores outputs
+\end{itemize}
+\vspace{0.3cm}
+\textbf{LLM-as-Judge}
+\begin{itemize}
+\item Use LLM to evaluate agent outputs (e.g., GPT-4 as grader)
+\item Flexible, handles natural language outputs
+\item Concerns: Bias, self-preference, cost
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Human Evaluation}
+\begin{itemize}
+\item Gold standard for subjective quality
+\item Expensive, slow, hard to scale
+\item Use for validation, not primary development loop
+\end{itemize}
+\bottomnote{Automated metrics enable rapid iteration; human eval validates final quality.}
+\end{frame}
+
+% ==================== SLIDE 11: Human vs Automated Evaluation ====================
 \begin{frame}[t]{Human vs Automated Evaluation}
 \begin{center}
 \includegraphics[width=0.55\textwidth]{04_human_eval/human_eval.pdf}
@@ -76,29 +237,101 @@
 \bottomnote{Automated metrics correlate with human judgment but not perfectly.}
 \end{frame}
 
-\begin{frame}[t]{Key Papers}
+% ==================== SLIDE 12: LLM-as-Judge Considerations ====================
+\begin{frame}[t]{LLM-as-Judge: Practical Considerations}
+\textbf{Benefits}
+\begin{itemize}
+\item Scales to large evaluation sets
+\item Handles open-ended, natural language outputs
+\item No need for exact match or formal specification
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Limitations}
+\begin{itemize}
+\item \textbf{Position bias}: Prefers first option in comparisons
+\item \textbf{Self-preference}: GPT-4 rates GPT-4 outputs higher
+\item \textbf{Verbosity bias}: Longer responses rated higher
+\item \textbf{Cost}: Expensive for large-scale evaluation
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Best Practices}
+\begin{itemize}
+\item Use structured rubrics with explicit criteria
+\item Randomize order in pairwise comparisons
+\item Validate against human judgments on subset
+\end{itemize}
+\bottomnote{LLM-as-Judge is powerful but requires careful protocol design.}
+\end{frame}
+
+% ==================== SLIDE 13: Designing Custom Evaluations ====================
+\begin{frame}[t]{Designing Custom Evaluations}
+\textbf{Step 1: Define Success Criteria}
+\begin{itemize}
+\item What does ``task completed'' mean?
+\item Binary success or graded scoring?
+\end{itemize}
+\vspace{0.2cm}
+\textbf{Step 2: Create Representative Tasks}
+\begin{itemize}
+\item Cover range of difficulty and edge cases
+\item Include realistic failure modes
+\end{itemize}
+\vspace{0.2cm}
+\textbf{Step 3: Choose Evaluation Method}
+\begin{itemize}
+\item Automated where possible, human for validation
+\end{itemize}
+\vspace{0.2cm}
+\textbf{Step 4: Establish Baselines}
+\begin{itemize}
+\item Compare to: random baseline (lower bound), human baseline (upper bound), prior models (reference model)
+\end{itemize}
+\vspace{0.2cm}
+\textbf{Step 5: Report Confidence Intervals}
+\begin{itemize}
+\item Multiple runs, statistical significance testing
+\end{itemize}
+\bottomnote{Good evaluation = right benchmark + right metrics + right baseline.}
+\end{frame}
+
+% ==================== SLIDE 14: Key Papers ====================
+\begin{frame}[t]{Required Readings}
 \textbf{This Week}
 \begin{itemize}
 \item Liu et al. (2023). ``AgentBench: Evaluating LLMs as Agents.'' arXiv:2308.03688
-\item Zhou et al. (2024). ``WebArena: A Realistic Web Environment.'' arXiv:2307.13854
+\item Zhou et al. (2024). ``WebArena: A Realistic Web Environment for Building Autonomous Agents.'' arXiv:2307.13854
 \item Mialon et al. (2024). ``GAIA: A Benchmark for General AI Assistants.'' arXiv:2311.12983
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Supplementary}
+\begin{itemize}
+\item Jimenez et al. (2024). ``SWE-bench: Can Language Models Resolve Real-World GitHub Issues?'' arXiv:2310.06770
+\item Zheng et al. (2023). ``Judging LLM-as-a-Judge with MT-Bench.'' arXiv:2306.05685
 \end{itemize}
 \bottomnote{AgentBench provides the most comprehensive multi-environment evaluation.}
 \end{frame}
 
-\begin{frame}[t]{Summary}
+% ==================== SLIDE 15: Summary ====================
+\begin{frame}[t]{Summary and Key Takeaways}
 \textbf{Key Concepts}
 \begin{itemize}
-\item \textbf{Benchmarks}: AgentBench, WebArena, SWE-bench (software engineering), GAIA
-\item \textbf{Dimensions}: Success, efficiency, safety, robustness
+\item \textbf{Benchmarks}: AgentBench, WebArena, SWE-bench, GAIA
+\item \textbf{Dimensions}: Success, efficiency, safety, robustness, cost
 \item \textbf{Methods}: Automated metrics, LLM-as-Judge, human evaluation
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Design Principles}
+\begin{itemize}
+\item Multi-dimensional evaluation reveals hidden trade-offs
+\item Combine automated and human evaluation
+\item Always compare against meaningful baselines
 \end{itemize}
 \vspace{0.3cm}
 \textbf{Next Week}
 \begin{itemize}
 \item Domain Applications: Code, Finance, Healthcare
 \end{itemize}
-\bottomnote{Good evaluation = right benchmark + right metrics + right baseline (reference model).}
+\bottomnote{Good evaluation = right benchmark + right metrics + right baseline.}
 \end{frame}
 
 \end{document}

@@ -2,10 +2,12 @@
 \usetheme{Madrid}
 \usepackage{graphicx}
 \usepackage{booktabs}
+\usepackage{adjustbox}
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{hyperref}
 
+% Color definitions
 \definecolor{mlblue}{RGB}{0,102,204}
 \definecolor{mlpurple}{RGB}{51,51,178}
 \definecolor{mllavender}{RGB}{173,173,224}
@@ -14,6 +16,7 @@
 \definecolor{mllavender4}{RGB}{214,214,239}
 \definecolor{mlorange}{RGB}{255,127,14}
 \definecolor{mlgreen}{RGB}{44,160,44}
+\definecolor{mlred}{RGB}{214,39,40}
 \definecolor{mlgray}{RGB}{127,127,127}
 
 \setbeamercolor{palette primary}{bg=mllavender3,fg=mlpurple}
@@ -22,12 +25,20 @@
 \setbeamercolor{palette quaternary}{bg=mlpurple,fg=white}
 \setbeamercolor{structure}{fg=mlpurple}
 \setbeamercolor{frametitle}{fg=mlpurple,bg=mllavender3}
+\setbeamercolor{block title}{bg=mllavender2,fg=mlpurple}
+\setbeamercolor{block body}{bg=mllavender4,fg=black}
 
 \setbeamertemplate{navigation symbols}{}
 \setbeamertemplate{itemize items}[circle]
 \setbeamersize{text margin left=5mm,text margin right=5mm}
 
-\newcommand{\bottomnote}[1]{\vfill\vspace{-2mm}\textcolor{mllavender2}{\rule{\textwidth}{0.4pt}}\vspace{1mm}\footnotesize\textbf{#1}}
+\newcommand{\bottomnote}[1]{%
+\vfill
+\vspace{-2mm}
+\textcolor{mllavender2}{\rule{\textwidth}{0.4pt}}
+\vspace{1mm}
+\footnotesize\textbf{#1}
+}
 
 \title{GraphRAG and Knowledge Integration}
 \subtitle{Week 8: From Vector Search to Knowledge Graphs}
@@ -37,30 +48,85 @@
 
 \begin{document}
 
-\setbeamertemplate{footline}{\hbox{\begin{beamercolorbox}[wd=\paperwidth,ht=2.5ex,dp=1ex,center]{author in head/foot}\tiny (c) Joerg Osterrieder 2025\end{beamercolorbox}}}
+\setbeamertemplate{footline}{
+    \hbox{\begin{beamercolorbox}[wd=\paperwidth,ht=2.5ex,dp=1ex,center]{author in head/foot}
+    \tiny (c) Joerg Osterrieder 2025
+    \end{beamercolorbox}}
+}
 
+% ==================== SLIDE 1: Title ====================
 \begin{frame}[plain]
 \vspace{1.5cm}
 \begin{center}
 {\Huge\textcolor{mlpurple}{GraphRAG and Knowledge Integration}}\\[0.5cm]
 {\Large Week 8: From Vector Search to Knowledge Graphs}\\[1.5cm]
-{\normalsize PhD Course in Agentic Artificial Intelligence}
+{\normalsize PhD Course in Agentic Artificial Intelligence}\\[0.5cm]
+{\small 12-Week Research-Level Course}
 \end{center}
 \end{frame}
 
+% ==================== SLIDE 2: Learning Objectives ====================
 \begin{frame}[t]{Learning Objectives}
-\textbf{Bloom's Taxonomy Levels}
+\textbf{Bloom's Taxonomy Levels Covered}
 \begin{itemize}
-\item \textbf{Remember}: Define knowledge graphs, entities (objects), relations (links), communities (clusters)
+\item \textbf{Remember}: Define knowledge graph (entity-relationship structure), entities, relations, communities (clusters)
 \item \textbf{Understand}: Explain how GraphRAG enhances retrieval with structure
-\item \textbf{Apply}: Build a knowledge graph from unstructured text
-\item \textbf{Analyze}: Compare vector-only vs graph-enhanced retrieval
+\item \textbf{Apply}: Build a knowledge graph from unstructured text using LLMs
+\item \textbf{Analyze}: Compare vector-only vs graph-enhanced retrieval strategies
 \item \textbf{Evaluate}: Assess when GraphRAG provides value over standard RAG
-\item \textbf{Create}: Design a hybrid retrieval system for a domain
+\item \textbf{Create}: Design a hybrid retrieval system combining vectors and graphs
 \end{itemize}
 \bottomnote{By end of lecture, you will understand structured knowledge integration in agents.}
 \end{frame}
 
+% ==================== SLIDE 3: Limitations of Vector-Only RAG ====================
+\begin{frame}[t]{Limitations of Vector-Only RAG}
+\textbf{What Vector Search Does Well}
+\begin{itemize}
+\item Semantic similarity matching (``find documents about X'')
+\item Fast approximate nearest neighbor search
+\item Works with any text without preprocessing
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Where Vector Search Struggles}
+\begin{itemize}
+\item \textbf{Multi-hop reasoning}: ``Who founded the company that acquired X?''
+\item \textbf{Global queries}: ``What are the main themes across all documents?''
+\item \textbf{Relationship traversal}: ``How are entities A and B connected?''
+\item \textbf{Aggregation}: ``List all products mentioned with their features''
+\end{itemize}
+\vspace{0.3cm}
+\textbf{The Insight}
+\begin{itemize}
+\item Structure enables reasoning that similarity alone cannot support
+\end{itemize}
+\bottomnote{GraphRAG adds explicit structure to enable complex reasoning patterns.}
+\end{frame}
+
+% ==================== SLIDE 4: What is a Knowledge Graph? ====================
+\begin{frame}[t]{What is a Knowledge Graph?}
+\textbf{Definition}
+\begin{itemize}
+\item A knowledge graph represents information as \textbf{entities} (nodes) connected by \textbf{relations} (edges)
+\item Triples: (subject, predicate, object) -- e.g., (Apple, founded\_by, Steve Jobs)
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Key Components}
+\begin{itemize}
+\item \textbf{Entities}: People, places, concepts, events (named objects)
+\item \textbf{Relations}: Connections between entities (typed edges)
+\item \textbf{Attributes}: Properties of entities (metadata)
+\item \textbf{Schema}: Optional type hierarchy and constraints
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Examples}
+\begin{itemize}
+\item Wikidata (90M+ entities), Google Knowledge Graph, enterprise KGs
+\end{itemize}
+\bottomnote{Knowledge graphs make implicit relationships explicit and queryable.}
+\end{frame}
+
+% ==================== SLIDE 5: GraphRAG Architecture ====================
 \begin{frame}[t]{GraphRAG Architecture}
 \begin{center}
 \includegraphics[width=0.60\textwidth]{01_graphrag_architecture/graphrag_architecture.pdf}
@@ -68,49 +134,158 @@
 \bottomnote{GraphRAG builds structure from documents before retrieval.}
 \end{frame}
 
+% ==================== SLIDE 6: Entity and Relationship Extraction ====================
 \begin{frame}[t]{Entity and Relationship Extraction}
+\textbf{LLM-Based Extraction (Microsoft GraphRAG)}
+\begin{itemize}
+\item Use LLM to identify entities and relationships from text chunks
+\item Prompt: ``Extract all entities and their relationships from this text''
+\item Output: Structured triples (entity1, relation, entity2)
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Entity Types Commonly Extracted}
+\begin{itemize}
+\item People, organizations, locations, events, concepts
+\item Domain-specific: products, chemicals, diseases, etc.
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Challenges}
+\begin{itemize}
+\item Entity resolution (``Apple Inc.'' = ``Apple'' = ``the company'')
+\item Relation normalization (``works for'' = ``employed by'')
+\item Extraction quality depends heavily on LLM capability
+\end{itemize}
+\bottomnote{LLM-based NER (Named Entity Recognition) enables extraction without training.}
+\end{frame}
+
+% ==================== SLIDE 7: Entity Extraction Visualization ====================
+\begin{frame}[t]{Entity Extraction Pipeline}
 \begin{center}
 \includegraphics[width=0.60\textwidth]{02_entity_extraction/entity_extraction.pdf}
 \end{center}
 \bottomnote{LLMs extract entities and relations to build the knowledge graph.}
 \end{frame}
 
+% ==================== SLIDE 8: Community Detection ====================
+\begin{frame}[t]{Community Detection for Global Queries}
+\textbf{The Global Query Problem}
+\begin{itemize}
+\item Local queries: ``What did X say about Y?'' -- direct retrieval works
+\item Global queries: ``What are the main themes?'' -- needs aggregation
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Hierarchical Summarization via Communities}
+\begin{itemize}
+\item \textbf{Leiden algorithm} (graph clustering method): Cluster densely connected entities
+\item Generate summaries at each community level
+\item Build hierarchy: documents $\rightarrow$ entities $\rightarrow$ communities $\rightarrow$ global
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Benefits}
+\begin{itemize}
+\item Pre-computed summaries enable fast global queries
+\item Multiple granularity levels for different query types
+\item Captures both local detail and global themes
+\end{itemize}
+\bottomnote{Community summaries enable answering ``what is this corpus about?'' efficiently.}
+\end{frame}
+
+% ==================== SLIDE 9: Community Detection Visualization ====================
 \begin{frame}[t]{Community Detection}
 \begin{center}
 \includegraphics[width=0.60\textwidth]{03_community_detection/community_detection.pdf}
 \end{center}
-\bottomnote{Leiden algorithm (graph clustering method) clusters entities for hierarchical summarization.}
+\bottomnote{Leiden algorithm clusters entities for hierarchical summarization.}
 \end{frame}
 
+% ==================== SLIDE 10: Query Routing Strategies ====================
 \begin{frame}[t]{Query Routing by Type}
-\begin{center}
-\includegraphics[width=0.60\textwidth]{04_query_routing/query_routing.pdf}
-\end{center}
+\textbf{Local Search (Specific Queries)}
+\begin{itemize}
+\item Query: ``What did Einstein say about quantum mechanics?''
+\item Strategy: Entity lookup $\rightarrow$ traverse relations $\rightarrow$ retrieve text
+\item Uses: Entity embeddings + graph traversal
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Global Search (Broad Queries)}
+\begin{itemize}
+\item Query: ``What are the main research themes in this corpus?''
+\item Strategy: Retrieve community summaries at appropriate level
+\item Uses: Pre-computed hierarchical summaries
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Hybrid Search}
+\begin{itemize}
+\item Combine vector similarity with graph structure
+\item Route based on query classification (local vs global)
+\end{itemize}
 \bottomnote{Different query types benefit from different retrieval strategies.}
 \end{frame}
 
-\begin{frame}[t]{Key Papers}
+% ==================== SLIDE 11: Query Routing Visualization ====================
+\begin{frame}[t]{Query Routing Architecture}
+\begin{center}
+\includegraphics[width=0.60\textwidth]{04_query_routing/query_routing.pdf}
+\end{center}
+\bottomnote{Intelligent routing selects the optimal retrieval path.}
+\end{frame}
+
+% ==================== SLIDE 12: Implementation Considerations ====================
+\begin{frame}[t]{Implementation Considerations}
+\textbf{Graph Storage Options}
+\begin{itemize}
+\item Neo4j (native graph DB), NetworkX (in-memory), Neptune (AWS)
+\item Hybrid: Vector store + graph DB for combined queries
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Indexing Cost vs Query Benefit}
+\begin{itemize}
+\item GraphRAG requires significant upfront processing
+\item Entity extraction: $\sim$\$1-5 per 1M tokens (LLM costs)
+\item Summarization: Additional passes over extracted entities
+\item Best ROI: Large, static corpora with complex query patterns
+\end{itemize}
+\vspace{0.3cm}
+\textbf{When to Use GraphRAG}
+\begin{itemize}
+\item Multi-hop reasoning required
+\item Global/thematic queries common
+\item Corpus is relatively stable (infrequent updates)
+\end{itemize}
+\bottomnote{GraphRAG trades indexing cost for query capability -- choose based on use case.}
+\end{frame}
+
+% ==================== SLIDE 13: Key Papers ====================
+\begin{frame}[t]{Required Readings}
 \textbf{This Week}
 \begin{itemize}
-\item Edge et al. (2024). ``From Local to Global: A GraphRAG Approach.'' Microsoft Research
-\item Pan et al. (2024). ``Unifying Large Language Models and Knowledge Graphs.'' arXiv:2306.08302
+\item Edge et al. (2024). ``From Local to Global: A GraphRAG Approach to Query-Focused Summarization.'' Microsoft Research. arXiv:2404.16130
+\item Pan et al. (2024). ``Unifying Large Language Models and Knowledge Graphs: A Roadmap.'' arXiv:2306.08302
 \end{itemize}
 \vspace{0.3cm}
 \textbf{Supplementary}
 \begin{itemize}
-\item Besta et al. (2024). ``Graph of Thoughts.'' arXiv:2308.09687
-\item Gutierrez et al. (2024). ``HippoRAG.'' arXiv:2405.14831
+\item Besta et al. (2024). ``Graph of Thoughts: Solving Elaborate Problems with LLMs.'' arXiv:2308.09687
+\item Gutierrez et al. (2024). ``HippoRAG: Neurobiologically Inspired Long-Term Memory.'' arXiv:2405.14831
 \end{itemize}
-\bottomnote{Focus on the Microsoft GraphRAG paper for implementation details.}
+\bottomnote{Focus on Microsoft GraphRAG paper for implementation details.}
 \end{frame}
 
-\begin{frame}[t]{Summary}
+% ==================== SLIDE 14: Summary ====================
+\begin{frame}[t]{Summary and Key Takeaways}
 \textbf{Key Concepts}
 \begin{itemize}
-\item \textbf{GraphRAG}: Combine knowledge graphs with vector retrieval
-\item \textbf{Entity Extraction}: LLM-based NER (Named Entity Recognition) and relation extraction
-\item \textbf{Communities}: Hierarchical clustering for global queries
-\item \textbf{Hybrid Retrieval}: Route queries to appropriate strategy
+\item \textbf{Knowledge Graph}: Entity-relationship structure enabling multi-hop reasoning
+\item \textbf{GraphRAG}: Combine KG with vector retrieval for comprehensive search
+\item \textbf{Communities}: Hierarchical clustering for global query support
+\item \textbf{Query Routing}: Match query type to optimal retrieval strategy
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Design Principles}
+\begin{itemize}
+\item Use structure when relationships matter
+\item Pre-compute summaries for global queries
+\item Route queries intelligently based on type
 \end{itemize}
 \vspace{0.3cm}
 \textbf{Next Week}

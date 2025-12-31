@@ -2,10 +2,12 @@
 \usetheme{Madrid}
 \usepackage{graphicx}
 \usepackage{booktabs}
+\usepackage{adjustbox}
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{hyperref}
 
+% Color definitions
 \definecolor{mlblue}{RGB}{0,102,204}
 \definecolor{mlpurple}{RGB}{51,51,178}
 \definecolor{mllavender}{RGB}{173,173,224}
@@ -14,6 +16,7 @@
 \definecolor{mllavender4}{RGB}{214,214,239}
 \definecolor{mlorange}{RGB}{255,127,14}
 \definecolor{mlgreen}{RGB}{44,160,44}
+\definecolor{mlred}{RGB}{214,39,40}
 \definecolor{mlgray}{RGB}{127,127,127}
 
 \setbeamercolor{palette primary}{bg=mllavender3,fg=mlpurple}
@@ -22,12 +25,20 @@
 \setbeamercolor{palette quaternary}{bg=mlpurple,fg=white}
 \setbeamercolor{structure}{fg=mlpurple}
 \setbeamercolor{frametitle}{fg=mlpurple,bg=mllavender3}
+\setbeamercolor{block title}{bg=mllavender2,fg=mlpurple}
+\setbeamercolor{block body}{bg=mllavender4,fg=black}
 
 \setbeamertemplate{navigation symbols}{}
 \setbeamertemplate{itemize items}[circle]
 \setbeamersize{text margin left=5mm,text margin right=5mm}
 
-\newcommand{\bottomnote}[1]{\vfill\vspace{-2mm}\textcolor{mllavender2}{\rule{\textwidth}{0.4pt}}\vspace{1mm}\footnotesize\textbf{#1}}
+\newcommand{\bottomnote}[1]{%
+\vfill
+\vspace{-2mm}
+\textcolor{mllavender2}{\rule{\textwidth}{0.4pt}}
+\vspace{1mm}
+\footnotesize\textbf{#1}
+}
 
 \title{Research Frontiers}
 \subtitle{Week 12: Open Problems and Future Directions}
@@ -37,17 +48,67 @@
 
 \begin{document}
 
-\setbeamertemplate{footline}{\hbox{\begin{beamercolorbox}[wd=\paperwidth,ht=2.5ex,dp=1ex,center]{author in head/foot}\tiny (c) Joerg Osterrieder 2025\end{beamercolorbox}}}
+\setbeamertemplate{footline}{
+    \hbox{\begin{beamercolorbox}[wd=\paperwidth,ht=2.5ex,dp=1ex,center]{author in head/foot}
+    \tiny (c) Joerg Osterrieder 2025
+    \end{beamercolorbox}}
+}
 
+% ==================== SLIDE 1: Title ====================
 \begin{frame}[plain]
 \vspace{1.5cm}
 \begin{center}
 {\Huge\textcolor{mlpurple}{Research Frontiers}}\\[0.5cm]
 {\Large Week 12: Open Problems and Future Directions}\\[1.5cm]
-{\normalsize PhD Course in Agentic Artificial Intelligence}
+{\normalsize PhD Course in Agentic Artificial Intelligence}\\[0.5cm]
+{\small 12-Week Research-Level Course}
 \end{center}
 \end{frame}
 
+% ==================== SLIDE 2: Learning Objectives ====================
+\begin{frame}[t]{Learning Objectives}
+\textbf{Bloom's Taxonomy Levels Covered}
+\begin{itemize}
+\item \textbf{Remember}: Define embodied agent (physical/virtual world), generative agent (simulated personas), world model (environment simulation)
+\item \textbf{Understand}: Explain key open research problems in agent AI
+\item \textbf{Apply}: Identify research opportunities in specific domains
+\item \textbf{Analyze}: Compare different approaches to agent safety and alignment
+\item \textbf{Evaluate}: Assess feasibility and impact of proposed research directions
+\item \textbf{Create}: Design a research proposal for advancing agent capabilities
+\end{itemize}
+\bottomnote{By end of lecture, you will understand the research frontier in agentic AI.}
+\end{frame}
+
+% ==================== SLIDE 3: Field Timeline ====================
+\begin{frame}[t]{The Rapid Evolution of Agent AI}
+\textbf{2022: Foundation}
+\begin{itemize}
+\item Chain-of-Thought prompting (Wei et al.)
+\item InstructGPT and RLHF alignment (OpenAI)
+\end{itemize}
+\vspace{0.2cm}
+\textbf{2023: Emergence}
+\begin{itemize}
+\item ReAct paradigm (Yao et al.)
+\item Reflexion self-improvement (Shinn et al.)
+\item Generative Agents simulation (Park et al.)
+\end{itemize}
+\vspace{0.2cm}
+\textbf{2024: Production}
+\begin{itemize}
+\item Claude Computer Use, GitHub Copilot Workspace
+\item GraphRAG, advanced RAG architectures
+\item Multi-agent frameworks mature
+\end{itemize}
+\vspace{0.2cm}
+\textbf{2025+: What's Next?}
+\begin{itemize}
+\item World models, embodied agents, long-horizon planning
+\end{itemize}
+\bottomnote{From reasoning (2022) to production systems (2024) in just two years.}
+\end{frame}
+
+% ==================== SLIDE 4: Research Timeline Chart ====================
 \begin{frame}[t]{Agent Research Timeline}
 \begin{center}
 \includegraphics[width=0.65\textwidth]{01_research_timeline/research_timeline.pdf}
@@ -55,6 +116,31 @@
 \bottomnote{From reasoning (2022) to production systems (2024) in just two years.}
 \end{frame}
 
+% ==================== SLIDE 5: Open Problems Overview ====================
+\begin{frame}[t]{Key Open Research Problems}
+\textbf{Capability Gaps}
+\begin{itemize}
+\item \textbf{Long-horizon planning}: Current agents struggle beyond 10-20 steps
+\item \textbf{World modeling}: Learning accurate environment dynamics
+\item \textbf{Compositional generalization}: Transfer to novel task combinations
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Safety and Alignment}
+\begin{itemize}
+\item \textbf{Scalable oversight}: How to supervise agents we can't fully understand?
+\item \textbf{Goal stability}: Preventing goal drift during execution
+\item \textbf{Corrigibility}: Ensuring agents remain controllable
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Infrastructure}
+\begin{itemize}
+\item \textbf{Evaluation}: Benchmarks that predict real-world performance
+\item \textbf{Memory}: Efficient, scalable long-term memory systems
+\end{itemize}
+\bottomnote{These interconnected challenges define the research agenda.}
+\end{frame}
+
+% ==================== SLIDE 6: Open Problems Chart ====================
 \begin{frame}[t]{Open Research Problems}
 \begin{center}
 \includegraphics[width=0.60\textwidth]{02_open_problems/open_problems.pdf}
@@ -62,6 +148,32 @@
 \bottomnote{These interconnected challenges define the research agenda.}
 \end{frame}
 
+% ==================== SLIDE 7: Safety Challenges ====================
+\begin{frame}[t]{Agent Safety Challenges}
+\textbf{Alignment at Inference Time}
+\begin{itemize}
+\item Training-time alignment may not hold during multi-step execution
+\item Agents can find loopholes in instructions (specification gaming)
+\item Emergent behaviors from agent interactions
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Key Safety Research Areas}
+\begin{itemize}
+\item \textbf{Constitutional AI}: Principle-based self-supervision (Anthropic)
+\item \textbf{Debate}: Agents argue, humans judge
+\item \textbf{Interpretability}: Understanding agent reasoning
+\item \textbf{Sandboxing}: Limiting agent action space
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Unresolved Questions}
+\begin{itemize}
+\item How do we align agents smarter than evaluators?
+\item What governance structures for autonomous agents?
+\end{itemize}
+\bottomnote{Safety research must scale with capability improvements.}
+\end{frame}
+
+% ==================== SLIDE 8: Safety Challenges Chart ====================
 \begin{frame}[t]{Safety Challenges}
 \begin{center}
 \includegraphics[width=0.60\textwidth]{03_safety_challenges/safety_challenges.pdf}
@@ -69,6 +181,83 @@
 \bottomnote{Safety research is critical for responsible agent deployment.}
 \end{frame}
 
+% ==================== SLIDE 9: World Models and Embodied Agents ====================
+\begin{frame}[t]{World Models and Embodied Agents}
+\textbf{World Models}
+\begin{itemize}
+\item Learn internal representation of environment dynamics
+\item Enable mental simulation before acting (``thinking ahead'')
+\item Key challenge: Learning from limited interaction data
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Embodied Agents}
+\begin{itemize}
+\item Agents that interact with physical or simulated worlds
+\item Examples: Robotics, game environments, simulations
+\item \textbf{Voyager} (Wang et al.): Open-ended learning in Minecraft
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Research Directions}
+\begin{itemize}
+\item Sim-to-real transfer: Train in simulation, deploy in reality
+\item Multimodal perception: Vision, audio, proprioception
+\item Continuous learning: Adapt to changing environments
+\end{itemize}
+\bottomnote{World models enable agents to plan without trial-and-error.}
+\end{frame}
+
+% ==================== SLIDE 10: Generative Agents ====================
+\begin{frame}[t]{Generative Agents: Simulated Societies}
+\textbf{Generative Agents (Park et al., 2023)}
+\begin{itemize}
+\item Simulated personas in interactive environments
+\item Agents maintain: identity, memories, plans, relationships
+\item Emergent social behaviors: parties, information spread, coordination
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Key Architecture Components}
+\begin{itemize}
+\item \textbf{Memory stream}: Record of observations and reflections
+\item \textbf{Retrieval}: Access relevant memories for decisions
+\item \textbf{Reflection}: Synthesize higher-level insights
+\item \textbf{Planning}: Daily schedules and goal pursuit
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Implications}
+\begin{itemize}
+\item Social science simulation at scale
+\item Testing policies in simulated societies
+\item Understanding emergent collective behavior
+\end{itemize}
+\bottomnote{Generative agents enable computational social science experiments.}
+\end{frame}
+
+% ==================== SLIDE 11: Future Directions ====================
+\begin{frame}[t]{Future Directions}
+\textbf{Near-Term (1-2 years)}
+\begin{itemize}
+\item More reliable multi-step execution
+\item Better tool use and API integration
+\item Production-ready multi-agent orchestration
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Medium-Term (3-5 years)}
+\begin{itemize}
+\item Agents with persistent, updateable world models
+\item Effective long-term memory at scale
+\item Robust sim-to-real transfer for embodied agents
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Long-Term (5+ years)}
+\begin{itemize}
+\item Agents that learn continuously from experience
+\item Multi-agent societies with emergent specialization
+\item General-purpose assistants for complex domains
+\end{itemize}
+\bottomnote{Progress requires interdisciplinary collaboration.}
+\end{frame}
+
+% ==================== SLIDE 12: Future Directions Chart ====================
 \begin{frame}[t]{Future Directions}
 \begin{center}
 \includegraphics[width=0.65\textwidth]{04_future_directions/future_directions.pdf}
@@ -76,34 +265,73 @@
 \bottomnote{Progress requires interdisciplinary collaboration.}
 \end{frame}
 
-\begin{frame}[t]{Key Papers}
+% ==================== SLIDE 13: Key Papers ====================
+\begin{frame}[t]{Required Readings}
 \textbf{Foundational}
 \begin{itemize}
-\item Wang et al. (2023). ``Voyager: An Open-Ended Embodied Agent (physical/virtual world).'' arXiv:2305.16291
-\item Park et al. (2023). ``Generative Agents: Interactive Simulacra (simulated personas).'' arXiv:2304.03442
-\item Bai et al. (2022). ``Constitutional AI.'' arXiv:2212.08073
+\item Wang et al. (2023). ``Voyager: An Open-Ended Embodied Agent with LLMs.'' arXiv:2305.16291
+\item Park et al. (2023). ``Generative Agents: Interactive Simulacra of Human Behavior.'' arXiv:2304.03442
+\item Bai et al. (2022). ``Constitutional AI: Harmlessness from AI Feedback.'' arXiv:2212.08073
 \end{itemize}
-\vspace{0.2cm}
+\vspace{0.3cm}
 \textbf{Perspectives}
 \begin{itemize}
-\item Anthropic (2024). ``Agent AI: Surveying the Horizons.''
+\item Xi et al. (2023). ``The Rise and Potential of LLM Based Agents: A Survey.'' arXiv:2309.07864
+\item Sumers et al. (2024). ``Language Agents: From Next-Token Prediction to Digital Automation.''
 \end{itemize}
 \bottomnote{These papers define the frontier of agent research.}
 \end{frame}
 
-\begin{frame}[t]{Course Summary}
-\textbf{12-Week Journey}
+% ==================== SLIDE 14: Course Summary ====================
+\begin{frame}[t]{Course Summary: 12-Week Journey}
+\textbf{Foundations (Weeks 1-2)}
 \begin{itemize}
-\item \textbf{Foundations}: Agents, LLMs, ReAct, prompting (W1-2)
-\item \textbf{Capabilities}: Tools, planning, multi-agent (W3-5)
-\item \textbf{Frameworks}: LangGraph, AutoGen, production (W6)
-\item \textbf{Knowledge}: RAG, GraphRAG, verification (W7-9)
-\item \textbf{Applications}: Evaluation, domains, frontiers (W10-12)
+\item Agents, ReAct paradigm, LLM foundations, CoT/ToT prompting
+\end{itemize}
+\vspace{0.2cm}
+\textbf{Capabilities (Weeks 3-5)}
+\begin{itemize}
+\item Tool use, MCP, planning, Reflexion, multi-agent architectures
+\end{itemize}
+\vspace{0.2cm}
+\textbf{Frameworks (Week 6)}
+\begin{itemize}
+\item LangGraph, AutoGen, CrewAI, production patterns
+\end{itemize}
+\vspace{0.2cm}
+\textbf{Knowledge (Weeks 7-9)}
+\begin{itemize}
+\item Advanced RAG, GraphRAG, hallucination prevention
+\end{itemize}
+\vspace{0.2cm}
+\textbf{Applications (Weeks 10-12)}
+\begin{itemize}
+\item Evaluation, domain applications, research frontiers
+\end{itemize}
+\bottomnote{Agents = LLM + Memory + Tools + Planning + Evaluation}
+\end{frame}
+
+% ==================== SLIDE 15: Final Summary ====================
+\begin{frame}[t]{Key Takeaways and Next Steps}
+\textbf{Core Formula}
+\begin{itemize}
+\item Agent = LLM + Memory + Tools + Planning + Evaluation
+\item Each component is an active research area
 \end{itemize}
 \vspace{0.3cm}
-\textbf{Key Takeaway}
+\textbf{Where to Focus Research}
 \begin{itemize}
-\item Agents = LLM + Memory + Tools + Planning + Evaluation
+\item \textbf{High impact}: Long-horizon planning, safety, evaluation
+\item \textbf{Underexplored}: Multi-agent emergence, world models
+\item \textbf{Application-driven}: Domain-specific agent architectures
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Final Project Directions}
+\begin{itemize}
+\item Novel agent architecture for a specific domain
+\item Improved evaluation methodology
+\item Safety or alignment technique
+\item Multi-agent coordination mechanism
 \end{itemize}
 \bottomnote{Thank you for participating in this course!}
 \end{frame}

@@ -2,10 +2,12 @@
 \usetheme{Madrid}
 \usepackage{graphicx}
 \usepackage{booktabs}
+\usepackage{adjustbox}
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{hyperref}
 
+% Color definitions
 \definecolor{mlblue}{RGB}{0,102,204}
 \definecolor{mlpurple}{RGB}{51,51,178}
 \definecolor{mllavender}{RGB}{173,173,224}
@@ -23,12 +25,20 @@
 \setbeamercolor{palette quaternary}{bg=mlpurple,fg=white}
 \setbeamercolor{structure}{fg=mlpurple}
 \setbeamercolor{frametitle}{fg=mlpurple,bg=mllavender3}
+\setbeamercolor{block title}{bg=mllavender2,fg=mlpurple}
+\setbeamercolor{block body}{bg=mllavender4,fg=black}
 
 \setbeamertemplate{navigation symbols}{}
 \setbeamertemplate{itemize items}[circle]
 \setbeamersize{text margin left=5mm,text margin right=5mm}
 
-\newcommand{\bottomnote}[1]{\vfill\vspace{-2mm}\textcolor{mllavender2}{\rule{\textwidth}{0.4pt}}\vspace{1mm}\footnotesize\textbf{#1}}
+\newcommand{\bottomnote}[1]{%
+\vfill
+\vspace{-2mm}
+\textcolor{mllavender2}{\rule{\textwidth}{0.4pt}}
+\vspace{1mm}
+\footnotesize\textbf{#1}
+}
 
 \title{Hallucination Prevention}
 \subtitle{Week 9: Verification, Grounding, and Factuality}
@@ -38,31 +48,181 @@
 
 \begin{document}
 
-\setbeamertemplate{footline}{\hbox{\begin{beamercolorbox}[wd=\paperwidth,ht=2.5ex,dp=1ex,center]{author in head/foot}\tiny (c) Joerg Osterrieder 2025\end{beamercolorbox}}}
+\setbeamertemplate{footline}{
+    \hbox{\begin{beamercolorbox}[wd=\paperwidth,ht=2.5ex,dp=1ex,center]{author in head/foot}
+    \tiny (c) Joerg Osterrieder 2025
+    \end{beamercolorbox}}
+}
 
+% ==================== SLIDE 1: Title ====================
 \begin{frame}[plain]
 \vspace{1.5cm}
 \begin{center}
 {\Huge\textcolor{mlpurple}{Hallucination Prevention}}\\[0.5cm]
 {\Large Week 9: Verification, Grounding, and Factuality}\\[1.5cm]
-{\normalsize PhD Course in Agentic Artificial Intelligence}
+{\normalsize PhD Course in Agentic Artificial Intelligence}\\[0.5cm]
+{\small 12-Week Research-Level Course}
 \end{center}
 \end{frame}
 
-\begin{frame}[t]{Hallucination Types}
+% ==================== SLIDE 2: Learning Objectives ====================
+\begin{frame}[t]{Learning Objectives}
+\textbf{Bloom's Taxonomy Levels Covered}
+\begin{itemize}
+\item \textbf{Remember}: Define hallucination (fabricated content), grounding (anchor to sources), FActScore
+\item \textbf{Understand}: Explain different hallucination types and their causes
+\item \textbf{Apply}: Implement Chain-of-Verification (CoVe) for fact-checking
+\item \textbf{Analyze}: Decompose claims into atomic facts for verification
+\item \textbf{Evaluate}: Assess factuality using FActScore and similar metrics
+\item \textbf{Create}: Design a multi-layer hallucination prevention pipeline
+\end{itemize}
+\bottomnote{By end of lecture, you will understand how to build more factual agent systems.}
+\end{frame}
+
+% ==================== SLIDE 3: What is Hallucination? ====================
+\begin{frame}[t]{What is Hallucination?}
+\textbf{Definition}
+\begin{itemize}
+\item Hallucination: LLM generates plausible but factually incorrect content
+\item Not random errors -- often confidently stated and internally consistent
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Why Hallucinations Occur}
+\begin{itemize}
+\item \textbf{Training objective}: Next-token prediction, not factual accuracy
+\item \textbf{Parametric knowledge}: Facts encoded implicitly in weights
+\item \textbf{Pattern completion}: Model fills gaps with plausible content
+\item \textbf{No uncertainty signal}: Model doesn't know what it doesn't know
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Impact on Agents}
+\begin{itemize}
+\item Agent actions based on false information can cause real harm
+\item Compounds over multi-step reasoning chains
+\end{itemize}
+\bottomnote{Hallucination is fundamental to how LLMs work, not a bug to be patched.}
+\end{frame}
+
+% ==================== SLIDE 4: Hallucination Types ====================
+\begin{frame}[t]{Hallucination Taxonomy}
 \begin{center}
 \includegraphics[width=0.60\textwidth]{01_hallucination_types/hallucination_types.pdf}
 \end{center}
 \bottomnote{Factual hallucinations are highest risk; instruction drift (straying from task) is most common.}
 \end{frame}
 
+% ==================== SLIDE 5: Types in Detail ====================
+\begin{frame}[t]{Hallucination Types in Detail}
+\textbf{Factual Hallucinations}
+\begin{itemize}
+\item Fabricated facts: ``Einstein won Nobel Prize in 1923'' (was 1921)
+\item Non-existent entities: Citing papers or people that don't exist
+\item Wrong relationships: ``Company X acquired Y'' (never happened)
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Faithfulness Hallucinations}
+\begin{itemize}
+\item Contradicts provided context or source documents
+\item Summarizes documents with added/changed information
+\item Common in RAG when generation ignores retrieved content
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Instruction Hallucinations}
+\begin{itemize}
+\item Ignores or misinterprets user instructions
+\item Generates unrequested content or format
+\item Fails to follow constraints (length, style, scope)
+\end{itemize}
+\bottomnote{Different types require different prevention strategies.}
+\end{frame}
+
+% ==================== SLIDE 6: Detection Approaches ====================
+\begin{frame}[t]{Hallucination Detection Approaches}
+\textbf{Self-Consistency Checking}
+\begin{itemize}
+\item Generate multiple responses, check for agreement
+\item Inconsistency suggests uncertainty or hallucination
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Retrieval-Based Verification}
+\begin{itemize}
+\item Check claims against external knowledge sources
+\item Compare to retrieved documents (grounding)
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Claim Decomposition}
+\begin{itemize}
+\item Break response into atomic claims (single verifiable facts)
+\item Verify each claim independently
+\item FActScore: Precision of atomic facts against knowledge source
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Model-Based Detection}
+\begin{itemize}
+\item Train classifiers to detect hallucinated content
+\item Use LLM-as-judge to evaluate factuality
+\end{itemize}
+\bottomnote{Combine multiple approaches for robust detection.}
+\end{frame}
+
+% ==================== SLIDE 7: Chain-of-Verification ====================
+\begin{frame}[t]{Chain-of-Verification (CoVe)}
+\textbf{Core Idea (Dhuliawala et al., 2023)}
+\begin{itemize}
+\item Generate initial response, then systematically verify it
+\item Use \textbf{independent} verification to avoid confirmation bias (favoring initial beliefs)
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Four-Step Process}
+\begin{itemize}
+\item \textbf{Step 1}: Generate baseline response
+\item \textbf{Step 2}: Plan verification questions for each claim
+\item \textbf{Step 3}: Answer verification questions independently
+\item \textbf{Step 4}: Generate final verified response
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Key Insight}
+\begin{itemize}
+\item Verification must be independent -- don't show original response
+\item Prevents model from rationalizing its own hallucinations
+\end{itemize}
+\bottomnote{Independence is crucial -- the verifier must not see the claim being verified.}
+\end{frame}
+
+% ==================== SLIDE 8: CoVe Pipeline ====================
 \begin{frame}[t]{Chain-of-Verification Pipeline}
 \begin{center}
 \includegraphics[width=0.65\textwidth]{02_verification_pipeline/verification_pipeline.pdf}
 \end{center}
-\bottomnote{Independent verification prevents confirmation bias (favoring initial beliefs).}
+\bottomnote{Independent verification prevents confirmation bias.}
 \end{frame}
 
+% ==================== SLIDE 9: FActScore Metric ====================
+\begin{frame}[t]{FActScore: Measuring Factuality}
+\textbf{Definition (Min et al., 2023)}
+\begin{itemize}
+\item FActScore = Fraction of atomic facts that are supported by source
+\item Decomposes text into atomic facts, verifies each against knowledge
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Process}
+\begin{itemize}
+\item \textbf{Decomposition}: Break text into atomic facts (single claims)
+\item \textbf{Retrieval}: Find relevant passages for each fact
+\item \textbf{Verification}: Check if passage supports the fact
+\item \textbf{Score}: Supported facts / Total facts
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Example}
+\begin{itemize}
+\item Text: ``Einstein, born in Germany, won the 1921 Nobel Prize''
+\item Facts: (1) Einstein born in Germany, (2) Won Nobel 1921
+\item If both supported: FActScore = 1.0
+\end{itemize}
+\bottomnote{FActScore provides fine-grained factuality measurement.}
+\end{frame}
+
+% ==================== SLIDE 10: FActScore Visualization ====================
 \begin{frame}[t]{FActScore Evaluation}
 \begin{center}
 \includegraphics[width=0.60\textwidth]{03_factscore/factscore.pdf}
@@ -70,6 +230,32 @@
 \bottomnote{FActScore measures atomic fact precision against knowledge sources.}
 \end{frame}
 
+% ==================== SLIDE 11: Prevention Strategies ====================
+\begin{frame}[t]{Hallucination Prevention Strategies}
+\textbf{At Generation Time}
+\begin{itemize}
+\item \textbf{Grounding}: Force citation of sources for all claims
+\item \textbf{Self-consistency}: Sample multiple times, take consensus
+\item \textbf{Constrained decoding}: Limit outputs to verified content
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Architecture-Level}
+\begin{itemize}
+\item \textbf{RAG}: Ground generation in retrieved documents
+\item \textbf{Multi-agent review}: Separate generator and critic agents
+\item \textbf{Tool use}: Use calculators, search APIs for facts
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Post-Generation}
+\begin{itemize}
+\item Chain-of-Verification (CoVe)
+\item FActScore evaluation and filtering
+\item Human review for high-stakes outputs
+\end{itemize}
+\bottomnote{Layer multiple strategies for defense in depth.}
+\end{frame}
+
+% ==================== SLIDE 12: Mitigation Strategy Comparison ====================
 \begin{frame}[t]{Mitigation Strategy Comparison}
 \begin{center}
 \includegraphics[width=0.60\textwidth]{04_mitigation_strategies/mitigation_strategies.pdf}
@@ -77,22 +263,61 @@
 \bottomnote{Chain-of-Verification offers best accuracy/latency trade-off.}
 \end{frame}
 
-\begin{frame}[t]{Key Papers}
-\textbf{This Week}
+% ==================== SLIDE 13: Practical Implementation ====================
+\begin{frame}[t]{Practical Implementation Guidelines}
+\textbf{For Agent Developers}
 \begin{itemize}
-\item Ji et al. (2023). ``Survey of Hallucination in NLG.'' arXiv:2202.03629
-\item Min et al. (2023). ``FActScore: Fine-grained Atomic Evaluation.'' arXiv:2305.14251
-\item Dhuliawala et al. (2023). ``Chain-of-Verification.'' arXiv:2309.11495
+\item Always ground high-stakes claims in retrieved documents
+\item Use explicit citation requirements in prompts
+\item Implement uncertainty signals (``I'm not sure'', confidence scores)
 \end{itemize}
-\bottomnote{Start with the hallucination survey for taxonomy and scope.}
+\vspace{0.3cm}
+\textbf{For Production Systems}
+\begin{itemize}
+\item Monitor FActScore or similar metrics over time
+\item A/B test prevention strategies on real queries
+\item Log verification failures for debugging
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Trade-offs}
+\begin{itemize}
+\item More verification = higher latency and cost
+\item Over-filtering = overly cautious, less useful responses
+\item Find balance based on risk tolerance of application
+\end{itemize}
+\bottomnote{Prevention > Detection > Correction for production systems.}
 \end{frame}
 
-\begin{frame}[t]{Summary}
+% ==================== SLIDE 14: Key Papers ====================
+\begin{frame}[t]{Required Readings}
+\textbf{This Week}
+\begin{itemize}
+\item Ji et al. (2023). ``Survey of Hallucination in Natural Language Generation.'' arXiv:2202.03629
+\item Min et al. (2023). ``FActScore: Fine-grained Atomic Evaluation of Factual Precision.'' arXiv:2305.14251
+\item Dhuliawala et al. (2023). ``Chain-of-Verification Reduces Hallucination.'' arXiv:2309.11495
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Supplementary}
+\begin{itemize}
+\item Manakul et al. (2023). ``SelfCheckGPT: Zero-Resource Black-Box Hallucination Detection.'' arXiv:2303.08896
+\end{itemize}
+\bottomnote{Start with hallucination survey for taxonomy and scope.}
+\end{frame}
+
+% ==================== SLIDE 15: Summary ====================
+\begin{frame}[t]{Summary and Key Takeaways}
 \textbf{Key Concepts}
 \begin{itemize}
-\item \textbf{Types}: Factual, faithfulness, instruction hallucinations
-\item \textbf{Detection}: FActScore, claim decomposition (split into atomic facts), verification
-\item \textbf{Prevention}: Grounding (anchor to sources), self-consistency, multi-agent review
+\item \textbf{Hallucination Types}: Factual, faithfulness, instruction
+\item \textbf{Detection}: Claim decomposition, FActScore, self-consistency
+\item \textbf{Prevention}: Grounding, CoVe, multi-agent review
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Design Principles}
+\begin{itemize}
+\item Assume LLMs will hallucinate -- design for it
+\item Independent verification prevents confirmation bias
+\item Layer multiple strategies for defense in depth
 \end{itemize}
 \vspace{0.3cm}
 \textbf{Next Week}

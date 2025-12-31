@@ -2,10 +2,12 @@
 \usetheme{Madrid}
 \usepackage{graphicx}
 \usepackage{booktabs}
+\usepackage{adjustbox}
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{hyperref}
 
+% Color definitions
 \definecolor{mlblue}{RGB}{0,102,204}
 \definecolor{mlpurple}{RGB}{51,51,178}
 \definecolor{mllavender}{RGB}{173,173,224}
@@ -23,12 +25,20 @@
 \setbeamercolor{palette quaternary}{bg=mlpurple,fg=white}
 \setbeamercolor{structure}{fg=mlpurple}
 \setbeamercolor{frametitle}{fg=mlpurple,bg=mllavender3}
+\setbeamercolor{block title}{bg=mllavender2,fg=mlpurple}
+\setbeamercolor{block body}{bg=mllavender4,fg=black}
 
 \setbeamertemplate{navigation symbols}{}
 \setbeamertemplate{itemize items}[circle]
 \setbeamersize{text margin left=5mm,text margin right=5mm}
 
-\newcommand{\bottomnote}[1]{\vfill\vspace{-2mm}\textcolor{mllavender2}{\rule{\textwidth}{0.4pt}}\vspace{1mm}\footnotesize\textbf{#1}}
+\newcommand{\bottomnote}[1]{%
+\vfill
+\vspace{-2mm}
+\textcolor{mllavender2}{\rule{\textwidth}{0.4pt}}
+\vspace{1mm}
+\footnotesize\textbf{#1}
+}
 
 \title{Domain Applications}
 \subtitle{Week 11: Code, Finance, and Healthcare Agents}
@@ -38,17 +48,63 @@
 
 \begin{document}
 
-\setbeamertemplate{footline}{\hbox{\begin{beamercolorbox}[wd=\paperwidth,ht=2.5ex,dp=1ex,center]{author in head/foot}\tiny (c) Joerg Osterrieder 2025\end{beamercolorbox}}}
+\setbeamertemplate{footline}{
+    \hbox{\begin{beamercolorbox}[wd=\paperwidth,ht=2.5ex,dp=1ex,center]{author in head/foot}
+    \tiny (c) Joerg Osterrieder 2025
+    \end{beamercolorbox}}
+}
 
+% ==================== SLIDE 1: Title ====================
 \begin{frame}[plain]
 \vspace{1.5cm}
 \begin{center}
 {\Huge\textcolor{mlpurple}{Domain Applications}}\\[0.5cm]
 {\Large Week 11: Code, Finance, and Healthcare Agents}\\[1.5cm]
-{\normalsize PhD Course in Agentic Artificial Intelligence}
+{\normalsize PhD Course in Agentic Artificial Intelligence}\\[0.5cm]
+{\small 12-Week Research-Level Course}
 \end{center}
 \end{frame}
 
+% ==================== SLIDE 2: Learning Objectives ====================
+\begin{frame}[t]{Learning Objectives}
+\textbf{Bloom's Taxonomy Levels Covered}
+\begin{itemize}
+\item \textbf{Remember}: Define SWE-bench, code agent, FinAgent, clinical decision support
+\item \textbf{Understand}: Explain domain-specific requirements for agent deployment
+\item \textbf{Apply}: Implement a code agent using flow engineering (structured pipelines)
+\item \textbf{Analyze}: Compare agent architectures across different domains
+\item \textbf{Evaluate}: Assess regulatory and safety requirements for each domain
+\item \textbf{Create}: Design a domain-specific agent with appropriate safeguards
+\end{itemize}
+\bottomnote{By end of lecture, you will understand how agents adapt to real-world domains.}
+\end{frame}
+
+% ==================== SLIDE 3: Domain Maturity Landscape ====================
+\begin{frame}[t]{Domain Maturity Landscape}
+\textbf{High Maturity: Software Development}
+\begin{itemize}
+\item Clear success criteria (tests pass, code works)
+\item Sandboxed execution environments
+\item Active deployment: GitHub Copilot, Cursor, Devin
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Medium Maturity: Finance}
+\begin{itemize}
+\item Well-defined tasks (analysis, research, reporting)
+\item Heavy regulatory constraints (compliance)
+\item Emerging: Trading assistants, document analysis
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Emerging: Healthcare}
+\begin{itemize}
+\item High stakes, requires human oversight
+\item Regulatory approval (FDA, HIPAA)
+\item Focus: Decision support, not autonomous action
+\end{itemize}
+\bottomnote{Maturity correlates with ability to verify outputs and contain errors.}
+\end{frame}
+
+% ==================== SLIDE 4: Application Domain Maturity Chart ====================
 \begin{frame}[t]{Application Domain Maturity}
 \begin{center}
 \includegraphics[width=0.60\textwidth]{01_application_domains/application_domains.pdf}
@@ -56,6 +112,58 @@
 \bottomnote{Software development leads in maturity; healthcare is emerging.}
 \end{frame}
 
+% ==================== SLIDE 5: Code Agents ====================
+\begin{frame}[t]{Code Agents: The Leading Domain}
+\textbf{Why Code is Ideal for Agents}
+\begin{itemize}
+\item Clear success criteria: Tests pass or fail
+\item Safe sandbox: Run code in containers
+\item Immediate feedback: Execution reveals errors
+\item Rich context: Codebase provides grounding
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Key Capabilities}
+\begin{itemize}
+\item Bug fixing and debugging
+\item Feature implementation from specifications
+\item Code review and refactoring
+\item Documentation generation
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Current State}
+\begin{itemize}
+\item SWE-bench: Best agents solve $\sim$50\% of real GitHub issues
+\item Production systems: Copilot, Cursor, Devin, Claude Code
+\end{itemize}
+\bottomnote{Code agents now outperform average developers on specific benchmarks.}
+\end{frame}
+
+% ==================== SLIDE 6: SWE-bench and AlphaCodium ====================
+\begin{frame}[t]{SWE-bench and AlphaCodium}
+\textbf{SWE-bench (Jimenez et al., 2024)}
+\begin{itemize}
+\item 2,294 real GitHub issues from 12 Python repositories
+\item Task: Generate code patch to resolve issue
+\item Verification: Patch must pass repository tests
+\end{itemize}
+\vspace{0.3cm}
+\textbf{AlphaCodium: Flow Engineering (Ridnik et al., 2024)}
+\begin{itemize}
+\item Structured multi-stage pipeline (not single-shot)
+\item Stages: Problem reflection, public tests, AI tests, code iteration
+\item Key insight: Test against multiple cases before submitting
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Flow Engineering Principles}
+\begin{itemize}
+\item Break complex tasks into simpler stages
+\item Generate and run tests iteratively
+\item Use structured output at each stage
+\end{itemize}
+\bottomnote{Flow engineering = structured pipelines for complex coding tasks.}
+\end{frame}
+
+% ==================== SLIDE 7: Code Agents Chart ====================
 \begin{frame}[t]{Code Agents: SWE-bench Performance}
 \begin{center}
 \includegraphics[width=0.60\textwidth]{02_code_agents/code_agents.pdf}
@@ -63,6 +171,33 @@
 \bottomnote{Code agents now outperform average human developers on SWE-bench.}
 \end{frame}
 
+% ==================== SLIDE 8: Finance Agents ====================
+\begin{frame}[t]{Finance Agents}
+\textbf{High-Value Applications}
+\begin{itemize}
+\item \textbf{Research}: Earnings analysis, market research synthesis
+\item \textbf{Trading}: Strategy backtesting, execution assistance
+\item \textbf{Compliance}: Regulatory document analysis, audit trails
+\item \textbf{Operations}: Report generation, data reconciliation
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Unique Challenges}
+\begin{itemize}
+\item \textbf{Regulatory}: SEC, FINRA, MiFID II compliance requirements
+\item \textbf{Explainability}: Must justify recommendations
+\item \textbf{Latency}: Markets move in milliseconds
+\item \textbf{Risk}: Errors have direct financial consequences
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Current Deployments}
+\begin{itemize}
+\item FinAgent: Multimodal trading agent (research)
+\item Bloomberg Terminal AI: Document analysis, Q\&A
+\end{itemize}
+\bottomnote{Finance requires compliance (regulatory) awareness at every step.}
+\end{frame}
+
+% ==================== SLIDE 9: Finance Agents Chart ====================
 \begin{frame}[t]{Finance Agent Applications}
 \begin{center}
 \includegraphics[width=0.65\textwidth]{03_finance_agents/finance_agents.pdf}
@@ -70,6 +205,57 @@
 \bottomnote{Finance agents span research, trading, compliance, and operations.}
 \end{frame}
 
+% ==================== SLIDE 10: FinAgent Architecture ====================
+\begin{frame}[t]{FinAgent: Multimodal Finance Agent}
+\textbf{Architecture (Li et al., 2024)}
+\begin{itemize}
+\item Multimodal: Text (news, filings), numeric (prices, fundamentals), charts
+\item Dual memory: Short-term (recent trades), long-term (market patterns)
+\item Tool use: Market data APIs, technical indicators, portfolio analytics
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Key Components}
+\begin{itemize}
+\item \textbf{Market Perception}: Process multi-modal market signals
+\item \textbf{Agent Memory}: Store and retrieve trading experience
+\item \textbf{Decision Module}: ReAct-style reasoning for trade decisions
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Results}
+\begin{itemize}
+\item Outperforms baselines on paper trading benchmarks
+\item Caveat: Simulated environment, not live trading
+\end{itemize}
+\bottomnote{Multimodal perception is critical for financial markets.}
+\end{frame}
+
+% ==================== SLIDE 11: Healthcare Agents ====================
+\begin{frame}[t]{Healthcare Agents}
+\textbf{Potential Applications}
+\begin{itemize}
+\item Clinical decision support (diagnosis assistance)
+\item Drug interaction checking
+\item Patient triage and routing
+\item Medical literature synthesis
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Critical Constraints}
+\begin{itemize}
+\item \textbf{Regulation}: FDA approval for clinical use
+\item \textbf{Privacy}: HIPAA compliance required
+\item \textbf{Liability}: Who is responsible for errors?
+\item \textbf{Verification}: Medical claims must be evidence-based
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Current Approach}
+\begin{itemize}
+\item Human-in-the-loop: Agents suggest, clinicians decide
+\item Focus on augmentation, not automation
+\end{itemize}
+\bottomnote{Healthcare agents must support clinicians, not replace them.}
+\end{frame}
+
+% ==================== SLIDE 12: Healthcare Agents Chart ====================
 \begin{frame}[t]{Healthcare Considerations}
 \begin{center}
 \includegraphics[width=0.60\textwidth]{04_healthcare_agents/healthcare_agents.pdf}
@@ -77,22 +263,62 @@
 \bottomnote{Healthcare requires careful balance of benefits vs risks.}
 \end{frame}
 
-\begin{frame}[t]{Key Papers}
+% ==================== SLIDE 13: Cross-Domain Patterns ====================
+\begin{frame}[t]{Cross-Domain Design Patterns}
+\textbf{Verification Strategy by Domain}
+\begin{itemize}
+\item \textbf{Code}: Run tests, syntax checking, type checking
+\item \textbf{Finance}: Backtesting, compliance rules, risk limits
+\item \textbf{Healthcare}: Evidence linking, confidence thresholds, human review
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Human-in-the-Loop Intensity}
+\begin{itemize}
+\item \textbf{Code}: Low (automated tests catch most errors)
+\item \textbf{Finance}: Medium (compliance review for significant actions)
+\item \textbf{Healthcare}: High (clinician approval for all recommendations)
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Common Success Factors}
+\begin{itemize}
+\item Domain-specific tools and knowledge bases
+\item Clear escalation paths for uncertainty
+\item Audit trails for accountability
+\end{itemize}
+\bottomnote{Adapt verification intensity to domain risk level.}
+\end{frame}
+
+% ==================== SLIDE 14: Key Papers ====================
+\begin{frame}[t]{Required Readings}
 \textbf{This Week}
 \begin{itemize}
 \item Jimenez et al. (2024). ``SWE-bench: Can Language Models Resolve Real-World GitHub Issues?'' arXiv:2310.06770
-\item Ridnik et al. (2024). ``AlphaCodium: Code Gen. with Flow Engineering (structured pipelines).'' arXiv:2401.08500
+\item Ridnik et al. (2024). ``AlphaCodium: Code Generation with Flow Engineering.'' arXiv:2401.08500
 \item Li et al. (2024). ``FinAgent: A Multimodal Foundation Agent for Financial Trading.'' arXiv:2402.18485
 \end{itemize}
-\bottomnote{Focus on SWE-bench paper for understanding code agent evaluation.}
+\vspace{0.3cm}
+\textbf{Supplementary}
+\begin{itemize}
+\item Yang et al. (2024). ``SWE-agent: Agent-Computer Interfaces Enable Software Engineering.'' arXiv:2405.15793
+\item Singhal et al. (2023). ``Large Language Models Encode Clinical Knowledge.'' Nature
+\end{itemize}
+\bottomnote{Focus on SWE-bench for understanding code agent evaluation.}
 \end{frame}
 
-\begin{frame}[t]{Summary}
-\textbf{Key Insights}
+% ==================== SLIDE 15: Summary ====================
+\begin{frame}[t]{Summary and Key Takeaways}
+\textbf{Domain Insights}
 \begin{itemize}
-\item \textbf{Code}: Most mature domain; SWE-bench as gold standard
-\item \textbf{Finance}: High value but requires compliance (regulatory) awareness
-\item \textbf{Healthcare}: High stakes require human oversight
+\item \textbf{Code}: Most mature; clear success criteria, safe sandboxing
+\item \textbf{Finance}: High value but requires compliance awareness
+\item \textbf{Healthcare}: Highest stakes; human oversight essential
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Design Principles}
+\begin{itemize}
+\item Match verification intensity to domain risk
+\item Build domain-specific tools and knowledge
+\item Design clear human escalation paths
 \end{itemize}
 \vspace{0.3cm}
 \textbf{Next Week}

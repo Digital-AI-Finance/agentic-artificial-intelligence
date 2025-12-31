@@ -4,10 +4,10 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-PhD-level 12-week course on Agentic AI: LLM agents, multi-agent systems, RAG, and knowledge graphs. All content complete (242 GitHub issues closed). Beamer slides, Jupyter notebooks, Python chart scripts, and Jekyll-based GitHub Pages site.
+PhD-level 12-week course on Agentic AI: LLM agents, multi-agent systems, RAG, and knowledge graphs. All content complete (243 GitHub issues closed). Beamer slides, Jupyter notebooks, Python chart scripts, and Jekyll-based GitHub Pages site.
 
 **Live Site**: https://digital-ai-finance.github.io/agentic-artificial-intelligence/
-**Status**: Course complete - 12 slide decks, 48 charts, 15 notebooks, 68 quiz questions, 242 issues closed
+**Status**: Course complete - 12 slide decks, 48 charts, 14 notebooks, 68 quiz questions, 243 issues closed
 
 ## Commands
 
