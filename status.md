@@ -58,11 +58,11 @@ Course development complete. All 225 GitHub issues closed. GitHub Pages site ful
 | L05 | Multi-Agent Architectures | 14 | 133 KB |
 | L06 | Agent Frameworks | 14 | 213 KB |
 | L07 | Advanced RAG | 14 | 199 KB |
-| L08 | GraphRAG | 8 | 165 KB |
-| L09 | Hallucination Prevention | 7 | 174 KB |
-| L10 | Agent Evaluation | 7 | 171 KB |
-| L11 | Domain Applications | 7 | 165 KB |
-| L12 | Research Frontiers | 7 | 171 KB |
+| L08 | GraphRAG | 14 | 165 KB |
+| L09 | Hallucination Prevention | 15 | 174 KB |
+| L10 | Agent Evaluation | 15 | 171 KB |
+| L11 | Domain Applications | 15 | 165 KB |
+| L12 | Research Frontiers | 15 | 171 KB |
 
 ## Research Papers (48 total)
 
