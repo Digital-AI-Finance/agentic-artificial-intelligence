@@ -4,10 +4,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-PhD-level 12-week course on Agentic AI: LLM agents, multi-agent systems, RAG, and knowledge graphs. All content complete (243 GitHub issues closed). Beamer slides, Jupyter notebooks, Python chart scripts, and Jekyll-based GitHub Pages site.
+PhD-level 12-week course on Agentic AI: LLM agents, multi-agent systems, RAG, and knowledge graphs. Beamer slides, Jupyter notebooks, Python chart scripts, and Jekyll-based GitHub Pages site.
 
 **Live Site**: https://digital-ai-finance.github.io/agentic-artificial-intelligence/
-**Status**: Course complete - 12 slide decks, 48 charts, 14 notebooks, 68 quiz questions, 243 issues closed
 
 ## Commands
 
@@ -21,11 +20,14 @@ mv *.aux *.log *.nav *.out *.snm *.toc temp/
 
 ### Chart Generation
 ```bash
-# Run single chart (named after folder content)
+# Run single chart
 python L01_Introduction_Agentic_AI/01_agent_definition/agent_definition.py
 
-# Validate all charts (CI workflow)
-pytest tests/test_charts.py -v --timeout=120
+# Run all chart tests
+pytest tests/test_charts.py -v
+
+# Run charts for specific lecture
+pytest tests/test_charts.py -k "L01" -v
 ```
 
 ### Notebook Validation
@@ -33,310 +35,100 @@ pytest tests/test_charts.py -v --timeout=120
 pytest --nbval-lax L*/notebooks/*.ipynb
 ```
 
-### Chart Tests
+### Jekyll Site (from docs/ folder)
 ```bash
-# Run all chart tests (generates 48 PDFs)
-pytest tests/test_charts.py -v
-
-# Run single chart test
-pytest tests/test_charts.py -k "L01" -v
-
-# Quick validation (skip PDF generation)
-pytest tests/test_charts.py -k "not generates_pdf" -v
-```
-
-### Pre-commit Hooks
-```bash
-# Install hooks (one-time)
-pip install pre-commit
-pre-commit install
-
-# Run on all files
-pre-commit run --all-files
-
-# Run specific hook
-pre-commit run black --all-files
-```
-
-### GitHub Pages / Jekyll
-```bash
-# Local development (from docs/ folder)
-cd docs
 bundle install
-bundle exec jekyll serve --livereload  # Default: http://localhost:4000
-
-# Build only (no serve)
-bundle exec jekyll build
-
-# Check for broken links
+bundle exec jekyll serve --livereload  # http://localhost:4000
 bundle exec htmlproofer ./_site --disable-external
-
-# Verify specific week page
-open http://localhost:4000/weeks/week-1/
 ```
 
-### Issue Management
+### Quality Scripts
 ```bash
-# Update issue body
-gh issue edit <number> --repo Digital-AI-Finance/agentic-artificial-intelligence --body-file body.md
-
-# Batch update (uses update_issues_phd.py)
-python update_issues_phd.py
+python scripts/extract_glossary.py           # Audit term definitions across lectures
+python scripts/generate_term_index.py        # Create cross-lecture term matrix
+python scripts/quality_check.py              # Playwright-based accessibility check
 ```
 
 ## Architecture
 
-### Repository Structure
-```
-agentic-artificial-intelligence/
-  L01-L12/                 # Lesson folders (slides, charts, notebooks)
-  docs/                    # GitHub Pages Jekyll site
-  .github/workflows/       # CI/CD pipelines
-  requirements.txt         # Python dependencies
-  SYLLABUS.md             # Course schedule
-```
-
-### Lesson Structure (Consistent across L01-L12)
+### Lesson Structure (L01-L12)
 ```
 LXX_Topic_Name/
   LXX_Topic_Name.tex      # Beamer slides (Madrid theme, 8pt)
-  LXX_Topic_Name.pdf      # Compiled PDF
-  01_concept_name/        # Chart folder (descriptive name)
-    concept_name.py       # Script named after folder content
-    concept_name.pdf      # Output PDF with matching name
-  notebooks/              # Jupyter notebooks (LXX_*.ipynb)
-  exercises/              # Student exercises (LXX_Exercise.md)
-  readings/               # Paper annotations (LXX_Reading_Guide.md)
+  01_concept_name/        # Chart folder
+    concept_name.py       # Script generates concept_name.pdf
+  notebooks/              # Jupyter notebooks
+  exercises/              # Student exercises with rubrics
+  readings/               # Reading guides with paper annotations
   temp/                   # LaTeX auxiliary files
 ```
 
-### GitHub Pages Structure (docs/)
-```
-docs/
-  _config.yml             # Jekyll config (Just the Docs v0.8.2)
-  _data/
-    weeks.yml             # Course weeks metadata (topics, papers, notebooks)
-    glossary.yml          # 68 term definitions by week
-    quizzes.yml           # Interactive quiz questions
-    icons.yml             # SVG icons for topics/actions
-  _includes/
-    quiz.html             # Interactive quiz component
-    theme-toggle.html     # Dark/light mode toggle
-    openalex-widget.html  # Publication display
-    hypothesis.html       # Annotation integration
-    reading-progress.html # Progress bar
-  _layouts/
-    week.html             # Week page template
-  _sass/color_schemes/
-    custom.scss           # Course color scheme
-  index.md                # Landing page
-  weeks/                  # Week 1-12 pages
-  glossary.md             # Searchable glossary
-  quizzes.md              # Interactive quizzes
-  architectures.md        # Mermaid architecture diagrams
-  visual-assets.md        # Icons and infographics
-```
+### Jekyll Site (docs/)
+- `_data/weeks.yml` - Week metadata (topics, papers, notebooks)
+- `_data/glossary.yml` - Term definitions by week
+- `_data/quizzes.yml` - Interactive quiz questions
+- `_includes/quiz.html` - Quiz component
+- `_layouts/week.html` - Week page template
+- `weeks/*.md` - Week 1-12 pages
 
-### Issue Types (242 total, all closed)
-- **SLIDES** (13): Bloom's taxonomy objectives, 15-slide structure, 3-5 papers
-- **NOTEBOOK** (21): Python 3.11+, API requirements, implementation sections
-- **CHART** (22): Single figure, figsize=(10,6), ML color palette
-- **EXERCISE** (12): 100-point rubric, time estimates
-- **READING** (12): Critical reading guide, discussion questions
-- **PROJECT** (1): Final project requirements
-- **PAGES** (~144): Jekyll site, quizzes, glossary, accessibility, JSON API
+### Beamer Conventions
+- Theme: Madrid, 8pt, aspectratio=169
+- Chart width: 0.55\textwidth (with text) or 0.65\textwidth (standalone)
+- Colors: mlpurple (#3333B2), mlblue (#0066CC), mlorange (#FF7F0E), mlgreen (#2CA02C), mlred (#D62728)
+- Use `\bottomnote{text}` for key takeaways
 
-### Beamer Template Conventions
-```latex
-\documentclass[8pt,aspectratio=169]{beamer}
-\usetheme{Madrid}
-
-% Standard colors
-\definecolor{mlpurple}{RGB}{51,51,178}
-\definecolor{mlblue}{RGB}{0,102,204}
-\definecolor{mlorange}{RGB}{255,127,14}
-\definecolor{mlgreen}{RGB}{44,160,44}
-\definecolor{mlred}{RGB}{214,39,40}
-
-% Chart inclusion
-\includegraphics[width=0.55\textwidth]{01_folder/chart.pdf}
-
-% Bottom annotation
-\bottomnote{Key takeaway text}
-```
-
-### Term Definition Conventions
-
-All key terms should be defined inline at first use:
-- **Acronyms**: Expand on first use: `LLM (Large Language Model)`, `CoT (Chain-of-Thought)`
-- **Technical terms**: Brief parenthetical: `checkpointing (state snapshots)`, `grounding (anchor to sources)`
-- **Algorithms**: Include type: `Leiden algorithm (graph clustering method)`
-- **Benchmarks**: Add domain: `SWE-bench (software engineering)`, `HotpotQA (QA)`
-
-Run `python scripts/extract_glossary.py` to audit term definitions across all lectures.
-
-### Chart Script Template
+### Chart Script Requirements
 ```python
-# File: 01_concept_name/concept_name.py
-import matplotlib.pyplot as plt
-from pathlib import Path
-
 plt.rcParams.update({
     'font.size': 14, 'axes.labelsize': 14, 'axes.titlesize': 16,
     'xtick.labelsize': 13, 'ytick.labelsize': 13, 'legend.fontsize': 13,
     'figure.figsize': (10, 6), 'figure.dpi': 150
 })
-
-MLPURPLE, MLBLUE, MLORANGE = '#3333B2', '#0066CC', '#FF7F0E'
-MLGREEN, MLRED = '#2CA02C', '#D62728'
-
-# ... plotting code ...
-
-# Output name matches script name (concept_name.py -> concept_name.pdf)
-plt.savefig(Path(__file__).parent / 'concept_name.pdf',
-            dpi=300, bbox_inches='tight')
-plt.close()
+# Output: plt.savefig(Path(__file__).parent / 'concept_name.pdf', dpi=300, bbox_inches='tight')
 ```
+
+### Term Definitions
+Define terms inline at first use: `LLM (Large Language Model)`, `Leiden algorithm (graph clustering method)`
 
 ## Week-to-Topic Mapping
 
-| Week | Folder | Topic | Key Papers |
-|------|--------|-------|------------|
-| 1 | L01 | Introduction, ReAct paradigm | Yao 2023, Wang 2024 |
-| 2 | L02 | LLM foundations, CoT/ToT | Wei 2022, Yao 2023 |
-| 3 | L03 | Tool use, MCP, function calling | Schick 2023, Patil 2023 |
-| 4 | L04 | Planning, Reflexion, memory | Shinn 2023, Zhou 2024 |
-| 5 | L05 | Multi-agent architectures | Wu 2023, Hong 2023 |
-| 6 | L06 | LangGraph, AutoGen, CrewAI | LangChain docs, Qiao 2024 |
-| 7 | L07 | Self-RAG, CRAG, RAPTOR | Asai 2023, Yan 2024 |
-| 8 | L08 | GraphRAG, knowledge graphs | Edge 2024, Besta 2024 |
-| 9 | L09 | Hallucination prevention | Dhuliawala 2023, Min 2023 |
-| 10 | L10 | AgentBench, evaluation | Liu 2023, Jimenez 2024 |
-| 11 | L11 | Domain applications | Ridnik 2024, Li 2024 |
-| 12 | L12 | Research frontiers, projects | Park 2023, Wang 2023 |
+| Week | Folder | Topic |
+|------|--------|-------|
+| 1 | L01 | Introduction, ReAct paradigm |
+| 2 | L02 | LLM foundations, CoT/ToT |
+| 3 | L03 | Tool use, MCP, function calling |
+| 4 | L04 | Planning, Reflexion, memory |
+| 5 | L05 | Multi-agent architectures |
+| 6 | L06 | LangGraph, AutoGen, CrewAI |
+| 7 | L07 | Self-RAG, CRAG, RAPTOR |
+| 8 | L08 | GraphRAG, knowledge graphs |
+| 9 | L09 | Hallucination prevention |
+| 10 | L10 | AgentBench, evaluation |
+| 11 | L11 | Domain applications |
+| 12 | L12 | Research frontiers |
 
-## CI/CD Workflows (7 total)
+## CI/CD Workflows
 
 - **compile_slides.yml**: Compiles L*/*.tex, checks for Overfull warnings
-- **validate_charts.yml**: Runs pytest on tests/test_charts.py, verifies 48 PDFs
-- **validate_notebooks.yml**: pytest --nbval-lax on all notebooks
-- **pre-commit.yml**: Runs black, isort, flake8, markdownlint on all pushes/PRs
+- **validate_charts.yml**: pytest on tests/test_charts.py
+- **validate_notebooks.yml**: pytest --nbval-lax
+- **pre-commit.yml**: black, isort, flake8, markdownlint
 - **pages.yml**: Deploys docs/ to GitHub Pages
-- **link-check.yml**: Weekly arXiv/DOI link validation (Sunday)
-- **lighthouse.yml**: Accessibility/performance scoring (>90 required)
+- **link-check.yml**: Weekly arXiv/DOI validation
+- **lighthouse.yml**: Accessibility scoring (>90 required)
 
-## Key Files
+## Jekyll/Liquid Gotchas
 
-- `update_issues_phd.py`: Contains all 48 research papers with arXiv links, generates enhanced issue bodies
-- `template_beamer_final.tex`: Reference template with 28 slide layouts
-- `requirements.txt`: Python dependencies (langchain, openai, anthropic, chromadb)
-- `docs/_config.yml`: Jekyll site configuration
-- `docs/_data/weeks.yml`: Week metadata (topics, papers, notebooks per week)
-- `docs/_data/glossary.yml`: 68 agentic AI terms with definitions
-- `scripts/extract_glossary.py`: Extracts terms from all .tex files, generates glossary_inventory.json
-- `scripts/generate_term_index.py`: Creates cross-lecture term matrix (term_index.json, term-index.md)
-- `scripts/quality_check.py`: Playwright-based website accessibility and quality checker
-- `scripts/screenshot_website.py`: Playwright script for website verification screenshots
-
-## GitHub Pages Features
-
-| Feature | Location | Description |
-|---------|----------|-------------|
-| Dark Mode | _includes/theme-toggle.html | Persistent toggle (localStorage) |
-| Quizzes | _includes/quiz.html, _data/quizzes.yml | Interactive self-assessment (12 weeks) |
-| Glossary | glossary.md, _data/glossary.yml | Searchable term definitions |
-| Architectures | architectures.md | Mermaid diagrams (ReAct, RAG, etc.) |
-| Week Pages | weeks/*.md | Learning objectives, papers, notebooks |
-| Code Playground | playground.md | Pyodide browser-based Python |
-| Framework Comparison | comparison.md | Sortable/filterable tables |
-| Quick Reference | reference.md | Printable cards for all 12 weeks |
-| Term Index | term-index.md, _data/term_index.json | Cross-lecture term distribution matrix |
-| JSON API | api/*.json | weeks, charts, exercises, quizzes endpoints |
-| Accessibility | accessibility.md, custom.css | WCAG 2.1 AA, print stylesheets, skip links |
-
-### Site Enhancements (assets/js/enhancements.js)
-- Code copy buttons on all code blocks
-- Keyboard shortcuts: Cmd+K (search), arrows (week nav), ? (help)
-- Auto table of contents for long pages
-- Reading time estimates
-- Progress tracking (localStorage)
-
-## Data Files (docs/_data/)
-
-| File | Purpose |
-|------|---------|
-| weeks.yml | Course weeks metadata (topics, papers, notebooks) |
-| quizzes.yml | 68 interactive quiz questions for all 12 weeks |
-| glossary.yml | 68 agentic AI term definitions |
-| term_index.json | Term-week matrix showing cross-lecture distribution |
-| charts.yml | Chart metadata and descriptions |
-| exercises.yml | Exercise specifications with rubrics |
-| readings.yml | Reading guide metadata |
-| icons.yml | SVG icons for course topics |
-
-## Issue Labels
-
-| Label | Color | Description |
-|-------|-------|-------------|
-| type:slides | #0366d6 | Beamer slide content |
-| type:notebook | #7057ff | Jupyter notebooks |
-| type:chart | #1d76db | Python chart scripts |
-| type:pages | #0366d6 | GitHub Pages/Jekyll |
-| type:quiz | #7057ff | Quiz content |
-| type:qa | #d93f0b | Quality assurance |
-| type:a11y | #0e8a16 | Accessibility |
-
-## Critical Jekyll/Liquid Gotchas
-
-These issues caused build failures - avoid them:
-
-1. **Liquid filter chain bug**: Pre-calculate numbers BEFORE append
+1. **Filter chain bug**: Pre-calculate numbers before append
    ```liquid
-   <!-- WRONG: minus operates on string result -->
-   {{ '/weeks/week-' | append: week_num | minus: 1 }}
-
-   <!-- CORRECT: calculate first, then append -->
    {% assign prev = week_num | minus: 1 %}
    {{ '/weeks/week-' | append: prev | relative_url }}
    ```
 
-2. **Markdown in HTML layouts**: Use HTML tags, not markdown syntax
-   ```html
-   <!-- WRONG in _layouts/*.html -->
-   ## Learning Objectives
+2. **Markdown in layouts**: Use HTML tags in _layouts/*.html, not markdown
 
-   <!-- CORRECT -->
-   <h2>Learning Objectives</h2>
-   ```
+3. **Liquid in comments**: Jekyll processes tags even in HTML comments - remove Liquid syntax
 
-3. **Liquid in HTML comments**: Jekyll processes tags even in comments
-   ```html
-   <!-- WRONG: causes infinite recursion -->
-   <!-- Usage: {% include quiz.html %} -->
+4. **Sass units**: Just the Docs uses rem - convert px to rem (264px -> 16.5rem)
 
-   <!-- CORRECT: remove Liquid syntax -->
-   <!-- Usage: include quiz.html with id parameter -->
-   ```
-
-4. **Sass unit incompatibility**: Just the Docs uses rem internally
-   ```scss
-   /* WRONG: causes compilation error */
-   $nav-width: 264px;
-
-   /* CORRECT: convert to rem (264/16) */
-   $nav-width: 16.5rem;
-   ```
-
-5. **PDF 404 errors**: Never exclude PDFs in _config.yml
-   ```yaml
-   # WRONG in exclude list
-   - "*.pdf"
-
-   # PDFs must be accessible for slide downloads
-   ```
-
-## Replication Guides
-
-For creating similar course websites:
-- `docs/replication-guide.html` - Complete technical reference
-- `docs/prompts-guide.html` - All prompts needed to replicate from scratch
+5. **PDF exclusion**: Never exclude *.pdf in _config.yml

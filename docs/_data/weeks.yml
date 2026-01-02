@@ -195,21 +195,29 @@
 - number: 8
   title: "GraphRAG and Knowledge"
   folder: "L08_GraphRAG_Knowledge"
-  description: "Knowledge graphs, Graph of Thoughts, HippoRAG"
+  description: "From vector search to knowledge graphs for structured retrieval"
   topics:
-    - GraphRAG architecture
-    - Entity and relationship extraction
-    - Knowledge graph construction
-    - Multi-hop reasoning
+    - Limitations of vector-only RAG
+    - Knowledge graph fundamentals (entities, relations, communities)
+    - GraphRAG architecture and community detection
+    - Query routing (local vs global search)
+    - Entity extraction with LLMs
   learning_objectives:
-    - Build knowledge graphs from text
-    - Implement graph-based retrieval
-    - Compare graph vs. vector retrieval
+    - Define knowledge graphs, entities, relations, and communities
+    - Explain how GraphRAG enhances retrieval with structure
+    - Build a knowledge graph from unstructured text using LLMs
+    - Compare vector-only vs graph-enhanced retrieval strategies
+    - Assess when GraphRAG provides value over standard RAG
+    - Design a hybrid retrieval system combining vectors and graphs
   papers:
-    - title: "GraphRAG: Unlocking LLM Discovery on Narrative Private Data"
+    - title: "From Local to Global: A GraphRAG Approach"
       authors: "Edge et al."
       year: 2024
-      url: "https://microsoft.github.io/graphrag/"
+      arxiv: "2404.16130"
+    - title: "Unifying LLMs and Knowledge Graphs: A Roadmap"
+      authors: "Pan et al."
+      year: 2024
+      arxiv: "2306.08302"
     - title: "Graph of Thoughts"
       authors: "Besta et al."
       year: 2024
@@ -222,17 +230,25 @@
 - number: 9
   title: "Hallucination Prevention"
   folder: "L09_Hallucination_Prevention"
-  description: "FActScore, Chain-of-Verification, Self-Refine"
+  description: "Verification, grounding, and factuality for trustworthy agents"
   topics:
-    - Hallucination taxonomy
-    - Chain-of-Verification (CoVe)
-    - Claim decomposition
-    - Confidence calibration
+    - Hallucination types (factual, faithfulness, instruction)
+    - Detection approaches (self-consistency, claim decomposition)
+    - Chain-of-Verification (CoVe) methodology
+    - FActScore metric for factuality
+    - Prevention strategies (grounding, multi-agent review)
   learning_objectives:
-    - Implement claim decomposition
-    - Build verification pipelines
-    - Detect and mitigate hallucinations
+    - Define hallucination, grounding, and FActScore
+    - Explain different hallucination types and their causes
+    - Implement Chain-of-Verification (CoVe) for fact-checking
+    - Decompose claims into atomic facts for verification
+    - Assess factuality using FActScore and similar metrics
+    - Design a multi-layer hallucination prevention pipeline
   papers:
+    - title: "Survey of Hallucination in NLG"
+      authors: "Ji et al."
+      year: 2023
+      arxiv: "2202.03629"
     - title: "Chain-of-Verification Reduces Hallucination"
       authors: "Dhuliawala et al."
       year: 2023
@@ -249,25 +265,33 @@
 - number: 10
   title: "Agent Evaluation"
   folder: "L10_Agent_Evaluation"
-  description: "AgentBench, WebArena, GAIA, SWE-bench"
+  description: "Benchmarks, metrics, and assessment for rigorous agent testing"
   topics:
-    - Evaluation metrics for agents
-    - AgentBench benchmark
-    - LLM-as-Judge evaluation
-    - Task success measurement
+    - Why agent evaluation differs from LLM evaluation
+    - Major benchmarks (AgentBench, SWE-bench, WebArena, GAIA)
+    - Evaluation dimensions (success, efficiency, safety, cost)
+    - LLM-as-Judge methodology and limitations
+    - Designing custom evaluation protocols
   learning_objectives:
-    - Design evaluation frameworks
-    - Implement automated assessment
-    - Analyze agent performance
+    - Define AgentBench, SWE-bench, GAIA, and LLM-as-Judge
+    - Explain why agent evaluation differs from LLM evaluation
+    - Run agents against standard benchmarks and interpret results
+    - Compare agent performance across different dimensions
+    - Assess reliability and validity of different evaluation methods
+    - Design custom evaluation protocols for novel applications
   papers:
     - title: "AgentBench: Evaluating LLMs as Agents"
       authors: "Liu et al."
       year: 2023
       arxiv: "2308.03688"
-    - title: "SWE-bench: Can Language Models Resolve Real-World GitHub Issues?"
-      authors: "Jimenez et al."
+    - title: "WebArena: A Realistic Web Environment"
+      authors: "Zhou et al."
       year: 2024
-      arxiv: "2310.06770"
+      arxiv: "2307.13854"
+    - title: "GAIA: A Benchmark for General AI Assistants"
+      authors: "Mialon et al."
+      year: 2024
+      arxiv: "2311.12983"
   notebooks:
     - name: "Benchmarking Suite"
       file: "notebooks/L10_Benchmarking.ipynb"
@@ -276,22 +300,30 @@
 - number: 11
   title: "Domain Applications"
   folder: "L11_Domain_Applications"
-  description: "Coding agents, research assistants, finance applications"
+  description: "Code, finance, and healthcare agents with domain-specific constraints"
   topics:
-    - Code generation agents
-    - Research assistants
-    - Financial analysis agents
-    - Domain-specific constraints
+    - Domain maturity landscape (code, finance, healthcare)
+    - Code agents and SWE-bench performance
+    - AlphaCodium flow engineering methodology
+    - FinAgent multimodal trading architecture
+    - Healthcare agent regulatory constraints (FDA, HIPAA)
   learning_objectives:
-    - Build domain-specific agents
-    - Handle regulatory constraints
-    - Integrate specialized tools
+    - Define SWE-bench, code agent, FinAgent, clinical decision support
+    - Explain domain-specific requirements for agent deployment
+    - Implement a code agent using flow engineering
+    - Compare agent architectures across different domains
+    - Assess regulatory and safety requirements for each domain
+    - Design a domain-specific agent with appropriate safeguards
   papers:
-    - title: "AlphaCodium: From Prompt Engineering to Flow Engineering"
+    - title: "SWE-bench: Real-World GitHub Issues"
+      authors: "Jimenez et al."
+      year: 2024
+      arxiv: "2310.06770"
+    - title: "AlphaCodium: Flow Engineering for Code"
       authors: "Ridnik et al."
       year: 2024
       arxiv: "2401.08500"
-    - title: "FinAgent: LLM Agents for Financial Applications"
+    - title: "FinAgent: Multimodal Trading Agent"
       authors: "Li et al."
       year: 2024
       arxiv: "2402.18485"
@@ -303,25 +335,33 @@
 - number: 12
   title: "Research Frontiers"
   folder: "L12_Research_Frontiers"
-  description: "Generative agents, Voyager, Constitutional AI"
+  description: "Open problems, future directions, and cutting-edge research"
   topics:
-    - Generative agents simulation
-    - Voyager open-ended learning
-    - Agent safety and alignment
-    - Future research directions
+    - Field evolution timeline (2022-2025)
+    - Open research problems (planning, world models, memory)
+    - Agent safety challenges (alignment, scalable oversight)
+    - World models and embodied agents
+    - Generative agents for simulated societies
   learning_objectives:
-    - Understand emergent behaviors
-    - Analyze safety considerations
-    - Identify open research problems
+    - Define embodied agent, generative agent, and world model
+    - Explain key open research problems in agent AI
+    - Identify research opportunities in specific domains
+    - Compare different approaches to agent safety and alignment
+    - Assess feasibility and impact of proposed research directions
+    - Design a research proposal for advancing agent capabilities
   papers:
-    - title: "Generative Agents: Interactive Simulacra of Human Behavior"
-      authors: "Park et al."
-      year: 2023
-      arxiv: "2304.03442"
     - title: "Voyager: An Open-Ended Embodied Agent"
       authors: "Wang et al."
       year: 2023
       arxiv: "2305.16291"
+    - title: "Generative Agents: Interactive Simulacra"
+      authors: "Park et al."
+      year: 2023
+      arxiv: "2304.03442"
+    - title: "Constitutional AI: Harmlessness from AI Feedback"
+      authors: "Bai et al."
+      year: 2022
+      arxiv: "2212.08073"
   notebooks:
     - name: "Generative Agents Demo"
       file: "notebooks/L12_Generative_Agents.ipynb"
