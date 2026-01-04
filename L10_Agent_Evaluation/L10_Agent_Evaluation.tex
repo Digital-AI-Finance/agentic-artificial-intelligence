@@ -164,7 +164,30 @@
 \bottomnote{Multi-dimensional evaluation reveals trade-offs hidden by single metrics.}
 \end{frame}
 
-% ==================== SLIDE 7: Evaluation Dimensions Visualization ====================
+% ==================== SLIDE 7: Pass@k and Statistical Validity ====================
+\begin{frame}[t]{Pass@k and Statistical Validity}
+\textbf{Pass@k Metric}
+\begin{itemize}
+\item Pass@1: Success on first attempt
+\item Pass@k: Success within k attempts
+\item Captures both capability and consistency
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Calculation (Unbiased Estimator)}
+$$\text{Pass@k} = 1 - \frac{\binom{n-c}{k}}{\binom{n}{k}}$$
+where $n$ = samples, $c$ = correct samples
+\vspace{0.2cm}
+\textbf{Best Practices}
+\begin{itemize}
+\item Run at least 3-5 trials per task
+\item Use identical seeds for fair comparison
+\item Report both pass@1 and pass@5
+\item Include confidence intervals (variance can be 5-10\%)
+\end{itemize}
+\bottomnote{High pass@5 but low pass@1 indicates inconsistency -- reliability matters.}
+\end{frame}
+
+% ==================== SLIDE 8: Evaluation Dimensions Visualization ====================
 \begin{frame}[t]{Evaluation Dimensions}
 \begin{center}
 \includegraphics[width=0.55\textwidth]{02_evaluation_dimensions/evaluation_dimensions.pdf}
@@ -229,7 +252,33 @@
 \bottomnote{Automated metrics enable rapid iteration; human eval validates final quality.}
 \end{frame}
 
-% ==================== SLIDE 11: Human vs Automated Evaluation ====================
+% ==================== SLIDE 12: Cost-Aware Evaluation ====================
+\begin{frame}[t]{Cost-Aware Evaluation}
+\textbf{Why Cost Matters}
+\begin{itemize}
+\item Higher accuracy often requires more tokens/API calls
+\item Production systems have budget constraints
+\item Fair comparison requires cost normalization
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Cost Dimensions}
+\begin{itemize}
+\item Token count (input + output)
+\item Number of LLM calls
+\item Tool/API invocations
+\item Wall-clock time (latency)
+\end{itemize}
+\vspace{0.2cm}
+\textbf{Cost-Adjusted Metrics}
+\begin{itemize}
+\item Accuracy per dollar spent
+\item Success rate at fixed budget
+\item Pareto frontier (accuracy vs. cost trade-off curve)
+\end{itemize}
+\bottomnote{Best agent $\neq$ highest accuracy; best agent = best accuracy at acceptable cost.}
+\end{frame}
+
+% ==================== SLIDE 13: Human vs Automated Evaluation ====================
 \begin{frame}[t]{Human vs Automated Evaluation}
 \begin{center}
 \includegraphics[width=0.55\textwidth]{04_human_eval/human_eval.pdf}
@@ -329,7 +378,7 @@
 \vspace{0.3cm}
 \textbf{Next Week}
 \begin{itemize}
-\item Domain Applications: Code, Finance, Healthcare
+\item Domain Applications: Code and Finance Agents
 \end{itemize}
 \bottomnote{Good evaluation = right benchmark + right metrics + right baseline.}
 \end{frame}

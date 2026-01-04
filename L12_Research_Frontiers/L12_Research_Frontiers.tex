@@ -140,7 +140,31 @@
 \bottomnote{These interconnected challenges define the research agenda.}
 \end{frame}
 
-% ==================== SLIDE 6: Open Problems Chart ====================
+% ==================== SLIDE 6: Scaling Laws for Agents ====================
+\begin{frame}[t]{Scaling Laws for Agents}
+\textbf{LLM Scaling Laws (Established)}
+\begin{itemize}
+\item Performance scales predictably with compute, data, parameters
+\item Chinchilla: Optimal balance of model size vs training data
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Agent Scaling Laws (Open Question)}
+\begin{itemize}
+\item Does agent performance scale with base LLM capability?
+\item How does performance scale with: tool count, memory size, planning depth?
+\item Are there phase transitions in agent capabilities?
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Emerging Evidence}
+\begin{itemize}
+\item SWE-bench: Bigger models help, but scaffolding matters more
+\item AgentBench: 10x model size $\neq$ 10x agent performance
+\item Agentic capabilities may require different scaling strategies
+\end{itemize}
+\bottomnote{Understanding agent scaling laws is critical for predicting progress.}
+\end{frame}
+
+% ==================== SLIDE 7: Open Problems Chart ====================
 \begin{frame}[t]{Open Research Problems}
 \begin{center}
 \includegraphics[width=0.60\textwidth]{02_open_problems/open_problems.pdf}
@@ -232,7 +256,32 @@
 \bottomnote{Generative agents enable computational social science experiments.}
 \end{frame}
 
-% ==================== SLIDE 11: Future Directions ====================
+% ==================== SLIDE 12: Agent Learning Paradigms ====================
+\begin{frame}[t]{Agent Learning Paradigms}
+\textbf{Frozen LLM (Current Standard)}
+\begin{itemize}
+\item Base LLM weights unchanged; learning via prompts/memory
+\item Advantages: Fast, no training infrastructure needed
+\item Limits: Cannot truly learn new skills
+\end{itemize}
+\vspace{0.3cm}
+\textbf{In-Context Learning}
+\begin{itemize}
+\item Learn from examples in context (few-shot)
+\item Voyager: Store successful programs in skill library
+\item Retrieval-augmented learning from experience
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Online Learning (Frontier)}
+\begin{itemize}
+\item Fine-tune from agent experience (trajectory data)
+\item Challenges: Catastrophic forgetting, sample efficiency
+\item RL from agent feedback (RLAF) -- emerging research
+\end{itemize}
+\bottomnote{True agent learning requires moving beyond frozen LLM weights.}
+\end{frame}
+
+% ==================== SLIDE 13: Future Directions ====================
 \begin{frame}[t]{Future Directions}
 \textbf{Near-Term (1-2 years)}
 \begin{itemize}

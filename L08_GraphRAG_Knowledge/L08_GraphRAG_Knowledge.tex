@@ -158,7 +158,32 @@
 \bottomnote{LLM-based NER (Named Entity Recognition) enables extraction without training.}
 \end{frame}
 
-% ==================== SLIDE 7: Entity Extraction Visualization ====================
+% ==================== SLIDE 7: KG Construction Trade-offs ====================
+\begin{frame}[t]{Knowledge Graph Construction Trade-offs}
+\textbf{Extraction Precision vs. Recall}
+\begin{itemize}
+\item High precision: Miss valid entities/relations
+\item High recall: Include noise, false positives
+\item LLM extraction typically favors recall
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Schema Design Choices}
+\begin{itemize}
+\item \textbf{Open schema}: Flexible but harder to query
+\item \textbf{Fixed schema}: Constrained but consistent
+\item \textbf{Hybrid}: Core schema + open extensions
+\end{itemize}
+\vspace{0.2cm}
+\textbf{Cost Breakdown (per 1M tokens)}
+\begin{itemize}
+\item Entity extraction: \$1-3, Relation extraction: \$2-5
+\item Entity resolution: \$0.5-1, Community summarization: \$3-8
+\item Total GraphRAG indexing: $\sim$\$10/1M tokens vs. \$0.10 for basic RAG
+\end{itemize}
+\bottomnote{GraphRAG indexing cost is 100x basic RAG -- ensure query patterns justify it.}
+\end{frame}
+
+% ==================== SLIDE 8: Entity Extraction Visualization ====================
 \begin{frame}[t]{Entity Extraction Pipeline}
 \begin{center}
 \includegraphics[width=0.60\textwidth]{02_entity_extraction/entity_extraction.pdf}
@@ -222,7 +247,32 @@
 \bottomnote{Different query types benefit from different retrieval strategies.}
 \end{frame}
 
-% ==================== SLIDE 11: Query Routing Visualization ====================
+% ==================== SLIDE 13: Multi-hop Reasoning ====================
+\begin{frame}[t]{Multi-hop Reasoning with Graphs}
+\textbf{Multi-hop Query Types}
+\begin{itemize}
+\item \textbf{Chain}: A $\rightarrow$ B $\rightarrow$ C (``Who founded the company that acquired X?'')
+\item \textbf{Fan-out}: A $\rightarrow$ \{B, C, D\} (``All products from company X?'')
+\item \textbf{Fan-in}: \{A, B, C\} $\rightarrow$ D (``What connects these entities?'')
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Graph Traversal Strategies}
+\begin{itemize}
+\item BFS from query entities (breadth-first search)
+\item Embedding-guided traversal (prioritize relevant paths)
+\item LLM-guided exploration (let model decide next hop)
+\end{itemize}
+\vspace{0.2cm}
+\textbf{Challenges and Best Practices}
+\begin{itemize}
+\item Path explosion with hop count -- limit to 2-3 hops
+\item Noise accumulation -- prune low-confidence edges
+\item Combine with vector retrieval for verification
+\end{itemize}
+\bottomnote{Multi-hop reasoning trades coverage for precision -- tune hop depth per query type.}
+\end{frame}
+
+% ==================== SLIDE 14: Query Routing Visualization ====================
 \begin{frame}[t]{Query Routing Architecture}
 \begin{center}
 \includegraphics[width=0.60\textwidth]{04_query_routing/query_routing.pdf}
@@ -230,7 +280,32 @@
 \bottomnote{Intelligent routing selects the optimal retrieval path.}
 \end{frame}
 
-% ==================== SLIDE 12: Implementation Considerations ====================
+% ==================== SLIDE 15: Hybrid Vector-Graph Retrieval ====================
+\begin{frame}[t]{Hybrid Vector-Graph Retrieval}
+\textbf{Architecture}
+\begin{itemize}
+\item Vector store for semantic similarity
+\item Graph store for structural queries
+\item Fusion layer to combine results
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Fusion Strategies}
+\begin{itemize}
+\item \textbf{Early fusion}: Combine before ranking
+\item \textbf{Late fusion}: Rank separately, then merge
+\item \textbf{Cascaded}: Vector retrieval, then graph expansion
+\end{itemize}
+\vspace{0.2cm}
+\textbf{Implementation Options}
+\begin{itemize}
+\item Separate stores: Neo4j + Pinecone
+\item Integrated: Neo4j with vector indexes
+\item LlamaIndex: PropertyGraph with vector support
+\end{itemize}
+\bottomnote{Hybrid retrieval captures both semantic and structural relevance.}
+\end{frame}
+
+% ==================== SLIDE 16: Implementation Considerations ====================
 \begin{frame}[t]{Implementation Considerations}
 \textbf{Graph Storage Options}
 \begin{itemize}

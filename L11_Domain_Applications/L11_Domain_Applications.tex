@@ -41,7 +41,7 @@
 }
 
 \title{Domain Applications}
-\subtitle{Week 11: Code, Finance, and Healthcare Agents}
+\subtitle{Week 11: Code and Finance Agents}
 \author{Agentic Artificial Intelligence}
 \institute{PhD Course}
 \date{2025}
@@ -69,7 +69,7 @@
 \begin{frame}[t]{Learning Objectives}
 \textbf{Bloom's Taxonomy Levels Covered}
 \begin{itemize}
-\item \textbf{Remember}: Define SWE-bench, code agent, FinAgent, clinical decision support
+\item \textbf{Remember}: Define SWE-bench, code agent, FinAgent, regulatory compliance
 \item \textbf{Understand}: Explain domain-specific requirements for agent deployment
 \item \textbf{Apply}: Implement a code agent using flow engineering (structured pipelines)
 \item \textbf{Analyze}: Compare agent architectures across different domains
@@ -88,18 +88,18 @@
 \item Active deployment: GitHub Copilot, Cursor, Devin
 \end{itemize}
 \vspace{0.3cm}
-\textbf{Medium Maturity: Finance}
+\textbf{Medium-High Maturity: Finance}
 \begin{itemize}
 \item Well-defined tasks (analysis, research, reporting)
-\item Heavy regulatory constraints (compliance)
-\item Emerging: Trading assistants, document analysis
+\item Heavy regulatory constraints (SEC, FINRA, MiFID II)
+\item Active deployment: Trading assistants, document analysis, compliance
 \end{itemize}
 \vspace{0.3cm}
-\textbf{Emerging: Healthcare}
+\textbf{Finance Sub-Domains}
 \begin{itemize}
-\item High stakes, requires human oversight
-\item Regulatory approval (FDA, HIPAA)
-\item Focus: Decision support, not autonomous action
+\item \textbf{Research}: High maturity (summarization, analysis)
+\item \textbf{Trading}: Medium maturity (backtesting safe, live trading risky)
+\item \textbf{Compliance}: Growing (document review, audit trails)
 \end{itemize}
 \bottomnote{Maturity correlates with ability to verify outputs and contain errors.}
 \end{frame}
@@ -229,54 +229,112 @@
 \bottomnote{Multimodal perception is critical for financial markets.}
 \end{frame}
 
-% ==================== SLIDE 11: Healthcare Agents ====================
-\begin{frame}[t]{Healthcare Agents}
-\textbf{Potential Applications}
+% ==================== SLIDE 11: Finance Agent Architectures ====================
+\begin{frame}[t]{Finance Agent Architectures}
+\textbf{Research Agents}
 \begin{itemize}
-\item Clinical decision support (diagnosis assistance)
-\item Drug interaction checking
-\item Patient triage and routing
-\item Medical literature synthesis
+\item Earnings call analysis and summarization
+\item SEC filing extraction (10-K, 10-Q, 8-K)
+\item News sentiment aggregation across sources
 \end{itemize}
 \vspace{0.3cm}
-\textbf{Critical Constraints}
+\textbf{Trading Agents}
 \begin{itemize}
-\item \textbf{Regulation}: FDA approval for clinical use
-\item \textbf{Privacy}: HIPAA compliance required
-\item \textbf{Liability}: Who is responsible for errors?
-\item \textbf{Verification}: Medical claims must be evidence-based
+\item Strategy backtesting with historical data
+\item Signal generation from technical/fundamental indicators
+\item Portfolio rebalancing recommendations
 \end{itemize}
 \vspace{0.3cm}
-\textbf{Current Approach}
+\textbf{Compliance Agents}
 \begin{itemize}
-\item Human-in-the-loop: Agents suggest, clinicians decide
-\item Focus on augmentation, not automation
+\item Regulatory document parsing (MiFID II, Dodd-Frank)
+\item Trade surveillance and anomaly detection
+\item Audit trail generation and reporting
 \end{itemize}
-\bottomnote{Healthcare agents must support clinicians, not replace them.}
+\bottomnote{Different finance tasks require different agent architectures.}
 \end{frame}
 
-% ==================== SLIDE 12: Healthcare Agents Chart ====================
-\begin{frame}[t]{Healthcare Considerations}
-\begin{center}
-\includegraphics[width=0.60\textwidth]{04_healthcare_agents/healthcare_agents.pdf}
-\end{center}
-\bottomnote{Healthcare requires careful balance of benefits vs risks.}
+% ==================== SLIDE 12: Finance Regulatory Compliance ====================
+\begin{frame}[t]{Regulatory Compliance in Finance Agents}
+\textbf{Key Regulations}
+\begin{itemize}
+\item \textbf{SEC/FINRA} (US): Suitability rules, best execution, record-keeping
+\item \textbf{MiFID II} (EU): Transparency, investor protection, reporting
+\item \textbf{Basel III}: Capital requirements, risk management
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Agent Compliance Patterns}
+\begin{itemize}
+\item \textbf{Audit logging}: Every decision must be traceable
+\item \textbf{Explainability}: Justify recommendations to regulators
+\item \textbf{Human oversight}: Compliance officer approval for actions
+\item \textbf{Data governance}: Handle PII and market data appropriately
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Risk}: Unexplainable AI decisions = regulatory violations
+\bottomnote{Compliance-by-design is mandatory for production finance agents.}
 \end{frame}
 
-% ==================== SLIDE 13: Cross-Domain Patterns ====================
+% ==================== SLIDE 13: Risk Management in Trading Agents ====================
+\begin{frame}[t]{Risk Management in Trading Agents}
+\textbf{Risk Categories}
+\begin{itemize}
+\item \textbf{Market risk}: Position limits, VaR constraints, stop-losses
+\item \textbf{Execution risk}: Slippage, failed orders, latency
+\item \textbf{Model risk}: Strategy drift, overfitting, regime change
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Agent Safeguards}
+\begin{itemize}
+\item Hard position limits (cannot be overridden by agent)
+\item Kill switches for automated trading
+\item Human approval above threshold sizes
+\item Real-time P\&L monitoring with alerts
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Key Principle}: Agents recommend, humans execute high-risk trades
+\bottomnote{Risk controls must be enforced at infrastructure level, not by the agent.}
+\end{frame}
+
+% ==================== SLIDE 14: Finance Agent Case Studies ====================
+\begin{frame}[t]{Finance Agent Case Studies}
+\textbf{Bloomberg Terminal AI}
+\begin{itemize}
+\item Document Q\&A over financial filings
+\item Earnings call summarization
+\item Human-in-loop for all outputs
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Quantitative Research Assistants}
+\begin{itemize}
+\item Alpha factor discovery from alternative data
+\item Automated literature review for trading ideas
+\item Strategy prototyping (not live execution)
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Compliance Automation}
+\begin{itemize}
+\item KYC document verification
+\item Transaction monitoring for AML
+\item Regulatory report generation
+\end{itemize}
+\bottomnote{Current focus: Research and compliance; trading execution remains human-controlled.}
+\end{frame}
+
+% ==================== SLIDE 15: Cross-Domain Patterns ====================
 \begin{frame}[t]{Cross-Domain Design Patterns}
 \textbf{Verification Strategy by Domain}
 \begin{itemize}
 \item \textbf{Code}: Run tests, syntax checking, type checking
-\item \textbf{Finance}: Backtesting, compliance rules, risk limits
-\item \textbf{Healthcare}: Evidence linking, confidence thresholds, human review
+\item \textbf{Finance Research}: Cross-reference sources, fact-check numbers
+\item \textbf{Finance Trading}: Backtesting, risk limits, compliance rules
 \end{itemize}
 \vspace{0.3cm}
 \textbf{Human-in-the-Loop Intensity}
 \begin{itemize}
 \item \textbf{Code}: Low (automated tests catch most errors)
-\item \textbf{Finance}: Medium (compliance review for significant actions)
-\item \textbf{Healthcare}: High (clinician approval for all recommendations)
+\item \textbf{Finance Research}: Medium (analyst review of summaries)
+\item \textbf{Finance Trading}: High (human execution for significant trades)
 \end{itemize}
 \vspace{0.3cm}
 \textbf{Common Success Factors}
@@ -288,7 +346,7 @@
 \bottomnote{Adapt verification intensity to domain risk level.}
 \end{frame}
 
-% ==================== SLIDE 14: Key Papers ====================
+% ==================== SLIDE 16: Key Papers ====================
 \begin{frame}[t]{Required Readings}
 \textbf{This Week}
 \begin{itemize}
@@ -300,18 +358,19 @@
 \textbf{Supplementary}
 \begin{itemize}
 \item Yang et al. (2024). ``SWE-agent: Agent-Computer Interfaces Enable Software Engineering.'' arXiv:2405.15793
-\item Singhal et al. (2023). ``Large Language Models Encode Clinical Knowledge.'' Nature
+\item Lopez-Lira \& Tang (2023). ``Can ChatGPT Forecast Stock Price Movements?'' arXiv:2304.07619
 \end{itemize}
-\bottomnote{Focus on SWE-bench for understanding code agent evaluation.}
+\bottomnote{Focus on SWE-bench for code agents and FinAgent for finance agents.}
 \end{frame}
 
-% ==================== SLIDE 15: Summary ====================
+% ==================== SLIDE 17: Summary ====================
 \begin{frame}[t]{Summary and Key Takeaways}
 \textbf{Domain Insights}
 \begin{itemize}
 \item \textbf{Code}: Most mature; clear success criteria, safe sandboxing
-\item \textbf{Finance}: High value but requires compliance awareness
-\item \textbf{Healthcare}: Highest stakes; human oversight essential
+\item \textbf{Finance Research}: High value; summarization and analysis
+\item \textbf{Finance Trading}: High risk; requires strict safeguards
+\item \textbf{Finance Compliance}: Growing rapidly; audit and documentation
 \end{itemize}
 \vspace{0.3cm}
 \textbf{Design Principles}

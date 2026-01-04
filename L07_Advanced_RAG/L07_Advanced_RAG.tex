@@ -103,7 +103,29 @@
 \bottomnote{Advanced RAG adds decision-making to the retrieval process.}
 \end{frame}
 
-% ==================== SLIDE 4: RAG Evolution ====================
+% ==================== SLIDE 4: When Retrieval Helps ====================
+\begin{frame}[t]{When Retrieval Helps vs. Hurts}
+\textbf{Retrieval Helps When}
+\begin{itemize}
+\item Query requires factual or up-to-date information
+\item Answer exists in corpus but not in LLM parameters
+\item User needs citations or source attribution
+\item Domain-specific knowledge not in training data
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Retrieval Hurts When}
+\begin{itemize}
+\item Simple reasoning or general knowledge queries
+\item Retrieved context is noisy or irrelevant
+\item Latency constraints prohibit retrieval round-trip
+\item Question is about LLM capabilities, not facts
+\end{itemize}
+\vspace{0.2cm}
+\textbf{Self-RAG Insight}: 30-40\% of queries don't benefit from retrieval
+\bottomnote{Adaptive retrieval = knowing when NOT to retrieve is as important as how.}
+\end{frame}
+
+% ==================== SLIDE 5: RAG Evolution ====================
 \begin{frame}[t]{Evolution of RAG Systems}
 \begin{center}
 \includegraphics[width=0.65\textwidth]{01_rag_evolution/rag_evolution.pdf}
@@ -183,7 +205,31 @@
 \bottomnote{Agentic RAG = RAG + Planning + Tool Use}
 \end{frame}
 
-% ==================== SLIDE 10: Strategy Comparison ====================
+% ==================== SLIDE 11: Query Decomposition ====================
+\begin{frame}[t]{Query Decomposition Strategies}
+\textbf{Why Decompose Queries}
+\begin{itemize}
+\item Complex queries often have multiple information needs
+\item Single retrieval may miss relevant aspects
+\item Decomposition enables parallel retrieval
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Decomposition Approaches}
+\begin{itemize}
+\item \textbf{Sub-question generation}: Break into atomic questions
+\item \textbf{Aspect extraction}: Identify distinct facets
+\item \textbf{Step-back prompting}: Abstract to broader question first
+\end{itemize}
+\vspace{0.2cm}
+\textbf{Example}
+\begin{itemize}
+\item Original: ``Compare Tesla and Ford's EV strategies and financials''
+\item Decomposed: (1) Tesla EV strategy, (2) Ford EV strategy, (3) Tesla financials, (4) Ford financials
+\end{itemize}
+\bottomnote{Decomposition improves recall but increases latency and cost.}
+\end{frame}
+
+% ==================== SLIDE 12: Strategy Comparison ====================
 \begin{frame}[t]{Retrieval Strategy Comparison}
 \begin{center}
 \includegraphics[width=0.60\textwidth]{04_retrieval_comparison/retrieval_comparison.pdf}
@@ -216,7 +262,32 @@
 \bottomnote{Combine patterns based on accuracy/latency requirements.}
 \end{frame}
 
-% ==================== SLIDE 12: RAPTOR ====================
+% ==================== SLIDE 14: RAG Failure Analysis ====================
+\begin{frame}[t]{RAG Failure Analysis}
+\textbf{Retrieval Failures}
+\begin{itemize}
+\item \textbf{Index gap}: Relevant document not in corpus
+\item \textbf{Embedding mismatch}: Query and doc embed differently
+\item \textbf{Chunking error}: Answer spans multiple chunks
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Generation Failures}
+\begin{itemize}
+\item \textbf{Context ignored}: LLM uses parametric knowledge instead
+\item \textbf{Lost in the middle}: Relevant info buried in long context
+\item \textbf{Hallucinated synthesis}: Combines facts incorrectly
+\end{itemize}
+\vspace{0.2cm}
+\textbf{Diagnosis Framework}
+\begin{itemize}
+\item Check retrieval quality first (precision@k)
+\item Test with gold context to isolate generation issues
+\item Compare parametric vs. RAG answers
+\end{itemize}
+\bottomnote{Most RAG failures are retrieval failures -- diagnose before adding complexity.}
+\end{frame}
+
+% ==================== SLIDE 15: RAPTOR ====================
 \begin{frame}[t]{RAPTOR: Hierarchical Retrieval}
 \textbf{Recursive Abstractive Processing (Sarthi et al., 2024)}
 \begin{itemize}

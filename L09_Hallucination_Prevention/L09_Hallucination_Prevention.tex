@@ -165,7 +165,33 @@
 \bottomnote{Combine multiple approaches for robust detection.}
 \end{frame}
 
-% ==================== SLIDE 7: Chain-of-Verification ====================
+% ==================== SLIDE 7: Confidence Calibration ====================
+\begin{frame}[t]{Confidence Calibration}
+\textbf{The Calibration Problem}
+\begin{itemize}
+\item LLMs often express high confidence even when wrong
+\item Verbalized confidence (``I'm 90\% sure'') poorly calibrated
+\item Token probabilities don't reflect factual accuracy
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Calibration Approaches}
+\begin{itemize}
+\item Verbalized confidence prompting (``express uncertainty'')
+\item Multiple sampling + agreement rate
+\item Trained confidence classifiers
+\item Abstention policies (refuse uncertain queries)
+\end{itemize}
+\vspace{0.2cm}
+\textbf{Practical Strategies}
+\begin{itemize}
+\item Add ``express uncertainty when appropriate'' to system prompt
+\item Sample 3-5 times, check consistency
+\item Set confidence threshold for human escalation
+\end{itemize}
+\bottomnote{Well-calibrated confidence enables appropriate human oversight.}
+\end{frame}
+
+% ==================== SLIDE 8: Chain-of-Verification ====================
 \begin{frame}[t]{Chain-of-Verification (CoVe)}
 \textbf{Core Idea (Dhuliawala et al., 2023)}
 \begin{itemize}
@@ -255,7 +281,33 @@
 \bottomnote{Layer multiple strategies for defense in depth.}
 \end{frame}
 
-% ==================== SLIDE 12: Mitigation Strategy Comparison ====================
+% ==================== SLIDE 13: Hallucination in Agentic Contexts ====================
+\begin{frame}[t]{Hallucination in Agentic Contexts}
+\textbf{Agent-Specific Risks}
+\begin{itemize}
+\item \textbf{Hallucinated tool calls}: Wrong function or parameters
+\item \textbf{Fabricated observations}: Agent ``imagines'' tool output
+\item \textbf{Planning hallucinations}: Invalid action sequences
+\item \textbf{State hallucinations}: Wrong beliefs about environment
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Compounding Effect}
+\begin{itemize}
+\item Single hallucination propagates through trajectory
+\item Each step builds on potentially false previous outputs
+\item Error rate compounds: 95\% per step $\rightarrow$ 60\% after 10 steps
+\end{itemize}
+\vspace{0.2cm}
+\textbf{Agent-Specific Mitigations}
+\begin{itemize}
+\item Tool output validation (schema, range checks)
+\item State verification between steps
+\item Checkpointing for rollback on detected inconsistency
+\end{itemize}
+\bottomnote{Agent hallucinations compound -- verify at every step, not just final output.}
+\end{frame}
+
+% ==================== SLIDE 14: Mitigation Strategy Comparison ====================
 \begin{frame}[t]{Mitigation Strategy Comparison}
 \begin{center}
 \includegraphics[width=0.60\textwidth]{04_mitigation_strategies/mitigation_strategies.pdf}

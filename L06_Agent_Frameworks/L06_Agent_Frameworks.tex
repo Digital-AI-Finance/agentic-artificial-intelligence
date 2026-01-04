@@ -105,7 +105,29 @@
 \bottomnote{Framework choice depends on: complexity, multi-agent needs, production requirements.}
 \end{frame}
 
-% ==================== SLIDE 4: Framework Comparison ====================
+% ==================== SLIDE 4: When to Use Frameworks ====================
+\begin{frame}[t]{When to Use vs. Avoid Frameworks}
+\textbf{Frameworks Add Value When}
+\begin{itemize}
+\item Rapid prototyping of agent architectures
+\item State persistence and checkpointing requirements
+\item Human-in-the-loop interactions needed
+\item Multi-agent coordination patterns required
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Build Custom When}
+\begin{itemize}
+\item Simple single-agent pipelines (overhead not justified)
+\item Extreme latency requirements ($<$100ms responses)
+\item Proprietary orchestration logic
+\item Framework abstractions obscure debugging
+\end{itemize}
+\vspace{0.2cm}
+\textbf{Decision Heuristic}: Complexity of state management determines framework need
+\bottomnote{Start simple -- add framework when state/coordination becomes bottleneck.}
+\end{frame}
+
+% ==================== SLIDE 5: Framework Comparison ====================
 \begin{frame}[t]{Framework Comparison}
 \begin{center}
 \includegraphics[width=0.55\textwidth]{01_framework_comparison/framework_comparison.pdf}
@@ -194,7 +216,32 @@
 \bottomnote{AutoGen excels at collaborative multi-agent problem solving.}
 \end{frame}
 
-% ==================== SLIDE 10: Orchestration Patterns ====================
+% ==================== SLIDE 11: CrewAI ====================
+\begin{frame}[t]{CrewAI: Role-Based Orchestration}
+\textbf{Core Abstraction}
+\begin{itemize}
+\item Agents defined by role, goal, backstory (persona)
+\item Tasks assigned with expected output specifications
+\item Crew orchestrates agent collaboration
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Key Features}
+\begin{itemize}
+\item Role-based reasoning (agents ``think'' as their role)
+\item Process types: sequential, hierarchical, consensual
+\item Memory sharing between crew members
+\item Tool delegation to specialized agents
+\end{itemize}
+\vspace{0.2cm}
+\textbf{Comparison to AutoGen}
+\begin{itemize}
+\item CrewAI: Declarative role definitions, simpler setup
+\item AutoGen: More flexible, lower-level control
+\end{itemize}
+\bottomnote{CrewAI excels at well-defined team workflows with clear role boundaries.}
+\end{frame}
+
+% ==================== SLIDE 12: Orchestration Patterns ====================
 \begin{frame}[t]{Orchestration Patterns}
 \begin{center}
 \includegraphics[width=0.60\textwidth]{04_orchestration_patterns/orchestration_patterns.pdf}
@@ -227,7 +274,32 @@
 \bottomnote{Production agents require robust error handling and monitoring.}
 \end{frame}
 
-% ==================== SLIDE 12: Framework Selection ====================
+% ==================== SLIDE 14: Framework Anti-Patterns ====================
+\begin{frame}[t]{Framework Anti-Patterns}
+\textbf{Common Mistakes}
+\begin{itemize}
+\item Over-engineering: Using multi-agent for single-agent problems
+\item State bloat: Storing everything in state graph
+\item Missing error handling: Assuming LLM calls always succeed
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Debugging Challenges}
+\begin{itemize}
+\item Non-deterministic execution makes reproduction hard
+\item Trace visualization essential (LangSmith, LangFuse)
+\item Log correlation IDs for distributed agent systems
+\end{itemize}
+\vspace{0.2cm}
+\textbf{Performance Pitfalls}
+\begin{itemize}
+\item Synchronous tool calls when parallel is possible
+\item No caching of repeated LLM calls
+\item Unbounded context growth
+\end{itemize}
+\bottomnote{Most production issues stem from error handling and observability gaps.}
+\end{frame}
+
+% ==================== SLIDE 15: Framework Selection ====================
 \begin{frame}[t]{Choosing a Framework}
 \small
 \begin{tabular}{lll}
