@@ -221,7 +221,23 @@ $$\hat{a} = \arg\max_a \sum_{i=1}^{k} \mathbb{1}[a_i = a]$$
 \bottomnote{Context management is crucial for long-running agent tasks.}
 \end{frame}
 
-% ==================== SLIDE 11: Prompting Strategies ====================
+% ==================== SLIDE 11: Prompting Comparison Chart ====================
+\begin{frame}[t]{Prompting Strategies on GSM8K}
+\begin{center}
+\includegraphics[width=0.60\textwidth]{03_prompting_comparison/prompting_comparison.pdf}
+\end{center}
+\bottomnote{Self-consistency achieves 74.4\% accuracy vs 17.1\% zero-shot (GSM8K benchmark).}
+\end{frame}
+
+% ==================== SLIDE 12: Cost vs Accuracy ====================
+\begin{frame}[t]{Cost vs Accuracy Tradeoff}
+\begin{center}
+\includegraphics[width=0.60\textwidth]{04_token_efficiency/token_efficiency.pdf}
+\end{center}
+\bottomnote{Better accuracy requires more tokens -- choose based on task criticality.}
+\end{frame}
+
+% ==================== SLIDE 13: Prompting Strategies ====================
 \begin{frame}[t]{Comparison of Prompting Strategies}
 \small
 \begin{tabular}{llll}

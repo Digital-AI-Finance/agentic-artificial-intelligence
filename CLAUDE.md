@@ -14,7 +14,11 @@ PhD-level 12-week course on Agentic AI: LLM agents, multi-agent systems, RAG, an
 ```bash
 # Compile slides (from lesson folder)
 pdflatex L01_Introduction_Agentic_AI.tex
-# Move aux files to temp/
+
+# Move aux files to temp/ (Windows)
+move *.aux *.log *.nav *.out *.snm *.toc temp\
+
+# Move aux files to temp/ (Unix)
 mv *.aux *.log *.nav *.out *.snm *.toc temp/
 ```
 
@@ -44,9 +48,10 @@ bundle exec htmlproofer ./_site --disable-external
 
 ### Quality Scripts
 ```bash
-python scripts/extract_glossary.py           # Audit term definitions across lectures
-python scripts/generate_term_index.py        # Create cross-lecture term matrix
-python scripts/quality_check.py              # Playwright-based accessibility check
+python scripts/extract_glossary.py       # Audit term definitions across lectures
+python scripts/generate_term_index.py    # Create cross-lecture term matrix
+python scripts/quality_check.py          # Playwright-based accessibility check
+python scripts/screenshot_website.py     # Capture website screenshots
 ```
 
 ## Architecture
@@ -63,19 +68,29 @@ LXX_Topic_Name/
   temp/                   # LaTeX auxiliary files
 ```
 
+### Reviews (reviews/)
+- `L01_review.md` through `L12_review.md` - Individual lecture reviews
+- `REVIEW_SUMMARY.md` - Cumulative review with citation verification, chart usage
+
 ### Jekyll Site (docs/)
+- `_config.yml` - Site config (Just the Docs theme v0.8.2)
 - `_data/weeks.yml` - Week metadata (topics, papers, notebooks)
 - `_data/glossary.yml` - Term definitions by week
 - `_data/quizzes.yml` - Interactive quiz questions
 - `_includes/quiz.html` - Quiz component
 - `_layouts/week.html` - Week page template
-- `weeks/*.md` - Week 1-12 pages
+- `weeks/*.md` - Week 1-12 pages (collection with `/weeks/:name/` permalink)
 
 ### Beamer Conventions
 - Theme: Madrid, 8pt, aspectratio=169
 - Chart width: 0.55\textwidth (with text) or 0.65\textwidth (standalone)
-- Colors: mlpurple (#3333B2), mlblue (#0066CC), mlorange (#FF7F0E), mlgreen (#2CA02C), mlred (#D62728)
-- Use `\bottomnote{text}` for key takeaways
+- Colors defined in each .tex preamble:
+  - mlpurple: RGB(51,51,178) / #3333B2
+  - mlblue: RGB(0,102,204) / #0066CC
+  - mlorange: RGB(255,127,14) / #FF7F0E
+  - mlgreen: RGB(44,160,44) / #2CA02C
+  - mlred: RGB(214,39,40) / #D62728
+- Use `\bottomnote{text}` for key takeaways on each slide
 
 ### Chart Script Requirements
 ```python
@@ -131,4 +146,18 @@ Define terms inline at first use: `LLM (Large Language Model)`, `Leiden algorith
 
 4. **Sass units**: Just the Docs uses rem - convert px to rem (264px -> 16.5rem)
 
-5. **PDF exclusion**: Never exclude *.pdf in _config.yml
+5. **PDF exclusion**: Never exclude *.pdf in _config.yml - slides need to be downloadable
+
+## Citation Format
+
+All arXiv citations must be verified. Format: `Author et al. (Year). "Title." arXiv:XXXX.XXXXX`
+
+Key verified papers:
+- ReAct: arXiv:2210.03629
+- CoT: arXiv:2201.11903
+- ToT: arXiv:2305.10601
+- Reflexion: arXiv:2303.11366
+- Self-RAG: arXiv:2310.11511
+- GraphRAG: arXiv:2404.16130
+- AgentBench: arXiv:2308.03688
+- Sumers et al. (CoALA): arXiv:2309.02427 (NOT 2403.12897)

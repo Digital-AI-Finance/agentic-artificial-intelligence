@@ -184,12 +184,19 @@
 \bottomnote{Robust error handling is essential for production agents.}
 \end{frame}
 
+\begin{frame}[t]{Tool Selection by Domain}
+\begin{center}
+\includegraphics[width=0.60\textwidth]{03_tool_selection/tool_selection.pdf}
+\end{center}
+\bottomnote{Tool selection accuracy varies by domain -- GPT-4 leads across all categories.}
+\end{frame}
+
 \begin{frame}[t]{API-Bank and ToolLLM}
-\textbf{API-Bank (Li et al., 2023)}
+\textbf{API-Bank (Li et al., 2023, arXiv:2304.08244)}
 \begin{itemize}
 \item Benchmark with 73 APIs across 3 levels of complexity
 \item Tests tool selection, parameter extraction, composition
-\item GPT-4 achieves 80\%+ on single-tool tasks
+\item GPT-4 achieves 80\%+ accuracy on single-tool tasks
 \end{itemize}
 \vspace{0.3cm}
 \textbf{ToolLLM (Qin et al., 2024)}
@@ -244,6 +251,13 @@
 \item Returns: structured JSON with title, snippet, url
 \end{itemize}
 \bottomnote{Good tool design = clear intent + minimal friction.}
+\end{frame}
+
+\begin{frame}[t]{API Comparison}
+\begin{center}
+\includegraphics[width=0.65\textwidth]{04_api_comparison/api_comparison.pdf}
+\end{center}
+\bottomnote{All major providers support function calling with slightly different APIs.}
 \end{frame}
 
 \begin{frame}[t]{Required Readings}

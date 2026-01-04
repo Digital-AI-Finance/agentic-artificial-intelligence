@@ -126,7 +126,7 @@
 \item \textbf{Reasoning}: Chain-of-Thought (CoT), Tree-of-Thoughts (ToT) prompting
 \item \textbf{Tool Use}: Function calling via APIs (Application Programming Interfaces)
 \item \textbf{Frameworks}: LangChain/LangGraph, AutoGen, CrewAI (agent orchestration)
-\item \textbf{Context}: 100K+ token (text unit) windows enable complex interactions
+\item \textbf{Context}: 200K-1M+ token (text unit) windows enable complex interactions
 \end{itemize}
 \vspace{0.3cm}
 \textbf{Current State}
@@ -200,7 +200,15 @@ where $t_i$ = thought, $a_i$ = action, $o_i$ = observation
 \bottomnote{Architecture choice depends on task complexity and latency requirements.}
 \end{frame}
 
-% ==================== SLIDE 9: Core Components ====================
+% ==================== SLIDE 9: Autonomy Spectrum ====================
+\begin{frame}[t]{Autonomy Spectrum}
+\begin{center}
+\includegraphics[width=0.65\textwidth]{04_autonomy_spectrum/autonomy_spectrum.pdf}
+\end{center}
+\bottomnote{Modern agents span from rule-based systems to fully autonomous decision-makers.}
+\end{frame}
+
+% ==================== SLIDE 10: Core Components ====================
 \begin{frame}[t]{Core Agent Components}
 \textbf{1. LLM Core (Brain)}
 \begin{itemize}
@@ -251,7 +259,15 @@ where $t_i$ = thought, $a_i$ = action, $o_i$ = observation
 \bottomnote{The field is rapidly evolving -- new systems appear weekly.}
 \end{frame}
 
-% ==================== SLIDE 11: Capabilities ====================
+% ==================== SLIDE 11: Agent Capabilities Comparison ====================
+\begin{frame}[t]{Agent Capabilities Comparison}
+\begin{center}
+\includegraphics[width=0.55\textwidth]{03_agent_capabilities/agent_capabilities.pdf}
+\end{center}
+\bottomnote{Full agents extend LLMs with perception, planning, action, and learning capabilities.}
+\end{frame}
+
+% ==================== SLIDE 12: Capabilities ====================
 \begin{frame}[t]{Agent Capabilities}
 \textbf{What Agents Can Do Well}
 \begin{itemize}
@@ -271,7 +287,7 @@ where $t_i$ = thought, $a_i$ = action, $o_i$ = observation
 \vspace{0.3cm}
 \textbf{Key Metric}
 \begin{itemize}
-\item AgentBench: GPT-4 achieves ~30\% on complex tasks
+\item AgentBench: GPT-4 leads but success rates vary (12-78\% by task type)
 \end{itemize}
 \bottomnote{Agents are powerful but not yet reliable for high-stakes autonomous operation.}
 \end{frame}
@@ -332,7 +348,7 @@ where $t_i$ = thought, $a_i$ = action, $o_i$ = observation
 \begin{itemize}
 \item Wang et al. (2024). ``A Survey on Large Language Model based Autonomous Agents.'' arXiv:2308.11432
 \item Xi et al. (2023). ``The Rise and Potential of LLM Based Agents.'' arXiv:2309.07864
-\item Sumers et al. (2024). ``Language Agents: From Next-Token Prediction to Digital Automation.'' arXiv:2403.12897
+\item Sumers et al. (2024). ``Cognitive Architectures for Language Agents.'' arXiv:2309.02427
 \end{itemize}
 \bottomnote{Start with ReAct paper -- it's foundational for everything that follows.}
 \end{frame}
